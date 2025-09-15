@@ -8,67 +8,67 @@ import { ExternalLink, FileText, Video } from 'lucide-react';
 const Work = () => {
   const workItems = [
     {
-      title: "Scaling a tech business",
-      type: "Article",
-      summary: "Strategic framework for building scalable technology organizations across global markets.",
-      description: "Deep dive into the operational patterns and growth strategies that have driven success across multiple technology companies.",
-      link: "#",
+      title: "Techonomic: AI Strategy for Executives",
+      type: "Newsletter",
+      summary: "Weekly insights on AI strategy, data commercialization, and revenue growth for executives.",
+      description: "Strategic analysis and practical frameworks for executives navigating AI transformation. Real case studies, market intelligence, and actionable insights from 16+ years building technology businesses.",
+      link: "https://techonomic.substack.com",
       icon: FileText
     },
     {
-      title: "Cookieless identity and the future of addressability",
-      type: "Research",
-      summary: "Comprehensive analysis of identity solutions in the post-cookie advertising ecosystem.",
-      description: "Technical and commercial implications of identity infrastructure changes, with practical recommendations for businesses.",
-      link: "#",
+      title: "Learning Hub: AI Implementation Playbooks",
+      type: "Content Hub",
+      summary: "Practical guides and frameworks for implementing AI strategies across different business functions.",
+      description: "Comprehensive collection of playbooks, templates, and methodologies for AI strategy implementation, GTM optimization, and revenue operations.",
+      link: "#ai-mindmaker",
       icon: FileText
     },
     {
-      title: "The future of programmatic",
-      type: "Insight",
-      summary: "Market analysis of programmatic advertising evolution and emerging opportunities.",
-      description: "Forward-looking perspective on how programmatic advertising will evolve with AI and automation.",
-      link: "#",
-      icon: FileText
+      title: "The Business Case for AI Literacy",
+      type: "Speaking",
+      summary: "Keynote presentation on transforming technical knowledge into competitive advantage.",
+      description: "How organizations can build systematic AI literacy that translates directly into revenue growth and operational efficiency.",
+      link: "mailto:hello@krishraja.com?subject=Speaking Inquiry",
+      icon: Video
     },
     {
-      title: "Macro media shifts to watch",
-      type: "Analysis",
-      summary: "Key trends reshaping the media landscape and their business implications.",
-      description: "Strategic analysis of media industry transformations and their impact on advertising and content monetization.",
-      link: "#",
-      icon: FileText
-    },
-    {
-      title: "Growth plans and GTM rewires",
-      type: "Framework",
-      summary: "Systematic approach to redesigning go-to-market strategies for accelerated growth.",
-      description: "Practical methodology for identifying and executing GTM transformations that drive measurable revenue growth.",
-      link: "#",
-      icon: FileText
-    },
-    {
-      title: "Data and automation in practice",
+      title: "From $0 to $5.5M ARR: Scaling APAC",
       type: "Case Study",
-      summary: "Real-world implementation of data-driven automation across enterprise sales processes.",
-      description: "Detailed case studies showing how data and automation can transform business operations and outcomes.",
-      link: "#",
+      summary: "Complete playbook for launching and scaling a technology business in new markets.",
+      description: "Detailed analysis of building Captify's APAC business from zero to $5.5M ARR, including team building, product-market fit, and go-to-market strategy.",
+      link: "mailto:hello@krishraja.com?subject=Case Study Request",
       icon: FileText
     },
     {
-      title: "Work life balance at pace",
-      type: "Perspective",
-      summary: "Managing high-performance culture while maintaining sustainable work practices.",
-      description: "Personal insights and strategies for building high-performing teams without sacrificing well-being.",
-      link: "#",
+      title: "AI-Powered Sales Automation Framework",
+      type: "Workshop",
+      summary: "Interactive workshop on implementing AI agents in sales and marketing processes.",
+      description: "Hands-on session covering agent architecture, evaluation frameworks, and integration patterns that have delivered 60% reduction in outreach time.",
+      link: "https://calendly.com/krish-raja",
       icon: FileText
     },
     {
-      title: "Future of video",
-      type: "Video",
-      summary: "Strategic outlook on video technology, distribution, and monetization trends.",
-      description: "Analysis of how video consumption, creation, and monetization will evolve in the AI era.",
-      link: "#",
+      title: "Data Commercialization Strategy",
+      type: "Advisory",
+      summary: "Strategic consulting on turning data assets into revenue streams.",
+      description: "Methodology for identifying, packaging, and monetizing data assets based on experience launching 70+ data products across media and adtech.",
+      link: "mailto:hello@krishraja.com?subject=Advisory Inquiry",
+      icon: FileText
+    },
+    {
+      title: "Executive AI Strategy Assessment",
+      type: "Tool",
+      summary: "Interactive assessment to evaluate your organization's AI readiness and identify growth opportunities.",
+      description: "Comprehensive evaluation framework covering AI literacy, data infrastructure, process automation, and competitive positioning.",
+      link: "https://calendly.com/krish-raja",
+      icon: FileText
+    },
+    {
+      title: "Building AI-First Revenue Operations",
+      type: "Masterclass",
+      summary: "Deep dive into designing revenue operations that scale with AI automation.",
+      description: "Advanced strategies for revenue operations leaders looking to implement AI-driven processes, predictive analytics, and automated workflows.",
+      link: "mailto:hello@krishraja.com?subject=Masterclass Inquiry",
       icon: Video
     }
   ];
@@ -79,7 +79,7 @@ const Work = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">Work</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            Selected insights, frameworks, and analysis
+            Thought leadership, case studies, and strategic frameworks from 16+ years of building businesses
           </p>
         </div>
 
@@ -120,9 +120,11 @@ const Work = () => {
                     <p className="text-muted-foreground leading-relaxed">
                       {item.description}
                     </p>
-                    <Button asChild>
-                      <a href={item.link} className="flex items-center gap-2">
-                        {item.type === "Video" ? "Watch" : "Read"}
+                    <Button asChild className="w-full">
+                      <a href={item.link} target={item.link.startsWith('http') ? '_blank' : '_self'} rel={item.link.startsWith('http') ? 'noopener noreferrer' : ''} className="flex items-center gap-2 justify-center">
+                        {item.type === "Video" || item.type === "Speaking" || item.type === "Masterclass" ? "Watch" : 
+                         item.type === "Tool" || item.type === "Workshop" ? "Access" :
+                         item.type === "Advisory" ? "Inquire" : "Read"}
                         <ExternalLink size={16} />
                       </a>
                     </Button>

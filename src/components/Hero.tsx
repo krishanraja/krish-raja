@@ -7,11 +7,15 @@ const Hero = () => {
       <div className="container-width text-center relative z-10">
         <div className="fade-in-up">
           <h1 className="headline-xl mb-6 text-balance">
-            I turn AI literacy into AI strategy and revenue.
+            I turn AI literacy into <span className="text-primary">AI strategy and revenue</span>
           </h1>
-          <p className="body-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-balance">
-            Operator and strategic advisor across AI, data, identity, and SaaS GTM.
+          <p className="body-lg text-muted-foreground mb-6 max-w-2xl mx-auto text-balance">
+            Operator and strategic advisor across AI, data, identity, and SaaS GTM. 16+ years building businesses from $0 to $61M across three continents.
           </p>
+          
+          <div className="text-sm text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Currently helping executives across media, telco & tech • Based in Brooklyn, NY
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button size="lg" asChild className="w-full sm:w-auto">

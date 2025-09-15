@@ -7,42 +7,54 @@ const HowIHelp = () => {
     {
       icon: Users,
       title: "Executive Leadership",
-      oneLiner: "Translate AI noise into board-ready strategy, operating model, and measurable outcomes.",
+      oneLiner: "Translate AI noise into board-ready strategy. Built $5.5M ARR from $0, scaled teams to 18 across three continents.",
       outcomes: [
-        "Portfolio of AI bets aligned to P&L and risk",
-        "Governance, resourcing, and metrics that survive scrutiny",
-        "Narrative that wins the room and unlocks budgets"
-      ]
+        "AI-first competitive positioning",
+        "Revenue strategy transformation", 
+        "Cross-functional team building",
+        "Board-level strategic guidance"
+      ],
+      metric: "$5.5M ARR",
+      context: "scaled from zero at Captify APAC"
     },
     {
       icon: Rocket,
-      title: "Product and GTM Leaders",
-      oneLiner: "Turn literacy into roadmap, PMF signals, pricing and launch motions across SLG, PLG, and channel.",
+      title: "Product/GTM Leaders", 
+      oneLiner: "Turn literacy into roadmap, PMF signals into scale. Launched 70+ products, grew revenue from $9M to $61M.",
       outcomes: [
-        "Crisper positioning and talk tracks that convert",
-        "Roadmap shaped by jobs-to-be-done and evidence",
-        "Faster launch cycles with clean Sales handoffs"
-      ]
+        "AI-driven product strategy",
+        "GTM acceleration frameworks",
+        "Market expansion planning",
+        "Product-led growth design"
+      ],
+      metric: "70+",
+      context: "new products launched across portfolio"
     },
     {
       icon: TrendingUp,
-      title: "Sales, RevOps and Enablement",
-      oneLiner: "Seller workflows, education-led enablement, buyer-ready stories, and pipeline acceleration.",
+      title: "Sales/RevOps",
+      oneLiner: "Seller workflows, education-led enablement. Cut outreach time 60%, closed $400K+ ARR in under 6 months.",
       outcomes: [
-        "Higher win rates and shorter cycles",
-        "Consistent message across SDR, AE, SE, CS",
-        "Repeatable playbooks and asset kits tied to stages"
-      ]
+        "AI-powered sales automation",
+        "Revenue operations design",
+        "Pipeline optimization",
+        "Conversion rate improvement"
+      ],
+      metric: "60%",
+      context: "reduction in outreach time through AI"
     },
     {
       icon: Cpu,
-      title: "Data, AI and Engineering",
-      oneLiner: "Practical agent patterns, evaluation harnesses, and integration with data and identity.",
+      title: "Data/AI/Engineering",
+      oneLiner: "Practical agent patterns, evaluation harnesses. Built automations that saved teams weeks of manual work.",
       outcomes: [
-        "Fewer proofs-of-concept, more shipped capability",
-        "Architecture and MLOps aligned to business value",
-        "Eval gates that keep models honest"
-      ]
+        "Agent architecture design",
+        "Data pipeline optimization", 
+        "Technical strategy translation",
+        "AI governance frameworks"
+      ],
+      metric: "Weeks saved",
+      context: "through coded automations at Microsoft"
     }
   ];
 
@@ -52,7 +64,7 @@ const HowIHelp = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">How I Help</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            Strategic guidance tailored to your role and business context
+            16+ years building revenue lines, scaling teams, and creating value through data-fed AI strategies across UK, AU, and USA
           </p>
         </div>
 
@@ -60,7 +72,7 @@ const HowIHelp = () => {
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
             return (
-              <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm">
+              <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group">
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="p-2 rounded-lg bg-primary/10">
@@ -71,6 +83,12 @@ const HowIHelp = () => {
                   <p className="text-muted-foreground leading-relaxed">
                     {audience.oneLiner}
                   </p>
+                  
+                  {/* Achievement Highlight */}
+                  <div className="bg-muted/30 rounded-lg p-3 mt-4">
+                    <div className="text-lg font-semibold text-primary">{audience.metric}</div>
+                    <div className="text-xs text-muted-foreground">{audience.context}</div>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3 mb-6">
@@ -83,7 +101,7 @@ const HowIHelp = () => {
                       </div>
                     ))}
                   </div>
-                  <Button variant="outline" size="sm" asChild>
+                  <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" asChild>
                     <a href="#ai-mindmaker" className="text-sm">
                       Learn more
                     </a>

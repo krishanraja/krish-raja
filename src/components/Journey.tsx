@@ -114,15 +114,23 @@ const Journey = () => {
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <span>Map future scenarios</span>
+                      <span>Map future scenarios and competitive landscapes</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <span>Connect micro to macro</span>
+                      <span>Connect micro signals to macro opportunities</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <span>Design winning PMF and GTM</span>
+                      <span>Design winning PMF and scalable GTM</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Bridge technical depth with commercial execution</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Build teams that scale across cultures and time zones</span>
                     </li>
                   </ul>
                 </CardContent>
