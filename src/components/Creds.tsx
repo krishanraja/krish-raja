@@ -3,9 +3,9 @@ import { Badge } from '@/components/ui/badge';
 const Creds = () => {
   const companies = [
     { name: "Microsoft", logo: "M", period: "2008-2011", achievement: "Built automations saving weeks of manual work" },
-    { name: "Nine Entertainment", logo: "9", period: "2018-2021", achievement: "Scaled revenue from $9M to $61M" },
+    { name: "Nine Entertainment", logo: "9", period: "2018-2021", achievement: "Scaled revenue by 7x growth" },
     { name: "Singtel", logo: "S", period: "2016-2018", achievement: "Led digital transformation initiatives" },
-    { name: "Captify", logo: "C", period: "2021-2024", achievement: "Built $5.5M ARR business from zero" }
+    { name: "Captify", logo: "C", period: "2021-2024", achievement: "Built multi-million ARR business from zero" }
   ];
 
   const achievements = [
@@ -26,10 +26,10 @@ const Creds = () => {
           <h2 className="headline-lg mb-8">Credentials</h2>
           
           <p className="body-lg text-muted-foreground mb-12 leading-relaxed">
-            16+ years turning technical advantage into revenue across three continents. Built businesses from 
-            $0 to $61M at Nine Entertainment, scaled $5.5M ARR operations at Captify, and launched 70+ products 
-            across media, telco, adtech, and SaaS. From coding automations at Microsoft to strategic advisory 
-            for C-suite executives, I bridge deep technical literacy with commercial execution.
+            16+ years turning technical advantage into revenue across three continents. Scaled businesses from 
+            zero to multi-million dollar revenue at Nine Entertainment, built substantial ARR operations at Captify, 
+            and launched extensive product portfolios across media, telco, adtech, and SaaS. From coding automations 
+            at Microsoft to strategic advisory for C-suite executives, I bridge deep technical literacy with commercial execution.
           </p>
 
           {/* Company Timeline */}

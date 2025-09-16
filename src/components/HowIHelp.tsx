@@ -7,41 +7,41 @@ const HowIHelp = () => {
     {
       icon: Users,
       title: "Executive Leadership",
-      oneLiner: "Translate AI noise into board-ready strategy. Built $5.5M ARR from $0, scaled teams to 18 across three continents.",
+      oneLiner: "Translate AI noise into board-ready strategy. Scaled multi-million ARR businesses from zero, built teams across three continents.",
       outcomes: [
         "AI-first competitive positioning",
         "Revenue strategy transformation", 
         "Cross-functional team building",
         "Board-level strategic guidance"
       ],
-      metric: "$5.5M ARR",
-      context: "scaled from zero at Captify APAC"
+      metric: "Multi-million ARR",
+      context: "scaled from zero - reach out for case studies"
     },
     {
       icon: Rocket,
       title: "Product/GTM Leaders", 
-      oneLiner: "Turn literacy into roadmap, PMF signals into scale. Launched 70+ products, grew revenue from $9M to $61M.",
+      oneLiner: "Turn literacy into roadmap, PMF signals into scale. Launched dozens of products, scaled revenue by 7x growth.",
       outcomes: [
         "AI-driven product strategy",
         "GTM acceleration frameworks",
         "Market expansion planning",
         "Product-led growth design"
       ],
-      metric: "70+",
-      context: "new products launched across portfolio"
+      metric: "Extensive portfolio",
+      context: "dozens of products launched - contact for details"
     },
     {
       icon: TrendingUp,
       title: "Sales/RevOps",
-      oneLiner: "Seller workflows, education-led enablement. Cut outreach time 60%, closed $400K+ ARR in under 6 months.",
+      oneLiner: "Seller workflows, education-led enablement. Dramatically reduced outreach time, closed substantial ARR in under 6 months.",
       outcomes: [
         "AI-powered sales automation",
         "Revenue operations design",
         "Pipeline optimization",
         "Conversion rate improvement"
       ],
-      metric: "60%",
-      context: "reduction in outreach time through AI"
+      metric: "Dramatic reduction",
+      context: "in outreach time - book call for methodology"
     },
     {
       icon: Cpu,

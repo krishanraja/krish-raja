@@ -8,8 +8,8 @@ const Journey = () => {
       location: "New York",
       role: "Founder, CEO – Fractionl AI",
       highlights: [
-        "Architected AI agent-led GTM playbooks, shortening sales cycles by 40%",
-        "Created thought leadership engine reaching 50+ paying clients",
+        "Architected AI agent-led GTM playbooks, significantly shortening sales cycles",
+        "Created thought leadership engine with substantial client base",
         "Executive coaching & agent building with growing developer network"
       ]
     },
@@ -18,8 +18,8 @@ const Journey = () => {
       location: "New York",
       role: "AI & Data Strategy Consultant",
       highlights: [
-        "Spearheaded U.S. market expansion closing $800K+ ARR in <6 months",
-        "Built zero-to-one positioning for agentic AI products",
+        "Spearheaded U.S. market expansion closing substantial ARR in under 6 months",
+        "Built zero-to-one positioning for agentic AI products", 
         "Supported roadmap and growth ops for scale-ups across multiple verticals"
       ]
     },
@@ -28,9 +28,9 @@ const Journey = () => {
       location: "Sydney",
       role: "Managing Director, APAC – Captify",
       highlights: [
-        "Launched business from $0 to $5.5M ARR with 18-person team",
+        "Launched business from zero to multi-million ARR with full team",
         "Signed enterprise API contracts with tech, broadcaster, and CPG executives",
-        "Designed AI-driven testing and GTM automation cutting outreach time by 60%"
+        "Designed AI-driven testing and GTM automation dramatically reducing outreach time"
       ]
     },
     {
@@ -38,8 +38,8 @@ const Journey = () => {
       location: "Sydney", 
       role: "Head of Platform Sales, APAC – Nexxen",
       highlights: [
-        "Grew platform revenue from $4M to $38M annually",
-        "Directed national sales across $55M+ pipeline",
+        "Grew platform revenue by nearly 10x annually",
+        "Directed national sales across multi-million dollar pipeline",
         "Partnered with Solutions Engineering for multi-year RFP wins"
       ]
     },
@@ -48,9 +48,9 @@ const Journey = () => {
       location: "Sydney",
       role: "Head of Data & Programmatic Sales – Nine Entertainment",
       highlights: [
-        "Led GTM growing revenue from $9M to $61M total",
+        "Led GTM scaling revenue by 7x growth to substantial totals",
         "Pioneered industry-first authenticated CTV solutions", 
-        "Launched 70+ commercial data and automation products"
+        "Launched extensive portfolio of commercial data and automation products"
       ]
     },
     {

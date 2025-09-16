@@ -3,43 +3,43 @@ import { Card, CardContent } from '@/components/ui/card';
 const Outcomes = () => {
   const outcomes = [
     {
-      metric: "$5.5M",
-      context: "ARR scaled from zero at Captify APAC with 18-person team",
+      metric: "Multi-million ARR",
+      context: "scaled from zero at Captify APAC with full team - contact for case study",
       category: "Revenue Growth"
     },
     {
-      metric: "$9M → $61M",
-      context: "grew data and programmatic revenue at Nine Entertainment",
+      metric: "7x Revenue Growth", 
+      context: "data and programmatic revenue scaling at Nine Entertainment",
       category: "Revenue Growth"
     },
     {
-      metric: "$800K+",
-      context: "ARR across 4 enterprise deals in under 6 months for US market entry",
+      metric: "Substantial ARR",
+      context: "enterprise deals closed in under 6 months for US market entry",
       category: "Sales Excellence"
     },
     {
-      metric: "70+",
-      context: "new commercial data, analytics, and automation products launched",
+      metric: "Extensive Portfolio",
+      context: "commercial data, analytics, and automation products launched",
       category: "Product Innovation"
     },
     {
-      metric: "60%",
-      context: "reduction in outreach time by inserting AI into GTM processes",
+      metric: "Dramatic Reduction",
+      context: "in outreach time by inserting AI into GTM processes",
       category: "Process Optimization"
     },
     {
-      metric: "40%",
-      context: "shorter sales cycles with agent-led GTM playbooks",
+      metric: "Significantly Shorter",
+      context: "sales cycles with agent-led GTM playbooks - reach out for methodology",
       category: "Sales Excellence"
     },
     {
-      metric: "18",
-      context: "team members built and scaled across APAC at Captify",
+      metric: "Full Teams Built",
+      context: "and scaled across APAC markets from scratch",
       category: "Team Building"
     },
     {
-      metric: "3",
-      context: "continents with proven track record (UK, AU, USA)",
+      metric: "3 Continents",
+      context: "with proven track record (UK, AU, USA)",
       category: "Global Expansion"
     }
   ];

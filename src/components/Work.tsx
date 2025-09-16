@@ -32,10 +32,10 @@ const Work = () => {
       icon: Video
     },
     {
-      title: "From $0 to $5.5M ARR: Scaling APAC",
+      title: "Zero to Multi-Million ARR: Scaling APAC",
       type: "Case Study",
       summary: "Complete playbook for launching and scaling a technology business in new markets.",
-      description: "Detailed analysis of building Captify's APAC business from zero to $5.5M ARR, including team building, product-market fit, and go-to-market strategy.",
+      description: "Detailed analysis of building Captify's APAC business from zero to multi-million ARR, including team building, product-market fit, and go-to-market strategy.",
       link: "mailto:hello@krishraja.com?subject=Case Study Request",
       icon: FileText
     },
@@ -43,7 +43,7 @@ const Work = () => {
       title: "AI-Powered Sales Automation Framework",
       type: "Workshop",
       summary: "Interactive workshop on implementing AI agents in sales and marketing processes.",
-      description: "Hands-on session covering agent architecture, evaluation frameworks, and integration patterns that have delivered 60% reduction in outreach time.",
+      description: "Hands-on session covering agent architecture, evaluation frameworks, and integration patterns that have delivered dramatic reductions in outreach time.",
       link: "https://calendly.com/krish-raja",
       icon: FileText
     },
@@ -51,7 +51,7 @@ const Work = () => {
       title: "Data Commercialization Strategy",
       type: "Advisory",
       summary: "Strategic consulting on turning data assets into revenue streams.",
-      description: "Methodology for identifying, packaging, and monetizing data assets based on experience launching 70+ data products across media and adtech.",
+      description: "Methodology for identifying, packaging, and monetizing data assets based on experience launching extensive product portfolios across media and adtech.",
       link: "mailto:hello@krishraja.com?subject=Advisory Inquiry",
       icon: FileText
     },
