@@ -7,25 +7,25 @@ const StrategicFramework = () => {
     {
       icon: MessageSquare,
       title: "The Universal Translator",
-      description: "I speak everyone's language—from developers to CEOs, across cultures and time zones. The bridge between what teams need and what executives want.",
+      description: "I speak everyone's language, from developers to CEOs, across cultures and time zones. The bridge between what teams need and what executives want.",
       methods: ["Turn tech complexity into business clarity", "Navigate cultural nuances (UK, AU, US markets)", "Connect the dots across departments", "Spot patterns others miss across industries"]
     },
     {
       icon: Wrench,
       title: "Builder + Business Mind", 
-      description: "I don't just strategize—I roll up my sleeves and build. Then I make sure it actually makes money.",
+      description: "I combine strategic thinking with hands-on execution. My background in coding and business building means I understand both the technical and commercial sides.",
       methods: ["Hands-on with product, sales, marketing & tech", "Create revenue engines from zero to millions", "AI that works in the real world, not just demos", "Run businesses, not just advise on them"]
     },
     {
       icon: Network,
       title: "The Connection Maker",
-      description: "I see how everything fits together—people, processes, and possibilities. Then I help everyone else see it too.",
+      description: "I see how everything fits together: people, processes, and possibilities. Then I help everyone else see it too.",
       methods: ["Get different teams actually working together", "Connect big picture vision to daily execution", "Turn organizational chaos into smooth operations", "Guide complex changes without the drama"]
     },
     {
       icon: Rocket,
       title: "Market Opening Expert",
-      description: "I've done this before—taking new ideas and turning them into thriving businesses, fast. Three countries, multiple industries, proven results.",
+      description: "I've launched and scaled businesses across three countries and multiple industries. My track record includes taking ideas from concept to multi-million dollar revenue streams.",
       methods: ["Launch new categories that actually stick", "Find product-market fit without burning cash", "Scale across international markets smoothly", "Navigate acquisitions and rapid growth phases"]
     }
   ];
@@ -43,7 +43,7 @@ const StrategicFramework = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">My Unique Approach</h2>
           <p className="body-lg text-muted-foreground max-w-3xl mx-auto">
-            I help bridge the gap between what's possible and what's profitable—with the hands-on experience to make both happen<br />
+            I help bridge the gap between what's possible and what's profitable, with the hands-on experience to make both happen<br />
             <span className="text-primary font-medium">16+ years of connecting the dots across London → Sydney → New York</span>
           </p>
         </div>
@@ -114,7 +114,7 @@ const StrategicFramework = () => {
                   <p className="text-xs text-muted-foreground">
                     <span className="font-semibold">What Makes This Different:</span><br />
                     Microsoft coder → AdTech innovator → AI strategy guide → Global business builder<br />
-                    <span className="text-primary">I'm probably the only consultant who's both automated workflows AND built $60M+ revenue businesses</span>
+                    <span className="text-primary">Technical background + business execution across $100M+ in combined revenue growth</span>
                   </p>
                 </div>
               </CardContent>

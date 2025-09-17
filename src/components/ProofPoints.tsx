@@ -7,16 +7,16 @@ const ProofPoints = () => {
     {
       icon: TrendingUp,
       category: "Revenue Growth",
-      metric: "$0 to $61M ARR",
-      context: "AdTech Scale-up APAC expansion",
-      description: "Led market entry strategy and revenue operations across 5 countries"
+      metric: "$9M to $61M",
+      context: "Nine Entertainment Co (Broadcaster)",
+      description: "Led GTM for CTV, programmatic and data solutions over 3 years"
     },
     {
       icon: Rocket,
       category: "Market Entry", 
-      metric: "7x Revenue Growth",
-      context: "Media Broadcaster digital transformation",
-      description: "Launched new revenue streams and optimized existing business lines"
+      metric: "$0 to $5.5M ARR",
+      context: "Captify APAC launch (AdTech)",
+      description: "Built programmatic adtech and DaaS business from scratch"
     },
     {
       icon: Users,
@@ -35,18 +35,18 @@ const ProofPoints = () => {
   ];
 
   const credentials = [
-    "Forbes 30 Under 30 (Marketing & Media)",
-    "Ex-Microsoft Product & Strategy",
-    "Guest Lecturer, Business Schools",
-    "Published Thought Leader (Substack)",
-    "International Speaker & Advisor",
-    "Cross-Continental P&L Experience"
+    "Harvard Business School (Executive Programs)",
+    "Published Author, Speaker & Writer",
+    "Sydney Opera House Keynote Speaker",
+    "Ex-Microsoft Technical Account Manager",
+    "International P&L Leadership Experience",
+    "Cross-Continental Market Expansion Expert"
   ];
 
   const locations = [
-    { city: "London", period: "2008-2014", role: "Foundation & Growth" },
-    { city: "Sydney", period: "2014-2020", role: "Scale & Leadership" }, 
-    { city: "New York", period: "2020-Present", role: "Strategy & Advisory" }
+    { city: "London", period: "2008-2013", role: "Microsoft Technical Foundation" },
+    { city: "Sydney", period: "2013-2024", role: "AdTech Scale & Leadership" }, 
+    { city: "New York", period: "2024-Present", role: "AI Strategy & Advisory" }
   ];
 
   return (
