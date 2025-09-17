@@ -96,14 +96,14 @@ const HowIHelp = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 items-stretch">
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
             const isExpanded = expandedCard === index;
             
             return (
-              <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group">
-                <CardHeader>
+              <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group h-full flex flex-col">
+                <CardHeader className="flex-shrink-0">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="p-2 rounded-lg bg-primary/10">
                       <Icon className="w-5 h-5 text-primary" />
@@ -120,8 +120,8 @@ const HowIHelp = () => {
                     <div className="text-xs text-muted-foreground">{audience.context}</div>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 mb-6">
+                <CardContent className="flex-1 flex flex-col">
+                  <div className="space-y-3 mb-6 flex-1">
                     {audience.outcomes.map((outcome, outcomeIndex) => (
                       <div key={outcomeIndex} className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0"></div>
@@ -132,7 +132,8 @@ const HowIHelp = () => {
                     ))}
                   </div>
                   
-                  <Collapsible open={isExpanded} onOpenChange={() => setExpandedCard(isExpanded ? null : index)}>
+                  <div className="mt-auto">
+                    <Collapsible open={isExpanded} onOpenChange={() => setExpandedCard(isExpanded ? null : index)}>
                     <CollapsibleTrigger asChild>
                       <Button 
                         variant="outline" 
@@ -165,7 +166,8 @@ const HowIHelp = () => {
                         </div>
                       </div>
                     </CollapsibleContent>
-                  </Collapsible>
+                   </Collapsible>
+                  </div>
                 </CardContent>
               </Card>
             );
