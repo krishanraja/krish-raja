@@ -1,8 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, Rocket, TrendingUp, Target } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Users, Rocket, TrendingUp, Target, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
 
 const HowIHelp = () => {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
   const audiences = [
     {
       icon: Users,
@@ -13,6 +17,12 @@ const HowIHelp = () => {
         "Revenue strategy transformation", 
         "Cross-functional team building",
         "Board-level strategic guidance"
+      ],
+      detailedOutcomes: [
+        "Transform complex AI capabilities into clear competitive advantages and board-ready strategic initiatives",
+        "Design revenue architecture that scales across multiple markets and business units",
+        "Build high-performing, cross-cultural teams spanning technical, commercial, and strategic functions",
+        "Provide executive guidance on AI investment priorities, market timing, and strategic positioning"
       ],
       metric: "Multi-million ARR",
       context: "scaled from zero - reach out for case studies"
@@ -27,6 +37,12 @@ const HowIHelp = () => {
         "Market expansion planning",
         "Product-led growth design"
       ],
+      detailedOutcomes: [
+        "Develop product roadmaps that leverage AI as a core differentiator, not just a feature add-on",
+        "Create systematic go-to-market frameworks that reduce time-to-market and increase conversion rates",
+        "Design market expansion strategies based on data-driven market analysis and competitive intelligence",
+        "Build self-reinforcing growth loops that compound user engagement and revenue generation"
+      ],
       metric: "Extensive portfolio",
       context: "dozens of products launched - contact for details"
     },
@@ -40,6 +56,12 @@ const HowIHelp = () => {
         "Pipeline optimization",
         "Conversion rate improvement"
       ],
+      detailedOutcomes: [
+        "Implement intelligent sales workflows that eliminate manual prospecting while maintaining personalization",
+        "Design revenue operations systems that provide predictable forecasting and clear growth levers",
+        "Optimize pipeline management through data-driven lead scoring and opportunity prioritization",
+        "Systematically improve conversion rates at every stage of the sales funnel through behavioral analysis"
+      ],
       metric: "Dramatic reduction",
       context: "in outreach time - book call for methodology"
     },
@@ -52,6 +74,12 @@ const HowIHelp = () => {
         "Competitive landscape evaluation",
         "Pitch deck development & review",
         "Investment timing & positioning strategy"
+      ],
+      detailedOutcomes: [
+        "Provide comprehensive market analysis combining technical feasibility with commercial viability assessment",
+        "Deliver competitive intelligence that identifies white space opportunities and strategic positioning gaps",
+        "Develop compelling investment narratives that connect technical capabilities to measurable business outcomes",
+        "Optimize investment timing through macro trend analysis and competitive landscape monitoring"
       ],
       metric: "Unique expertise combo",
       context: "sales, ops, product, marketing & macro strategy - contact for portfolio"
@@ -71,6 +99,8 @@ const HowIHelp = () => {
         <div className="grid md:grid-cols-2 gap-8">
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
+            const isExpanded = expandedCard === index;
+            
             return (
               <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group">
                 <CardHeader>
@@ -101,11 +131,41 @@ const HowIHelp = () => {
                       </div>
                     ))}
                   </div>
-                  <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" asChild>
-                    <a href="#ai-mindmaker" className="text-sm">
-                      Learn more
-                    </a>
-                  </Button>
+                  
+                  <Collapsible open={isExpanded} onOpenChange={() => setExpandedCard(isExpanded ? null : index)}>
+                    <CollapsibleTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      >
+                        <span className="text-sm">
+                          {isExpanded ? 'Show Less' : 'Learn More'}
+                        </span>
+                        <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-4">
+                      <div className="bg-muted/20 rounded-lg p-4 space-y-3">
+                        <h4 className="font-semibold text-sm text-primary mb-3">How I Deliver These Outcomes:</h4>
+                        {audience.detailedOutcomes.map((detail, detailIndex) => (
+                          <div key={detailIndex} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2.5 flex-shrink-0"></div>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              {detail}
+                            </p>
+                          </div>
+                        ))}
+                        <div className="mt-4 pt-3 border-t border-border/50">
+                          <Button size="sm" className="w-full" asChild>
+                            <a href="#contact">
+                              Book Strategy Call
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </CardContent>
               </Card>
             );

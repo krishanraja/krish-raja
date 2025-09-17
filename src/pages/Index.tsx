@@ -3,11 +3,10 @@ import { Helmet } from 'react-helmet';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import HowIHelp from '@/components/HowIHelp';
+import StrategicFramework from '@/components/StrategicFramework';
+import ProofPoints from '@/components/ProofPoints';
 import AIMindMaker from '@/components/AIMindMaker';
-import Creds from '@/components/Creds';
-import Outcomes from '@/components/Outcomes';
 import Work from '@/components/Work';
-import Journey from '@/components/Journey';
 import StrategicAdvisor from '@/components/StrategicAdvisor';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -107,11 +106,10 @@ const Index = () => {
         <main id="main">
           <Hero />
           <HowIHelp />
+          <StrategicFramework />
+          <ProofPoints />
           <AIMindMaker />
-          <Creds />
-          <Outcomes />
           <Work />
-          <Journey />
           <StrategicAdvisor />
           <Contact />
         </main>

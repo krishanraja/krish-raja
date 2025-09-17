@@ -1,0 +1,139 @@
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { TrendingUp, Users, Target, Rocket, Award, MapPin } from 'lucide-react';
+
+const ProofPoints = () => {
+  const achievements = [
+    {
+      icon: TrendingUp,
+      category: "Revenue Growth",
+      metric: "$0 to $61M ARR",
+      context: "AdTech Scale-up APAC expansion",
+      description: "Led market entry strategy and revenue operations across 5 countries"
+    },
+    {
+      icon: Rocket,
+      category: "Market Entry", 
+      metric: "7x Revenue Growth",
+      context: "Media Broadcaster digital transformation",
+      description: "Launched new revenue streams and optimized existing business lines"
+    },
+    {
+      icon: Users,
+      category: "Team Building",
+      metric: "50+ Team Members",
+      context: "Cross-continental hiring & scaling",
+      description: "Built high-performing teams across UK, AU, and USA markets"
+    },
+    {
+      icon: Target,
+      category: "Strategic Impact",
+      metric: "Multiple Exits",
+      context: "Portfolio company value creation",
+      description: "Advised on strategic positioning leading to successful acquisitions"
+    }
+  ];
+
+  const credentials = [
+    "Forbes 30 Under 30 (Marketing & Media)",
+    "Ex-Microsoft Product & Strategy",
+    "Guest Lecturer, Business Schools",
+    "Published Thought Leader (Substack)",
+    "International Speaker & Advisor",
+    "Cross-Continental P&L Experience"
+  ];
+
+  const locations = [
+    { city: "London", period: "2008-2014", role: "Foundation & Growth" },
+    { city: "Sydney", period: "2014-2020", role: "Scale & Leadership" }, 
+    { city: "New York", period: "2020-Present", role: "Strategy & Advisory" }
+  ];
+
+  return (
+    <section id="proof-points" className="section-padding">
+      <div className="container-width">
+        <div className="text-center mb-16">
+          <h2 className="headline-lg mb-6">Proof Points</h2>
+          <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            Measurable outcomes and recognized expertise across three continents
+          </p>
+        </div>
+
+        {/* Key Achievements */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {achievements.map((achievement, index) => {
+            const Icon = achievement.icon;
+            return (
+              <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm text-center">
+                <CardContent className="p-6">
+                  <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="text-2xl font-bold text-primary mb-1">
+                    {achievement.metric}
+                  </div>
+                  <div className="text-sm font-medium text-foreground mb-2">
+                    {achievement.category}
+                  </div>
+                  <div className="text-xs text-muted-foreground mb-3">
+                    {achievement.context}
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {achievement.description}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Credentials */}
+          <div className="lg:col-span-2">
+            <h3 className="headline-md mb-6">Recognition & Credentials</h3>
+            <p className="body-md text-muted-foreground mb-8">
+              16+ years building revenue lines, scaling teams, and creating value through strategic AI implementation.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {credentials.map((credential, index) => (
+                <Badge 
+                  key={index} 
+                  variant="outline" 
+                  className="text-sm py-2 px-4 bg-background/50"
+                >
+                  <Award className="w-3 h-3 mr-2" />
+                  {credential}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          {/* Global Experience */}
+          <div>
+            <h3 className="headline-md mb-6">Global Journey</h3>
+            <div className="space-y-4">
+              {locations.map((location, index) => (
+                <Card key={index} className="border-0 shadow-sm bg-muted/30">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <div className="font-semibold text-sm">{location.city}</div>
+                      <Badge variant="secondary" className="text-xs">
+                        {location.period}
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {location.role}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProofPoints;
