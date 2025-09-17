@@ -1,11 +1,19 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail } from 'lucide-react';
+import krishBitmoji from '@/assets/krish_bitmoji.jpg';
 
 const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center section-padding">
       <div className="container-width text-center relative z-10">
         <div className="fade-in-up">
+          <div className="mb-8 flex justify-center">
+            <img 
+              src={krishBitmoji} 
+              alt="Krish Raja avatar" 
+              className="w-32 h-32 rounded-full shadow-lg"
+            />
+          </div>
           <h1 className="headline-xl mb-6 text-balance">
             I turn AI literacy into <span className="text-primary">AI strategy and revenue</span>
           </h1>
