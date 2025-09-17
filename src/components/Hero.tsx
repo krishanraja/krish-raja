@@ -33,7 +33,7 @@ const Hero = () => {
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a href="mailto:hello@krishraja.com" className="flex items-center gap-2">
+              <a href="mailto:hello@krishraja.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <Mail size={16} />
                 Email me
               </a>

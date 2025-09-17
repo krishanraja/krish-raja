@@ -148,13 +148,13 @@ const AIMindMaker = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" asChild>
-              <a href="mailto:krish@fractionl.ai" className="flex items-center gap-2">
+              <a href="https://www.themindmaker.ai/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 Learn more about AI literacy
                 <ArrowRight size={16} />
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="mailto:krish@fractionl.ai?subject=AI%20MindMaker%20Case%20Studies">
+              <a href="mailto:krish@fractionl.ai?subject=AI%20MindMaker%20Case%20Studies" target="_blank" rel="noopener noreferrer">
                 Request Case Studies
               </a>
             </Button>

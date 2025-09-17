@@ -28,7 +28,7 @@ const Work = () => {
       type: "Speaking",
       summary: "Keynote presentation on transforming technical knowledge into competitive advantage.",
       description: "How organizations can build systematic AI literacy that translates directly into revenue growth and operational efficiency.",
-      link: "mailto:hello@krishraja.com?subject=Speaking Inquiry",
+      link: "mailto:hello@krishraja.com?subject=Speaking%20Inquiry",
       icon: Video
     },
     {
@@ -36,7 +36,7 @@ const Work = () => {
       type: "Case Study",
       summary: "Complete playbook for launching and scaling a technology business in new markets.",
       description: "Detailed analysis of building Captify's APAC business from zero to multi-million ARR, including team building, product-market fit, and go-to-market strategy.",
-      link: "mailto:hello@krishraja.com?subject=Case Study Request",
+      link: "mailto:hello@krishraja.com?subject=Case%20Study%20Request",
       icon: FileText
     },
     {
@@ -52,7 +52,7 @@ const Work = () => {
       type: "Advisory",
       summary: "Strategic consulting on turning data assets into revenue streams.",
       description: "Methodology for identifying, packaging, and monetizing data assets based on experience launching extensive product portfolios across media and adtech.",
-      link: "mailto:hello@krishraja.com?subject=Advisory Inquiry",
+      link: "mailto:hello@krishraja.com?subject=Advisory%20Inquiry",
       icon: FileText
     },
     {
@@ -68,7 +68,7 @@ const Work = () => {
       type: "Masterclass",
       summary: "Deep dive into designing revenue operations that scale with AI automation.",
       description: "Advanced strategies for revenue operations leaders looking to implement AI-driven processes, predictive analytics, and automated workflows.",
-      link: "mailto:hello@krishraja.com?subject=Masterclass Inquiry",
+      link: "mailto:hello@krishraja.com?subject=Masterclass%20Inquiry",
       icon: Video
     }
   ];
@@ -121,7 +121,7 @@ const Work = () => {
                       {item.description}
                     </p>
                     <Button asChild className="w-full">
-                      <a href={item.link} target={item.link.startsWith('http') ? '_blank' : '_self'} rel={item.link.startsWith('http') ? 'noopener noreferrer' : ''} className="flex items-center gap-2 justify-center">
+                      <a href={item.link} target={item.link.startsWith('http') || item.link.startsWith('mailto:') ? '_blank' : '_self'} rel={item.link.startsWith('http') || item.link.startsWith('mailto:') ? 'noopener noreferrer' : ''} className="flex items-center gap-2 justify-center">
                         {item.type === "Video" || item.type === "Speaking" || item.type === "Masterclass" ? "Watch" : 
                          item.type === "Tool" || item.type === "Workshop" ? "Access" :
                          item.type === "Advisory" ? "Inquire" : "Read"}
