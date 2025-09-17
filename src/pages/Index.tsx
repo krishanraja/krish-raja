@@ -8,7 +8,6 @@ import ProofPoints from '@/components/ProofPoints';
 import AIMindMaker from '@/components/AIMindMaker';
 import Work from '@/components/Work';
 import StrategicAdvisor from '@/components/StrategicAdvisor';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -111,7 +110,6 @@ const Index = () => {
           <AIMindMaker />
           <Work />
           <StrategicAdvisor />
-          <Contact />
         </main>
         
         <Footer />

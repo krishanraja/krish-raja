@@ -157,13 +157,6 @@ const HowIHelp = () => {
                             </p>
                           </div>
                         ))}
-                        <div className="mt-4 pt-3 border-t border-border/50">
-                          <Button size="sm" className="w-full" asChild>
-                            <a href="#contact">
-                              Book Strategy Call
-                            </a>
-                          </Button>
-                        </div>
                       </div>
                     </CollapsibleContent>
                    </Collapsible>

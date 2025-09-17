@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Linkedin } from 'lucide-react';
 import krishBitmoji from '@/assets/krish_bitmoji.jpg';
 
 const Hero = () => {
@@ -40,10 +40,16 @@ const Hero = () => {
             </Button>
           </div>
           
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="ghost" asChild className="text-muted-foreground">
               <a href="#work" className="link-underline">
                 View work
+              </a>
+            </Button>
+            <Button variant="ghost" size="sm" asChild className="text-muted-foreground">
+              <a href="https://www.linkedin.com/in/krish-raja/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <Linkedin size={16} />
+                LinkedIn
               </a>
             </Button>
           </div>
