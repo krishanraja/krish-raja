@@ -87,13 +87,10 @@ const ProofPoints = () => {
           })}
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-12">
           {/* Credentials */}
-          <div className="lg:col-span-2">
-            <h3 className="headline-md mb-6">Recognition & Credentials</h3>
-            <p className="body-md text-muted-foreground mb-8">
-              16+ years building revenue lines, scaling teams, and creating value through strategic AI implementation.
-            </p>
+          <div>
+            <h3 className="headline-md mb-8">Recognition & Credentials</h3>
             <div className="flex flex-wrap gap-3">
               {credentials.map((credential, index) => (
                 <Badge 
@@ -110,7 +107,7 @@ const ProofPoints = () => {
 
           {/* Global Experience */}
           <div>
-            <h3 className="headline-md mb-6">Global Journey</h3>
+            <h3 className="headline-md mb-8">Global Journey</h3>
             <div className="space-y-4">
               {locations.map((location, index) => (
                 <Card key={index} className="border-0 shadow-sm bg-muted/30">

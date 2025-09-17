@@ -62,37 +62,6 @@ const StrategicAdvisor = () => {
             </Card>
           ))}
         </div>
-
-        {/* CTA Section */}
-        <div className="max-w-2xl mx-auto">
-          <Card className="border-0 shadow-sm bg-primary/5 backdrop-blur-sm text-center">
-            <CardContent className="p-8">
-              <MessageSquare className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="headline-md mb-4">Let's Discuss Your Strategic Needs</h3>
-              <p className="body-md text-muted-foreground mb-8">
-                Every engagement starts with understanding your specific challenges and opportunities.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild>
-                  <a href="https://calendly.com/krish-raja/strategic-consultation" target="_blank" rel="noopener noreferrer">
-                    Book Strategy Call
-                  </a>
-                </Button>
-                
-                <Button variant="outline" size="lg" asChild>
-                  <a href="mailto:hello@krishraja.com">
-                    Email for Details
-                  </a>
-                </Button>
-              </div>
-
-              <p className="text-xs text-muted-foreground mt-6">
-                All inquiries receive a response within 24 hours
-              </p>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </section>
   );
