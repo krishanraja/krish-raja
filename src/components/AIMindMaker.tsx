@@ -61,7 +61,11 @@ const AIMindMaker = () => {
     <section id="ai-mindmaker" className="section-padding">
       <div className="container-width">
         <div className="text-center mb-16">
-          <h2 className="headline-lg mb-6">AI MindMaker</h2>
+          <img 
+            src="/mindmaker-logo.png" 
+            alt="MINDMAKER" 
+            className="h-16 mx-auto mb-6"
+          />
           <p className="text-xl text-primary font-medium mb-4">
             Agentic AI Sprints for Commercial Product Strategy & Team Literacy
           </p>
@@ -145,7 +149,7 @@ const AIMindMaker = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" asChild>
               <a href="mailto:krish@fractionl.ai" className="flex items-center gap-2">
-                Discuss Your Needs
+                Learn more about AI literacy
                 <ArrowRight size={16} />
               </a>
             </Button>
