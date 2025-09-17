@@ -43,12 +43,11 @@ const StrategicFramework = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">My Unique Approach</h2>
           <p className="body-lg text-muted-foreground max-w-3xl mx-auto">
-            I help bridge the gap between what's possible and what's profitable, with the hands-on experience to make both happen<br />
             <span className="text-primary font-medium">16+ years of connecting the dots across London → Sydney → New York</span>
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8 items-stretch">
           {/* Approach Cards */}
           <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
             {approaches.map((approach, index) => {
@@ -85,7 +84,7 @@ const StrategicFramework = () => {
 
           {/* Core Operating Principles */}
           <div className="lg:col-span-1">
-            <Card className="border-0 shadow-sm bg-primary/5 backdrop-blur-sm h-fit sticky top-8">
+            <Card className="border-0 shadow-sm bg-primary/5 backdrop-blur-sm h-full flex flex-col sticky top-8">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 rounded-lg bg-primary/10">
@@ -97,7 +96,7 @@ const StrategicFramework = () => {
                   The philosophy behind every engagement
                 </p>
               </CardHeader>
-              <CardContent className="pt-0">
+              <CardContent className="pt-0 flex-1 flex flex-col">
                 <div className="space-y-3">
                   {principles.map((principle, index) => (
                     <Badge 
@@ -110,10 +109,10 @@ const StrategicFramework = () => {
                   ))}
                 </div>
                 
-                <div className="mt-6 pt-4 border-t border-border/50">
+                <div className="mt-auto pt-4 border-t border-border/50">
                   <p className="text-xs text-muted-foreground">
                     <span className="font-semibold">What Makes This Different:</span><br />
-                    Microsoft coder → AdTech innovator → AI strategy guide → Global business builder<br />
+                    Creating automations at Microsoft → AdTech innovator → AI strategy guide → Global business builder<br />
                     <span className="text-primary">Technical background + business execution across $100M+ in combined revenue growth</span>
                   </p>
                 </div>
