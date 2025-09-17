@@ -7,40 +7,40 @@ const ProofPoints = () => {
     {
       icon: TrendingUp,
       category: "Revenue Growth",
-      metric: "$9M to $61M",
-      context: "Nine Entertainment Co (Broadcaster)",
-      description: "Led GTM for CTV, programmatic and data solutions over 3 years"
+      metric: "7x Growth",
+      context: "Major Media Broadcaster",
+      description: "Led CTV and programmatic revenue transformation over 3 years"
     },
     {
       icon: Rocket,
-      category: "Market Entry", 
-      metric: "$0 to $5.5M ARR",
-      context: "Captify APAC launch (AdTech)",
-      description: "Built programmatic adtech and DaaS business from scratch"
+      category: "Market Creation", 
+      metric: "Zero-to-Millions",
+      context: "AdTech APAC Launch",
+      description: "Built programmatic advertising business from ground up"
     },
     {
       icon: Users,
       category: "Team Building",
-      metric: "50+ Team Members",
-      context: "Cross-continental hiring & scaling",
-      description: "Built high-performing teams across UK, AU, and USA markets"
+      metric: "18-Person Team",
+      context: "Cross-functional organization",
+      description: "Scaled technical and commercial teams across three continents"
     },
     {
       icon: Target,
-      category: "Strategic Impact",
-      metric: "Multiple Exits",
-      context: "Portfolio company value creation",
-      description: "Advised on strategic positioning leading to successful acquisitions"
+      category: "Strategic Advisory",
+      metric: "M&A Guidance",
+      context: "Portfolio transformations",
+      description: "Advised companies through strategic acquisitions and exits"
     }
   ];
 
   const credentials = [
-    "Harvard Business School (Executive Programs)",
-    "Published Author, Speaker & Writer",
+    "Former 30-Under-30",
+    "Harvard Business School (Executive Programs)", 
     "Sydney Opera House Keynote Speaker",
+    "Published Author, Speaker & Writer",
     "Ex-Microsoft Technical Account Manager",
-    "International P&L Leadership Experience",
-    "Cross-Continental Market Expansion Expert"
+    "First Global Automated Media Campaigns (2010)"
   ];
 
   const locations = [
