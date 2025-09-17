@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, Rocket, TrendingUp, Cpu } from 'lucide-react';
+import { Users, Rocket, TrendingUp, Target } from 'lucide-react';
 
 const HowIHelp = () => {
   const audiences = [
@@ -44,17 +44,17 @@ const HowIHelp = () => {
       context: "in outreach time - book call for methodology"
     },
     {
-      icon: Cpu,
-      title: "Data/AI/Engineering",
-      oneLiner: "Practical agent patterns, evaluation harnesses. Built automations that saved teams weeks of manual work.",
+      icon: Target,
+      title: "Investors & VCs",
+      oneLiner: "Navigate AI/data-driven media opportunities with rigorous market analysis. 15+ years of technical and commercial expertise across the evolving adtech ecosystem.",
       outcomes: [
-        "Agent architecture design",
-        "Data pipeline optimization", 
-        "Technical strategy translation",
-        "AI governance frameworks"
+        "Rigorous market sizing & trend analysis",
+        "Competitive landscape evaluation",
+        "Pitch deck development & review",
+        "Investment timing & positioning strategy"
       ],
-      metric: "Weeks saved",
-      context: "through coded automations at Microsoft"
+      metric: "Unique expertise combo",
+      context: "sales, ops, product, marketing & macro strategy - contact for portfolio"
     }
   ];
 
