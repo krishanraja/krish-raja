@@ -44,7 +44,7 @@ const Work = () => {
       type: "Workshop",
       summary: "Interactive workshop on implementing AI agents in sales and marketing processes.",
       description: "Hands-on session covering agent architecture, evaluation frameworks, and integration patterns that have delivered dramatic reductions in outreach time.",
-      link: "https://calendly.com/krish-raja",
+      link: "https://calendly.com/krish-raja/krish-raja",
       icon: FileText
     },
     {
@@ -60,7 +60,7 @@ const Work = () => {
       type: "Tool",
       summary: "Interactive assessment to evaluate your organization's AI readiness and identify growth opportunities.",
       description: "Comprehensive evaluation framework covering AI literacy, data infrastructure, process automation, and competitive positioning.",
-      link: "https://calendly.com/krish-raja",
+      link: "https://calendly.com/krish-raja/krish-raja",
       icon: FileText
     },
     {

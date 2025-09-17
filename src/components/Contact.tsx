@@ -61,7 +61,7 @@ const Contact = () => {
           {/* Primary CTA */}
           <div className="text-center mt-8">
             <Button size="lg" asChild>
-              <a href="https://calendly.com/krish-raja" className="flex items-center gap-2 mx-auto">
+              <a href="https://calendly.com/krish-raja/krish-raja" className="flex items-center gap-2 mx-auto">
                 <Calendar size={20} />
                 Book a Strategy Call
               </a>

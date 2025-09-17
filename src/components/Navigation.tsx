@@ -58,7 +58,7 @@ const Navigation = () => {
               ))}
               <ThemeToggle />
               <Button asChild className="ml-4">
-                <a href="https://calendly.com/krish-raja">Book a call</a>
+                <a href="https://calendly.com/krish-raja/krish-raja">Book a call</a>
               </Button>
             </div>
 
@@ -92,7 +92,7 @@ const Navigation = () => {
               ))}
               <div className="pt-4 mt-4 border-t border-border">
                 <Button asChild className="w-full">
-                  <a href="https://calendly.com/krish-raja">Book a call</a>
+                  <a href="https://calendly.com/krish-raja/krish-raja">Book a call</a>
                 </Button>
               </div>
             </div>

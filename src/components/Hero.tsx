@@ -27,7 +27,7 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a href="https://calendly.com/krish-raja" className="flex items-center gap-2">
+              <a href="https://calendly.com/krish-raja/krish-raja" className="flex items-center gap-2">
                 Book a call
                 <ArrowRight size={16} />
               </a>

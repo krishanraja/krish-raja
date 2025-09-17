@@ -52,7 +52,7 @@ const Footer = () => {
                 </a>
               </Button>
               <Button size="sm" asChild>
-                <a href="https://calendly.com/krish-raja">
+                <a href="https://calendly.com/krish-raja/krish-raja">
                   Book a call
                 </a>
               </Button>
