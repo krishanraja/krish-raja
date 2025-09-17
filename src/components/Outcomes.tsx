@@ -4,17 +4,17 @@ const Outcomes = () => {
   const outcomes = [
     {
       metric: "Multi-million ARR",
-      context: "scaled from zero at Captify APAC with full team - contact for case study",
+      context: "scaled from zero at AdTech scale-up with full team - contact for case study",
       category: "Revenue Growth"
     },
     {
       metric: "7x Revenue Growth", 
-      context: "data and programmatic revenue scaling at Nine Entertainment",
+      context: "data and programmatic revenue scaling at Media Broadcaster",
       category: "Revenue Growth"
     },
     {
       metric: "Substantial ARR",
-      context: "enterprise deals closed in under 6 months for US market entry",
+      context: "enterprise deals closed in under 6 months for International Market Entry",
       category: "Sales Excellence"
     },
     {
@@ -34,7 +34,7 @@ const Outcomes = () => {
     },
     {
       metric: "Full Teams Built",
-      context: "and scaled across APAC markets from scratch",
+      context: "and scaled across international markets from scratch",
       category: "Team Building"
     },
     {

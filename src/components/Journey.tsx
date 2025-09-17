@@ -1,66 +1,56 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { MapPin } from 'lucide-react';
+import { MapPin, Target, Lightbulb, Users, TrendingUp, Globe } from 'lucide-react';
 
 const Journey = () => {
-  const timelineItems = [
+  const strategicPillars = [
     {
-      period: "2025–Present",
-      location: "New York",
-      role: "Founder, CEO – Fractionl AI",
-      highlights: [
-        "Architected AI agent-led GTM playbooks, significantly shortening sales cycles",
-        "Created thought leadership engine with substantial client base",
-        "Executive coaching & agent building with growing developer network"
+      icon: Target,
+      title: "Market Intelligence",
+      description: "Reading landscapes and capturing opportunities",
+      methodologies: [
+        "Rigorous top-down and bottom-up market sizing connecting emerging trends",
+        "15+ years of deep technical and commercial knowledge across evolving ecosystems",
+        "Scenario planning for competitive landscapes and timing optimization"
       ]
     },
     {
-      period: "2024–Present", 
-      location: "New York",
-      role: "AI & Data Strategy Consultant",
-      highlights: [
-        "Spearheaded U.S. market expansion closing substantial ARR in under 6 months",
-        "Built zero-to-one positioning for agentic AI products", 
-        "Supported roadmap and growth ops for scale-ups across multiple verticals"
+      icon: TrendingUp,
+      title: "Revenue Architecture", 
+      description: "Systematic approach to building revenue engines",
+      methodologies: [
+        "Zero-to-one revenue planning spanning direct, channel, PLG and SLG motions",
+        "Agent-led GTM playbooks that significantly shorten sales cycles",
+        "AI-driven testing and automation dramatically reducing outreach time"
       ]
     },
     {
-      period: "2021–2024",
-      location: "Sydney",
-      role: "Managing Director, APAC – Captify",
-      highlights: [
-        "Launched business from zero to multi-million ARR with full team",
-        "Signed enterprise API contracts with tech, broadcaster, and CPG executives",
-        "Designed AI-driven testing and GTM automation dramatically reducing outreach time"
+      icon: Users,
+      title: "Team Dynamics",
+      description: "Building and scaling teams across cultures",
+      methodologies: [
+        "Full team builds from zero to multi-million ARR operations",
+        "Cross-continental team scaling with cultural adaptation frameworks",
+        "Executive coaching and developer network growth strategies"
       ]
     },
     {
-      period: "2017–2020",
-      location: "Sydney", 
-      role: "Head of Platform Sales, APAC – Nexxen",
-      highlights: [
-        "Grew platform revenue by nearly 10x annually",
-        "Directed national sales across multi-million dollar pipeline",
-        "Partnered with Solutions Engineering for multi-year RFP wins"
+      icon: Lightbulb,
+      title: "Product-Market Fit",
+      description: "Connecting products to markets with precision",
+      methodologies: [
+        "Zero-to-one positioning for emerging technology products",
+        "Industry-first solution development and market introduction",
+        "Enterprise contract frameworks for tech, broadcast, and CPG sectors"
       ]
     },
     {
-      period: "2014–2017",
-      location: "Sydney",
-      role: "Head of Data & Programmatic Sales – Nine Entertainment",
-      highlights: [
-        "Led GTM scaling revenue by 7x growth to substantial totals",
-        "Pioneered industry-first authenticated CTV solutions", 
-        "Launched extensive portfolio of commercial data and automation products"
-      ]
-    },
-    {
-      period: "2008–2013",
-      location: "London",
-      role: "Technical Account Manager – Microsoft",
-      highlights: [
-        "Coded automations saving EMEA teams weeks of manual labor",
-        "Managed largest UK market patch delivering highest YoY uplift",
-        "Built first global automated media campaigns in 2010"
+      icon: Globe,
+      title: "Global Execution",
+      description: "Cross-continental operations framework",
+      methodologies: [
+        "Market expansion with scenario planning and initial business development",
+        "Multi-year RFP strategies and solutions engineering partnerships",
+        "Automated campaign systems with global scalability"
       ]
     }
   ];
@@ -69,48 +59,56 @@ const Journey = () => {
     <section id="journey" className="section-padding">
       <div className="container-width">
         <div className="text-center mb-16">
-          <h2 className="headline-lg mb-6">Journey</h2>
-          <div className="flex items-center justify-center gap-2 text-xl text-muted-foreground mb-8">
+          <h2 className="headline-lg mb-6">Strategic Approach</h2>
+          <div className="flex items-center justify-center gap-2 text-xl text-muted-foreground mb-4">
             <MapPin className="w-5 h-5" />
             <span>LDN → SYD → NYC</span>
           </div>
+          <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            Proven methodologies developed across 16+ years of building businesses, scaling teams, and driving results across three continents
+          </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8 mb-12">
-            <div className="lg:col-span-2 space-y-6">
-              {timelineItems.map((item, index) => (
-                <Card key={index} className="border-l-4 border-l-primary border-r-0 border-t-0 border-b-0 rounded-l-none shadow-sm">
-                  <CardContent className="p-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                      <h3 className="font-semibold text-lg text-foreground">
-                        {item.role}
-                      </h3>
-                      <div className="text-sm text-muted-foreground flex items-center gap-2">
-                        <span>{item.period}</span>
-                        <span>•</span>
-                        <span>{item.location}</span>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-4 gap-8 mb-12">
+            <div className="lg:col-span-3">
+              <div className="grid md:grid-cols-2 gap-6">
+                {strategicPillars.map((pillar, index) => (
+                  <Card key={index} className="border-l-4 border-l-primary border-r-0 border-t-0 border-b-0 rounded-l-none shadow-sm hover:shadow-md transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2 rounded-lg bg-primary/10">
+                          <pillar.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-lg text-foreground">
+                            {pillar.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {pillar.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                    <ul className="space-y-2">
-                      {item.highlights.map((highlight, highlightIndex) => (
-                        <li key={highlightIndex} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0"></div>
-                          <span className="text-sm text-muted-foreground leading-relaxed">
-                            {highlight}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              ))}
+                      <ul className="space-y-2">
+                        {pillar.methodologies.map((methodology, methodologyIndex) => (
+                          <li key={methodologyIndex} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0"></div>
+                            <span className="text-sm text-muted-foreground leading-relaxed">
+                              {methodology}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
 
             <div className="lg:col-span-1">
               <Card className="sticky top-8 bg-primary/5 border-primary/20">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-4">My instincts</h3>
+                  <h3 className="font-semibold text-lg mb-4">Strategic Instincts</h3>
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
