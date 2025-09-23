@@ -1,8 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MessageSquare, Wrench, Network, Rocket, Globe, DollarSign } from 'lucide-react';
+import { MobileCarousel } from '@/components/ui/mobile-carousel';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const StrategicFramework = () => {
+  const isMobile = useIsMobile();
   const approaches = [
     {
       icon: MessageSquare,
@@ -47,10 +50,13 @@ const StrategicFramework = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-stretch">
-          {/* Approach Cards */}
-          <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
-            {approaches.map((approach, index) => {
+        {isMobile ? (
+          <MobileCarousel 
+            className="space-y-6"
+            itemClassName="h-full"
+            showDots={true}
+          >
+            {[...approaches.map((approach, index) => {
               const Icon = approach.icon;
               return (
                 <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm">
@@ -79,12 +85,8 @@ const StrategicFramework = () => {
                   </CardContent>
                 </Card>
               );
-            })}
-          </div>
-
-          {/* Core Operating Principles */}
-          <div className="lg:col-span-1">
-            <Card className="border-0 shadow-sm bg-primary/5 backdrop-blur-sm h-full flex flex-col sticky top-8">
+            }), 
+            <Card key="principles" className="border-0 shadow-sm bg-primary/5 backdrop-blur-sm h-full flex flex-col">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 rounded-lg bg-primary/10">
@@ -118,8 +120,83 @@ const StrategicFramework = () => {
                 </div>
               </CardContent>
             </Card>
+            ]}
+          </MobileCarousel>
+        ) : (
+          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+            {/* Approach Cards */}
+            <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
+              {approaches.map((approach, index) => {
+                const Icon = approach.icon;
+                return (
+                  <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="p-2 rounded-lg bg-primary/10">
+                          <Icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <CardTitle className="text-lg">{approach.title}</CardTitle>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        {approach.description}
+                      </p>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="space-y-2">
+                        {approach.methods.map((method, methodIndex) => (
+                          <div key={methodIndex} className="flex items-start gap-2">
+                            <div className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                            <p className="text-xs text-muted-foreground">
+                              {method}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+
+            {/* Core Operating Principles */}
+            <div className="lg:col-span-1">
+              <Card className="border-0 shadow-sm bg-primary/5 backdrop-blur-sm h-full flex flex-col sticky top-8">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <DollarSign className="w-5 h-5 text-primary" />
+                    </div>
+                    <CardTitle className="text-lg">Core Operating Principles</CardTitle>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    The philosophy behind every engagement
+                  </p>
+                </CardHeader>
+                <CardContent className="pt-0 flex-1 flex flex-col">
+                  <div className="space-y-3">
+                    {principles.map((principle, index) => (
+                      <Badge 
+                        key={index} 
+                        variant="secondary" 
+                        className="w-full justify-start text-xs py-2 px-3 bg-background/50"
+                      >
+                        {principle}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-auto pt-4 border-t border-border/50">
+                    <p className="text-xs text-muted-foreground">
+                      <span className="font-semibold">What Makes This Different:</span><br />
+                      Creating automations at Microsoft → AdTech innovator → AI strategy guide → Global business builder<br />
+                      <span className="text-primary">Technical background + business execution across $100M+ in combined revenue growth</span>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Users, Target, Lightbulb, Cog } from 'lucide-react';
+import { MobileCarousel } from '@/components/ui/mobile-carousel';
 
 const AIMindMaker = () => {
   const coreModules = [
@@ -51,11 +52,15 @@ const AIMindMaker = () => {
         {/* Core Four Pillars */}
         <div className="mb-12">
           <h3 className="text-2xl font-semibold text-center mb-8">Core Program Pillars</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <MobileCarousel 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            itemClassName="h-full"
+            showDots={true}
+          >
             {coreModules.map((module, index) => {
               const Icon = module.icon;
               return (
-                <Card key={index} className="card-hover border-0 shadow-sm relative">
+                <Card key={index} className="card-hover border-0 shadow-sm relative h-full">
                   <div className="absolute top-4 right-4 bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded-full">
                     {module.credits} credits
                   </div>
@@ -77,7 +82,7 @@ const AIMindMaker = () => {
                 </Card>
               );
             })}
-          </div>
+          </MobileCarousel>
         </div>
 
 

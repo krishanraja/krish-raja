@@ -1,0 +1,84 @@
+import React from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+
+interface MobileCarouselProps {
+  children: React.ReactElement[];
+  className?: string;
+  itemClassName?: string;
+  showDots?: boolean;
+  spaceBetween?: number;
+}
+
+export const MobileCarousel: React.FC<MobileCarouselProps> = ({
+  children,
+  className = "",
+  itemClassName = "",
+  showDots = true,
+  spaceBetween = 16
+}) => {
+  const isMobile = useIsMobile();
+  const [current, setCurrent] = React.useState(0);
+  const [carouselApi, setCarouselApi] = React.useState<any>();
+
+  React.useEffect(() => {
+    if (!carouselApi) return;
+
+    carouselApi.on('select', () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    });
+  }, [carouselApi]);
+
+  if (!isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <div className="relative">
+      <Carousel
+        setApi={setCarouselApi}
+        className="w-full"
+        opts={{
+          align: "start",
+          dragFree: true,
+        }}
+      >
+        <CarouselContent className={`-ml-4`}>
+          {children.map((child, index) => (
+            <CarouselItem key={index} className={`pl-4 basis-[85%] ${itemClassName}`}>
+              {child}
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        
+        {/* Navigation buttons */}
+        <CarouselPrevious className="left-2 h-8 w-8" />
+        <CarouselNext className="right-2 h-8 w-8" />
+      </Carousel>
+
+      {/* Dot indicators */}
+      {showDots && children.length > 1 && (
+        <div className="flex justify-center space-x-2 mt-6">
+          {children.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                index === current 
+                  ? 'bg-primary scale-125' 
+                  : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+              }`}
+              onClick={() => carouselApi?.scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};

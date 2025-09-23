@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ExternalLink, FileText, Video } from 'lucide-react';
+import { MobileCarousel } from '@/components/ui/mobile-carousel';
 
 const Work = () => {
   const workItems = [
@@ -83,14 +84,18 @@ const Work = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <MobileCarousel 
+          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          itemClassName="h-full"
+          showDots={true}
+        >
           {workItems.map((item, index) => {
             const Icon = item.icon;
             return (
               <Dialog key={index}>
                 <DialogTrigger asChild>
-                  <Card className="card-hover cursor-pointer border-0 shadow-sm">
-                    <CardHeader className="pb-4">
+                  <Card className="card-hover cursor-pointer border-0 shadow-sm h-full flex flex-col">
+                    <CardHeader className="pb-4 flex-shrink-0">
                       <div className="flex items-center justify-between mb-2">
                         <Badge variant="secondary" className="text-xs">
                           {item.type}
@@ -101,7 +106,7 @@ const Work = () => {
                         {item.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="pt-0">
+                    <CardContent className="pt-0 flex-1">
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {item.summary}
                       </p>
@@ -133,7 +138,7 @@ const Work = () => {
               </Dialog>
             );
           })}
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );

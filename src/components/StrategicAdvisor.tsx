@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Clock, MessageSquare } from 'lucide-react';
+import { MobileCarousel } from '@/components/ui/mobile-carousel';
 
 const StrategicAdvisor = () => {
   const engagementModels = [
@@ -34,10 +35,14 @@ const StrategicAdvisor = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <MobileCarousel 
+          className="grid md:grid-cols-3 gap-8 mb-12"
+          itemClassName="h-full"
+          showDots={true}
+        >
           {engagementModels.map((model, index) => (
-            <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-              <CardHeader>
+            <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full flex flex-col">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-4 h-4 text-primary" />
                   <span className="text-sm text-primary font-medium">{model.duration}</span>
@@ -47,7 +52,7 @@ const StrategicAdvisor = () => {
                   {model.description}
                 </p>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-1">
                 <div className="space-y-2">
                   {model.deliverables.map((deliverable, deliverableIndex) => (
                     <div key={deliverableIndex} className="flex items-start gap-2">
@@ -61,7 +66,7 @@ const StrategicAdvisor = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );

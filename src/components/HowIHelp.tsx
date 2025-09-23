@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Users, Rocket, TrendingUp, Target, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import { MobileCarousel } from '@/components/ui/mobile-carousel';
 
 const HowIHelp = () => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
@@ -96,7 +97,11 @@ const HowIHelp = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+        <MobileCarousel 
+          className="grid md:grid-cols-2 gap-8 items-stretch"
+          itemClassName="h-full"
+          showDots={true}
+        >
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
             const isExpanded = expandedCard === index;
@@ -165,7 +170,7 @@ const HowIHelp = () => {
               </Card>
             );
           })}
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );
