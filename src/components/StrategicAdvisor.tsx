@@ -39,7 +39,7 @@ const StrategicAdvisor = () => {
           className="grid md:grid-cols-3 gap-8 mb-12"
           itemClassName="h-full"
           showDots={true}
-          minHeight="320px"
+          minHeight="carousel-lg"
         >
           {engagementModels.map((model, index) => (
             <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full flex flex-col">

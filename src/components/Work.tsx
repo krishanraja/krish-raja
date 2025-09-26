@@ -88,7 +88,7 @@ const Work = () => {
           className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
           itemClassName="h-full"
           showDots={true}
-          minHeight="280px"
+          minHeight="carousel-md"
         >
           {workItems.map((item, index) => {
             const Icon = item.icon;

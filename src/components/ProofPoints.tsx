@@ -68,7 +68,7 @@ const ProofPoints = () => {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             itemClassName="h-full"
             showDots={true}
-            minHeight="200px"
+            minHeight="carousel-sm"
           >
             {achievements.map((achievement, index) => {
               const Icon = achievement.icon;

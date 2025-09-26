@@ -101,7 +101,7 @@ const HowIHelp = () => {
           className="grid md:grid-cols-2 gap-8 items-stretch"
           itemClassName="h-full"
           showDots={true}
-          minHeight="420px"
+          minHeight="carousel-2xl"
         >
           {audiences.map((audience, index) => {
             const Icon = audience.icon;

@@ -56,7 +56,7 @@ const AIMindMaker = () => {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             itemClassName="h-full"
             showDots={true}
-            minHeight="300px"
+            minHeight="carousel-md"
           >
             {coreModules.map((module, index) => {
               const Icon = module.icon;

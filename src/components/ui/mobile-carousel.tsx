@@ -15,7 +15,7 @@ interface MobileCarouselProps {
   showDots?: boolean;
   spaceBetween?: number;
   uniformHeight?: boolean;
-  minHeight?: string;
+  minHeight?: 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl';
 }
 
 export const MobileCarousel: React.FC<MobileCarouselProps> = ({
@@ -25,7 +25,7 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   showDots = true,
   spaceBetween = 16,
   uniformHeight = true,
-  minHeight = "auto"
+  minHeight = "carousel-md"
 }) => {
   const isMobile = useIsMobile();
   const [current, setCurrent] = React.useState(0);
@@ -43,8 +43,9 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
     return <div className={className}>{children}</div>;
   }
 
-  const heightClass = uniformHeight && minHeight !== "auto" ? `min-h-[${minHeight}]` : "";
-  const itemClasses = `pl-4 basis-[85%] ${itemClassName} ${uniformHeight ? 'flex' : ''}`;
+  const heightClass = uniformHeight ? `min-h-${minHeight}` : "";
+  const itemClasses = `pl-4 basis-[85%] ${itemClassName}`;
+  const contentGridClass = uniformHeight ? "grid grid-cols-[repeat(auto-fit,_85%)] gap-4" : "";
 
   return (
     <div className="relative">
@@ -56,13 +57,15 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
           dragFree: true,
         }}
       >
-        <CarouselContent className={`-ml-4`}>
+        <CarouselContent className={`-ml-4 ${contentGridClass}`} style={{
+          gridTemplateRows: uniformHeight ? '1fr' : 'auto'
+        }}>
           {children.map((child, index) => (
             <CarouselItem key={index} className={itemClasses}>
               {uniformHeight ? (
                 <div className={`w-full ${heightClass} flex flex-col`}>
                   {React.cloneElement(child, {
-                    className: `${child.props.className || ''} flex-1 flex flex-col h-full`
+                    className: `${child.props.className || ''} flex-1 h-full flex flex-col justify-between overflow-hidden`
                   })}
                 </div>
               ) : (

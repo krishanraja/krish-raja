@@ -98,6 +98,13 @@ export default {
 			maxWidth: {
 				'content': 'var(--content-width)'
 			},
+			minHeight: {
+				'carousel-sm': '250px',
+				'carousel-md': '300px', 
+				'carousel-lg': '320px',
+				'carousel-xl': '380px',
+				'carousel-2xl': '400px'
+			},
 			transitionTimingFunction: {
 				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
 				'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
