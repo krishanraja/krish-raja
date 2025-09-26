@@ -99,24 +99,24 @@ export default {
 				'content': 'var(--content-width)'
 			},
 			height: {
-				'carousel-sm': '280px',
-				'carousel-md': '360px', 
-				'carousel-lg': '440px',
-				'carousel-xl': '520px',
-				'carousel-2xl': '600px',
-				'carousel-3xl': '680px',
-				'carousel-4xl': '760px',
-				'carousel-5xl': '840px'
+				'carousel-sm': 'var(--carousel-sm)',
+				'carousel-md': 'var(--carousel-md)',
+				'carousel-lg': 'var(--carousel-lg)',
+				'carousel-xl': 'var(--carousel-xl)',
+				'carousel-2xl': 'var(--carousel-2xl)',
+				'carousel-3xl': 'var(--carousel-3xl)',
+				'carousel-4xl': 'var(--carousel-4xl)',
+				'carousel-5xl': 'var(--carousel-5xl)'
 			},
 			minHeight: {
-				'carousel-sm': '280px',
-				'carousel-md': '360px', 
-				'carousel-lg': '440px',
-				'carousel-xl': '520px',
-				'carousel-2xl': '600px',
-				'carousel-3xl': '680px',
-				'carousel-4xl': '760px',
-				'carousel-5xl': '840px'
+				'carousel-sm': 'var(--carousel-sm)',
+				'carousel-md': 'var(--carousel-md)',
+				'carousel-lg': 'var(--carousel-lg)',
+				'carousel-xl': 'var(--carousel-xl)',
+				'carousel-2xl': 'var(--carousel-2xl)',
+				'carousel-3xl': 'var(--carousel-3xl)',
+				'carousel-4xl': 'var(--carousel-4xl)',
+				'carousel-5xl': 'var(--carousel-5xl)'
 			},
 			transitionTimingFunction: {
 				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',

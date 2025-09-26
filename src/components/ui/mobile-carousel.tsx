@@ -45,7 +45,21 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   }
 
   // Mobile: Pure Flexbox carousel with forced Card heights
-  const heightClass = uniformHeight ? `h-${minHeight}` : "";
+  const getHeightClass = (height: string) => {
+    switch (height) {
+      case 'carousel-sm': return 'h-carousel-sm min-h-carousel-sm';
+      case 'carousel-md': return 'h-carousel-md min-h-carousel-md';
+      case 'carousel-lg': return 'h-carousel-lg min-h-carousel-lg';
+      case 'carousel-xl': return 'h-carousel-xl min-h-carousel-xl';
+      case 'carousel-2xl': return 'h-carousel-2xl min-h-carousel-2xl';
+      case 'carousel-3xl': return 'h-carousel-3xl min-h-carousel-3xl';
+      case 'carousel-4xl': return 'h-carousel-4xl min-h-carousel-4xl';
+      case 'carousel-5xl': return 'h-carousel-5xl min-h-carousel-5xl';
+      default: return 'h-carousel-md min-h-carousel-md';
+    }
+  };
+
+  const heightClasses = uniformHeight ? getHeightClass(minHeight) : "";
   const itemClasses = `pl-4 basis-[85%] ${itemClassName}`;
 
   return (
@@ -62,16 +76,9 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
           {children.map((child, index) => (
             <CarouselItem key={index} className={itemClasses}>
               {uniformHeight ? (
-                // Apply height directly to the Card component with !important override
-                <div className={`w-full ${heightClass} flex flex-col`} style={{ minHeight: 'unset' }}>
+                <div className={`w-full ${heightClasses} flex flex-col`}>
                   {React.cloneElement(child, {
-                    className: `${child.props.className?.replace(/h-full|flex-1|min-h-\[\d+px\]/g, '') || ''} !${heightClass} overflow-hidden flex flex-col`,
-                    style: { 
-                      height: `var(--${minHeight})`,
-                      minHeight: `var(--${minHeight})`,
-                      maxHeight: `var(--${minHeight})`,
-                      ...child.props.style 
-                    }
+                    className: `${child.props.className || ''} h-full flex flex-col overflow-hidden`,
                   })}
                 </div>
               ) : (

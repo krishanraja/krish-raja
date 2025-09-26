@@ -51,11 +51,11 @@ const StrategicFramework = () => {
         </div>
 
         {isMobile ? (
-            <MobileCarousel 
+            <MobileCarousel
               className="space-y-6"
               itemClassName="h-full"
               showDots={true}
-              minHeight="carousel-lg"
+              minHeight="carousel-md"
             >
             {[...approaches.map((approach, index) => {
               const Icon = approach.icon;
