@@ -100,10 +100,10 @@ const HowIHelp = () => {
         </div>
 
         {isMobile ? (
-          <MobileCarousel 
-            showDots={true}
-            minHeight="carousel-4xl"
-          >
+        <MobileCarousel
+          showDots={true}
+          minHeight="carousel-3xl"
+        >
             {audiences.map((audience, index) => {
               const Icon = audience.icon;
               const isExpanded = expandedCard === index;

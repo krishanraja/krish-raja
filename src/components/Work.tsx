@@ -89,7 +89,7 @@ const Work = () => {
         {isMobile ? (
           <MobileCarousel 
             showDots={true}
-            minHeight="carousel-lg"
+            minHeight="carousel-sm"
           >
             {workItems.map((item, index) => {
               const Icon = item.icon;

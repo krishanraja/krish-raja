@@ -55,7 +55,7 @@ const StrategicFramework = () => {
               className="space-y-6"
               itemClassName="h-full"
               showDots={true}
-              minHeight="carousel-xl"
+              minHeight="carousel-lg"
             >
             {[...approaches.map((approach, index) => {
               const Icon = approach.icon;
