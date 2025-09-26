@@ -99,18 +99,24 @@ export default {
 				'content': 'var(--content-width)'
 			},
 			height: {
-				'carousel-sm': '250px',
-				'carousel-md': '300px', 
-				'carousel-lg': '320px',
-				'carousel-xl': '380px',
-				'carousel-2xl': '400px'
+				'carousel-sm': '280px',
+				'carousel-md': '360px', 
+				'carousel-lg': '440px',
+				'carousel-xl': '520px',
+				'carousel-2xl': '600px',
+				'carousel-3xl': '680px',
+				'carousel-4xl': '760px',
+				'carousel-5xl': '840px'
 			},
 			minHeight: {
-				'carousel-sm': '250px',
-				'carousel-md': '300px', 
-				'carousel-lg': '320px',
-				'carousel-xl': '380px',
-				'carousel-2xl': '400px'
+				'carousel-sm': '280px',
+				'carousel-md': '360px', 
+				'carousel-lg': '440px',
+				'carousel-xl': '520px',
+				'carousel-2xl': '600px',
+				'carousel-3xl': '680px',
+				'carousel-4xl': '760px',
+				'carousel-5xl': '840px'
 			},
 			transitionTimingFunction: {
 				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',

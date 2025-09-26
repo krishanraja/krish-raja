@@ -8,11 +8,14 @@ All colors MUST be HSL.
 
 /* Carousel fixed heights for mobile uniformity */
 :root {
-  --carousel-sm: 250px;
-  --carousel-md: 300px;
-  --carousel-lg: 320px;
-  --carousel-xl: 380px;
-  --carousel-2xl: 400px;
+  --carousel-sm: 280px;
+  --carousel-md: 360px;
+  --carousel-lg: 440px;
+  --carousel-xl: 520px;
+  --carousel-2xl: 600px;
+  --carousel-3xl: 680px;
+  --carousel-4xl: 760px;
+  --carousel-5xl: 840px;
 }
 
 @layer base {

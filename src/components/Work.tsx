@@ -5,8 +5,10 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ExternalLink, FileText, Video } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Work = () => {
+  const isMobile = useIsMobile();
   const workItems = [
     {
       title: "Techonomic: AI Strategy for Executives",
@@ -84,62 +86,114 @@ const Work = () => {
           </p>
         </div>
 
-        <MobileCarousel 
-          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          itemClassName="h-full"
-          showDots={true}
-          minHeight="carousel-md"
-        >
-          {workItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <Dialog key={index}>
-                <DialogTrigger asChild>
-                  <Card className="card-hover cursor-pointer border-0 shadow-sm h-full flex flex-col">
-                    <CardHeader className="pb-4 flex-shrink-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <Badge variant="secondary" className="text-xs">
-                          {item.type}
-                        </Badge>
+        {isMobile ? (
+          <MobileCarousel 
+            showDots={true}
+            minHeight="carousel-lg"
+          >
+            {workItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <Dialog key={index}>
+                  <DialogTrigger asChild>
+                    <Card className="card-hover cursor-pointer border-0 shadow-sm h-full flex flex-col">
+                      <CardHeader className="pb-4 flex-shrink-0">
+                        <div className="flex items-center justify-between mb-2">
+                          <Badge variant="secondary" className="text-xs">
+                            {item.type}
+                          </Badge>
+                          <Icon className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                        <CardTitle className="text-base leading-snug break-words hyphens-auto">
+                          {item.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0 flex-1">
+                        <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
+                          {item.summary}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Badge variant="secondary">{item.type}</Badge>
                         <Icon className="w-4 h-4 text-muted-foreground" />
                       </div>
-                      <CardTitle className="text-base leading-snug break-words hyphens-auto">
-                        {item.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0 flex-1">
-                      <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
-                        {item.summary}
+                      <DialogTitle className="text-left">{item.title}</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.description}
                       </p>
-                    </CardContent>
-                  </Card>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="secondary">{item.type}</Badge>
-                      <Icon className="w-4 h-4 text-muted-foreground" />
+                      <Button asChild className="w-full">
+                        <a href={item.link} target={item.link.startsWith('http') || item.link.startsWith('mailto:') ? '_blank' : '_self'} rel={item.link.startsWith('http') || item.link.startsWith('mailto:') ? 'noopener noreferrer' : ''} className="flex items-center gap-2 justify-center">
+                          {item.type === "Video" || item.type === "Speaking" || item.type === "Masterclass" ? "Watch" : 
+                           item.type === "Tool" || item.type === "Workshop" ? "Access" :
+                           item.type === "Advisory" ? "Inquire" : "Read"}
+                          <ExternalLink size={16} />
+                        </a>
+                      </Button>
                     </div>
-                    <DialogTitle className="text-left">{item.title}</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {item.description}
-                    </p>
-                    <Button asChild className="w-full">
-                      <a href={item.link} target={item.link.startsWith('http') || item.link.startsWith('mailto:') ? '_blank' : '_self'} rel={item.link.startsWith('http') || item.link.startsWith('mailto:') ? 'noopener noreferrer' : ''} className="flex items-center gap-2 justify-center">
-                        {item.type === "Video" || item.type === "Speaking" || item.type === "Masterclass" ? "Watch" : 
-                         item.type === "Tool" || item.type === "Workshop" ? "Access" :
-                         item.type === "Advisory" ? "Inquire" : "Read"}
-                        <ExternalLink size={16} />
-                      </a>
-                    </Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            );
-          })}
-        </MobileCarousel>
+                  </DialogContent>
+                </Dialog>
+              );
+            })}
+          </MobileCarousel>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {workItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <Dialog key={index}>
+                  <DialogTrigger asChild>
+                    <Card className="card-hover cursor-pointer border-0 shadow-sm h-full flex flex-col">
+                      <CardHeader className="pb-4 flex-shrink-0">
+                        <div className="flex items-center justify-between mb-2">
+                          <Badge variant="secondary" className="text-xs">
+                            {item.type}
+                          </Badge>
+                          <Icon className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                        <CardTitle className="text-base leading-snug break-words hyphens-auto">
+                          {item.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0 flex-1">
+                        <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
+                          {item.summary}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Badge variant="secondary">{item.type}</Badge>
+                        <Icon className="w-4 h-4 text-muted-foreground" />
+                      </div>
+                      <DialogTitle className="text-left">{item.title}</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
+                      <Button asChild className="w-full">
+                        <a href={item.link} target={item.link.startsWith('http') || item.link.startsWith('mailto:') ? '_blank' : '_self'} rel={item.link.startsWith('http') || item.link.startsWith('mailto:') ? 'noopener noreferrer' : ''} className="flex items-center gap-2 justify-center">
+                          {item.type === "Video" || item.type === "Speaking" || item.type === "Masterclass" ? "Watch" : 
+                           item.type === "Tool" || item.type === "Workshop" ? "Access" :
+                           item.type === "Advisory" ? "Inquire" : "Read"}
+                          <ExternalLink size={16} />
+                        </a>
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

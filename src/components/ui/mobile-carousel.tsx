@@ -15,7 +15,7 @@ interface MobileCarouselProps {
   showDots?: boolean;
   spaceBetween?: number;
   uniformHeight?: boolean;
-  minHeight?: 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl';
+  minHeight?: 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl' | 'carousel-3xl' | 'carousel-4xl' | 'carousel-5xl';
 }
 
 export const MobileCarousel: React.FC<MobileCarouselProps> = ({
