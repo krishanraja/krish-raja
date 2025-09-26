@@ -125,6 +125,7 @@ const ProofPoints = () => {
                 className="space-y-4"
                 itemClassName="h-full"
                 showDots={true}
+                minHeight="carousel-sm"
               >
                 {locations.map((location, index) => (
                   <Card key={index} className="border-0 shadow-sm bg-muted/30 h-full">

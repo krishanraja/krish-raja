@@ -102,7 +102,7 @@ const HowIHelp = () => {
         {isMobile ? (
         <MobileCarousel
           showDots={true}
-          minHeight="carousel-2xl"
+          minHeight="carousel-xl"
         >
             {audiences.map((audience, index) => {
               const Icon = audience.icon;
