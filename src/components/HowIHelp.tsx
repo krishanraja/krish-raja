@@ -110,7 +110,7 @@ const HowIHelp = () => {
               
               return (
                 <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group">
-                  <CardHeader className="pb-3">
+                  <CardHeader className="pb-2 flex-shrink-0">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="p-2 rounded-lg bg-primary/10">
                         <Icon className="w-5 h-5 text-primary" />
@@ -122,13 +122,13 @@ const HowIHelp = () => {
                       </p>
                     
                     {/* Achievement Highlight */}
-                    <div className="bg-muted/30 rounded-lg p-2 mt-3">
+                    <div className="bg-muted/30 rounded-lg p-2 mt-2">
                       <div className="text-base font-semibold text-primary">{audience.metric}</div>
                       <div className="text-xs text-muted-foreground">{audience.context}</div>
                     </div>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col pt-0">
-                    <div className="space-y-2 mb-4 flex-1">
+                    <div className="space-y-2 mb-3 flex-1">
                       {audience.outcomes.map((outcome, outcomeIndex) => (
                         <div key={outcomeIndex} className="flex items-start gap-2">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
