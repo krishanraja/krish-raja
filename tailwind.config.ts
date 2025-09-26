@@ -98,6 +98,13 @@ export default {
 			maxWidth: {
 				'content': 'var(--content-width)'
 			},
+			height: {
+				'carousel-sm': '250px',
+				'carousel-md': '300px', 
+				'carousel-lg': '320px',
+				'carousel-xl': '380px',
+				'carousel-2xl': '400px'
+			},
 			minHeight: {
 				'carousel-sm': '250px',
 				'carousel-md': '300px', 

@@ -43,16 +43,8 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
     return <div className={className}>{children}</div>;
   }
 
-  // Map minHeight prop to actual Tailwind classes
-  const heightClassMap = {
-    'carousel-sm': 'min-h-[250px]',
-    'carousel-md': 'min-h-[300px]',
-    'carousel-lg': 'min-h-[320px]',
-    'carousel-xl': 'min-h-[380px]',
-    'carousel-2xl': 'min-h-[400px]'
-  };
-  
-  const heightClass = uniformHeight ? heightClassMap[minHeight] : "";
+  // Use fixed height utility classes for uniform card heights
+  const heightClass = uniformHeight ? `h-${minHeight}` : "";
   const itemClasses = `pl-4 basis-[85%] ${itemClassName}`;
 
   return (
@@ -69,10 +61,12 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
           {children.map((child, index) => (
             <CarouselItem key={index} className={itemClasses}>
               {uniformHeight ? (
-                <div className={`w-full ${heightClass} flex flex-col overflow-hidden`}>
-                  {React.cloneElement(child, {
-                    className: `${child.props.className || ''} h-full flex flex-col justify-between p-4`
-                  })}
+                <div className={`w-full ${heightClass} overflow-hidden`}>
+                  <div className="h-full p-4 flex flex-col justify-between">
+                    {React.cloneElement(child, {
+                      className: `${child.props.className || ''} flex-1 overflow-hidden`
+                    })}
+                  </div>
                 </div>
               ) : (
                 child

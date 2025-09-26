@@ -14,10 +14,10 @@ const HowIHelp = () => {
       title: "Executive Leadership",
       oneLiner: "Translate AI noise into board-ready strategy. Scaled multi-million ARR businesses from zero, built teams across three continents.",
       outcomes: [
-        "AI-first competitive positioning",
-        "Revenue strategy transformation", 
-        "Cross-functional team building",
-        "Board-level strategic guidance"
+        "AI competitive positioning",
+        "Revenue transformation", 
+        "Cross-functional teams",
+        "Board-level strategy"
       ],
       detailedOutcomes: [
         "Transform complex AI capabilities into clear competitive advantages and board-ready strategic initiatives",
@@ -33,10 +33,10 @@ const HowIHelp = () => {
       title: "Product/GTM Leaders", 
       oneLiner: "Turn literacy into roadmap, PMF signals into scale. Launched dozens of products, scaled revenue by 7x growth.",
       outcomes: [
-        "AI-driven product strategy",
-        "GTM acceleration frameworks",
-        "Market expansion planning",
-        "Product-led growth design"
+        "AI product strategy",
+        "GTM frameworks",
+        "Market expansion",
+        "Growth design"
       ],
       detailedOutcomes: [
         "Develop product roadmaps that leverage AI as a core differentiator, not just a feature add-on",
@@ -52,10 +52,10 @@ const HowIHelp = () => {
       title: "Sales/RevOps",
       oneLiner: "Seller workflows, education-led enablement. Dramatically reduced outreach time, closed substantial ARR in under 6 months.",
       outcomes: [
-        "AI-powered sales automation",
-        "Revenue operations design",
+        "Sales automation",
+        "Revenue operations",
         "Pipeline optimization",
-        "Conversion rate improvement"
+        "Conversion improvement"
       ],
       detailedOutcomes: [
         "Implement intelligent sales workflows that eliminate manual prospecting while maintaining personalization",
@@ -69,12 +69,12 @@ const HowIHelp = () => {
     {
       icon: Target,
       title: "Investors & VCs",
-      oneLiner: "Navigate AI/data-driven media opportunities with rigorous market analysis. 15+ years of technical and commercial expertise across the evolving adtech ecosystem.",
+      oneLiner: "Navigate AI/data opportunities with rigorous analysis. 15+ years technical & commercial expertise.",
         outcomes: [
-          "Market analysis & trends",
+          "Market analysis",
           "Competitive evaluation", 
-          "Pitch deck development",
-          "Investment positioning"
+          "Pitch development",
+          "Investment timing"
         ],
       detailedOutcomes: [
         "Provide comprehensive market analysis combining technical feasibility with commercial viability assessment",
