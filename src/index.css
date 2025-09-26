@@ -6,6 +6,15 @@
 All colors MUST be HSL.
 */
 
+/* Carousel fixed heights for mobile uniformity */
+:root {
+  --carousel-sm: 250px;
+  --carousel-md: 300px;
+  --carousel-lg: 320px;
+  --carousel-xl: 380px;
+  --carousel-2xl: 400px;
+}
+
 @layer base {
   :root {
     /* NYC Editorial Design System */

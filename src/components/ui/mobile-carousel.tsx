@@ -39,11 +39,12 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
     });
   }, [carouselApi]);
 
+  // Desktop: render as provided (usually Grid)
   if (!isMobile) {
     return <div className={className}>{children}</div>;
   }
 
-  // Use fixed height utility classes for uniform card heights
+  // Mobile: Pure Flexbox carousel with forced Card heights
   const heightClass = uniformHeight ? `h-${minHeight}` : "";
   const itemClasses = `pl-4 basis-[85%] ${itemClassName}`;
 
@@ -61,12 +62,17 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
           {children.map((child, index) => (
             <CarouselItem key={index} className={itemClasses}>
               {uniformHeight ? (
-                <div className={`w-full ${heightClass} overflow-hidden`}>
-                  <div className="h-full p-4 flex flex-col justify-between">
-                    {React.cloneElement(child, {
-                      className: `${child.props.className || ''} flex-1 overflow-hidden`
-                    })}
-                  </div>
+                // Apply height directly to the Card component with !important override
+                <div className={`w-full ${heightClass} flex flex-col`} style={{ minHeight: 'unset' }}>
+                  {React.cloneElement(child, {
+                    className: `${child.props.className?.replace(/h-full|flex-1|min-h-\[\d+px\]/g, '') || ''} !${heightClass} overflow-hidden flex flex-col`,
+                    style: { 
+                      height: `var(--${minHeight})`,
+                      minHeight: `var(--${minHeight})`,
+                      maxHeight: `var(--${minHeight})`,
+                      ...child.props.style 
+                    }
+                  })}
                 </div>
               ) : (
                 child

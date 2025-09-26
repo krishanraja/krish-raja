@@ -4,9 +4,11 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { Users, Rocket, TrendingUp, Target, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const HowIHelp = () => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   const audiences = [
     {
@@ -97,81 +99,152 @@ const HowIHelp = () => {
           </p>
         </div>
 
-        <MobileCarousel 
-          className="grid md:grid-cols-2 gap-8 items-stretch"
-          itemClassName="h-full"
-          showDots={true}
-          minHeight="carousel-2xl"
-        >
-          {audiences.map((audience, index) => {
-            const Icon = audience.icon;
-            const isExpanded = expandedCard === index;
-            
-            return (
-              <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group h-full flex flex-col">
-                <CardHeader className="flex-shrink-0">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-primary/10">
-                      <Icon className="w-5 h-5 text-primary" />
+        {isMobile ? (
+          <MobileCarousel 
+            showDots={true}
+            minHeight="carousel-2xl"
+          >
+            {audiences.map((audience, index) => {
+              const Icon = audience.icon;
+              const isExpanded = expandedCard === index;
+              
+              return (
+                <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 rounded-lg bg-primary/10">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <CardTitle className="text-lg leading-tight">{audience.title}</CardTitle>
                     </div>
-                    <CardTitle className="text-xl">{audience.title}</CardTitle>
-                  </div>
-                    <p className="text-muted-foreground leading-relaxed break-words hyphens-auto">
-                      {audience.oneLiner}
-                    </p>
-                  
-                  {/* Achievement Highlight */}
-                  <div className="bg-muted/30 rounded-lg p-3 mt-4">
-                    <div className="text-lg font-semibold text-primary">{audience.metric}</div>
-                    <div className="text-xs text-muted-foreground">{audience.context}</div>
-                  </div>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col">
-                  <div className="space-y-3 mb-6 flex-1">
-                    {audience.outcomes.map((outcome, outcomeIndex) => (
-                      <div key={outcomeIndex} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0"></div>
-                        <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
-                          {outcome}
-                        </p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {audience.oneLiner}
+                      </p>
+                    
+                    {/* Achievement Highlight */}
+                    <div className="bg-muted/30 rounded-lg p-2 mt-3">
+                      <div className="text-base font-semibold text-primary">{audience.metric}</div>
+                      <div className="text-xs text-muted-foreground">{audience.context}</div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-1 flex flex-col pt-0">
+                    <div className="space-y-2 mb-4 flex-1">
+                      {audience.outcomes.map((outcome, outcomeIndex) => (
+                        <div key={outcomeIndex} className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+                          <p className="text-sm text-muted-foreground leading-snug">
+                            {outcome}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="mt-auto">
+                      <Collapsible open={isExpanded} onOpenChange={() => setExpandedCard(isExpanded ? null : index)}>
+                      <CollapsibleTrigger asChild>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                        >
+                          <span className="text-sm">
+                            {isExpanded ? 'Show Less' : 'Learn More'}
+                          </span>
+                          <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="mt-3">
+                        <div className="bg-muted/20 rounded-lg p-3 space-y-2">
+                          <h4 className="font-semibold text-sm text-primary mb-2">How I Deliver:</h4>
+                          {audience.detailedOutcomes.map((detail, detailIndex) => (
+                            <div key={detailIndex} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-1.5 flex-shrink-0"></div>
+                              <p className="text-xs text-muted-foreground leading-relaxed">
+                                {detail}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </CollapsibleContent>
+                     </Collapsible>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </MobileCarousel>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            {audiences.map((audience, index) => {
+              const Icon = audience.icon;
+              const isExpanded = expandedCard === index;
+              
+              return (
+                <Card key={index} className="card-hover border-0 shadow-sm bg-card/50 backdrop-blur-sm group h-full flex flex-col">
+                  <CardHeader className="flex-shrink-0">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-primary/10">
+                        <Icon className="w-5 h-5 text-primary" />
                       </div>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-auto">
-                    <Collapsible open={isExpanded} onOpenChange={() => setExpandedCard(isExpanded ? null : index)}>
-                    <CollapsibleTrigger asChild>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                      >
-                        <span className="text-sm">
-                          {isExpanded ? 'Show Less' : 'Learn More'}
-                        </span>
-                        <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
-                      </Button>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="mt-4">
-                      <div className="bg-muted/20 rounded-lg p-4 space-y-3">
-                        <h4 className="font-semibold text-sm text-primary mb-3">How I Deliver These Outcomes:</h4>
-                        {audience.detailedOutcomes.map((detail, detailIndex) => (
-                          <div key={detailIndex} className="flex items-start gap-3">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2.5 flex-shrink-0"></div>
-                            <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
-                              {detail}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
-                   </Collapsible>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </MobileCarousel>
+                      <CardTitle className="text-xl">{audience.title}</CardTitle>
+                    </div>
+                      <p className="text-muted-foreground leading-relaxed break-words hyphens-auto">
+                        {audience.oneLiner}
+                      </p>
+                    
+                    {/* Achievement Highlight */}
+                    <div className="bg-muted/30 rounded-lg p-3 mt-4">
+                      <div className="text-lg font-semibold text-primary">{audience.metric}</div>
+                      <div className="text-xs text-muted-foreground">{audience.context}</div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-1 flex flex-col">
+                    <div className="space-y-3 mb-6 flex-1">
+                      {audience.outcomes.map((outcome, outcomeIndex) => (
+                        <div key={outcomeIndex} className="flex items-start gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0"></div>
+                          <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
+                            {outcome}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="mt-auto">
+                      <Collapsible open={isExpanded} onOpenChange={() => setExpandedCard(isExpanded ? null : index)}>
+                      <CollapsibleTrigger asChild>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                        >
+                          <span className="text-sm">
+                            {isExpanded ? 'Show Less' : 'Learn More'}
+                          </span>
+                          <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="mt-4">
+                        <div className="bg-muted/20 rounded-lg p-4 space-y-3">
+                          <h4 className="font-semibold text-sm text-primary mb-3">How I Deliver These Outcomes:</h4>
+                          {audience.detailedOutcomes.map((detail, detailIndex) => (
+                            <div key={detailIndex} className="flex items-start gap-3">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2.5 flex-shrink-0"></div>
+                              <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
+                                {detail}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </CollapsibleContent>
+                     </Collapsible>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
