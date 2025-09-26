@@ -45,7 +45,6 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
 
   const heightClass = uniformHeight ? `min-h-${minHeight}` : "";
   const itemClasses = `pl-4 basis-[85%] ${itemClassName}`;
-  const contentGridClass = uniformHeight ? "grid grid-cols-[repeat(auto-fit,_85%)] gap-4" : "";
 
   return (
     <div className="relative">
@@ -57,9 +56,7 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
           dragFree: true,
         }}
       >
-        <CarouselContent className={`-ml-4 ${contentGridClass}`} style={{
-          gridTemplateRows: uniformHeight ? '1fr' : 'auto'
-        }}>
+        <CarouselContent className="-ml-4 flex items-stretch">
           {children.map((child, index) => (
             <CarouselItem key={index} className={itemClasses}>
               {uniformHeight ? (

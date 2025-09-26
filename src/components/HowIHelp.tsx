@@ -70,12 +70,12 @@ const HowIHelp = () => {
       icon: Target,
       title: "Investors & VCs",
       oneLiner: "Navigate AI/data-driven media opportunities with rigorous market analysis. 15+ years of technical and commercial expertise across the evolving adtech ecosystem.",
-      outcomes: [
-        "Rigorous market sizing & trend analysis",
-        "Competitive landscape evaluation",
-        "Pitch deck development & review",
-        "Investment timing & positioning strategy"
-      ],
+        outcomes: [
+          "Market sizing & trend analysis",
+          "Competitive landscape evaluation",
+          "Pitch deck development & review", 
+          "Investment timing & positioning"
+        ],
       detailedOutcomes: [
         "Provide comprehensive market analysis combining technical feasibility with commercial viability assessment",
         "Deliver competitive intelligence that identifies white space opportunities and strategic positioning gaps",
