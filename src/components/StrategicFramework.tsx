@@ -51,32 +51,33 @@ const StrategicFramework = () => {
         </div>
 
         {isMobile ? (
-          <MobileCarousel 
-            className="space-y-6"
-            itemClassName="h-full"
-            showDots={true}
-          >
+            <MobileCarousel 
+              className="space-y-6"
+              itemClassName="h-full"
+              showDots={true}
+              minHeight="380px"
+            >
             {[...approaches.map((approach, index) => {
               const Icon = approach.icon;
               return (
-                <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-                  <CardHeader className="pb-4">
+                <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full flex flex-col">
+                  <CardHeader className="pb-4 flex-shrink-0">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 rounded-lg bg-primary/10">
+                      <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
-                      <CardTitle className="text-lg">{approach.title}</CardTitle>
+                      <CardTitle className="text-lg break-words hyphens-auto">{approach.title}</CardTitle>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground break-words hyphens-auto">
                       {approach.description}
                     </p>
                   </CardHeader>
-                  <CardContent className="pt-0">
+                  <CardContent className="pt-0 flex-1">
                     <div className="space-y-2">
                       {approach.methods.map((method, methodIndex) => (
                         <div key={methodIndex} className="flex items-start gap-2">
                           <div className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-xs text-muted-foreground break-words hyphens-auto">
                             {method}
                           </p>
                         </div>

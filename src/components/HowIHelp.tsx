@@ -101,6 +101,7 @@ const HowIHelp = () => {
           className="grid md:grid-cols-2 gap-8 items-stretch"
           itemClassName="h-full"
           showDots={true}
+          minHeight="420px"
         >
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
@@ -115,9 +116,9 @@ const HowIHelp = () => {
                     </div>
                     <CardTitle className="text-xl">{audience.title}</CardTitle>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {audience.oneLiner}
-                  </p>
+                    <p className="text-muted-foreground leading-relaxed break-words hyphens-auto">
+                      {audience.oneLiner}
+                    </p>
                   
                   {/* Achievement Highlight */}
                   <div className="bg-muted/30 rounded-lg p-3 mt-4">
@@ -130,7 +131,7 @@ const HowIHelp = () => {
                     {audience.outcomes.map((outcome, outcomeIndex) => (
                       <div key={outcomeIndex} className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0"></div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                        <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
                           {outcome}
                         </p>
                       </div>
@@ -157,7 +158,7 @@ const HowIHelp = () => {
                         {audience.detailedOutcomes.map((detail, detailIndex) => (
                           <div key={detailIndex} className="flex items-start gap-3">
                             <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2.5 flex-shrink-0"></div>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
+                            <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
                               {detail}
                             </p>
                           </div>

@@ -39,6 +39,7 @@ const StrategicAdvisor = () => {
           className="grid md:grid-cols-3 gap-8 mb-12"
           itemClassName="h-full"
           showDots={true}
+          minHeight="320px"
         >
           {engagementModels.map((model, index) => (
             <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full flex flex-col">
@@ -47,8 +48,8 @@ const StrategicAdvisor = () => {
                   <Clock className="w-4 h-4 text-primary" />
                   <span className="text-sm text-primary font-medium">{model.duration}</span>
                 </div>
-                <CardTitle className="text-xl">{model.title}</CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <CardTitle className="text-xl break-words hyphens-auto">{model.title}</CardTitle>
+                <p className="text-sm text-muted-foreground break-words hyphens-auto">
                   {model.description}
                 </p>
               </CardHeader>
@@ -57,7 +58,7 @@ const StrategicAdvisor = () => {
                   {model.deliverables.map((deliverable, deliverableIndex) => (
                     <div key={deliverableIndex} className="flex items-start gap-2">
                       <CheckCircle className="w-3 h-3 text-primary mt-1 flex-shrink-0" />
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-xs text-muted-foreground break-words hyphens-auto">
                         {deliverable}
                       </p>
                     </div>

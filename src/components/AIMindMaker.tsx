@@ -56,6 +56,7 @@ const AIMindMaker = () => {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             itemClassName="h-full"
             showDots={true}
+            minHeight="300px"
           >
             {coreModules.map((module, index) => {
               const Icon = module.icon;
@@ -69,13 +70,13 @@ const AIMindMaker = () => {
                       <div className="p-3 rounded-lg bg-primary/10 mb-3">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
-                      <CardTitle className="text-sm font-bold uppercase tracking-wide text-primary">
+                      <CardTitle className="text-sm font-bold uppercase tracking-wide text-primary break-words hyphens-auto">
                         {module.title}
                       </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0 text-center">
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
                       {module.description}
                     </p>
                   </CardContent>

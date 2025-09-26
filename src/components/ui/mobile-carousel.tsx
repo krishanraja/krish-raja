@@ -14,6 +14,8 @@ interface MobileCarouselProps {
   itemClassName?: string;
   showDots?: boolean;
   spaceBetween?: number;
+  uniformHeight?: boolean;
+  minHeight?: string;
 }
 
 export const MobileCarousel: React.FC<MobileCarouselProps> = ({
@@ -21,7 +23,9 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   className = "",
   itemClassName = "",
   showDots = true,
-  spaceBetween = 16
+  spaceBetween = 16,
+  uniformHeight = true,
+  minHeight = "auto"
 }) => {
   const isMobile = useIsMobile();
   const [current, setCurrent] = React.useState(0);
@@ -39,6 +43,9 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
     return <div className={className}>{children}</div>;
   }
 
+  const heightClass = uniformHeight && minHeight !== "auto" ? `min-h-[${minHeight}]` : "";
+  const itemClasses = `pl-4 basis-[85%] ${itemClassName} ${uniformHeight ? 'flex' : ''}`;
+
   return (
     <div className="relative">
       <Carousel
@@ -51,8 +58,16 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
       >
         <CarouselContent className={`-ml-4`}>
           {children.map((child, index) => (
-            <CarouselItem key={index} className={`pl-4 basis-[85%] ${itemClassName}`}>
-              {child}
+            <CarouselItem key={index} className={itemClasses}>
+              {uniformHeight ? (
+                <div className={`w-full ${heightClass} flex flex-col`}>
+                  {React.cloneElement(child, {
+                    className: `${child.props.className || ''} flex-1 flex flex-col h-full`
+                  })}
+                </div>
+              ) : (
+                child
+              )}
             </CarouselItem>
           ))}
         </CarouselContent>

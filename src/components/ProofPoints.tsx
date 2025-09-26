@@ -68,6 +68,7 @@ const ProofPoints = () => {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             itemClassName="h-full"
             showDots={true}
+            minHeight="200px"
           >
             {achievements.map((achievement, index) => {
               const Icon = achievement.icon;
@@ -77,16 +78,16 @@ const ProofPoints = () => {
                     <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
-                    <div className="text-2xl font-bold text-primary mb-1">
+                    <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
                       {achievement.metric}
                     </div>
-                    <div className="text-sm font-medium text-foreground mb-2">
+                    <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
                       {achievement.category}
                     </div>
-                    <div className="text-xs text-muted-foreground mb-3">
+                    <div className="text-xs text-muted-foreground mb-3 break-words hyphens-auto">
                       {achievement.context}
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
                       {achievement.description}
                     </p>
                   </CardContent>

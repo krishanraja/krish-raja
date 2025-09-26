@@ -88,6 +88,7 @@ const Work = () => {
           className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
           itemClassName="h-full"
           showDots={true}
+          minHeight="280px"
         >
           {workItems.map((item, index) => {
             const Icon = item.icon;
@@ -102,12 +103,12 @@ const Work = () => {
                         </Badge>
                         <Icon className="w-4 h-4 text-muted-foreground" />
                       </div>
-                      <CardTitle className="text-base leading-snug">
+                      <CardTitle className="text-base leading-snug break-words hyphens-auto">
                         {item.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="pt-0 flex-1">
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
                         {item.summary}
                       </p>
                     </CardContent>
