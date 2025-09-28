@@ -16,6 +16,8 @@ interface MobileCarouselProps {
   spaceBetween?: number;
   uniformHeight?: boolean;
   minHeight?: 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl' | 'carousel-3xl' | 'carousel-4xl' | 'carousel-5xl';
+  allowContentExpansion?: boolean;
+  expandedIndex?: number | null;
 }
 
 export const MobileCarousel: React.FC<MobileCarouselProps> = ({
@@ -25,7 +27,9 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   showDots = true,
   spaceBetween = 16,
   uniformHeight = true,
-  minHeight = "carousel-md"
+  minHeight = "carousel-md",
+  allowContentExpansion = false,
+  expandedIndex = null
 }) => {
   const isMobile = useIsMobile();
   const [current, setCurrent] = React.useState(0);
@@ -73,19 +77,25 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
         }}
       >
         <CarouselContent className="-ml-4 flex items-stretch">
-          {children.map((child, index) => (
-            <CarouselItem key={index} className={itemClasses}>
-              {uniformHeight ? (
-                <div className={`w-full ${heightClasses} flex flex-col`}>
-                  {React.cloneElement(child, {
-                    className: `${child.props.className || ''} h-full flex flex-col overflow-hidden`,
-                  })}
-                </div>
-              ) : (
-                child
-              )}
-            </CarouselItem>
-          ))}
+          {children.map((child, index) => {
+            const isCurrentExpanded = allowContentExpansion && expandedIndex === index;
+            const baseHeightClasses = uniformHeight ? getHeightClass(minHeight) : "";
+            const minHeightOnly = baseHeightClasses.split(' ').find(cls => cls.startsWith('min-h-'));
+            
+            return (
+              <CarouselItem key={index} className={itemClasses}>
+                {uniformHeight ? (
+                  <div className={`w-full ${isCurrentExpanded ? minHeightOnly : baseHeightClasses} flex flex-col transition-all duration-300`}>
+                    {React.cloneElement(child, {
+                      className: `${child.props.className || ''} h-full flex flex-col ${isCurrentExpanded ? '' : 'overflow-hidden'}`,
+                    })}
+                  </div>
+                ) : (
+                  child
+                )}
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
         
         {/* Navigation buttons */}

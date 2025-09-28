@@ -103,6 +103,8 @@ const HowIHelp = () => {
         <MobileCarousel
           showDots={true}
           minHeight="carousel-xl"
+          allowContentExpansion={true}
+          expandedIndex={expandedCard}
         >
             {audiences.map((audience, index) => {
               const Icon = audience.icon;
