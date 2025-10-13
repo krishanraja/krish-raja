@@ -18,7 +18,7 @@ const Hero = () => {
             I turn AI literacy into <span className="text-primary">AI strategy and revenue</span>
           </h1>
           <p className="body-lg text-muted-foreground mb-6 max-w-2xl mx-auto text-balance">
-            Operator and strategic advisor across AI, data, identity, and SaaS GTM. 16+ years scaling businesses from zero to multi-million dollar revenue across three continents.
+            Operator and strategic advisor across AI, data, identity, and SaaS GTM. 16+ years scaling digital businesses with monetization strategy across three continents.
           </p>
           
           <div className="text-sm text-muted-foreground mb-8 max-w-2xl mx-auto">

@@ -28,7 +28,7 @@ const StrategicFramework = () => {
     {
       icon: Rocket,
       title: "Market Opening Expert",
-      description: "I've launched and scaled businesses across three countries and multiple industries. My track record includes taking ideas from concept to multi-million dollar revenue streams.",
+      description: "I've launched businesses, revenue lines, divisions and products across UK, APAC and USA. My track record includes taking ideas from concept to multi-million dollar revenue streams.",
       methods: ["Launch new categories that actually stick", "Find product-market fit without burning cash", "Scale across international markets smoothly", "Navigate acquisitions and rapid growth phases"]
     }
   ];
