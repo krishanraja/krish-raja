@@ -207,7 +207,7 @@ const ProofPoints = () => {
 
         {/* Company Logos */}
         <div className="mt-16 pt-12 border-t border-border/50">
-          <h3 className="headline-sm text-center mb-8 text-muted-foreground">Trusted by Industry Leaders</h3>
+          <h3 className="headline-sm text-center mb-8 text-muted-foreground">Global Experience in media, tech, data & telco</h3>
           <div className="relative overflow-hidden">
             <div className="flex gap-12 animate-[scroll_20s_linear_infinite]">
               {[...logos, ...logos].map((logo, index) => (
