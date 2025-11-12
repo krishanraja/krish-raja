@@ -3,6 +3,12 @@ import { Badge } from '@/components/ui/badge';
 import { TrendingUp, Users, Target, Rocket, Award, MapPin } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
+import nineLogo from '@/assets/nine_logo.png';
+import mccannLogo from '@/assets/mccann_logo.png';
+import captifyLogo from '@/assets/captify_logo.png';
+import singtelLogo from '@/assets/singtel_logo.png';
+import bbcLogo from '@/assets/bbc_logo.png';
+import microsoftLogo from '@/assets/microsoft_logo.png';
 
 const ProofPoints = () => {
   const isMobile = useIsMobile();
@@ -50,6 +56,15 @@ const ProofPoints = () => {
     { city: "London", period: "2008-2013", role: "Microsoft Technical Foundation" },
     { city: "Sydney", period: "2013-2024", role: "AdTech Scale & Leadership" }, 
     { city: "New York", period: "2024-Present", role: "AI Strategy & Advisory" }
+  ];
+
+  const logos = [
+    { src: nineLogo, alt: "Nine" },
+    { src: mccannLogo, alt: "McCann" },
+    { src: captifyLogo, alt: "Captify" },
+    { src: singtelLogo, alt: "Singtel" },
+    { src: bbcLogo, alt: "BBC" },
+    { src: microsoftLogo, alt: "Microsoft" }
   ];
 
   return (
@@ -189,6 +204,24 @@ const ProofPoints = () => {
             </div>
           </div>
         )}
+
+        {/* Company Logos */}
+        <div className="mt-16 pt-12 border-t border-border/50">
+          <h3 className="headline-sm text-center mb-8 text-muted-foreground">Trusted by Industry Leaders</h3>
+          <div className="relative overflow-hidden">
+            <div className="flex gap-12 animate-[scroll_20s_linear_infinite]">
+              {[...logos, ...logos].map((logo, index) => (
+                <div key={index} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+                  <img 
+                    src={logo.src} 
+                    alt={logo.alt} 
+                    className="h-8 w-auto object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
