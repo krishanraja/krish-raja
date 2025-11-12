@@ -30,7 +30,7 @@ const Work = () => {
       type: "Blog",
       summary: "Building AI literacy that transforms organizations.",
       description: "Comprehensive resources and insights for developing AI literacy across teams and organizations. Practical guides for bridging the gap between technical AI capabilities and business value creation.",
-      link: "https://www.themindmaker.ai",
+      link: "https://content.themindmaker.ai/",
       image: mindmakerLogo,
       icon: BookOpen
     },
