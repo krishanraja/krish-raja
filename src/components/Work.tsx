@@ -62,13 +62,14 @@ const Work = () => {
       icon: Video
     },
     {
-      title: "The Builders Economy (COMING SOON)",
+      title: "The Builders Economy",
       type: "Podcast",
       summary: "Conversations with the new wave of AI enabled builders",
       description: "An upcoming podcast series featuring in-depth conversations with entrepreneurs and operators who are leveraging AI to build the next generation of businesses. Exploring how AI is democratizing entrepreneurship and enabling a new era of rapid business creation.",
       link: "#",
       image: builderEconomyLogo,
-      icon: Mic
+      icon: Mic,
+      comingSoon: true
     }
   ];
 
@@ -100,9 +101,16 @@ const Work = () => {
                           </Badge>
                           <Icon className="w-4 h-4 text-muted-foreground" />
                         </div>
-                        <CardTitle className="text-base leading-snug break-words hyphens-auto">
-                          {item.title}
-                        </CardTitle>
+                        <div className="flex items-center gap-2">
+                          <CardTitle className="text-base leading-snug break-words hyphens-auto">
+                            {item.title}
+                          </CardTitle>
+                          {item.comingSoon && (
+                            <Badge variant="outline" className="text-xs shrink-0">
+                              Coming Soon
+                            </Badge>
+                          )}
+                        </div>
                       </CardHeader>
                       <CardContent className="pt-0 flex-1">
                         <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
@@ -115,6 +123,11 @@ const Work = () => {
                     <DialogHeader>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge variant="secondary">{item.type}</Badge>
+                        {item.comingSoon && (
+                          <Badge variant="outline" className="text-xs">
+                            Coming Soon
+                          </Badge>
+                        )}
                       </div>
                       <DialogTitle className="text-left">{item.title}</DialogTitle>
                     </DialogHeader>
@@ -163,9 +176,16 @@ const Work = () => {
                           </Badge>
                           <Icon className="w-4 h-4 text-muted-foreground" />
                         </div>
-                        <CardTitle className="text-base leading-snug break-words hyphens-auto">
-                          {item.title}
-                        </CardTitle>
+                        <div className="flex items-center gap-2">
+                          <CardTitle className="text-base leading-snug break-words hyphens-auto">
+                            {item.title}
+                          </CardTitle>
+                          {item.comingSoon && (
+                            <Badge variant="outline" className="text-xs shrink-0">
+                              Coming Soon
+                            </Badge>
+                          )}
+                        </div>
                       </CardHeader>
                       <CardContent className="pt-0 flex-1">
                         <p className="text-sm text-muted-foreground leading-relaxed break-words hyphens-auto">
@@ -178,6 +198,11 @@ const Work = () => {
                     <DialogHeader>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge variant="secondary">{item.type}</Badge>
+                        {item.comingSoon && (
+                          <Badge variant="outline" className="text-xs">
+                            Coming Soon
+                          </Badge>
+                        )}
                       </div>
                       <DialogTitle className="text-left">{item.title}</DialogTitle>
                     </DialogHeader>
