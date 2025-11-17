@@ -9,6 +9,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import techonomicLogo from '@/assets/techonomic-logo.png';
 import mindmakerLogo from '@/assets/mindmaker-logo.png';
 import aiLiteracyWhitepaper from '@/assets/ai-literacy-whitepaper.png';
+import mastersThesis from '@/assets/masters-thesis.png';
 import podcastTile from '@/assets/podcast-tile.png';
 import giveItANudge from '@/assets/give-it-a-nudge.png';
 import builderEconomyLogo from '@/assets/builder-economy-logo.png';
@@ -42,6 +43,15 @@ const Work = () => {
       link: "https://docsend.com/view/uybrzhx75fcwp2n7",
       image: aiLiteracyWhitepaper,
       icon: FileText
+    },
+    {
+      title: "Predicting the Future of Haptic Design",
+      type: "Master's Thesis",
+      summary: "Research on the future of haptic and interaction design featuring insights from industry leaders at IDEO, Microsoft, and Google.",
+      description: "A 2011 Master's thesis that predicted the evolution of haptic and tactile interfaces through interviews with world-renowned UX and Interaction Design experts. The research explored emerging trends in digital experience design that continue to play out today, demonstrating prescient insights into how users would interact with technology over the following decade.",
+      link: "#",
+      image: mastersThesis,
+      icon: BookOpen
     },
     {
       title: "My take on AI in media",
