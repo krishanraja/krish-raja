@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail, Linkedin } from 'lucide-react';
+import { ArrowRight, Linkedin, ArrowDown } from 'lucide-react';
 import krishBitmoji from '@/assets/krish_bitmoji.jpg';
 
 const Hero = () => {
@@ -10,40 +10,47 @@ const Hero = () => {
           <div className="mb-8 flex justify-center">
             <img 
               src={krishBitmoji} 
-              alt="Krish Raja avatar" 
-              className="w-32 h-32 rounded-full shadow-lg"
+              alt="Krish Raja" 
+              className="w-28 h-28 rounded-full shadow-lg ring-4 ring-primary/20"
             />
           </div>
+          
           <h1 className="headline-xl mb-6 text-balance">
-            I turn AI literacy into <span className="text-primary">AI strategy and revenue</span>
+            I build <span className="text-primary">AI products</span> and teach others to do the same
           </h1>
-          <p className="body-lg text-muted-foreground mb-6 max-w-2xl mx-auto text-balance">
-            Operator and strategic advisor across AI, data, identity, and SaaS GTM. 16+ years scaling digital businesses with monetization strategy across three continents.
+          
+          <p className="body-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
+            Builder-in-action running 8 live products. 16 years scaling businesses across 3 continents. My mission: help humans and businesses use data + AI to become self-reliant, fractional, and value-creating.
           </p>
           
-          <div className="text-sm text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Currently helping executives across media, telco & tech • Based in Brooklyn, NY
+          <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto">
+            Based in Brooklyn, NY • Founder of Mindmaker • Co-founder of Rinoa
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a href="https://calendly.com/krish-raja/krish-raja" className="flex items-center gap-2">
-                Book a call
-                <ArrowRight size={16} />
+              <a href="#portfolio" className="flex items-center gap-2">
+                Explore My Portfolio
+                <ArrowDown size={16} />
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a href="mailto:hello@krishraja.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                <Mail size={16} />
-                Email me
+              <a 
+                href="https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2"
+              >
+                Join a Cohort
+                <ArrowRight size={16} />
               </a>
             </Button>
           </div>
           
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="ghost" asChild className="text-muted-foreground">
-              <a href="#work" className="link-underline">
-                View work
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button variant="ghost" size="sm" asChild className="text-muted-foreground">
+              <a href="https://calendly.com/krish-raja/krish-raja" target="_blank" rel="noopener noreferrer">
+                Book a call
               </a>
             </Button>
             <Button variant="ghost" size="sm" asChild className="text-muted-foreground">

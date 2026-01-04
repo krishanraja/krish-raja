@@ -1,27 +1,25 @@
 import { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import HowIHelp from '@/components/HowIHelp';
-import StrategicFramework from '@/components/StrategicFramework';
+import LivePortfolio from '@/components/LivePortfolio';
+import Philosophy from '@/components/Philosophy';
+import LearnWithMe from '@/components/LearnWithMe';
 import ProofPoints from '@/components/ProofPoints';
-import AIMindMaker from '@/components/AIMindMaker';
 import Work from '@/components/Work';
-import StrategicAdvisor from '@/components/StrategicAdvisor';
 import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
     // SEO and Analytics Setup
-    document.title = "Krish Raja - AI Strategy & Revenue Growth Advisor | 16+ Years Building Businesses";
+    document.title = "Krish Raja - Builder of AI Products | 8 Live Products, 16 Years Experience";
     
     // Structured data for search engines
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Krish Raja",
-      "jobTitle": "AI Strategy & Revenue Growth Advisor",
-      "description": "Strategic advisor helping executives turn AI literacy into revenue growth. Scaled businesses from $0 to $61M across 3 continents.",
+      "jobTitle": "AI Product Builder & Educator",
+      "description": "Builder running 8 live AI products. Teaching thousands to build with AI. 16 years scaling businesses across 3 continents.",
       "url": "https://www.krishraja.com",
       "email": "hello@krishraja.com",
       "telephone": "+1-347-665-8225",
@@ -36,9 +34,9 @@ const Index = () => {
         "https://techonomic.substack.com"
       ],
       "knowsAbout": [
-        "AI Strategy",
-        "Revenue Operations",
-        "Data Commercialization", 
+        "AI Product Development",
+        "AI Literacy Education",
+        "Revenue Operations", 
         "Go-to-Market Strategy",
         "Business Scaling"
       ],
@@ -82,20 +80,20 @@ const Index = () => {
   return (
     <>
       <head>
-        <title>Krish Raja - AI Strategy & Revenue Growth Advisor | 16+ Years Building Businesses</title>
+        <title>Krish Raja - Builder of AI Products | 8 Live Products, 16 Years Experience</title>
         <meta 
           name="description" 
-          content="Strategic advisor helping executives turn AI literacy into revenue growth. Scaled businesses from $0 to $61M across 3 continents. Book a strategy call." 
+          content="Builder running 8 live AI products. Teaching thousands to build with AI. 16 years scaling businesses from $0 to $61M across 3 continents." 
         />
-        <meta name="keywords" content="AI strategy consultant, data transformation advisor, revenue operations expert, AI business consultant, strategic AI implementation" />
+        <meta name="keywords" content="AI products, AI literacy, build in public, vibe coding, AI education, product builder, entrepreneur" />
         <meta name="author" content="Krish Raja" />
-        <meta property="og:title" content="Krish Raja - AI Strategy & Revenue Growth Advisor" />
-        <meta property="og:description" content="Strategic advisor helping executives turn AI literacy into revenue growth. 16+ years building businesses from $0 to $61M." />
+        <meta property="og:title" content="Krish Raja - Builder of AI Products" />
+        <meta property="og:description" content="Builder running 8 live AI products. Teaching thousands to build with AI." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.krishraja.com" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Krish Raja - AI Strategy & Revenue Growth Advisor" />
-        <meta name="twitter:description" content="Strategic advisor helping executives turn AI literacy into revenue growth. Book a strategy call." />
+        <meta name="twitter:title" content="Krish Raja - Builder of AI Products" />
+        <meta name="twitter:description" content="Builder running 8 live AI products. Teaching thousands to build with AI." />
         <link rel="canonical" href="https://www.krishraja.com" />
       </head>
       
@@ -104,12 +102,11 @@ const Index = () => {
         
         <main id="main">
           <Hero />
-          <HowIHelp />
-          <StrategicFramework />
-          <ProofPoints />
-          <AIMindMaker />
+          <LivePortfolio />
+          <Philosophy />
+          <LearnWithMe />
           <Work />
-          <StrategicAdvisor />
+          <ProofPoints />
         </main>
         
         <Footer />

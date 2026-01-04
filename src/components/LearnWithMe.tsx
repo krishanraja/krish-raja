@@ -1,0 +1,160 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ExternalLink, GraduationCap, Zap, Clock } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
+
+const LearnWithMe = () => {
+  const isMobile = useIsMobile();
+
+  const cohortCourse = {
+    title: "AI Literacy-to-Strategy for Leaders",
+    duration: "4 weeks",
+    description: "Transform AI curiosity into competitive advantage. A cohort-based program for commercial leaders who want to move from understanding AI to deploying it strategically.",
+    outcomes: [
+      "Build your personal AI toolkit",
+      "Develop org-wide AI strategy",
+      "Lead AI transformation initiatives",
+      "Create measurable business impact"
+    ],
+    link: "https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders"
+  };
+
+  const lightningLessons = [
+    {
+      title: "Learn How to Program Your AI Tools",
+      description: "Master prompt engineering and tool configuration to 10x your productivity",
+      duration: "Free",
+      link: "https://maven.com/p/1eb66a/learn-how-to-program-your-ai-tools?utm_medium=ll_share_link&utm_source=instructor"
+    },
+    {
+      title: "Build In Public",
+      description: "Use Gen AI as your co-founder to ship products and build credibility",
+      duration: "Free",
+      link: "https://maven.com/p/1054a6/build-in-public-with-gen-ai-as-your-co-founder?utm_medium=ll_share_link&utm_source=instructor"
+    },
+    {
+      title: "Vibe Code Your Way to Income",
+      description: "Turn your ideas into working products and new revenue streams",
+      duration: "Free",
+      link: "https://maven.com/p/b95f6c/vibe-code-your-way-to-a-new-income-stream?utm_medium=ll_share_link&utm_source=instructor"
+    }
+  ];
+
+  return (
+    <section id="learn" className="section-padding">
+      <div className="container-width">
+        <div className="text-center mb-16">
+          <h2 className="headline-lg mb-6">Learn With Me</h2>
+          <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            From free lightning lessons to deep cohort experiences — pick your path to AI fluency
+          </p>
+        </div>
+
+        {/* Featured Cohort Course */}
+        <div className="mb-16">
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden">
+            <div className={`${isMobile ? 'p-6' : 'p-8 lg:p-12'}`}>
+              <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <GraduationCap className="w-6 h-6 text-primary" />
+                    </div>
+                    <Badge variant="secondary" className="text-xs font-medium">
+                      Featured Cohort
+                    </Badge>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Clock className="w-3.5 h-3.5" />
+                      {cohortCourse.duration}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+                    {cohortCourse.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-6 max-w-2xl">
+                    {cohortCourse.description}
+                  </p>
+                  
+                  <div className="grid sm:grid-cols-2 gap-3 mb-8">
+                    {cohortCourse.outcomes.map((outcome, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+                        <span className="text-sm text-muted-foreground">{outcome}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <Button asChild size="lg" className="w-full sm:w-auto">
+                    <a 
+                      href={cohortCourse.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      Join Next Cohort
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Lightning Lessons */}
+        <div>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-2 rounded-lg bg-primary/10">
+              <Zap className="w-5 h-5 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold">Lightning Lessons</h3>
+            <Badge variant="outline" className="text-xs">Free</Badge>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {lightningLessons.map((lesson, index) => (
+              <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary" className="text-xs">
+                      {lesson.duration}
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-base leading-snug group-hover:text-primary transition-colors">
+                    {lesson.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {lesson.description}
+                  </p>
+                  <Button 
+                    asChild 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                  >
+                    <a 
+                      href={lesson.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      Start Learning
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LearnWithMe;
