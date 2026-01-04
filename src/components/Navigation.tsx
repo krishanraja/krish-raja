@@ -17,13 +17,11 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: 'How I Help', href: '#how-i-help' },
-    { label: 'AI MindMaker', href: '#ai-mindmaker' },
-    { label: 'Creds', href: '#creds' },
-    { label: 'Outcomes', href: '#outcomes' },
-    { label: 'Work', href: '#work' },
-    { label: 'Journey', href: '#journey' },
-    { label: 'Strategic Advisor', href: '#strategic-advisor' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Philosophy', href: '#philosophy' },
+    { label: 'Learn', href: '#learn' },
+    { label: 'Writing', href: '#writing' },
+    { label: 'Background', href: '#creds' },
     { label: 'Contact', href: '#contact' }
   ];
 
@@ -58,7 +56,9 @@ const Navigation = () => {
               ))}
               <ThemeToggle />
               <Button asChild className="ml-4">
-                <a href="https://calendly.com/krish-raja/krish-raja">Book a call</a>
+                <a href="https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders" target="_blank" rel="noopener noreferrer">
+                  Join Cohort
+                </a>
               </Button>
             </div>
 
@@ -92,7 +92,9 @@ const Navigation = () => {
               ))}
               <div className="pt-4 mt-4 border-t border-border">
                 <Button asChild className="w-full">
-                  <a href="https://calendly.com/krish-raja/krish-raja">Book a call</a>
+                  <a href="https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders" target="_blank" rel="noopener noreferrer">
+                    Join Cohort
+                  </a>
                 </Button>
               </div>
             </div>
