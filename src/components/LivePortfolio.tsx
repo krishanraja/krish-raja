@@ -25,58 +25,58 @@ const LivePortfolio = () => {
   const businesses: Business[] = [
     {
       name: "Mindmaker",
-      description: "AI Literacy programs for commercial leaders",
+      description: "Helping leaders create their new personal working style alongside AI",
       icon: mindmakerIcon,
       url: "https://themindmaker.ai",
       role: "Founder"
     },
     {
       name: "The Builder Economy",
-      description: "Podcast for AI-enabled entrepreneurs",
+      description: "Conversations with leaders building with AI",
       icon: builderEconomyIcon,
       url: "https://thebuildereconomy.com",
       role: "Host"
     },
     {
       name: "WellWell",
-      description: "Wellness tracking reimagined",
+      description: "Ancient Stoic philosophy for the modern workplace",
       icon: wellwellIcon,
-      url: "https://wellwell.app",
+      url: "https://wellwell.ai",
       role: "Founder"
     },
     {
       name: "Conclusiv",
-      description: "Decision intelligence platform",
+      description: "From research to stunning business case in 60 seconds",
       icon: conclusivIcon,
       url: "https://conclusiv.ai",
       role: "Founder"
     },
     {
       name: "Rinoa",
-      description: "Music AI technology",
+      description: "Creating AI singers that jam with you to increase creativity",
       icon: rinoaIcon,
       url: "https://rinoa.ai",
       role: "Co-founder"
     },
     {
       name: "Ritual",
-      description: "Habit formation made effortless",
+      description: "Helping partners to re-love one another with thoughtful weekly moments",
       icon: ritualIcon,
-      url: "https://ritual.app",
+      url: "https://tryritual.co",
       role: "Founder"
     },
     {
       name: "Swaami",
-      description: "Spiritual wellness companion",
+      description: "Find neighbourhood locals willing to help you out for free",
       icon: swaamiIcon,
-      url: "https://swaami.app",
+      url: "https://swaami.ai",
       role: "Founder"
     },
     {
       name: "Lockstep",
-      description: "Team alignment automation",
+      description: "Arrange group events without any anxiety or chasing",
       icon: lockstepIcon,
-      url: "https://lockstep.app",
+      url: "https://inlockstep.ai",
       role: "Founder"
     }
   ];
@@ -101,7 +101,8 @@ const LivePortfolio = () => {
                 rel="noopener noreferrer"
                 className="flex-shrink-0 w-[280px] snap-start group"
               >
-                <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full">
+                <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full relative">
+                  <ExternalLink className="absolute top-4 right-4 w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center">
                       <img 
@@ -111,14 +112,11 @@ const LivePortfolio = () => {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
-                          {business.name}
-                        </h3>
-                        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-                      </div>
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
+                        {business.name}
+                      </h3>
                       <span className="text-xs text-primary/80 font-medium">{business.role}</span>
-                      <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed line-clamp-3">
                         {business.description}
                       </p>
                     </div>
@@ -137,7 +135,8 @@ const LivePortfolio = () => {
                 rel="noopener noreferrer"
                 className="group"
               >
-                <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full">
+                <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full relative">
+                  <ExternalLink className="absolute top-4 right-4 w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center text-center">
                     <div className="w-16 h-16 flex items-center justify-center mb-4">
                       <img 
@@ -146,14 +145,11 @@ const LivePortfolio = () => {
                         className="h-16 w-auto object-contain"
                       />
                     </div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {business.name}
-                      </h3>
-                      <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
+                      {business.name}
+                    </h3>
                     <span className="text-xs text-primary/80 font-medium mb-2">{business.role}</span>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       {business.description}
                     </p>
                   </div>
