@@ -134,48 +134,50 @@ const LearnWithMe = () => {
 
           <MobileCarousel 
             className="grid md:grid-cols-3 gap-6"
-            itemClassName="h-auto"
+            minHeight="carousel-xl"
           >
             {lightningLessons.map((lesson, index) => (
               <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden h-full flex flex-col">
                 {/* Lesson image */}
-                <div className="w-full h-36 overflow-hidden flex-shrink-0">
+                <div className="w-full h-32 overflow-hidden flex-shrink-0">
                   <img 
                     src={lesson.image}
                     alt={lesson.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-2">
+                <CardHeader className="pb-2 pt-3 flex-shrink-0">
+                  <div className="flex items-center justify-between mb-1">
                     <Badge variant="secondary" className="text-xs">
                       {lesson.duration}
                     </Badge>
                   </div>
-                  <CardTitle className="text-base leading-snug group-hover:text-primary transition-colors">
+                  <CardTitle className="text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
                     {lesson.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 flex-1 flex flex-col">
-                  <p className="text-sm text-muted-foreground mb-4 flex-1">
+                <CardContent className="pt-0 pb-4 flex-1 flex flex-col">
+                  <p className="text-xs text-muted-foreground mb-3 line-clamp-2 flex-shrink-0">
                     {lesson.description}
                   </p>
-                  <Button 
-                    asChild 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                  >
-                    <a 
-                      href={lesson.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
+                  <div className="mt-auto">
+                    <Button 
+                      asChild 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                     >
-                      Start Learning
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </Button>
+                      <a 
+                        href={lesson.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
+                        Start Learning
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
