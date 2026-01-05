@@ -91,7 +91,9 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
                     })}
                   </div>
                 ) : (
-                  child
+                  <div className="w-full">
+                    {child}
+                  </div>
                 )}
               </CarouselItem>
             );
