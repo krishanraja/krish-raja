@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Linkedin, ArrowDown } from 'lucide-react';
-import krishBitmoji from '@/assets/krish_bitmoji.jpg';
+import AnimatedProfilePicture from '@/components/AnimatedProfilePicture';
 
 const Hero = () => {
   return (
@@ -8,11 +8,7 @@ const Hero = () => {
       <div className="container-width text-center relative z-10">
         <div className="fade-in-up">
           <div className="mb-8 flex justify-center">
-            <img 
-              src={krishBitmoji} 
-              alt="Krish Raja" 
-              className="w-28 h-28 rounded-full shadow-lg ring-4 ring-primary/20"
-            />
+            <AnimatedProfilePicture />
           </div>
           
           <h1 className="headline-xl mb-6 text-balance">

@@ -2,7 +2,7 @@ import { ExternalLink } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 // Import all business icons
-import mindmakerIcon from '@/assets/mindmaker-logo.png';
+import mindmakerIcon from '@/assets/mindmaker-icon.png';
 import builderEconomyIcon from '@/assets/builder-economy-icon.png';
 import wellwellIcon from '@/assets/wellwell-icon.png';
 import conclusivIcon from '@/assets/conclusiv-icon.png';
@@ -10,6 +10,8 @@ import rinoaIcon from '@/assets/rinoa-icon.png';
 import ritualIcon from '@/assets/ritual-icon.png';
 import swaamiIcon from '@/assets/swaami-icon.png';
 import lockstepIcon from '@/assets/lockstep-icon.png';
+import melioraIcon from '@/assets/meliora-icon.png';
+import adfixusIcon from '@/assets/adfixus-icon.png';
 
 interface Business {
   name: string;
@@ -78,6 +80,20 @@ const LivePortfolio = () => {
       icon: lockstepIcon,
       url: "https://inlockstep.ai",
       role: "Founder"
+    },
+    {
+      name: "Meliora",
+      description: "GenAI transformation for telco, media and entertainment businesses",
+      icon: melioraIcon,
+      url: "https://www.meliora.company",
+      role: "Lead Associate"
+    },
+    {
+      name: "AdFixus",
+      description: "Customer Identity and data infrastructure transformation for media enterprise",
+      icon: adfixusIcon,
+      url: "https://www.adfixus.com",
+      role: "Enterprise Consultant"
     }
   ];
 
@@ -87,7 +103,7 @@ const LivePortfolio = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">Live Portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            8 products I'm actively building — shipping fast, learning publicly, compounding value
+            10 products & ventures I'm actively building — shipping fast, learning publicly, compounding value
           </p>
         </div>
 
