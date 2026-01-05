@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, GraduationCap, Zap, Clock } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { MobileCarousel } from '@/components/ui/mobile-carousel';
 
 // Import images
 import literacyToStrategyImage from '@/assets/literacy-to-strategy.jpg';
@@ -131,11 +132,14 @@ const LearnWithMe = () => {
             <Badge variant="outline" className="text-xs">Free</Badge>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <MobileCarousel 
+            className="grid md:grid-cols-3 gap-6"
+            minHeight="carousel-3xl"
+          >
             {lightningLessons.map((lesson, index) => (
               <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden h-full flex flex-col">
                 {/* Lesson image */}
-                <div className="w-full h-36 overflow-hidden">
+                <div className="w-full h-36 overflow-hidden flex-shrink-0">
                   <img 
                     src={lesson.image}
                     alt={lesson.title}
@@ -175,7 +179,7 @@ const LearnWithMe = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </div>
     </section>
