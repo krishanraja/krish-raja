@@ -30,7 +30,7 @@ const LearnWithMe = () => {
 
   const lightningLessons = [
     {
-      title: "Learn How to Program Your AI Tools",
+      title: "Learn To Program Your AI",
       description: "Master prompt engineering and tool configuration to 10x your productivity",
       duration: "Free",
       link: "https://maven.com/p/1eb66a/learn-how-to-program-your-ai-tools?utm_medium=ll_share_link&utm_source=instructor",
