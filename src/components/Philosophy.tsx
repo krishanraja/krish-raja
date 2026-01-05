@@ -46,6 +46,7 @@ const Philosophy = () => {
         {isMobile ? (
           <MobileCarousel 
             showDots={true}
+            uniformHeight={true}
             minHeight="carousel-lg"
           >
             {principles.map((principle, index) => {
@@ -53,15 +54,19 @@ const Philosophy = () => {
               return (
                 <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full flex flex-col">
                   <CardHeader className="pb-4 flex-shrink-0">
-                    <div className="flex items-center gap-3 mb-2">
+                    {/* Fixed height title area */}
+                    <div className="flex items-center gap-3 mb-2 min-h-[40px]">
                       <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
-                      <CardTitle className="text-lg">{principle.title}</CardTitle>
+                      <CardTitle className="text-lg leading-tight">{principle.title}</CardTitle>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      {principle.description}
-                    </p>
+                    {/* Fixed height description area */}
+                    <div className="min-h-[72px]">
+                      <p className="text-sm text-muted-foreground">
+                        {principle.description}
+                      </p>
+                    </div>
                   </CardHeader>
                   <CardContent className="pt-0 flex-1">
                     <div className="space-y-2">
@@ -84,19 +89,23 @@ const Philosophy = () => {
             {principles.map((principle, index) => {
               const Icon = principle.icon;
               return (
-                <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-shadow h-full">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 rounded-lg bg-primary/10">
+                <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-shadow h-full flex flex-col">
+                  <CardHeader className="pb-4 flex-shrink-0">
+                    {/* Fixed height title area to ensure alignment */}
+                    <div className="flex items-center gap-3 mb-2 min-h-[40px]">
+                      <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
-                      <CardTitle className="text-lg">{principle.title}</CardTitle>
+                      <CardTitle className="text-lg leading-tight">{principle.title}</CardTitle>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      {principle.description}
-                    </p>
+                    {/* Fixed height description area */}
+                    <div className="min-h-[72px]">
+                      <p className="text-sm text-muted-foreground">
+                        {principle.description}
+                      </p>
+                    </div>
                   </CardHeader>
-                  <CardContent className="pt-0">
+                  <CardContent className="pt-0 flex-1">
                     <div className="space-y-2">
                       {principle.points.map((point, pointIndex) => (
                         <div key={pointIndex} className="flex items-start gap-2">
