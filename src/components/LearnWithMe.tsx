@@ -134,7 +134,7 @@ const LearnWithMe = () => {
 
           <MobileCarousel 
             className="grid md:grid-cols-3 gap-6"
-            minHeight="carousel-3xl"
+            itemClassName="h-auto"
           >
             {lightningLessons.map((lesson, index) => (
               <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden h-full flex flex-col">
