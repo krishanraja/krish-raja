@@ -19,10 +19,10 @@ const AnimatedProfilePicture = () => {
       const elementCenterY = rect.top + rect.height / 2;
       const viewportProgress = elementCenterY / viewportHeight;
       
-      // Start transition when element center is at 70% down the viewport
-      // Complete when element center is at 30% down the viewport
-      const startPoint = 0.7;
-      const endPoint = 0.3;
+      // Start transition almost immediately on scroll (95% down viewport)
+      // Complete while still visible (60% down viewport)
+      const startPoint = 0.95;
+      const endPoint = 0.6;
       
       if (viewportProgress >= startPoint) {
         setRevealProgress(0);
@@ -48,7 +48,7 @@ const AnimatedProfilePicture = () => {
         <img 
           src={krishBitmoji} 
           alt="Krish Raja - Cartoon" 
-          className="absolute inset-0 w-28 h-28 rounded-full shadow-lg ring-4 ring-primary/20 object-cover transition-all duration-500 ease-out"
+          className="absolute inset-0 w-28 h-28 rounded-full shadow-lg ring-4 ring-primary/20 object-cover transition-all duration-200 ease-out"
           style={{
             opacity: 1 - revealProgress,
             transform: `scale(${1 - revealProgress * 0.1})`,
@@ -59,7 +59,7 @@ const AnimatedProfilePicture = () => {
         <img 
           src={krishHeadshot} 
           alt="Krish Raja" 
-          className="absolute inset-0 w-28 h-28 rounded-full shadow-lg ring-4 ring-primary/20 object-cover transition-all duration-500 ease-out"
+          className="absolute inset-0 w-28 h-28 rounded-full shadow-lg ring-4 ring-primary/20 object-cover transition-all duration-200 ease-out"
           style={{
             opacity: revealProgress,
             transform: `scale(${0.9 + revealProgress * 0.1})`,

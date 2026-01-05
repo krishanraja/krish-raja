@@ -103,9 +103,9 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
     href={business.url}
     target="_blank"
     rel="noopener noreferrer"
-    className={isMobile ? "flex-shrink-0 w-[260px] snap-start group" : "group"}
+    className={isMobile ? "flex-shrink-0 w-[280px] snap-start group" : "group"}
   >
-    <div className="bg-card/50 backdrop-blur-sm rounded-xl p-5 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full relative">
+    <div className="bg-card/50 backdrop-blur-sm rounded-xl p-5 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full min-h-[160px] relative">
       <ExternalLink className="absolute top-3 right-3 w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className={isMobile ? "flex items-start gap-3" : "flex flex-col items-center text-center"}>
         <div className={isMobile ? "w-10 h-10 flex-shrink-0 flex items-center justify-center" : "w-14 h-14 flex items-center justify-center mb-3"}>
@@ -120,7 +120,7 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
             {business.name}
           </h3>
           <span className="text-xs text-primary/80 font-medium">{business.role}</span>
-          <p className={`text-xs text-muted-foreground leading-relaxed ${isMobile ? 'mt-1.5 line-clamp-2' : 'mt-2'}`}>
+          <p className={`text-xs text-muted-foreground leading-relaxed ${isMobile ? 'mt-1.5' : 'mt-2'}`}>
             {business.description}
           </p>
         </div>
