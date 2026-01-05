@@ -134,19 +134,20 @@ const LearnWithMe = () => {
 
           <MobileCarousel 
             className="grid md:grid-cols-3 gap-6"
-            uniformHeight={false}
+            uniformHeight={true}
+            minHeight="carousel-lg"
           >
             {lightningLessons.map((lesson, index) => (
-              <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden">
+              <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden h-full flex flex-col">
                 {/* Lesson image */}
-                <div className="w-full h-36 overflow-hidden">
+                <div className="w-full h-36 overflow-hidden flex-shrink-0">
                   <img 
                     src={lesson.image}
                     alt={lesson.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <CardHeader className="pb-3">
+                <CardHeader className="pb-3 flex-shrink-0">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="secondary" className="text-xs">
                       {lesson.duration}
@@ -156,15 +157,15 @@ const LearnWithMe = () => {
                     {lesson.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0 pb-4">
-                  <p className="text-sm text-muted-foreground mb-4">
+                <CardContent className="pt-0 pb-4 flex flex-col flex-grow">
+                  <p className="text-sm text-muted-foreground flex-grow">
                     {lesson.description}
                   </p>
                   <Button 
                     asChild 
                     variant="outline" 
                     size="sm" 
-                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    className="w-full mt-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                   >
                     <a 
                       href={lesson.link} 
