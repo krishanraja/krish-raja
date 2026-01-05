@@ -53,9 +53,24 @@ const ProofPoints = () => {
   ];
 
   const locations = [
-    { city: "London", period: "2008-2013", role: "Microsoft Technical Foundation" },
-    { city: "Sydney", period: "2013-2024", role: "AdTech Scale & Leadership" }, 
-    { city: "New York", period: "2024-Present", role: "AI Strategy & Advisory" }
+    { 
+      city: "London", 
+      period: "2008-2013", 
+      role: "Technical Foundation",
+      story: "Started at Microsoft, learning enterprise tech and what it takes to deliver at scale."
+    },
+    { 
+      city: "Sydney", 
+      period: "2013-2024", 
+      role: "AdTech Scale & Leadership",
+      story: "Built APAC operations for AdTech companies, growing teams from zero to 18+."
+    },
+    { 
+      city: "New York", 
+      period: "2024-Present", 
+      role: "AI Strategy & Advisory",
+      story: "Now in Brooklyn, helping leaders navigate AI transformation through teaching and building."
+    }
   ];
 
   const logos = [
@@ -152,8 +167,11 @@ const ProofPoints = () => {
                           {location.period}
                         </Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-xs font-medium text-foreground mb-1">
                         {location.role}
+                      </p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {location.story}
                       </p>
                     </CardContent>
                   </Card>
@@ -194,8 +212,11 @@ const ProofPoints = () => {
                           {location.period}
                         </Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-xs font-medium text-foreground mb-1">
                         {location.role}
+                      </p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {location.story}
                       </p>
                     </CardContent>
                   </Card>
@@ -209,7 +230,7 @@ const ProofPoints = () => {
         <div className="mt-16 pt-12 border-t border-border/50">
           <h3 className="headline-sm text-center mb-8 text-muted-foreground">Global Experience in media, tech, data & telco</h3>
           <div className="relative overflow-hidden">
-            <div className="flex gap-12 animate-[scroll_20s_linear_infinite]">
+            <div className="flex gap-12 animate-[scroll_8s_linear_infinite] hover:[animation-play-state:paused]">
               {[...logos, ...logos].map((logo, index) => (
                 <div key={index} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
                   <img 

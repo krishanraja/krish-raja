@@ -47,7 +47,7 @@ const Philosophy = () => {
           <MobileCarousel 
             showDots={true}
             uniformHeight={true}
-            minHeight="carousel-lg"
+            minHeight="carousel-md"
           >
             {principles.map((principle, index) => {
               const Icon = principle.icon;

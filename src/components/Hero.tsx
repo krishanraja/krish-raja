@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Linkedin, ArrowDown } from 'lucide-react';
+import { ArrowRight, Linkedin, ArrowDown, Calendar } from 'lucide-react';
 import AnimatedProfilePicture from '@/components/AnimatedProfilePicture';
 
 const Hero = () => {
@@ -43,13 +43,14 @@ const Hero = () => {
             </Button>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="ghost" size="sm" asChild className="text-muted-foreground">
-              <a href="https://calendly.com/krish-raja/krish-raja" target="_blank" rel="noopener noreferrer">
+          <div className="flex flex-row gap-4 justify-center items-center">
+            <Button variant="outline" size="sm" asChild className="border-primary/40 hover:border-primary hover:bg-primary/5">
+              <a href="https://calendly.com/krish-raja/krish-raja" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <Calendar size={16} />
                 Book a call
               </a>
             </Button>
-            <Button variant="ghost" size="sm" asChild className="text-muted-foreground">
+            <Button variant="outline" size="sm" asChild className="border-primary/40 hover:border-primary hover:bg-primary/5">
               <a href="https://www.linkedin.com/in/krish-raja/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <Linkedin size={16} />
                 LinkedIn
