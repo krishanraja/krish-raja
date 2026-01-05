@@ -6,9 +6,9 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 // Import images
 import literacyToStrategyImage from '@/assets/literacy-to-strategy.jpg';
-import learnProgramAiImage from '@/assets/learn-program-ai.jpg';
-import buildInPublicImage from '@/assets/build-in-public.jpg';
-import vibeCodeIncomeImage from '@/assets/vibe-code-income.jpg';
+import learnProgramAiImage from '@/assets/learn-program-ai.png';
+import buildInPublicImage from '@/assets/build-in-public.png';
+import vibeCodeIncomeImage from '@/assets/vibe-code-income.png';
 
 const LearnWithMe = () => {
   const isMobile = useIsMobile();
@@ -33,24 +33,21 @@ const LearnWithMe = () => {
       description: "Master prompt engineering and tool configuration to 10x your productivity",
       duration: "Free",
       link: "https://maven.com/p/1eb66a/learn-how-to-program-your-ai-tools?utm_medium=ll_share_link&utm_source=instructor",
-      image: learnProgramAiImage,
-      colorFilter: "hue-rotate(270deg) saturate(1.1)" // Purple
+      image: learnProgramAiImage
     },
     {
       title: "Build In Public",
       description: "Use Gen AI as your co-founder to ship products and build credibility",
       duration: "Free",
       link: "https://maven.com/p/1054a6/build-in-public-with-gen-ai-as-your-co-founder?utm_medium=ll_share_link&utm_source=instructor",
-      image: buildInPublicImage,
-      colorFilter: "hue-rotate(30deg) saturate(1.3)" // Orange/Amber
+      image: buildInPublicImage
     },
     {
       title: "Vibe Code Your Way to Income",
       description: "Turn your ideas into working products and new revenue streams",
       duration: "Free",
       link: "https://maven.com/p/b95f6c/vibe-code-your-way-to-a-new-income-stream?utm_medium=ll_share_link&utm_source=instructor",
-      image: vibeCodeIncomeImage,
-      colorFilter: "hue-rotate(120deg) saturate(1.2)" // Green
+      image: vibeCodeIncomeImage
     }
   ];
 
@@ -137,13 +134,12 @@ const LearnWithMe = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {lightningLessons.map((lesson, index) => (
               <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden h-full flex flex-col">
-                {/* Image with color filter */}
+                {/* Lesson image */}
                 <div className="w-full h-36 overflow-hidden">
                   <img 
                     src={lesson.image}
                     alt={lesson.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    style={{ filter: lesson.colorFilter }}
                   />
                 </div>
                 <CardHeader className="pb-4">
