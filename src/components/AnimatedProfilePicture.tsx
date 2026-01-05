@@ -1,28 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import krishBitmoji from '@/assets/krish_bitmoji.jpg';
 import krishHeadshot from '@/assets/krish-headshot.jpg';
 
 const AnimatedProfilePicture = () => {
   const [revealProgress, setRevealProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Start transition at 10% scroll, complete at 40%
-      const startThreshold = viewportHeight * 0.1;
-      const endThreshold = viewportHeight * 0.4;
+      // Calculate where the element center is relative to viewport
+      const elementCenterY = rect.top + rect.height / 2;
+      const viewportProgress = elementCenterY / viewportHeight;
       
-      if (scrollY <= startThreshold) {
+      // Start transition when element center is at 70% down the viewport
+      // Complete when element center is at 30% down the viewport
+      const startPoint = 0.7;
+      const endPoint = 0.3;
+      
+      if (viewportProgress >= startPoint) {
         setRevealProgress(0);
-      } else if (scrollY >= endThreshold) {
+      } else if (viewportProgress <= endPoint) {
         setRevealProgress(1);
       } else {
-        const progress = (scrollY - startThreshold) / (endThreshold - startThreshold);
-        setRevealProgress(progress);
+        const progress = (startPoint - viewportProgress) / (startPoint - endPoint);
+        setRevealProgress(Math.min(Math.max(progress, 0), 1));
       }
     };
 
@@ -32,12 +40,10 @@ const AnimatedProfilePicture = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Desktop: Circular clip-path reveal with blur dissolve
   // Mobile: Fade + scale for better performance
-  
   if (isMobile) {
     return (
-      <div className="relative w-28 h-28">
+      <div ref={containerRef} className="relative w-28 h-28">
         {/* Cartoon (fades out) */}
         <img 
           src={krishBitmoji} 
@@ -65,7 +71,7 @@ const AnimatedProfilePicture = () => {
 
   // Desktop version with circular clip-path reveal
   return (
-    <div className="relative w-28 h-28 group">
+    <div ref={containerRef} className="relative w-28 h-28 group">
       {/* Cartoon (base layer - fades and blurs out) */}
       <img 
         src={krishBitmoji} 
