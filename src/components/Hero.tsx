@@ -19,8 +19,12 @@ const Hero = () => {
             Builder-in-action running 8 live products. 16 years scaling businesses across 3 continents. My mission: help humans and businesses use data + AI to become self-reliant, fractional, and value-creating.
           </p>
           
-          <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Based in Brooklyn, NY • Founder of Mindmaker • Co-founder of Rinoa
+          <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+            </span>
+            Based in Brooklyn, NY
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
