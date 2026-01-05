@@ -12,7 +12,7 @@ const Hero = () => {
           </div>
           
           <h1 className="headline-xl mb-6 text-balance">
-            I <span className="text-primary">build with AI</span> and help others enter the AI-builder era.
+            I <span className="text-primary">build with AI</span> and help others to.
           </h1>
           
           <p className="body-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
