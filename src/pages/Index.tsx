@@ -78,40 +78,20 @@ const Index = () => {
   }, []);
 
   return (
-    <>
-      <head>
-        <title>Krish Raja - Builder of AI Products | 8 Live Products, 16 Years Experience</title>
-        <meta 
-          name="description" 
-          content="Builder running 8 live AI products. Teaching thousands to build with AI. 16 years scaling businesses from $0 to $61M across 3 continents." 
-        />
-        <meta name="keywords" content="AI products, AI literacy, build in public, vibe coding, AI education, product builder, entrepreneur" />
-        <meta name="author" content="Krish Raja" />
-        <meta property="og:title" content="Krish Raja - Builder of AI Products" />
-        <meta property="og:description" content="Builder running 8 live AI products. Teaching thousands to build with AI." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.krishraja.com" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Krish Raja - Builder of AI Products" />
-        <meta name="twitter:description" content="Builder running 8 live AI products. Teaching thousands to build with AI." />
-        <link rel="canonical" href="https://www.krishraja.com" />
-      </head>
+    <div className="min-h-screen bg-background">
+      <Navigation />
       
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        
-        <main id="main">
-          <Hero />
-          <LivePortfolio />
-          <Philosophy />
-          <LearnWithMe />
-          <Work />
-          <ProofPoints />
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+      <main id="main">
+        <Hero />
+        <LivePortfolio />
+        <Philosophy />
+        <LearnWithMe />
+        <Work />
+        <ProofPoints />
+      </main>
+      
+      <Footer />
+    </div>
   );
 };
 
