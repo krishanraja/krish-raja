@@ -1367,6 +1367,36 @@ export type Database = {
           },
         ]
       }
+      feedback: {
+        Row: {
+          created_at: string | null
+          feedback_text: string
+          id: string
+          page_context: string | null
+          user_agent: string | null
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          feedback_text: string
+          id?: string
+          page_context?: string | null
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          feedback_text?: string
+          id?: string
+          page_context?: string | null
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       google_sheets_sync_log: {
         Row: {
           created_at: string
@@ -2034,6 +2064,66 @@ export type Database = {
           name?: string | null
           primary_focus?: string | null
           role?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          audience_type: string | null
+          calendly_opened: boolean | null
+          calendly_opened_at: string | null
+          commitment_level: string | null
+          company_research: Json | null
+          created_at: string | null
+          email: string
+          email_sent: boolean | null
+          email_sent_at: string | null
+          engagement_score: number | null
+          id: string
+          job_title: string | null
+          name: string
+          path_type: string | null
+          selected_program: string | null
+          session_data: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          audience_type?: string | null
+          calendly_opened?: boolean | null
+          calendly_opened_at?: string | null
+          commitment_level?: string | null
+          company_research?: Json | null
+          created_at?: string | null
+          email: string
+          email_sent?: boolean | null
+          email_sent_at?: string | null
+          engagement_score?: number | null
+          id?: string
+          job_title?: string | null
+          name: string
+          path_type?: string | null
+          selected_program?: string | null
+          session_data?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          audience_type?: string | null
+          calendly_opened?: boolean | null
+          calendly_opened_at?: string | null
+          commitment_level?: string | null
+          company_research?: Json | null
+          created_at?: string | null
+          email?: string
+          email_sent?: boolean | null
+          email_sent_at?: string | null
+          engagement_score?: number | null
+          id?: string
+          job_title?: string | null
+          name?: string
+          path_type?: string | null
+          selected_program?: string | null
+          session_data?: Json | null
           updated_at?: string | null
         }
         Relationships: []
