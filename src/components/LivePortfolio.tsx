@@ -1,4 +1,4 @@
-import { ExternalLink, Briefcase, Rocket } from 'lucide-react';
+import { ExternalLink, Briefcase, Rocket, Mic } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -13,6 +13,8 @@ import swaamiIcon from '@/assets/swaami-icon.png';
 import lockstepIcon from '@/assets/lockstep-icon.png';
 import melioraIcon from '@/assets/meliora-icon.png';
 import adfixusIcon from '@/assets/adfixus-icon.png';
+import techonomicLogo from '@/assets/techonomic-logo.png';
+import signalAndNoiseLogo from '@/assets/signal-and-noise-logo.png';
 
 interface Business {
   name: string;
@@ -22,20 +24,13 @@ interface Business {
   role: string;
 }
 
-const consultingBusinesses: Business[] = [
+const operatorBusinesses: Business[] = [
   {
     name: "Mindmaker",
     description: "Helping leaders create their new personal working style alongside AI",
     icon: mindmakerIcon,
     url: "https://themindmaker.ai",
     role: "Founder"
-  },
-  {
-    name: "The Builder Economy",
-    description: "Conversations with leaders building with AI",
-    icon: builderEconomyIcon,
-    url: "https://thebuildereconomy.com",
-    role: "Host"
   },
   {
     name: "Meliora",
@@ -53,7 +48,7 @@ const consultingBusinesses: Business[] = [
   }
 ];
 
-const buildingBusinesses: Business[] = [
+const builderBusinesses: Business[] = [
   {
     name: "WellWell",
     description: "Ancient Stoic philosophy for the modern workplace",
@@ -95,6 +90,37 @@ const buildingBusinesses: Business[] = [
     icon: lockstepIcon,
     url: "https://inlockstep.ai",
     role: "Founder"
+  }
+];
+
+const creatorBusinesses: Business[] = [
+  {
+    name: "The Builder Economy",
+    description: "Conversations with leaders building with AI",
+    icon: builderEconomyIcon,
+    url: "https://thebuildereconomy.com",
+    role: "Host"
+  },
+  {
+    name: "Techonomic",
+    description: "Strategic insights on AI, data commercialization, and revenue growth for executives",
+    icon: techonomicLogo,
+    url: "https://www.techonomic.co",
+    role: "Writer"
+  },
+  {
+    name: "Mindmaker Live",
+    description: "Live learnings and real-time insights from my journey as an AI-native builder",
+    icon: mindmakerIcon,
+    url: "https://content.themindmaker.ai",
+    role: "Host"
+  },
+  {
+    name: "Signal & Noise",
+    description: "Conversations with world-class media operators exploring how AI is reshaping the industry",
+    icon: signalAndNoiseLogo,
+    url: "https://www.mediaradar.com/signal-and-noise",
+    role: "AI Host"
   }
 ];
 
@@ -158,38 +184,45 @@ const LivePortfolio = () => {
         <div className="text-center mb-10">
           <h2 className="headline-lg mb-4">Live Portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            10 ventures across consulting and building — explore what resonates
+            13 ventures across operating, building, and creating — explore what resonates
           </p>
         </div>
 
-        <Tabs defaultValue="consulting" className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 bg-muted/30 p-1 rounded-full h-auto">
+        <Tabs defaultValue="operator" className="w-full">
+          <TabsList className="grid w-full max-w-lg mx-auto grid-cols-3 mb-8 bg-muted/30 p-1 rounded-full h-auto">
             <TabsTrigger 
-              value="consulting" 
-              className="rounded-full py-2.5 px-4 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2"
+              value="operator" 
+              className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
             >
-              <Briefcase size={15} />
-              <span className={isMobile ? "hidden sm:inline" : ""}>Data & AI</span>
-              <span className="sm:hidden">Consulting</span>
-              <span className="hidden sm:inline">Consulting</span>
+              <Briefcase size={14} />
+              <span>Operator</span>
             </TabsTrigger>
             <TabsTrigger 
-              value="building" 
-              className="rounded-full py-2.5 px-4 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2"
+              value="builder" 
+              className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
             >
-              <Rocket size={15} />
-              <span className={isMobile ? "hidden sm:inline" : ""}>Business</span>
-              <span className="sm:hidden">Building</span>
-              <span className="hidden sm:inline">Building</span>
+              <Rocket size={14} />
+              <span>Builder</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="creator" 
+              className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
+            >
+              <Mic size={14} />
+              <span>Creator</span>
             </TabsTrigger>
           </TabsList>
           
-          <TabsContent value="consulting" className="animate-fade-in mt-0">
-            <BusinessGrid businesses={consultingBusinesses} isMobile={isMobile} />
+          <TabsContent value="operator" className="animate-fade-in mt-0">
+            <BusinessGrid businesses={operatorBusinesses} isMobile={isMobile} />
           </TabsContent>
           
-          <TabsContent value="building" className="animate-fade-in mt-0">
-            <BusinessGrid businesses={buildingBusinesses} isMobile={isMobile} />
+          <TabsContent value="builder" className="animate-fade-in mt-0">
+            <BusinessGrid businesses={builderBusinesses} isMobile={isMobile} />
+          </TabsContent>
+          
+          <TabsContent value="creator" className="animate-fade-in mt-0">
+            <BusinessGrid businesses={creatorBusinesses} isMobile={isMobile} />
           </TabsContent>
         </Tabs>
       </div>
