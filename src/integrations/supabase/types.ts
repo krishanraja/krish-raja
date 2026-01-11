@@ -928,6 +928,33 @@ export type Database = {
         }
         Relationships: []
       }
+      company_research_cache: {
+        Row: {
+          created_at: string | null
+          domain: string
+          expires_at: string
+          id: string
+          research_data: Json
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          domain: string
+          expires_at: string
+          id?: string
+          research_data: Json
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          domain?: string
+          expires_at?: string
+          id?: string
+          research_data?: Json
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       consent_audit: {
         Row: {
           changed_at: string | null
@@ -3835,6 +3862,7 @@ export type Database = {
           total_sessions: number
         }[]
       }
+      cleanup_expired_research_cache: { Args: never; Returns: undefined }
       generate_referral_code: {
         Args: { p_assessment_id: string; p_email: string }
         Returns: string
