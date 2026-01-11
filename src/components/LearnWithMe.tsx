@@ -67,11 +67,11 @@ const LearnWithMe = () => {
           <Card className="border-0 shadow-lg bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden">
             <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'}`}>
               {/* Image */}
-              <div className={`${isMobile ? 'h-48' : 'w-2/5'} overflow-hidden`}>
+              <div className={`${isMobile ? 'h-48' : 'w-2/5 min-h-[400px]'} overflow-hidden bg-muted/30`}>
                 <img 
                   src={cohortCourse.image}
                   alt={cohortCourse.title}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full ${isMobile ? 'object-cover' : 'object-cover object-top'}`}
                 />
               </div>
               {/* Content */}
