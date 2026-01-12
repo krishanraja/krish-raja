@@ -15,7 +15,7 @@ interface MobileCarouselProps {
   showDots?: boolean;
   spaceBetween?: number;
   uniformHeight?: boolean;
-  minHeight?: 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl' | 'carousel-3xl' | 'carousel-4xl' | 'carousel-5xl';
+  minHeight?: 'carousel-xs' | 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl' | 'carousel-3xl' | 'carousel-4xl' | 'carousel-5xl';
   allowContentExpansion?: boolean;
   expandedIndex?: number | null;
 }
@@ -51,6 +51,7 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   // Mobile: Pure Flexbox carousel with forced Card heights
   const getHeightClass = (height: string) => {
     switch (height) {
+      case 'carousel-xs': return 'h-carousel-xs min-h-carousel-xs';
       case 'carousel-sm': return 'h-carousel-sm min-h-carousel-sm';
       case 'carousel-md': return 'h-carousel-md min-h-carousel-md';
       case 'carousel-lg': return 'h-carousel-lg min-h-carousel-lg';
