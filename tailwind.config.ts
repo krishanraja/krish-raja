@@ -103,6 +103,7 @@ export default {
 				'content': 'var(--content-width)'
 			},
 			height: {
+				'carousel-xs': 'var(--carousel-xs)',
 				'carousel-sm': 'var(--carousel-sm)',
 				'carousel-md': 'var(--carousel-md)',
 				'carousel-lg': 'var(--carousel-lg)',
@@ -113,6 +114,7 @@ export default {
 				'carousel-5xl': 'var(--carousel-5xl)'
 			},
 			minHeight: {
+				'carousel-xs': 'var(--carousel-xs)',
 				'carousel-sm': 'var(--carousel-sm)',
 				'carousel-md': 'var(--carousel-md)',
 				'carousel-lg': 'var(--carousel-lg)',

@@ -155,7 +155,7 @@ const ProofPoints = () => {
                 className="space-y-4"
                 itemClassName="h-full"
                 showDots={true}
-                minHeight="carousel-sm"
+                minHeight="carousel-xs"
               >
                 {locations.map((location, index) => (
                   <Card key={index} className="border-0 shadow-sm bg-muted/30 h-full">
@@ -230,7 +230,7 @@ const ProofPoints = () => {
         <div className="mt-16 pt-12 border-t border-border/50">
           <h3 className="headline-sm text-center mb-8 text-muted-foreground">Global Experience in media, tech, data & telco</h3>
           <div className="relative overflow-hidden">
-            <div className="flex gap-12 animate-[scroll_4s_linear_infinite] hover:[animation-play-state:paused]">
+            <div className="flex gap-12 animate-[scroll_4s_linear_infinite] md:animate-[scroll_5.2s_linear_infinite] hover:[animation-play-state:paused]">
               {[...logos, ...logos].map((logo, index) => (
                 <div key={index} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
                   <img 
