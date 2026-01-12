@@ -1,6 +1,7 @@
-import { ExternalLink, Briefcase, Rocket, Mic } from 'lucide-react';
+import { ExternalLink, Briefcase, Rocket, Mic, Smartphone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 // Import all business icons
 import mindmakerIcon from '@/assets/mindmaker-icon.png';
@@ -22,6 +23,7 @@ interface Business {
   icon: string;
   url: string;
   role: string;
+  mobileOnly?: boolean;
 }
 
 const operatorBusinesses: Business[] = [
@@ -54,7 +56,8 @@ const builderBusinesses: Business[] = [
     description: "Ancient Stoic philosophy for the modern workplace",
     icon: wellwellIcon,
     url: "https://wellwell.ai",
-    role: "Founder"
+    role: "Founder",
+    mobileOnly: true
   },
   {
     name: "Conclusiv",
@@ -75,21 +78,24 @@ const builderBusinesses: Business[] = [
     description: "Helping partners to re-love one another with thoughtful weekly moments",
     icon: ritualIcon,
     url: "https://tryritual.co",
-    role: "Founder"
+    role: "Founder",
+    mobileOnly: true
   },
   {
     name: "Swaami",
     description: "Find neighbourhood locals willing to help you out for free",
     icon: swaamiIcon,
     url: "https://swaami.ai",
-    role: "Founder"
+    role: "Founder",
+    mobileOnly: true
   },
   {
     name: "Lockstep",
     description: "Arrange group events without any anxiety or chasing",
     icon: lockstepIcon,
     url: "https://inlockstep.ai",
-    role: "Founder"
+    role: "Founder",
+    mobileOnly: true
   }
 ];
 
@@ -126,8 +132,9 @@ const creatorBusinesses: Business[] = [
 
 const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: boolean }) => {
   const isLargerLogo = business.name === "Techonomic" || business.name === "Signal & Noise";
+  const showMobileWarning = business.mobileOnly && !isMobile;
   
-  return (
+  const cardContent = (
     <a
       href={business.url}
       target="_blank"
@@ -136,6 +143,9 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
     >
       <div className="bg-card/50 backdrop-blur-sm rounded-xl p-5 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full min-h-[160px] relative">
         <ExternalLink className="absolute top-3 right-3 w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+        {showMobileWarning && (
+          <Smartphone className="absolute top-3 left-3 w-3.5 h-3.5 text-amber-500/70" />
+        )}
         <div className={isMobile ? "flex items-start gap-3" : "flex flex-col items-center text-center"}>
           <div className={isMobile 
             ? `${isLargerLogo ? 'w-16 h-16' : 'w-10 h-10'} flex-shrink-0 flex items-center justify-center` 
@@ -161,6 +171,26 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
       </div>
     </a>
   );
+
+  if (showMobileWarning) {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            {cardContent}
+          </TooltipTrigger>
+          <TooltipContent className="bg-card border-border">
+            <p className="text-xs flex items-center gap-1.5">
+              <Smartphone className="w-3 h-3" />
+              Best experienced on mobile
+            </p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  }
+
+  return cardContent;
 };
 
 const BusinessGrid = ({ businesses, isMobile }: { businesses: Business[]; isMobile: boolean }) => {
