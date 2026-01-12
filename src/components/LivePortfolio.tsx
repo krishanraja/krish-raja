@@ -148,13 +148,13 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
         )}
         <div className={isMobile ? "flex items-start gap-3" : "flex flex-col items-center text-center"}>
           <div className={isMobile 
-            ? `${isLargerLogo ? 'w-16 h-16' : 'w-10 h-10'} flex-shrink-0 flex items-center justify-center` 
-            : `${isLargerLogo ? 'w-20 h-20' : 'w-14 h-14'} flex items-center justify-center mb-3`}>
+            ? "w-12 h-12 flex-shrink-0 flex items-center justify-center" 
+            : "h-20 flex items-end justify-center mb-3"}>
             <img 
               src={business.icon} 
               alt={`${business.name} icon`}
               className={isMobile 
-                ? `${isLargerLogo ? 'h-16' : 'h-10'} w-auto object-contain` 
+                ? `${isLargerLogo ? 'h-12' : 'h-10'} w-auto object-contain` 
                 : `${isLargerLogo ? 'h-20' : 'h-14'} w-auto object-contain`}
             />
           </div>
