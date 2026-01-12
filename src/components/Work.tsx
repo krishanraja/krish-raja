@@ -5,10 +5,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ExternalLink, FileText, Mic, Video, BookOpen, Play } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
-import aiLiteracyWhitepaper from '@/assets/ai-literacy-whitepaper.png';
-import mastersThesis from '@/assets/masters-thesis.png';
-import podcastTile from '@/assets/podcast-tile.png';
-import giveItANudge from '@/assets/give-it-a-nudge.png';
+import aiLiteracyWhitepaper from '@/assets/ai-literacy-whitepaper-optimized.webp';
+import mastersThesis from '@/assets/masters-thesis-optimized.webp';
+import podcastTile from '@/assets/podcast-tile-optimized.webp';
+import giveItANudge from '@/assets/give-it-a-nudge-optimized.webp';
 
 const Work = () => {
   const isMobile = useIsMobile();

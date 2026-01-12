@@ -3,7 +3,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Import all business icons
-import mindmakerIcon from '@/assets/mindmaker-icon.png';
+import mindmakerIcon from '@/assets/mindmaker-icon-optimized.webp';
 import builderEconomyIcon from '@/assets/builder-economy-icon.png';
 import wellwellIcon from '@/assets/wellwell-icon.png';
 import conclusivIcon from '@/assets/conclusiv-icon.png';
@@ -11,7 +11,7 @@ import rinoaIcon from '@/assets/rinoa-icon.png';
 import ritualIcon from '@/assets/ritual-icon.png';
 import swaamiIcon from '@/assets/swaami-icon.png';
 import lockstepIcon from '@/assets/lockstep-icon.png';
-import melioraIcon from '@/assets/meliora-icon.png';
+import melioraIcon from '@/assets/meliora-icon-optimized.webp';
 import adfixusIcon from '@/assets/adfixus-icon.png';
 import techonomicLogo from '@/assets/techonomic-logo.png';
 import signalAndNoiseLogo from '@/assets/signal-and-noise-logo.png';
