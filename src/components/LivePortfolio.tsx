@@ -154,8 +154,8 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
               src={business.icon} 
               alt={`${business.name} icon`}
               className={isMobile 
-                ? `${isLargerLogo ? 'h-12' : 'h-10'} w-auto object-contain` 
-                : `${isLargerLogo ? 'h-20' : 'h-14'} w-auto object-contain`}
+                ? `${isLargerLogo ? 'h-10' : 'h-10'} w-auto object-contain` 
+                : `${isLargerLogo ? 'h-14' : 'h-14'} w-auto object-contain`}
             />
           </div>
           <div className={isMobile ? "flex-1 min-w-0" : ""}>
