@@ -153,6 +153,8 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
             <img 
               src={business.icon} 
               alt={`${business.name} icon`}
+              loading="lazy"
+              decoding="async"
               className={isMobile 
                 ? `${isLargerLogo ? 'h-10' : 'h-10'} w-auto object-contain` 
                 : `${isLargerLogo ? 'h-14' : 'h-14'} w-auto object-contain`}
