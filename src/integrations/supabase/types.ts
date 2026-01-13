@@ -904,6 +904,72 @@ export type Database = {
           },
         ]
       }
+      company_context: {
+        Row: {
+          apollo_data: Json | null
+          assessment_id: string | null
+          board_deck_content: Json | null
+          board_deck_urls: string[] | null
+          calendar_connected: boolean | null
+          calendar_events: Json | null
+          company_name: string
+          created_at: string | null
+          enrichment_status: string
+          id: string
+          leader_id: string
+          updated_at: string | null
+          website_content: string | null
+          website_url: string | null
+        }
+        Insert: {
+          apollo_data?: Json | null
+          assessment_id?: string | null
+          board_deck_content?: Json | null
+          board_deck_urls?: string[] | null
+          calendar_connected?: boolean | null
+          calendar_events?: Json | null
+          company_name: string
+          created_at?: string | null
+          enrichment_status?: string
+          id?: string
+          leader_id: string
+          updated_at?: string | null
+          website_content?: string | null
+          website_url?: string | null
+        }
+        Update: {
+          apollo_data?: Json | null
+          assessment_id?: string | null
+          board_deck_content?: Json | null
+          board_deck_urls?: string[] | null
+          calendar_connected?: boolean | null
+          calendar_events?: Json | null
+          company_name?: string
+          created_at?: string | null
+          enrichment_status?: string
+          id?: string
+          leader_id?: string
+          updated_at?: string | null
+          website_content?: string | null
+          website_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "company_context_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "leader_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "company_context_leader_id_fkey"
+            columns: ["leader_id"]
+            isOneToOne: false
+            referencedRelation: "leaders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       company_identifier_salt: {
         Row: {
           created_at: string | null
@@ -1784,6 +1850,7 @@ export type Database = {
           benchmark_tier: string | null
           created_at: string | null
           generation_status: Json | null
+          has_deep_context: boolean | null
           has_deep_profile: boolean | null
           has_full_diagnostic: boolean | null
           id: string
@@ -1798,6 +1865,7 @@ export type Database = {
           benchmark_tier?: string | null
           created_at?: string | null
           generation_status?: Json | null
+          has_deep_context?: boolean | null
           has_deep_profile?: boolean | null
           has_full_diagnostic?: boolean | null
           id?: string
@@ -1812,6 +1880,7 @@ export type Database = {
           benchmark_tier?: string | null
           created_at?: string | null
           generation_status?: Json | null
+          has_deep_context?: boolean | null
           has_deep_profile?: boolean | null
           has_full_diagnostic?: boolean | null
           id?: string
@@ -2154,6 +2223,60 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      meeting_prep_sessions: {
+        Row: {
+          agenda_text: string
+          assessment_id: string
+          company_context_id: string | null
+          created_at: string | null
+          generated_at: string | null
+          id: string
+          meeting_date: string | null
+          meeting_title: string
+          prep_materials: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          agenda_text: string
+          assessment_id: string
+          company_context_id?: string | null
+          created_at?: string | null
+          generated_at?: string | null
+          id?: string
+          meeting_date?: string | null
+          meeting_title: string
+          prep_materials?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          agenda_text?: string
+          assessment_id?: string
+          company_context_id?: string | null
+          created_at?: string | null
+          generated_at?: string | null
+          id?: string
+          meeting_date?: string | null
+          meeting_title?: string
+          prep_materials?: Json | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meeting_prep_sessions_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "leader_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "meeting_prep_sessions_company_context_id_fkey"
+            columns: ["company_context_id"]
+            isOneToOne: false
+            referencedRelation: "company_context"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       partner_intakes: {
         Row: {
