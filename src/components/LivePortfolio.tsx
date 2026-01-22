@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ExternalLink, Briefcase, Rocket, Mic, Smartphone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -16,6 +17,20 @@ import melioraIcon from '@/assets/meliora-icon.png';
 import adfixusIcon from '@/assets/adfixus-icon.png';
 import techonomicLogo from '@/assets/techonomic-logo.png';
 import signalAndNoiseLogo from '@/assets/signal-and-noise-logo.png';
+
+// Preload all portfolio icons for instant display
+const allIcons = [
+  mindmakerIcon, builderEconomyIcon, wellwellIcon, conclusivIcon,
+  rinoaIcon, ritualIcon, swaamiIcon, lockstepIcon, melioraIcon,
+  adfixusIcon, techonomicLogo, signalAndNoiseLogo
+];
+
+const preloadImages = () => {
+  allIcons.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+};
 
 interface Business {
   name: string;
@@ -56,7 +71,7 @@ const builderBusinesses: Business[] = [
     description: "Ancient Stoic philosophy for the modern workplace",
     icon: wellwellIcon,
     url: "https://wellwell.ai",
-    role: "Founder",
+    role: "Full-Stack Founder",
     mobileOnly: true
   },
   {
@@ -64,7 +79,7 @@ const builderBusinesses: Business[] = [
     description: "From research to stunning business case in 60 seconds",
     icon: conclusivIcon,
     url: "https://conclusiv.ai",
-    role: "Founder"
+    role: "Full-Stack Founder"
   },
   {
     name: "Rinoa",
@@ -78,7 +93,7 @@ const builderBusinesses: Business[] = [
     description: "Helping partners to re-love one another with thoughtful weekly moments",
     icon: ritualIcon,
     url: "https://tryritual.co",
-    role: "Founder",
+    role: "Full-Stack Founder",
     mobileOnly: true
   },
   {
@@ -86,7 +101,7 @@ const builderBusinesses: Business[] = [
     description: "Find neighbourhood locals willing to help you out for free",
     icon: swaamiIcon,
     url: "https://swaami.ai",
-    role: "Founder",
+    role: "Full-Stack Founder",
     mobileOnly: true
   },
   {
@@ -94,7 +109,7 @@ const builderBusinesses: Business[] = [
     description: "Arrange group events without any anxiety or chasing",
     icon: lockstepIcon,
     url: "https://inlockstep.ai",
-    role: "Founder",
+    role: "Full-Stack Founder",
     mobileOnly: true
   }
 ];
@@ -153,8 +168,9 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
             <img 
               src={business.icon} 
               alt={`${business.name} icon`}
-              loading="lazy"
+              loading="eager"
               decoding="async"
+              fetchPriority="high"
               className={isMobile 
                 ? `${isLargerLogo ? 'h-10' : 'h-10'} w-auto object-contain` 
                 : `${isLargerLogo ? 'h-14' : 'h-14'} w-auto object-contain`}
@@ -217,6 +233,11 @@ const BusinessGrid = ({ businesses, isMobile }: { businesses: Business[]; isMobi
 
 const LivePortfolio = () => {
   const isMobile = useIsMobile();
+
+  // Preload images on component mount
+  useEffect(() => {
+    preloadImages();
+  }, []);
 
   return (
     <section id="portfolio" className="section-padding">
