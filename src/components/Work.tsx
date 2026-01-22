@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -10,8 +11,28 @@ import mastersThesis from '@/assets/masters-thesis-optimized.webp';
 import podcastTile from '@/assets/podcast-tile-optimized.webp';
 import giveItANudge from '@/assets/give-it-a-nudge-optimized.webp';
 
+// Preload all media images for instant display
+const allMediaImages = [
+  aiLiteracyWhitepaper,
+  mastersThesis,
+  podcastTile,
+  giveItANudge
+];
+
+const preloadMediaImages = () => {
+  allMediaImages.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+};
+
 const Work = () => {
   const isMobile = useIsMobile();
+
+  // Preload images on mount
+  useEffect(() => {
+    preloadMediaImages();
+  }, []);
   
   // Reordered: Interview and Podcast first
   const workItems = [
@@ -70,7 +91,9 @@ const Work = () => {
               <img 
                 src={item.image} 
                 alt={item.title}
-                loading="lazy"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
               {/* Gradient Overlay */}
@@ -118,7 +141,8 @@ const Work = () => {
                 <img 
                   src={item.image} 
                   alt={item.title}
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-auto object-contain max-h-[400px]"
                 />
               </div>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, Users, Target, Rocket, Award, MapPin } from 'lucide-react';
@@ -10,8 +11,24 @@ import singtelLogo from '@/assets/singtel_logo.png';
 import bbcLogo from '@/assets/bbc_logo.png';
 import microsoftLogo from '@/assets/microsoft_logo.png';
 
+// Preload all company logos for instant display
+const allLogos = [nineLogo, mccannLogo, captifyLogo, singtelLogo, bbcLogo, microsoftLogo];
+
+const preloadLogos = () => {
+  allLogos.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+};
+
 const ProofPoints = () => {
   const isMobile = useIsMobile();
+
+  // Preload logos on mount
+  useEffect(() => {
+    preloadLogos();
+  }, []);
+
   const achievements = [
     {
       icon: TrendingUp,
@@ -235,7 +252,10 @@ const ProofPoints = () => {
                 <div key={index} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
                   <img 
                     src={logo.src} 
-                    alt={logo.alt} 
+                    alt={logo.alt}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                     className="h-8 w-auto object-contain"
                   />
                 </div>

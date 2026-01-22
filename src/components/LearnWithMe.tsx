@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,8 +12,28 @@ import learnProgramAiImage from '@/assets/learn-program-ai.png';
 import buildInPublicImage from '@/assets/build-in-public.png';
 import vibeCodeIncomeImage from '@/assets/vibe-code-income.png';
 
+// Preload all course images for instant display
+const allCourseImages = [
+  literacyToStrategyImage,
+  learnProgramAiImage,
+  buildInPublicImage,
+  vibeCodeIncomeImage
+];
+
+const preloadCourseImages = () => {
+  allCourseImages.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+};
+
 const LearnWithMe = () => {
   const isMobile = useIsMobile();
+
+  // Preload images on mount
+  useEffect(() => {
+    preloadCourseImages();
+  }, []);
 
   const cohortCourse = {
     title: "AI Literacy-to-Strategy for Leaders",
@@ -71,7 +92,9 @@ const LearnWithMe = () => {
                 <img 
                   src={cohortCourse.image}
                   alt={cohortCourse.title}
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className={`${isMobile ? 'w-full h-full object-cover' : 'w-full h-auto object-contain'}`}
                 />
               </div>
@@ -145,7 +168,9 @@ const LearnWithMe = () => {
                   <img 
                     src={lesson.image}
                     alt={lesson.title}
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
