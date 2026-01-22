@@ -47,7 +47,7 @@ const operatorBusinesses: Business[] = [
     description: "Helping leaders create their new personal working style alongside AI",
     icon: mindmakerIcon,
     url: "https://themindmaker.ai",
-    role: "Founder"
+    role: "Full-Stack Founder"
   },
   {
     name: "Meliora",

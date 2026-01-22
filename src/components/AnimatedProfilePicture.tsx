@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import krishBitmoji from '@/assets/krish_bitmoji.jpg';
 import krishHeadshot from '@/assets/krish-headshot.jpg';
+
+// Preload profile images immediately
+const preloadProfileImages = () => {
+  [krishBitmoji, krishHeadshot].forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+};
 
 const AnimatedProfilePicture = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const isMobile = useIsMobile();
+
+  // Preload images on mount
+  useEffect(() => {
+    preloadProfileImages();
+  }, []);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -38,6 +51,9 @@ const AnimatedProfilePicture = () => {
           <img 
             src={krishBitmoji} 
             alt="Krish Raja - Cartoon"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full rounded-full object-cover shadow-lg ring-4 ring-primary/20"
             style={{ backfaceVisibility: 'hidden' }}
           />
@@ -46,6 +62,9 @@ const AnimatedProfilePicture = () => {
           <img 
             src={krishHeadshot} 
             alt="Krish Raja"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full rounded-full object-cover shadow-lg ring-4 ring-primary/20"
             style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
           />
