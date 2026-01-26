@@ -1,4 +1,4 @@
-import { GraduationCap, Brain, Mic, Mail, ExternalLink } from 'lucide-react';
+import { GraduationCap, Mail, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -13,13 +13,30 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useEffect } from 'react';
 
-const ctaOptions = [
+// Import icons for eager loading
+import mindmakerIcon from '@/assets/mindmaker-cta-icon.png';
+import builderEconomyIcon from '@/assets/builder-economy-cta-icon.png';
+
+// Preload icons
+const preloadImages = [mindmakerIcon, builderEconomyIcon];
+
+type CTAOption = {
+  id: string;
+  label: string;
+  description: string;
+  icon: 'cohort' | 'mindmaker' | 'builder-economy' | 'email';
+  href: string;
+  external: boolean;
+};
+
+const ctaOptions: CTAOption[] = [
   {
     id: 'cohort',
     label: 'Join Cohort',
     description: 'Learn AI strategy in a 4-week program',
-    icon: GraduationCap,
+    icon: 'cohort',
     href: 'https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders',
     external: true,
   },
@@ -27,7 +44,7 @@ const ctaOptions = [
     id: 'mindmaker',
     label: 'Mindmaker',
     description: 'Get me as your fractional AI advisor',
-    icon: Brain,
+    icon: 'mindmaker',
     href: 'https://www.themindmaker.ai',
     external: true,
   },
@@ -35,7 +52,7 @@ const ctaOptions = [
     id: 'builder-economy',
     label: 'Builder Economy',
     description: 'Create content about building with AI',
-    icon: Mic,
+    icon: 'builder-economy',
     href: 'https://www.thebuildereconomy.com',
     external: true,
   },
@@ -43,20 +60,63 @@ const ctaOptions = [
     id: 'email',
     label: 'Email Me',
     description: 'Collaborate on something else',
-    icon: Mail,
+    icon: 'email',
     href: 'mailto:hello@krishraja.com?subject=Reaching%20out%20after%20looking%20at%20your%20site',
     external: false,
   },
 ];
 
+const IconRenderer = ({ type }: { type: CTAOption['icon'] }) => {
+  switch (type) {
+    case 'cohort':
+      return (
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center flex-shrink-0">
+          <GraduationCap className="w-5 h-5 text-white" />
+        </div>
+      );
+    case 'mindmaker':
+      return (
+        <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+          <img 
+            src={mindmakerIcon} 
+            alt="" 
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
+      );
+    case 'builder-economy':
+      return (
+        <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+          <img 
+            src={builderEconomyIcon} 
+            alt="" 
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
+      );
+    case 'email':
+      return (
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center flex-shrink-0">
+          <Mail className="w-5 h-5 text-white" />
+        </div>
+      );
+    default:
+      return null;
+  }
+};
+
 interface CTAOptionProps {
-  option: typeof ctaOptions[0];
+  option: CTAOption;
   onClick?: () => void;
 }
 
-const CTAOption = ({ option, onClick }: CTAOptionProps) => {
-  const Icon = option.icon;
-  
+const CTAOptionItem = ({ option, onClick }: CTAOptionProps) => {
   return (
     <a
       href={option.href}
@@ -65,9 +125,7 @@ const CTAOption = ({ option, onClick }: CTAOptionProps) => {
       onClick={onClick}
       className="flex items-start gap-3 p-3 rounded-lg hover:bg-accent transition-colors group"
     >
-      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-        <Icon className="w-5 h-5 text-primary" />
-      </div>
+      <IconRenderer type={option.icon} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
           <span className="font-medium text-foreground">{option.label}</span>
@@ -84,6 +142,14 @@ const CTAOption = ({ option, onClick }: CTAOptionProps) => {
 const WorkWithMeMenu = () => {
   const isMobile = useIsMobile();
 
+  // Preload images on mount
+  useEffect(() => {
+    preloadImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   if (isMobile) {
     return (
       <Drawer>
@@ -96,7 +162,7 @@ const WorkWithMeMenu = () => {
           </DrawerHeader>
           <div className="px-4 pb-6 space-y-1">
             {ctaOptions.map((option) => (
-              <CTAOption key={option.id} option={option} />
+              <CTAOptionItem key={option.id} option={option} />
             ))}
           </div>
         </DrawerContent>
@@ -112,7 +178,7 @@ const WorkWithMeMenu = () => {
       <PopoverContent className="w-80 p-2" align="end">
         <div className="space-y-1">
           {ctaOptions.map((option) => (
-            <CTAOption key={option.id} option={option} />
+            <CTAOptionItem key={option.id} option={option} />
           ))}
         </div>
       </PopoverContent>
