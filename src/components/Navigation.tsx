@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Menu, X } from 'lucide-react';
-
+import WorkWithMeMenu from '@/components/WorkWithMeMenu';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,11 +54,9 @@ const Navigation = () => {
                 </a>
               ))}
               <ThemeToggle />
-              <Button asChild className="ml-4">
-                <a href="https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders" target="_blank" rel="noopener noreferrer">
-                  Join Cohort
-                </a>
-              </Button>
+              <div className="ml-4">
+                <WorkWithMeMenu />
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -91,11 +88,7 @@ const Navigation = () => {
                 </a>
               ))}
               <div className="pt-4 mt-4 border-t border-border">
-                <Button asChild className="w-full">
-                  <a href="https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders" target="_blank" rel="noopener noreferrer">
-                    Join Cohort
-                  </a>
-                </Button>
+                <WorkWithMeMenu />
               </div>
             </div>
           )}

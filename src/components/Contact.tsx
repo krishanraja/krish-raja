@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
-import { Calendar, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -161,16 +161,6 @@ const Contact = () => {
                 </Button>
               </form>
             )}
-          </div>
-          
-          {/* Primary CTA */}
-          <div className="text-center mt-8">
-            <Button size="lg" asChild>
-              <a href="https://calendly.com/krish-raja/krish-raja" className="flex items-center gap-2 mx-auto">
-                <Calendar size={20} />
-                Book a Strategy Call
-              </a>
-            </Button>
           </div>
         </div>
       </div>

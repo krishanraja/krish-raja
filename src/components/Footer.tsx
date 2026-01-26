@@ -51,11 +51,6 @@ const Footer = () => {
                   <Linkedin size={16} />
                 </a>
               </Button>
-              <Button size="sm" asChild>
-                <a href="https://calendly.com/krish-raja/krish-raja">
-                  Book a call
-                </a>
-              </Button>
             </div>
           </div>
         </div>
