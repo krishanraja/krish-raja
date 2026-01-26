@@ -1,4 +1,4 @@
-import { GraduationCap, Mail, ExternalLink } from 'lucide-react';
+import { GraduationCap, Mail, Mic, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -17,10 +17,9 @@ import { useEffect } from 'react';
 
 // Import icons for eager loading
 import mindmakerIcon from '@/assets/mindmaker-cta-icon.png';
-import builderEconomyIcon from '@/assets/builder-economy-cta-icon.png';
 
 // Preload icons
-const preloadImages = [mindmakerIcon, builderEconomyIcon];
+const preloadImages = [mindmakerIcon];
 
 type CTAOption = {
   id: string;
@@ -89,15 +88,8 @@ const IconRenderer = ({ type }: { type: CTAOption['icon'] }) => {
       );
     case 'builder-economy':
       return (
-        <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
-          <img 
-            src={builderEconomyIcon} 
-            alt="" 
-            className="w-full h-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-600 to-slate-700 flex items-center justify-center flex-shrink-0">
+          <Mic className="w-5 h-5 text-white" />
         </div>
       );
     case 'email':
