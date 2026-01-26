@@ -162,19 +162,21 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
           <Smartphone className="absolute top-3 left-3 w-3.5 h-3.5 text-amber-500/70" />
         )}
         <div className={isMobile ? "flex items-start gap-3" : "flex flex-col items-center text-center"}>
-          <div className={isMobile 
-            ? "w-12 h-12 flex-shrink-0 flex items-center justify-center" 
-            : "h-20 flex items-end justify-center mb-3"}>
+        <div className={isMobile 
+          ? "w-12 h-12 flex-shrink-0 flex items-center justify-center" 
+          : "h-20 flex items-end justify-center mb-3"}>
+          <div className="rounded-lg p-1.5 bg-white/0 dark:bg-white/10 backdrop-blur-[2px] transition-colors duration-300">
             <img 
               src={business.icon} 
               alt={`${business.name} icon`}
               loading="eager"
               decoding="async"
               fetchPriority="high"
-              className={isMobile 
-                ? `${isLargerLogo ? 'h-10' : 'h-10'} w-auto object-contain` 
-                : `${isLargerLogo ? 'h-14' : 'h-14'} w-auto object-contain`}
+              className={`${isMobile 
+                ? `${isLargerLogo ? 'h-8' : 'h-8'}` 
+                : `${isLargerLogo ? 'h-12' : 'h-12'}`} w-auto object-contain dark:brightness-110 dark:contrast-105 transition-all duration-300`}
             />
+          </div>
           </div>
           <div className={isMobile ? "flex-1 min-w-0" : ""}>
             <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-0.5 text-sm">
