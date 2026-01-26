@@ -61,6 +61,7 @@ const Navigation = () => {
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center gap-2">
+              <WorkWithMeMenu />
               <ThemeToggle />
               <button
                 className="p-2"
@@ -87,9 +88,6 @@ const Navigation = () => {
                   {item.label}
                 </a>
               ))}
-              <div className="pt-4 mt-4 border-t border-border">
-                <WorkWithMeMenu />
-              </div>
             </div>
           )}
         </nav>
