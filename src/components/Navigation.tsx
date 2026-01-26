@@ -61,8 +61,6 @@ const Navigation = () => {
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center gap-2">
-              <WorkWithMeMenu />
-              <ThemeToggle />
               <button
                 className="p-2"
                 onClick={() => setIsOpen(!isOpen)}
@@ -72,6 +70,8 @@ const Navigation = () => {
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
+              <ThemeToggle />
+              <WorkWithMeMenu />
             </div>
           </div>
 
