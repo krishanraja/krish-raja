@@ -3334,6 +3334,39 @@ export type Database = {
         }
         Relationships: []
       }
+      user_memory_settings: {
+        Row: {
+          auto_summarize_enabled: boolean | null
+          created_at: string | null
+          id: string
+          retention_days: number | null
+          store_memory_enabled: boolean | null
+          store_voice_transcripts: boolean | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          auto_summarize_enabled?: boolean | null
+          created_at?: string | null
+          id?: string
+          retention_days?: number | null
+          store_memory_enabled?: boolean | null
+          store_voice_transcripts?: boolean | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          auto_summarize_enabled?: boolean | null
+          created_at?: string | null
+          id?: string
+          retention_days?: number | null
+          store_memory_enabled?: boolean | null
+          store_voice_transcripts?: boolean | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -3985,7 +4018,9 @@ export type Database = {
           total_sessions: number
         }[]
       }
+      cleanup_expired_memories: { Args: never; Returns: number }
       cleanup_expired_research_cache: { Args: never; Returns: undefined }
+      export_user_memory: { Args: { p_user_id: string }; Returns: Json }
       generate_referral_code: {
         Args: { p_assessment_id: string; p_email: string }
         Returns: string
@@ -3999,6 +4034,25 @@ export type Database = {
           industry: string
           organizer_name: string
         }[]
+      }
+      get_or_create_memory_settings: {
+        Args: { p_user_id: string }
+        Returns: {
+          auto_summarize_enabled: boolean | null
+          created_at: string | null
+          id: string
+          retention_days: number | null
+          store_memory_enabled: boolean | null
+          store_voice_transcripts: boolean | null
+          updated_at: string | null
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "user_memory_settings"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       get_or_create_profile: {
         Args: {
