@@ -115,17 +115,17 @@ const CTAOptionItem = ({ option, onClick }: CTAOptionProps) => {
       target={option.external ? '_blank' : undefined}
       rel={option.external ? 'noopener noreferrer' : undefined}
       onClick={onClick}
-      className="flex items-start gap-3 p-3 rounded-lg hover:bg-accent transition-colors group"
+      className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
     >
       <IconRenderer type={option.icon} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
-          <span className="font-medium text-foreground">{option.label}</span>
+          <span className="font-medium text-foreground group-hover:text-foreground">{option.label}</span>
           {option.external && (
-            <ExternalLink className="w-3 h-3 text-muted-foreground" />
+            <ExternalLink className="w-3 h-3 text-muted-foreground group-hover:text-muted-foreground" />
           )}
         </div>
-        <p className="text-sm text-muted-foreground mt-0.5">{option.description}</p>
+        <p className="text-sm text-muted-foreground group-hover:text-muted-foreground mt-0.5">{option.description}</p>
       </div>
     </a>
   );
