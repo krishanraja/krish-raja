@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Linkedin, ArrowDown, Calendar } from 'lucide-react';
+import { Linkedin, ArrowDown } from 'lucide-react';
 import AnimatedProfilePicture from '@/components/AnimatedProfilePicture';
 
 const Hero = () => {
@@ -27,7 +27,7 @@ const Hero = () => {
             Based in Brooklyn, NY
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" asChild className="w-full sm:w-auto">
               <a href="#portfolio" className="flex items-center gap-2">
                 Explore My Portfolio
@@ -36,26 +36,11 @@ const Hero = () => {
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
               <a 
-                href="https://maven.com/aimindmaker/ai-literacy-to-strategy-for-leaders" 
+                href="https://www.linkedin.com/in/krish-raja/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="flex items-center gap-2"
               >
-                Join a Cohort
-                <ArrowRight size={16} />
-              </a>
-            </Button>
-          </div>
-          
-          <div className="flex flex-row gap-4 justify-center items-center">
-            <Button variant="outline" size="sm" asChild className="border-primary/40 hover:border-primary hover:bg-primary/5">
-              <a href="https://calendly.com/krish-raja/krish-raja" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                <Calendar size={16} />
-                Book a call
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild className="border-primary/40 hover:border-primary hover:bg-primary/5">
-              <a href="https://www.linkedin.com/in/krish-raja/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <Linkedin size={16} />
                 LinkedIn
               </a>
