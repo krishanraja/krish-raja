@@ -3,6 +3,7 @@ import { ExternalLink, Briefcase, Rocket, Mic, Smartphone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Badge } from '@/components/ui/badge';
 
 // Import all business icons
 import mindmakerIcon from '@/assets/mindmaker-icon.png';
@@ -39,6 +40,7 @@ interface Business {
   url: string;
   role: string;
   mobileOnly?: boolean;
+  isBeta?: boolean;
 }
 
 const operatorBusinesses: Business[] = [
@@ -72,14 +74,16 @@ const builderBusinesses: Business[] = [
     icon: wellwellIcon,
     url: "https://wellwell.ai",
     role: "Full-Stack Founder",
-    mobileOnly: true
+    mobileOnly: true,
+    isBeta: true
   },
   {
     name: "Conclusiv",
     description: "From research to stunning business case in 60 seconds",
     icon: conclusivIcon,
     url: "https://conclusiv.ai",
-    role: "Full-Stack Founder"
+    role: "Full-Stack Founder",
+    isBeta: true
   },
   {
     name: "Rinoa",
@@ -94,7 +98,8 @@ const builderBusinesses: Business[] = [
     icon: ritualIcon,
     url: "https://tryritual.co",
     role: "Full-Stack Founder",
-    mobileOnly: true
+    mobileOnly: true,
+    isBeta: true
   },
   {
     name: "Swaami",
@@ -102,7 +107,8 @@ const builderBusinesses: Business[] = [
     icon: swaamiIcon,
     url: "https://swaami.ai",
     role: "Full-Stack Founder",
-    mobileOnly: true
+    mobileOnly: true,
+    isBeta: true
   },
   {
     name: "Lockstep",
@@ -110,7 +116,8 @@ const builderBusinesses: Business[] = [
     icon: lockstepIcon,
     url: "https://inlockstep.ai",
     role: "Full-Stack Founder",
-    mobileOnly: true
+    mobileOnly: true,
+    isBeta: true
   }
 ];
 
@@ -147,7 +154,7 @@ const creatorBusinesses: Business[] = [
 
 const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: boolean }) => {
   const isLargerLogo = business.name === "Techonomic" || business.name === "Signal & Noise";
-  const showMobileWarning = business.mobileOnly && !isMobile;
+  const showMobileWarning = business.mobileOnly && !isMobile && !business.isBeta;
   
   const cardContent = (
     <a
@@ -158,6 +165,11 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
     >
       <div className="bg-card/50 backdrop-blur-sm rounded-xl p-5 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full min-h-[160px] relative">
         <ExternalLink className="absolute top-3 right-3 w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+        {business.isBeta && (
+          <Badge className="absolute top-3 left-3 bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/30 text-[10px] px-1.5 py-0.5">
+            Beta
+          </Badge>
+        )}
         {showMobileWarning && (
           <Smartphone className="absolute top-3 left-3 w-3.5 h-3.5 text-amber-500/70" />
         )}
