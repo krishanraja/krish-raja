@@ -47,7 +47,7 @@ const operatorBusinesses: Business[] = [
     description: "Helping leaders create their new personal working style alongside AI",
     icon: mindmakerIcon,
     url: "https://themindmaker.ai",
-    role: "Full-Stack Founder"
+    role: "CEO & Founder"
   },
   {
     name: "Meliora",
@@ -251,14 +251,14 @@ const LivePortfolio = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="operator" className="w-full">
+        <Tabs defaultValue="advisor" className="w-full">
           <TabsList className="grid w-full max-w-lg mx-auto grid-cols-3 mb-8 bg-muted/30 p-1 rounded-full h-auto">
             <TabsTrigger 
-              value="operator" 
+              value="advisor" 
               className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
             >
               <Briefcase size={14} />
-              <span>Operator</span>
+              <span>Advisor</span>
             </TabsTrigger>
             <TabsTrigger 
               value="builder" 
@@ -276,7 +276,7 @@ const LivePortfolio = () => {
             </TabsTrigger>
           </TabsList>
           
-          <TabsContent value="operator" className="animate-fade-in mt-0">
+          <TabsContent value="advisor" className="animate-fade-in mt-0">
             <BusinessGrid businesses={operatorBusinesses} isMobile={isMobile} />
           </TabsContent>
           
