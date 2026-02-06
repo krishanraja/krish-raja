@@ -140,7 +140,7 @@ const creatorBusinesses: Business[] = [
     name: "Mindmaker Live",
     description: "Live learnings and real-time insights from my journey as an AI-native builder",
     icon: mindmakerIcon,
-    url: "https://content.themindmaker.ai",
+    url: "https://live.themindmaker.ai/",
     role: "Host"
   },
   {
