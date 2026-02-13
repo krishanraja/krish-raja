@@ -56,14 +56,14 @@ const operatorBusinesses: Business[] = [
     description: "GenAI transformation for telco, media and entertainment businesses",
     icon: melioraIcon,
     url: "https://www.meliora.company",
-    role: "Lead Associate"
+    role: "Associate"
   },
   {
     name: "AdFixus",
     description: "Customer Identity and data infrastructure transformation for media enterprise",
     icon: adfixusIcon,
     url: "https://www.adfixus.com",
-    role: "Enterprise Consultant"
+    role: "Fractional SVP: Enterprise"
   }
 ];
 
@@ -90,7 +90,7 @@ const builderBusinesses: Business[] = [
     description: "Creating AI singers that jam with you to increase creativity",
     icon: rinoaIcon,
     url: "https://rinoa.ai",
-    role: "Co-founder"
+    role: "Advisor: GTM"
   },
   {
     name: "Ritual",
