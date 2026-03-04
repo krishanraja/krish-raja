@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Rocket, Bot, Layers, Database } from 'lucide-react';
+import { Rocket, Bot, RefreshCw, Target } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -10,26 +10,26 @@ const Philosophy = () => {
     {
       icon: Rocket,
       title: "Build in Public",
-      description: "Ship fast, learn openly, compound credibility. Every product I launch teaches the next one.",
-      points: ["Speed over perfection", "Transparency builds trust", "Failures are public lessons", "Momentum compounds"]
+      description: "Ship fast, learn openly, compound knowledge. Every system failure gets encoded so it never repeats across the next project.",
+      points: ["Learnings carry across projects", "AI memory webs compound over time", "One failure prevents the next", "Momentum through iteration"]
     },
     {
       icon: Bot,
       title: "AI as Co-Founder",
-      description: "AI isn't a tool I use — it's a thinking partner I build with. Every product is human + machine.",
-      points: ["Augment, don't replace", "Prompt engineering is a core skill", "AI multiplies human judgment", "Build what AI can't"]
+      description: "I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants.",
+      points: ["Voice & video clones in production", "Memory structures across agents", "AI ghostwriters & researchers", "Human judgment, machine scale"]
     },
     {
-      icon: Layers,
-      title: "Fractional Everything",
-      description: "Multiple income streams, multiple experiments, maximum optionality. Never bet it all on one thing.",
-      points: ["Diversified portfolio of bets", "Small experiments, fast pivots", "Parallel paths reduce risk", "Build assets that compound"]
+      icon: RefreshCw,
+      title: "One Flywheel",
+      description: "Building, advising, and creating are parts of one engine. Each venture sharpens commercial instinct and compounds into the next.",
+      points: ["Every venture feeds the whole", "Advising sharpens go-to-market", "Creating attracts enterprise opportunities", "Modular ecosystem, singular focus"]
     },
     {
-      icon: Database,
-      title: "Data-First Decisions",
-      description: "Every decision backed by signal, not intuition. If you can't measure it, you can't improve it.",
-      points: ["Metrics before movement", "Validate with users, not opinions", "Analytics reveal truth", "Iterate on evidence"]
+      icon: Target,
+      title: "AI-Native Revenue",
+      description: "Enterprise GTM engines powered by AI — automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue.",
+      points: ["AI-native GTM engines at scale", "Automated research & outreach pipelines", "Revenue systems, not just strategy", "Enterprise-grade commercial infrastructure"]
     }
   ];
 
@@ -39,7 +39,7 @@ const Philosophy = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">How I Think About Building</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            Principles forged across 16 years and 3 continents — London → Sydney → New York
+            16 years of scaling revenue across 3 continents — distilled into how I build today
           </p>
         </div>
 

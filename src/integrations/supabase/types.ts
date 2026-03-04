@@ -1900,6 +1900,60 @@ export type Database = {
           },
         ]
       }
+      leader_check_ins: {
+        Row: {
+          accepted_as_mission: boolean | null
+          ai_recommendation: string | null
+          ai_reflection: string | null
+          ai_suggested_move: string | null
+          check_in_text: string
+          created_at: string | null
+          id: string
+          leader_id: string
+          mission_id: string | null
+          voice_url: string | null
+        }
+        Insert: {
+          accepted_as_mission?: boolean | null
+          ai_recommendation?: string | null
+          ai_reflection?: string | null
+          ai_suggested_move?: string | null
+          check_in_text: string
+          created_at?: string | null
+          id?: string
+          leader_id: string
+          mission_id?: string | null
+          voice_url?: string | null
+        }
+        Update: {
+          accepted_as_mission?: boolean | null
+          ai_recommendation?: string | null
+          ai_reflection?: string | null
+          ai_suggested_move?: string | null
+          check_in_text?: string
+          created_at?: string | null
+          id?: string
+          leader_id?: string
+          mission_id?: string | null
+          voice_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leader_check_ins_leader_id_fkey"
+            columns: ["leader_id"]
+            isOneToOne: false
+            referencedRelation: "leaders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leader_check_ins_mission_id_fkey"
+            columns: ["mission_id"]
+            isOneToOne: false
+            referencedRelation: "leader_missions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       leader_dimension_scores: {
         Row: {
           assessment_id: string
@@ -1970,6 +2024,70 @@ export type Database = {
           },
         ]
       }
+      leader_missions: {
+        Row: {
+          assessment_id: string | null
+          check_in_date: string
+          completed_at: string | null
+          completion_notes: string | null
+          created_at: string | null
+          first_move_id: string | null
+          id: string
+          leader_id: string
+          mission_text: string
+          status: string
+          updated_at: string | null
+        }
+        Insert: {
+          assessment_id?: string | null
+          check_in_date: string
+          completed_at?: string | null
+          completion_notes?: string | null
+          created_at?: string | null
+          first_move_id?: string | null
+          id?: string
+          leader_id: string
+          mission_text: string
+          status?: string
+          updated_at?: string | null
+        }
+        Update: {
+          assessment_id?: string | null
+          check_in_date?: string
+          completed_at?: string | null
+          completion_notes?: string | null
+          created_at?: string | null
+          first_move_id?: string | null
+          id?: string
+          leader_id?: string
+          mission_text?: string
+          status?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leader_missions_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "leader_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leader_missions_first_move_id_fkey"
+            columns: ["first_move_id"]
+            isOneToOne: false
+            referencedRelation: "leader_first_moves"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leader_missions_leader_id_fkey"
+            columns: ["leader_id"]
+            isOneToOne: false
+            referencedRelation: "leaders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       leader_org_scenarios: {
         Row: {
           assessment_id: string
@@ -2001,6 +2119,57 @@ export type Database = {
             columns: ["assessment_id"]
             isOneToOne: false
             referencedRelation: "leader_assessments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leader_progress_snapshots: {
+        Row: {
+          assessment_id: string | null
+          benchmark_score: number | null
+          benchmark_tier: string | null
+          comparison_to_baseline: Json | null
+          created_at: string | null
+          dimension_scores: Json
+          id: string
+          leader_id: string
+          snapshot_type: string | null
+        }
+        Insert: {
+          assessment_id?: string | null
+          benchmark_score?: number | null
+          benchmark_tier?: string | null
+          comparison_to_baseline?: Json | null
+          created_at?: string | null
+          dimension_scores?: Json
+          id?: string
+          leader_id: string
+          snapshot_type?: string | null
+        }
+        Update: {
+          assessment_id?: string | null
+          benchmark_score?: number | null
+          benchmark_tier?: string | null
+          comparison_to_baseline?: Json | null
+          created_at?: string | null
+          dimension_scores?: Json
+          id?: string
+          leader_id?: string
+          snapshot_type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leader_progress_snapshots_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "leader_assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leader_progress_snapshots_leader_id_fkey"
+            columns: ["leader_id"]
+            isOneToOne: false
+            referencedRelation: "leaders"
             referencedColumns: ["id"]
           },
         ]
