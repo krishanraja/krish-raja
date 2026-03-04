@@ -1,75 +1,46 @@
 
-# Add Beta Banners to Portfolio Cards
 
-## Overview
-Add "Beta" badges to five business cards (WellWell, Conclusiv, Ritual, Swaami, Lockstep) to indicate these apps are not yet in production.
+# Reimagine Philosophy Section — Combined Plan
 
-## Implementation
+## The Brief
+Three layers of feedback to weave together:
+1. **"Compound credibility" → compound learnings/memory** across AI agents and projects
+2. **"Fractional Everything" → One Flywheel** — modular ecosystem, not mercenary optionality
+3. **Showcase advanced AI builds** — GTM engines, clones, memory webs, ghostwriters, researchers, API-connected EA
+4. **Signal "hire this person as a revenue leader"** — subtly position as a high-growth commercial leader for the AI age
 
-### 1. Update Business Interface
-Add an optional `isBeta` property to the `Business` interface:
-```typescript
-interface Business {
-  name: string;
-  description: string;
-  icon: string;
-  url: string;
-  role: string;
-  mobileOnly?: boolean;
-  isBeta?: boolean;  // NEW
-}
-```
+## New Four Cards
 
-### 2. Mark Beta Businesses
-Add `isBeta: true` to the following entries in `builderBusinesses`:
-- WellWell
-- Conclusiv
-- Ritual
-- Swaami
-- Lockstep
+### 1. "Build in Public" (icon: `Rocket`)
+- **Description**: "Ship fast, learn openly, compound knowledge. Every system failure gets encoded so it never repeats across the next project."
+- **Points**: "Learnings carry across projects", "AI memory webs compound over time", "One failure prevents the next", "Momentum through iteration"
 
-(Note: Rinoa is NOT marked as beta)
+### 2. "AI as Co-Founder" (icon: `Bot`)
+- **Description**: "I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants."
+- **Points**: "Voice & video clones in production", "Memory structures across agents", "AI ghostwriters & researchers", "Human judgment, machine scale"
 
-### 3. Add Badge Import
-Import the existing `Badge` component:
-```typescript
-import { Badge } from '@/components/ui/badge';
-```
+### 3. "One Flywheel" (icon: `RefreshCw`)
+- **Description**: "Building, advising, and creating are parts of one engine. Each venture sharpens commercial instinct and compounds into the next."
+- **Points**: "Every venture feeds the whole", "Advising sharpens go-to-market", "Creating attracts enterprise opportunities", "Modular ecosystem, singular focus"
 
-### 4. Render Beta Badge in BusinessCard
-Add conditional badge rendering inside the card, positioned in the top-left corner (adjusting for the existing mobile-only smartphone icon):
+### 4. "AI-Native Revenue" (icon: `Target`)
+- **Description**: "Enterprise GTM engines powered by AI — automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue."
+- **Points**: "AI-native GTM engines at scale", "Automated research & outreach pipelines", "Revenue systems, not just strategy", "Enterprise-grade commercial infrastructure"
 
-```text
-┌──────────────────────────────┐
-│ Beta              [↗]        │  ← Badge top-left, external link top-right
-│    [icon]                    │
-│    Business Name             │
-│    Role                      │
-│    Description...            │
-└──────────────────────────────┘
-```
+Card 4 is the subtle "hire me" signal — it frames everything through the lens of revenue leadership and enterprise commercial systems without saying "I want a CRO job."
 
-The badge will use a subtle amber/yellow color scheme to indicate "in development" status without being too alarming:
-- Background: `bg-amber-500/20`
-- Text: `text-amber-600 dark:text-amber-400`
-- Border: `border-amber-500/30`
+## Section Header Tweak
+Change subtitle from current "Principles forged across 16 years and 3 continents" to:
+"16 years of scaling revenue across 3 continents — distilled into how I build today"
 
-### 5. Handle Icon Conflicts
-The mobile-only smartphone icon currently appears at `top-3 left-3`. For cards that have both `mobileOnly` AND `isBeta`:
-- Position Beta badge at `top-3 left-3`
-- Move smartphone icon to appear inline after the badge or remove it (since Beta implies early stage anyway)
+This subtly reinforces the revenue leadership narrative.
 
-Actually, a cleaner approach: stack them vertically or show Beta badge in the same position, slightly offset. Given that all beta apps except Conclusiv are also mobile-only, I'll position the Beta badge at `top-3 left-3` and remove the smartphone icon for beta cards (the Beta status is more important information).
+## Technical Changes
 
----
+**File:** `src/components/Philosophy.tsx`
+1. Replace imports `Layers, Database` with `RefreshCw, Target` from lucide-react
+2. Rewrite all four `principles` array entries with content above
+3. Update subtitle text
 
-## Technical Details
+No structural/layout changes — just content and two icon swaps.
 
-**File to modify:** `src/components/LivePortfolio.tsx`
-
-**Changes:**
-1. Add `Badge` import from `@/components/ui/badge`
-2. Add `isBeta?: boolean` to `Business` interface (line 41)
-3. Add `isBeta: true` to WellWell, Conclusiv, Ritual, Swaami, Lockstep entries
-4. In `BusinessCard` component, add beta badge rendering with appropriate styling
-5. Adjust mobile-only icon logic to not show when beta badge is present (to avoid clutter)
