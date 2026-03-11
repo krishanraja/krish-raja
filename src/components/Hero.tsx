@@ -30,8 +30,8 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a href="#portfolio" className="flex items-center gap-2">
-                Explore My Portfolio
+              <a href="#proof-points" className="flex items-center gap-2">
+                See My Track Record
                 <ArrowDown size={16} />
               </a>
             </Button>
