@@ -19,7 +19,7 @@ import signalAndNoiseLogo from '@/assets/signal-and-noise-logo.png';
 // Preload all portfolio icons for instant display
 const allIcons = [
   mindmakerIcon, builderEconomyIcon, wellwellIcon, conclusivIcon,
-  rinoaIcon, ritualIcon, swaamiIcon, lockstepIcon, melioraIcon,
+  lockstepIcon, melioraIcon,
   adfixusIcon, techonomicLogo, signalAndNoiseLogo
 ];
 
