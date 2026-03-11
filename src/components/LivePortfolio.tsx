@@ -83,31 +83,6 @@ const builderBusinesses: Business[] = [
     isBeta: true
   },
   {
-    name: "Rinoa",
-    description: "Creating AI singers that jam with you to increase creativity",
-    icon: rinoaIcon,
-    url: "https://rinoa.ai",
-    role: "Advisor: GTM"
-  },
-  {
-    name: "Ritual",
-    description: "Helping partners to re-love one another with thoughtful weekly moments",
-    icon: ritualIcon,
-    url: "https://tryritual.co",
-    role: "Full-Stack Founder",
-    mobileOnly: true,
-    isBeta: true
-  },
-  {
-    name: "Swaami",
-    description: "Find neighbourhood locals willing to help you out for free",
-    icon: swaamiIcon,
-    url: "https://swaami.ai",
-    role: "Full-Stack Founder",
-    mobileOnly: true,
-    isBeta: true
-  },
-  {
     name: "Lockstep",
     description: "Arrange group events without any anxiety or chasing",
     icon: lockstepIcon,
