@@ -186,7 +186,7 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
               fetchPriority="high"
               className={`${isMobile 
                 ? `${isLargerLogo ? 'h-8' : 'h-8'}` 
-                : `${isLargerLogo ? 'h-12' : 'h-12'}`} w-auto object-contain dark:brightness-110 dark:contrast-105 transition-all duration-300`}
+                : `${isLargerLogo ? 'h-12' : 'h-12'}`} w-auto object-contain ${isLargerLogo ? 'dark:brightness-200 dark:invert' : 'dark:brightness-110 dark:contrast-105'} transition-all duration-300`}
             />
           </div>
           </div>
