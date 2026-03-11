@@ -11,15 +11,15 @@ import Footer from '@/components/Footer';
 const Index = () => {
   useEffect(() => {
     // SEO and Analytics Setup
-    document.title = "Krish Raja - Builder of AI Products | 8 Live Products, 16 Years Experience";
+    document.title = "Krish Raja - AI Revenue Leader | 16 Years Scaling Businesses";
     
     // Structured data for search engines
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Krish Raja",
-      "jobTitle": "AI Product Builder & Educator",
-      "description": "Builder running 8 live AI products. Teaching thousands to build with AI. 16 years scaling businesses across 3 continents.",
+      "jobTitle": "AI Revenue Leader & Enterprise Strategist",
+      "description": "16 years building revenue engines across 3 continents. From zero to multi-million ARR scaling AI-native businesses.",
       "url": "https://www.krishraja.com",
       "email": "hello@krishraja.com",
       "telephone": "+1-347-665-8225",
@@ -41,7 +41,7 @@ const Index = () => {
         "Business Scaling"
       ],
       "alumniOf": "Microsoft",
-      "awards": "30 Under 30 (Marketing & Media)"
+      "awards": "30 Under 30"
     };
 
     const script = document.createElement('script');
@@ -83,11 +83,11 @@ const Index = () => {
       
       <main id="main">
         <Hero />
+        <ProofPoints />
         <LivePortfolio />
+        <Work />
         <Philosophy />
         <LearnWithMe />
-        <Work />
-        <ProofPoints />
       </main>
       
       <Footer />

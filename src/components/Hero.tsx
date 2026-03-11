@@ -12,11 +12,12 @@ const Hero = () => {
           </div>
           
           <h1 className="headline-xl mb-6 text-balance">
-            I <span className="text-primary">build with AI</span> and help others to.
+            From zero to multi-million ARR.<br />
+            I <span className="text-primary">scale AI-native businesses.</span>
           </h1>
           
           <p className="body-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
-            Builder-in-action running 8 live products. 16 years scaling businesses across 3 continents. My mission: help humans and businesses use data + AI to become self-reliant and value-creating.
+            16 years building revenue engines across 3 continents. From Microsoft to founding AI ventures generating real commercial outcomes.
           </p>
           
           <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
@@ -29,8 +30,8 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a href="#portfolio" className="flex items-center gap-2">
-                Explore My Portfolio
+              <a href="#proof-points" className="flex items-center gap-2">
+                See My Track Record
                 <ArrowDown size={16} />
               </a>
             </Button>

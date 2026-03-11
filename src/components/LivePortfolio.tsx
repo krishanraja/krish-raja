@@ -10,9 +10,6 @@ import mindmakerIcon from '@/assets/mindmaker-icon.png';
 import builderEconomyIcon from '@/assets/builder-economy-icon.png';
 import wellwellIcon from '@/assets/wellwell-icon.png';
 import conclusivIcon from '@/assets/conclusiv-icon.png';
-import rinoaIcon from '@/assets/rinoa-icon.png';
-import ritualIcon from '@/assets/ritual-icon.png';
-import swaamiIcon from '@/assets/swaami-icon.png';
 import lockstepIcon from '@/assets/lockstep-icon.png';
 import melioraIcon from '@/assets/meliora-icon.png';
 import adfixusIcon from '@/assets/adfixus-icon.png';
@@ -22,7 +19,7 @@ import signalAndNoiseLogo from '@/assets/signal-and-noise-logo.png';
 // Preload all portfolio icons for instant display
 const allIcons = [
   mindmakerIcon, builderEconomyIcon, wellwellIcon, conclusivIcon,
-  rinoaIcon, ritualIcon, swaamiIcon, lockstepIcon, melioraIcon,
+  lockstepIcon, melioraIcon,
   adfixusIcon, techonomicLogo, signalAndNoiseLogo
 ];
 
@@ -83,31 +80,6 @@ const builderBusinesses: Business[] = [
     icon: conclusivIcon,
     url: "https://conclusiv.ai",
     role: "Full-Stack Founder",
-    isBeta: true
-  },
-  {
-    name: "Rinoa",
-    description: "Creating AI singers that jam with you to increase creativity",
-    icon: rinoaIcon,
-    url: "https://rinoa.ai",
-    role: "Advisor: GTM"
-  },
-  {
-    name: "Ritual",
-    description: "Helping partners to re-love one another with thoughtful weekly moments",
-    icon: ritualIcon,
-    url: "https://tryritual.co",
-    role: "Full-Stack Founder",
-    mobileOnly: true,
-    isBeta: true
-  },
-  {
-    name: "Swaami",
-    description: "Find neighbourhood locals willing to help you out for free",
-    icon: swaamiIcon,
-    url: "https://swaami.ai",
-    role: "Full-Stack Founder",
-    mobileOnly: true,
     isBeta: true
   },
   {
@@ -259,7 +231,7 @@ const LivePortfolio = () => {
         <div className="text-center mb-10">
           <h2 className="headline-lg mb-4">Live Portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            13 ventures across operating, building, and creating — explore what resonates
+            10 ventures across operating, building, and creating — explore what resonates
           </p>
         </div>
 

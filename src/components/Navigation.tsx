@@ -16,11 +16,11 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
+    { label: 'Track Record', href: '#proof-points' },
     { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Writing', href: '#writing' },
     { label: 'Philosophy', href: '#philosophy' },
     { label: 'Learn', href: '#learn' },
-    { label: 'Writing', href: '#writing' },
-    { label: 'Background', href: '#creds' },
     { label: 'Contact', href: '#contact' }
   ];
 

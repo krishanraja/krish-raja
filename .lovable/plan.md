@@ -1,41 +1,46 @@
 
 
-# Site Repositioning: Commercial Leader, Not Hobbyist
+# Reimagine Philosophy Section — Combined Plan
 
-## Changes
+## The Brief
+Three layers of feedback to weave together:
+1. **"Compound credibility" → compound learnings/memory** across AI agents and projects
+2. **"Fractional Everything" → One Flywheel** — modular ecosystem, not mercenary optionality
+3. **Showcase advanced AI builds** — GTM engines, clones, memory webs, ghostwriters, researchers, API-connected EA
+4. **Signal "hire this person as a revenue leader"** — subtly position as a high-growth commercial leader for the AI age
 
-### 1. Hero Rewrite (`src/components/Hero.tsx`)
-- **Headline**: `From zero to multi-million ARR.` (line 1) + `I scale AI-native businesses.` (line 2, "scale AI-native businesses" in primary color)
-- **Subline**: "16 years building revenue engines across 3 continents. From Microsoft to founding AI ventures generating real commercial outcomes."
-- **CTA**: Change "Explore My Portfolio" → "See My Track Record" linking to `#proof-points`
+## New Four Cards
 
-### 2. Section Reorder (`src/pages/Index.tsx`)
-Current: Hero → Portfolio → Philosophy → Learn → Work → ProofPoints
-New: **Hero → ProofPoints → Portfolio → Work → Philosophy → Learn**
+### 1. "Build in Public" (icon: `Rocket`)
+- **Description**: "Ship fast, learn openly, compound knowledge. Every system failure gets encoded so it never repeats across the next project."
+- **Points**: "Learnings carry across projects", "AI memory webs compound over time", "One failure prevents the next", "Momentum through iteration"
 
-Update SEO title to "Krish Raja - AI Revenue Leader | 16 Years Scaling Businesses" and structured data: jobTitle → "AI Revenue Leader & Enterprise Strategist", description updated accordingly. Change `"awards": "30 Under 30 (Marketing & Media)"` → `"awards": "30 Under 30"` (remove Forbes reference).
+### 2. "AI as Co-Founder" (icon: `Bot`)
+- **Description**: "I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants."
+- **Points**: "Voice & video clones in production", "Memory structures across agents", "AI ghostwriters & researchers", "Human judgment, machine scale"
 
-### 3. Curate Builder Tab (`src/components/LivePortfolio.tsx`)
-- Remove Rinoa, Ritual, Swaami from `builderBusinesses` array (keep Conclusiv, WellWell, Lockstep)
-- Remove unused imports: `rinoaIcon`, `ritualIcon`, `swaamiIcon`
-- Update subtitle: "13 ventures" → "10 ventures"
+### 3. "One Flywheel" (icon: `RefreshCw`)
+- **Description**: "Building, advising, and creating are parts of one engine. Each venture sharpens commercial instinct and compounds into the next."
+- **Points**: "Every venture feeds the whole", "Advising sharpens go-to-market", "Creating attracts enterprise opportunities", "Modular ecosystem, singular focus"
 
-### 4. Navigation Reorder (`src/components/Navigation.tsx`)
-New `navItems` order:
-1. `{ label: 'Track Record', href: '#proof-points' }`
-2. `{ label: 'Portfolio', href: '#portfolio' }`
-3. `{ label: 'Writing', href: '#writing' }`
-4. `{ label: 'Philosophy', href: '#philosophy' }`
-5. `{ label: 'Learn', href: '#learn' }`
-6. `{ label: 'Contact', href: '#contact' }`
+### 4. "AI-Native Revenue" (icon: `Target`)
+- **Description**: "Enterprise GTM engines powered by AI — automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue."
+- **Points**: "AI-native GTM engines at scale", "Automated research & outreach pipelines", "Revenue systems, not just strategy", "Enterprise-grade commercial infrastructure"
 
-### 5. Remove Forbes references
-- `src/components/ProofPoints.tsx` line 64: Change `"Former 30-Under-30"` → `"Former 30 Under 30"`  (already no Forbes mention here, just standardize)
-- `src/pages/Index.tsx` line 44: Already just says "30 Under 30" — no Forbes reference found anywhere. No changes needed.
+Card 4 is the subtle "hire me" signal — it frames everything through the lens of revenue leadership and enterprise commercial systems without saying "I want a CRO job."
 
-### Files Changed
-- `src/components/Hero.tsx`
-- `src/pages/Index.tsx`
-- `src/components/LivePortfolio.tsx`
-- `src/components/Navigation.tsx`
+## Section Header Tweak
+Change subtitle from current "Principles forged across 16 years and 3 continents" to:
+"16 years of scaling revenue across 3 continents — distilled into how I build today"
+
+This subtly reinforces the revenue leadership narrative.
+
+## Technical Changes
+
+**File:** `src/components/Philosophy.tsx`
+1. Replace imports `Layers, Database` with `RefreshCw, Target` from lucide-react
+2. Rewrite all four `principles` array entries with content above
+3. Update subtitle text
+
+No structural/layout changes — just content and two icon swaps.
 

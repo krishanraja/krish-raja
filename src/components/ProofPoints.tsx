@@ -61,7 +61,7 @@ const ProofPoints = () => {
   ];
 
   const credentials = [
-    "Former 30-Under-30",
+    "Former 30 Under 30",
     "Harvard Business School (Executive Programs)", 
     "Sydney Opera House Keynote Speaker",
     "Published Author, Speaker & Writer",
