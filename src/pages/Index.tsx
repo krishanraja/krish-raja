@@ -41,7 +41,7 @@ const Index = () => {
         "Business Scaling"
       ],
       "alumniOf": "Microsoft",
-      "awards": "30 Under 30 (Marketing & Media)"
+      "awards": "30 Under 30"
     };
 
     const script = document.createElement('script');
