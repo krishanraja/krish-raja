@@ -16,7 +16,7 @@ const Hero = () => {
           </h1>
           
           <p className="body-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
-            Builder-in-action running 8 live products. 16 years scaling businesses across 3 continents. My mission: help humans and businesses use data + AI to become self-reliant, fractional, and value-creating.
+            Builder-in-action running 8 live products. 16 years scaling businesses across 3 continents. My mission: help humans and businesses use data + AI to become self-reliant and value-creating.
           </p>
           
           <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
