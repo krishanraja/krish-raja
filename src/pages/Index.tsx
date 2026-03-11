@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 const Index = () => {
   useEffect(() => {
     // SEO and Analytics Setup
-    document.title = "Krish Raja - Builder of AI Products | 8 Live Products, 16 Years Experience";
+    document.title = "Krish Raja - AI Revenue Leader | 16 Years Scaling Businesses";
     
     // Structured data for search engines
     const structuredData = {
