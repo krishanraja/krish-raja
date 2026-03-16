@@ -3503,6 +3503,93 @@ export type Database = {
         }
         Relationships: []
       }
+      user_memory: {
+        Row: {
+          confidence_score: number | null
+          created_at: string | null
+          fact_category: Database["public"]["Enums"]["fact_category"]
+          fact_context: string | null
+          fact_key: string
+          fact_label: string
+          fact_value: string
+          id: string
+          is_current: boolean | null
+          is_high_stakes: boolean | null
+          source_session_id: string | null
+          source_transcript_id: string | null
+          source_type: Database["public"]["Enums"]["memory_source_type"]
+          superseded_by: string | null
+          supersedes: string | null
+          updated_at: string | null
+          user_id: string | null
+          verification_status:
+            | Database["public"]["Enums"]["verification_status"]
+            | null
+          verified_at: string | null
+        }
+        Insert: {
+          confidence_score?: number | null
+          created_at?: string | null
+          fact_category: Database["public"]["Enums"]["fact_category"]
+          fact_context?: string | null
+          fact_key: string
+          fact_label: string
+          fact_value: string
+          id?: string
+          is_current?: boolean | null
+          is_high_stakes?: boolean | null
+          source_session_id?: string | null
+          source_transcript_id?: string | null
+          source_type?: Database["public"]["Enums"]["memory_source_type"]
+          superseded_by?: string | null
+          supersedes?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          verification_status?:
+            | Database["public"]["Enums"]["verification_status"]
+            | null
+          verified_at?: string | null
+        }
+        Update: {
+          confidence_score?: number | null
+          created_at?: string | null
+          fact_category?: Database["public"]["Enums"]["fact_category"]
+          fact_context?: string | null
+          fact_key?: string
+          fact_label?: string
+          fact_value?: string
+          id?: string
+          is_current?: boolean | null
+          is_high_stakes?: boolean | null
+          source_session_id?: string | null
+          source_transcript_id?: string | null
+          source_type?: Database["public"]["Enums"]["memory_source_type"]
+          superseded_by?: string | null
+          supersedes?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          verification_status?:
+            | Database["public"]["Enums"]["verification_status"]
+            | null
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_memory_superseded_by_fkey"
+            columns: ["superseded_by"]
+            isOneToOne: false
+            referencedRelation: "user_memory"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_memory_supersedes_fkey"
+            columns: ["supersedes"]
+            isOneToOne: false
+            referencedRelation: "user_memory"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_memory_settings: {
         Row: {
           auto_summarize_enabled: boolean | null
@@ -4233,6 +4320,29 @@ export type Database = {
         }
         Returns: string
       }
+      get_pending_verifications: {
+        Args: { p_user_id: string }
+        Returns: {
+          confidence_score: number
+          fact_category: Database["public"]["Enums"]["fact_category"]
+          fact_context: string
+          fact_key: string
+          fact_label: string
+          fact_value: string
+          id: string
+        }[]
+      }
+      get_user_memory_context: {
+        Args: { p_user_id: string }
+        Returns: {
+          confidence_score: number
+          fact_category: Database["public"]["Enums"]["fact_category"]
+          fact_key: string
+          fact_label: string
+          fact_value: string
+          verification_status: Database["public"]["Enums"]["verification_status"]
+        }[]
+      }
       has_role:
         | {
             Args: {
@@ -4284,6 +4394,14 @@ export type Database = {
           sync_status: string
         }[]
       }
+      verify_memory_fact: {
+        Args: {
+          p_fact_id: string
+          p_is_correct?: boolean
+          p_new_value?: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       action_signal_level: "low" | "mid" | "high"
@@ -4303,6 +4421,18 @@ export type Database = {
         | "VP"
         | "Director"
         | "Other"
+      fact_category:
+        | "identity"
+        | "business"
+        | "objective"
+        | "blocker"
+        | "preference"
+      memory_source_type:
+        | "voice"
+        | "form"
+        | "linkedin"
+        | "calendar"
+        | "enrichment"
       momentum_tier: "experimenting" | "scaling" | "institutionalizing"
       roi_provenance: "instrumented" | "system_report" | "estimate"
       roi_unit_type:
@@ -4311,6 +4441,7 @@ export type Database = {
         | "cost_reduction"
         | "nps_increase"
         | "time_to_market"
+      verification_status: "inferred" | "verified" | "corrected" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -4448,6 +4579,20 @@ export const Constants = {
         "research_partnerships",
       ],
       exec_role: ["CEO", "CTO", "COO", "CMO", "CFO", "VP", "Director", "Other"],
+      fact_category: [
+        "identity",
+        "business",
+        "objective",
+        "blocker",
+        "preference",
+      ],
+      memory_source_type: [
+        "voice",
+        "form",
+        "linkedin",
+        "calendar",
+        "enrichment",
+      ],
       momentum_tier: ["experimenting", "scaling", "institutionalizing"],
       roi_provenance: ["instrumented", "system_report", "estimate"],
       roi_unit_type: [
@@ -4457,6 +4602,7 @@ export const Constants = {
         "nps_increase",
         "time_to_market",
       ],
+      verification_status: ["inferred", "verified", "corrected", "rejected"],
     },
   },
 } as const
