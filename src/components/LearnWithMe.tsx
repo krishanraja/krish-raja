@@ -175,7 +175,7 @@ const LearnWithMe = () => {
           </div>
 
           <MobileCarousel 
-            className="grid md:grid-cols-3 gap-6"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
             uniformHeight={true}
             minHeight="carousel-lg"
           >
