@@ -10,14 +10,18 @@ import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import literacyToStrategyImage from '@/assets/literacy-to-strategy.jpg';
 import learnProgramAiImage from '@/assets/learn-program-ai.png';
 import buildInPublicImage from '@/assets/build-in-public.png';
-import vibeCodeIncomeImage from '@/assets/vibe-code-income.png';
+import mavenMemoryImage from '@/assets/maven-memory.png';
+import mavenVibecodingImage from '@/assets/maven-vibecoding-leaders.png';
+import mavenOpenclawImage from '@/assets/maven-openclaw.png';
 
 // Preload all course images for instant display
 const allCourseImages = [
   literacyToStrategyImage,
   learnProgramAiImage,
   buildInPublicImage,
-  vibeCodeIncomeImage
+  mavenMemoryImage,
+  mavenVibecodingImage,
+  mavenOpenclawImage
 ];
 
 const preloadCourseImages = () => {
