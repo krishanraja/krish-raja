@@ -55,25 +55,39 @@ const LearnWithMe = () => {
 
   const lightningLessons = [
     {
-      title: "Learn To Program Your AI",
+      title: "Make AI Your Co-Founder",
+      description: "Learn how to use AI as a true building partner to ship products and scale faster",
+      duration: "Free",
+      link: "https://maven.com/p/1054a6/build-in-public-with-gen-ai-as-your-co-founder?utm_medium=ll_share_link&utm_source=instructor",
+      image: buildInPublicImage
+    },
+    {
+      title: "Skills 101: Learn How To Program Your AI Tools",
       description: "Master prompt engineering and tool configuration to 10x your productivity",
       duration: "Free",
       link: "https://maven.com/p/6c1d16/learn-how-to-program-your-ai-tools",
       image: learnProgramAiImage
     },
     {
-      title: "Build In Public",
-      description: "Use Gen AI as your co-founder to ship products and build credibility",
+      title: "Run Your Life With OpenClaw",
+      description: "The good, the bad and the ugly of running your life with AI-powered tools",
       duration: "Free",
-      link: "https://maven.com/p/1054a6/build-in-public-with-gen-ai-as-your-co-founder?utm_medium=ll_share_link&utm_source=instructor",
-      image: buildInPublicImage
+      link: "https://maven.com/aimindmaker",
+      image: mavenOpenclawImage
     },
     {
-      title: "Vibe Code Your Way to Income",
-      description: "Turn your ideas into working products and new revenue streams",
+      title: "Improve The Memory Of Your AI Tools",
+      description: "Give your AI persistent memory so it learns and compounds knowledge over time",
       duration: "Free",
-      link: "https://maven.com/p/b95f6c/vibe-code-your-way-to-a-new-income-stream?utm_medium=ll_share_link&utm_source=instructor",
-      image: vibeCodeIncomeImage
+      link: "https://maven.com/aimindmaker",
+      image: mavenMemoryImage
+    },
+    {
+      title: "Vibe Coding for Leaders: Build What You Brief",
+      description: "Turn your briefs into working products — no engineering team required",
+      duration: "Free",
+      link: "https://maven.com/aimindmaker",
+      image: mavenVibecodingImage
     }
   ];
 
