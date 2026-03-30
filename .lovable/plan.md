@@ -1,46 +1,48 @@
 
 
-# Reimagine Philosophy Section — Combined Plan
+# Philosophy Section: Toggle Between "What I Build" and "How I Build"
 
-## The Brief
-Three layers of feedback to weave together:
-1. **"Compound credibility" → compound learnings/memory** across AI agents and projects
-2. **"Fractional Everything" → One Flywheel** — modular ecosystem, not mercenary optionality
-3. **Showcase advanced AI builds** — GTM engines, clones, memory webs, ghostwriters, researchers, API-connected EA
-4. **Signal "hire this person as a revenue leader"** — subtly position as a high-growth commercial leader for the AI age
+## Concept
+The Philosophy section gets a toggle at the top — two views sharing the same space. **"What I Build"** shows categorized evidence of AI systems you've actually shipped. **"How I Build"** shows the existing four principle cards. Default view: "What I Build" (proof first, philosophy second).
 
-## New Four Cards
+## "What I Build" — 5 Category Cards
 
-### 1. "Build in Public" (icon: `Rocket`)
-- **Description**: "Ship fast, learn openly, compound knowledge. Every system failure gets encoded so it never repeats across the next project."
-- **Points**: "Learnings carry across projects", "AI memory webs compound over time", "One failure prevents the next", "Momentum through iteration"
+Each card: icon, category name, count, one-line description.
 
-### 2. "AI as Co-Founder" (icon: `Bot`)
-- **Description**: "I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants."
-- **Points**: "Voice & video clones in production", "Memory structures across agents", "AI ghostwriters & researchers", "Human judgment, machine scale"
+1. **Products & Platforms** (icon: `Smartphone`) — "4 shipped"
+   "Full-stack apps from mobile-first exec tools to market intelligence dashboards"
 
-### 3. "One Flywheel" (icon: `RefreshCw`)
-- **Description**: "Building, advising, and creating are parts of one engine. Each venture sharpens commercial instinct and compounds into the next."
-- **Points**: "Every venture feeds the whole", "Advising sharpens go-to-market", "Creating attracts enterprise opportunities", "Modular ecosystem, singular focus"
+2. **Autonomous Systems** (icon: `Bot`) — "7 running"
+   "Cron-driven agents handling ops, email triage, content synthesis, and job sourcing — 24/7"
 
-### 4. "AI-Native Revenue" (icon: `Target`)
-- **Description**: "Enterprise GTM engines powered by AI — automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue."
-- **Points**: "AI-native GTM engines at scale", "Automated research & outreach pipelines", "Revenue systems, not just strategy", "Enterprise-grade commercial infrastructure"
+3. **Outbound Engines** (icon: `Target`) — "80+ campaigns"
+   "AI-powered cold email, LinkedIn DMs, and named-account sequences across multiple ventures"
 
-Card 4 is the subtle "hire me" signal — it frames everything through the lens of revenue leadership and enterprise commercial systems without saying "I want a CRO job."
+4. **Content Systems** (icon: `FileText`) — "5 pipelines"
+   "Automated newsletter production, slide generation, media pitches, and editorial calendars"
 
-## Section Header Tweak
-Change subtitle from current "Principles forged across 16 years and 3 continents" to:
-"16 years of scaling revenue across 3 continents — distilled into how I build today"
+5. **Operational Tools** (icon: `Wrench`) — "5 systems"
+   "Domain intelligence, lead enrichment, decision-maker mapping, and automated job applications"
 
-This subtly reinforces the revenue leadership narrative.
+## Toggle Mechanism
+- Use the existing `Tabs` component from shadcn with a centered `TabsList` containing "What I Build" / "How I Build" pills
+- Place it between the section subtitle and the cards
+- Both views use the same `MobileCarousel` layout on mobile, grid on desktop
+- "What I Build" cards are slightly simpler (no bullet points — just icon, title, count badge, description)
+
+## Section Header Update
+- Title stays: "How I Think About Building"
+- Subtitle changes to: "16 years of scaling revenue across 3 continents — here's what that looks like in practice"
 
 ## Technical Changes
 
 **File:** `src/components/Philosophy.tsx`
-1. Replace imports `Layers, Database` with `RefreshCw, Target` from lucide-react
-2. Rewrite all four `principles` array entries with content above
-3. Update subtitle text
+1. Add imports: `Tabs, TabsContent, TabsList, TabsTrigger` from shadcn, plus `FileText, Wrench, Smartphone` from lucide-react
+2. Add `builds` array (5 category objects with title, icon, count, description)
+3. Wrap existing principles grid and new builds grid in `Tabs` with two `TabsContent` panels
+4. Default tab: "what" (What I Build)
+5. Both tabs reuse the same mobile carousel / desktop grid layout pattern already in place
+6. Update subtitle text
 
-No structural/layout changes — just content and two icon swaps.
+Single file change: `src/components/Philosophy.tsx`
 
