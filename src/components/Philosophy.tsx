@@ -18,7 +18,7 @@ const Philosophy = () => {
       icon: Bot,
       title: "Autonomous Systems",
       count: "7 running",
-      description: "Cron-driven agents handling ops, email triage, content synthesis, and job sourcing — 24/7"
+      description: "Cron-driven agents handling ops, email triage, content synthesis, and job sourcing. 24/7"
     },
     {
       icon: Target,
