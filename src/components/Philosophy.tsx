@@ -36,7 +36,7 @@ const Philosophy = () => {
       icon: Wrench,
       title: "Operational Tools",
       count: "5 systems",
-      description: "Domain intelligence, lead enrichment, decision-maker mapping, and automated job applications"
+      description: "Domain intelligence, lead enrichment, and decision-maker mapping. Licensed to 3 businesses and counting."
     }
   ];
 
