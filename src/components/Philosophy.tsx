@@ -62,7 +62,7 @@ const Philosophy = () => {
     {
       icon: Target,
       title: "AI-Native Revenue",
-      description: "Enterprise GTM engines powered by AI — automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue.",
+      description: "Enterprise GTM engines powered by AI: automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue.",
       points: ["AI-native GTM engines at scale", "Automated research & outreach pipelines", "Revenue systems, not just strategy", "Enterprise-grade commercial infrastructure"]
     }
   ];
