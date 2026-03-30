@@ -83,6 +83,7 @@ const Index = () => {
       
       <main id="main">
         <Hero />
+        <Philosophy />
         <ProofPoints />
         <LivePortfolio />
         <Work />
