@@ -18,6 +18,7 @@ interface MobileCarouselProps {
   minHeight?: 'carousel-xs' | 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl' | 'carousel-3xl' | 'carousel-4xl' | 'carousel-5xl';
   allowContentExpansion?: boolean;
   expandedIndex?: number | null;
+  alwaysCarousel?: boolean;
 }
 
 export const MobileCarousel: React.FC<MobileCarouselProps> = ({
@@ -29,7 +30,8 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   uniformHeight = true,
   minHeight = "carousel-md",
   allowContentExpansion = false,
-  expandedIndex = null
+  expandedIndex = null,
+  alwaysCarousel = false
 }) => {
   const isMobile = useIsMobile();
   const [current, setCurrent] = React.useState(0);
@@ -44,9 +46,12 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   }, [carouselApi]);
 
   // Desktop: render as provided (usually Grid)
-  if (!isMobile) {
+  if (!isMobile && !alwaysCarousel) {
     return <div className={className}>{children}</div>;
   }
+
+  const desktopBasis = alwaysCarousel && !isMobile ? 'basis-[33.333%]' : 'basis-[85%]';
+  const itemClasses = `pl-4 ${desktopBasis} ${itemClassName}`;
 
   // Mobile: Pure Flexbox carousel with forced Card heights
   const getHeightClass = (height: string) => {
@@ -65,7 +70,6 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   };
 
   const heightClasses = uniformHeight ? getHeightClass(minHeight) : "";
-  const itemClasses = `pl-4 basis-[85%] ${itemClassName}`;
 
   return (
     <div className="relative">
