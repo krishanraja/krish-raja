@@ -97,7 +97,7 @@ const LearnWithMe = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">Learn With Me</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            From free lightning lessons to deep cohort experiences — pick your path to AI fluency
+            From free lightning lessons to deep cohort experiences. Pick your path to AI fluency
           </p>
         </div>
 

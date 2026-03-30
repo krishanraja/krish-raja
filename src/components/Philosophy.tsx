@@ -124,7 +124,7 @@ const Philosophy = () => {
         <div className="text-center mb-10">
           <h2 className="headline-lg mb-6">How I Think About Building</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            16 years of scaling revenue across 3 continents — here's what that looks like in practice
+            16 years of scaling revenue across 3 continents. Here's what that looks like in practice
           </p>
         </div>
 

@@ -231,7 +231,7 @@ const LivePortfolio = () => {
         <div className="text-center mb-10">
           <h2 className="headline-lg mb-4">Live Portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            10 ventures across operating, building, and creating — explore what resonates
+            10 ventures across operating, building, and creating. Explore what resonates
           </p>
         </div>
 
