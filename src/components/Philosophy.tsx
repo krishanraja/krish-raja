@@ -50,7 +50,7 @@ const Philosophy = () => {
     {
       icon: Bot,
       title: "AI as Co-Founder",
-      description: "I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants.",
+      description: "I don't just use AI. I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants.",
       points: ["Voice & video clones in production", "Memory structures across agents", "AI ghostwriters & researchers", "Human judgment, machine scale"]
     },
     {
