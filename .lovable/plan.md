@@ -1,36 +1,33 @@
 
 
-## Unified Mobile Carousel System
+## Credentials as a Reverse Ticker on Mobile
 
-### Problem
-7+ horizontal swipe zones using 3 different implementations (MobileCarousel/embla, raw `overflow-x-auto snap-x`, raw `overflow-x-auto`). Inconsistent feel, no unified interaction pattern.
+### What changes
 
-### Solution: One Carousel, One Feel
+**On mobile only**, replace the credentials carousel with a CSS-animated ticker strip (same technique as the company logos), scrolling in the **opposite direction** (right-to-left becomes left-to-right). Place it directly above the logo ticker, creating a paired visual effect.
 
-Standardize **every** horizontal swipe section to use the same `MobileCarousel` component with identical interaction behavior:
+Desktop stays unchanged (wrapped badges in the grid).
 
-- Same 85% peek pattern (next card visible)
-- Same dot indicators
-- Same embla-powered smooth snap
-- No arrow buttons on mobile (swipe only)
-- Consistent spacing and padding
+### Files to change
 
-### Changes
+**1. `src/components/ProofPoints.tsx`**
+- In the mobile branch (`isMobile`), remove the `MobileCarousel`-wrapped credentials section from its current position
+- Move credentials into the bottom ticker area, above the logos
+- Render credentials as a `flex` strip with duplicated items (same `[...credentials, ...credentials]` pattern as logos), using `animate-[scroll-reverse_12s_linear_infinite]` to scroll the opposite direction
+- Each credential rendered as a compact badge with the Award icon
+- Keep the "Recognition & Credentials" heading as a small label above the ticker
 
-**1. `src/components/ui/mobile-carousel.tsx`**
-- Hide `CarouselPrevious`/`CarouselNext` on mobile (add `hidden md:flex`)
-- Ensure consistent dot style, spacing, and snap behavior across all uses
+**2. `tailwind.config.ts`**
+- Add a `scroll-reverse` keyframe: `0%: translateX(-50%)` → `100%: translateX(0)` (opposite of `scroll`)
 
-**2. `src/components/LivePortfolio.tsx`**
-- Replace the raw `overflow-x-auto snap-x` in `BusinessGrid` mobile path with `MobileCarousel`
-- Cards get the same peek + dot + snap treatment as everywhere else
+### Visual result on mobile
+```text
+─────────────────────────────
+Recognition & Credentials
+←← Former 30 Under 30 | Harvard Business School | MA Design Strategy...
+→→ Nine | McCann | Captify | Singtel | BBC | Microsoft...
+─────────────────────────────
+```
 
-**3. `src/components/ProofPoints.tsx`**
-- Replace the raw `overflow-x-auto` credentials badge strip with `MobileCarousel` (each slide = 2-3 badges grouped, or individual badge cards)
-- Credentials are currently the only section using a completely different scroll mechanism
-
-**4. No structural changes to Philosophy, Work, or LearnWithMe** — they already use `MobileCarousel`. They just inherit the improved consistency from step 1.
-
-### Result
-Every swipeable section on mobile uses identical physics, peek ratio, dots, and gesture handling. One muscle memory for the user.
+Two tickers moving in opposite directions, creating visual energy.
 
