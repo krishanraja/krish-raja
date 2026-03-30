@@ -18,7 +18,7 @@ const Philosophy = () => {
       icon: Bot,
       title: "Autonomous Systems",
       count: "7 running",
-      description: "Cron-driven agents handling ops, email triage, content synthesis, and job sourcing — 24/7"
+      description: "Cron-driven agents handling ops, email triage, content synthesis, and job sourcing. 24/7"
     },
     {
       icon: Target,
@@ -50,7 +50,7 @@ const Philosophy = () => {
     {
       icon: Bot,
       title: "AI as Co-Founder",
-      description: "I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants.",
+      description: "I don't just use AI. I build with it. Voice clones, video agents, memory webs, autonomous researchers, and API-connected assistants.",
       points: ["Voice & video clones in production", "Memory structures across agents", "AI ghostwriters & researchers", "Human judgment, machine scale"]
     },
     {
@@ -62,7 +62,7 @@ const Philosophy = () => {
     {
       icon: Target,
       title: "AI-Native Revenue",
-      description: "Enterprise GTM engines powered by AI — automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue.",
+      description: "Enterprise GTM engines powered by AI: automated pipelines, intelligent outreach, and scalable commercial systems that drive high-growth revenue.",
       points: ["AI-native GTM engines at scale", "Automated research & outreach pipelines", "Revenue systems, not just strategy", "Enterprise-grade commercial infrastructure"]
     }
   ];
@@ -124,7 +124,7 @@ const Philosophy = () => {
         <div className="text-center mb-10">
           <h2 className="headline-lg mb-6">How I Think About Building</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            16 years of scaling revenue across 3 continents — here's what that looks like in practice
+            16 years of scaling revenue across 3 continents. Here's what that looks like in practice
           </p>
         </div>
 
