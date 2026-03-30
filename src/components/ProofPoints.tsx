@@ -62,7 +62,8 @@ const ProofPoints = () => {
 
   const credentials = [
     "Former 30 Under 30",
-    "Harvard Business School (Executive Programs)", 
+    "Harvard Business School (Finance, Analytics & Economics)", 
+    "MA Design Strategy (Distinction)",
     "Sydney Opera House Keynote Speaker",
     "Published Author, Speaker & Writer",
     "Ex-Microsoft Automation Specialist",
