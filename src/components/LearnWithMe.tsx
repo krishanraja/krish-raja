@@ -84,7 +84,7 @@ const LearnWithMe = () => {
     },
     {
       title: "Vibe Coding for Leaders: Build What You Brief",
-      description: "Turn your briefs into working products — no engineering team required",
+      description: "Turn your briefs into working products, no engineering team required",
       duration: "Free",
       link: "https://maven.com/aimindmaker",
       image: mavenVibecodingImage
