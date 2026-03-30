@@ -18,7 +18,7 @@ const Hero = () => {
             I <span className="text-primary">build revenue streams</span> in an AI era and help others to do the same.
           </h1>
           
-          <p className="body-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
+          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
             16 years building revenue engines across 3 continents. From Microsoft to founding AI ventures generating real commercial outcomes.
           </p>
           
