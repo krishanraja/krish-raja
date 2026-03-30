@@ -46,9 +46,12 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   }, [carouselApi]);
 
   // Desktop: render as provided (usually Grid)
-  if (!isMobile) {
+  if (!isMobile && !alwaysCarousel) {
     return <div className={className}>{children}</div>;
   }
+
+  const desktopBasis = alwaysCarousel && !isMobile ? 'basis-[33.333%]' : 'basis-[85%]';
+  const itemClasses = `pl-4 ${desktopBasis} ${itemClassName}`;
 
   // Mobile: Pure Flexbox carousel with forced Card heights
   const getHeightClass = (height: string) => {
