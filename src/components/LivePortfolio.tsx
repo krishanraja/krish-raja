@@ -231,7 +231,7 @@ const LivePortfolio = () => {
         <div className="text-center mb-10">
           <h2 className="headline-lg mb-4">Live Portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            10 ventures across operating, building, and creating. Explore what resonates
+            I work with enterprise & leadership on technical and commercial outcomes. I build systems as I go, tools to help me, and content channels to share it.
           </p>
         </div>
 
