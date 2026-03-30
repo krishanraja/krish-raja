@@ -147,23 +147,6 @@ const ProofPoints = () => {
 
         {isMobile ? (
           <div className="space-y-12">
-            {/* Credentials */}
-            <div>
-              <h3 className="headline-md mb-8">Recognition & Credentials</h3>
-              <MobileCarousel 
-                className="flex flex-wrap gap-3"
-                showDots={true}
-                uniformHeight={false}
-              >
-                {credentials.map((credential, index) => (
-                  <div key={index} className="bg-background/50 border border-border rounded-lg p-3 flex items-center gap-2">
-                    <Award className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                    <span className="text-sm text-foreground">{credential}</span>
-                  </div>
-                ))}
-              </MobileCarousel>
-            </div>
-
             {/* Global Experience */}
             <div>
               <h3 className="headline-md mb-8">Global Journey</h3>
