@@ -1,48 +1,39 @@
 
 
-# Philosophy Section: Toggle Between "What I Build" and "How I Build"
+# Subtle Strengthening: Three Upgrades
 
-## Concept
-The Philosophy section gets a toggle at the top — two views sharing the same space. **"What I Build"** shows categorized evidence of AI systems you've actually shipped. **"How I Build"** shows the existing four principle cards. Default view: "What I Build" (proof first, philosophy second).
+## 1. AI Stack Licensed to Others (Philosophy section)
 
-## "What I Build" — 5 Category Cards
+In the "Operational Tools" build card, update the description to naturally mention that the stack has been licensed to other businesses. Something like:
 
-Each card: icon, category name, count, one-line description.
+**Current**: "Domain intelligence, lead enrichment, decision-maker mapping, and automated job applications"
+**Updated**: "Domain intelligence, lead enrichment, and decision-maker mapping. Licensed to 3 businesses and counting."
 
-1. **Products & Platforms** (icon: `Smartphone`) — "4 shipped"
-   "Full-stack apps from mobile-first exec tools to market intelligence dashboards"
+This turns a feature list into a credibility signal without changing the card's tone.
 
-2. **Autonomous Systems** (icon: `Bot`) — "7 running"
-   "Cron-driven agents handling ops, email triage, content synthesis, and job sourcing — 24/7"
+## 2. Richer Education Texture (ProofPoints credentials)
 
-3. **Outbound Engines** (icon: `Target`) — "80+ campaigns"
-   "AI-powered cold email, LinkedIn DMs, and named-account sequences across multiple ventures"
+Update two credential badges:
 
-4. **Content Systems** (icon: `FileText`) — "5 pipelines"
-   "Automated newsletter production, slide generation, media pitches, and editorial calendars"
+- **"Harvard Business School (Executive Programs)"** → **"Harvard Business School (Finance, Analytics & Economics)"** — specificity shows breadth without adding a claim
+- Add new badge: **"MA Design Strategy (Distinction)"** — rounds out the profile with a design-thinking credential
 
-5. **Operational Tools** (icon: `Wrench`) — "5 systems"
-   "Domain intelligence, lead enrichment, decision-maker mapping, and automated job applications"
+## 3. Narrative Throughline for Global Journey (ProofPoints locations)
 
-## Toggle Mechanism
-- Use the existing `Tabs` component from shadcn with a centered `TabsList` containing "What I Build" / "How I Build" pills
-- Place it between the section subtitle and the cards
-- Both views use the same `MobileCarousel` layout on mobile, grid on desktop
-- "What I Build" cards are slightly simpler (no bullet points — just icon, title, count badge, description)
+Update the `role` field for each location to create a connected arc. Currently they read as isolated job descriptions. The CV's throughline is "modernizing legacy businesses and launching new revenue streams."
 
-## Section Header Update
-- Title stays: "How I Think About Building"
-- Subtitle changes to: "16 years of scaling revenue across 3 continents — here's what that looks like in practice"
+**Current roles**: "Technical Foundation" → "AdTech Scale & Leadership" → "AI Strategy & Advisory"
 
-## Technical Changes
+**Updated roles**: "Where it started" → "Modernizing legacy, launching new" → "Building what's next"
 
-**File:** `src/components/Philosophy.tsx`
-1. Add imports: `Tabs, TabsContent, TabsList, TabsTrigger` from shadcn, plus `FileText, Wrench, Smartphone` from lucide-react
-2. Add `builds` array (5 category objects with title, icon, count, description)
-3. Wrap existing principles grid and new builds grid in `Tabs` with two `TabsContent` panels
-4. Default tab: "what" (What I Build)
-5. Both tabs reuse the same mobile carousel / desktop grid layout pattern already in place
-6. Update subtitle text
+Also lightly edit the `story` fields to tie together:
 
-Single file change: `src/components/Philosophy.tsx`
+- **London**: "Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up."
+- **Sydney**: "Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch."
+- **New York**: "Now in Brooklyn, combining everything into teaching, advising, and building with AI."
+
+## Files Changed
+
+- `src/components/Philosophy.tsx` — Operational Tools card description
+- `src/components/ProofPoints.tsx` — credentials array and locations array
 
