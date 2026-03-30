@@ -227,6 +227,23 @@ const ProofPoints = () => {
 
         {/* Company Logos */}
         <div className="mt-16 pt-12 border-t border-border/50">
+          {/* Credentials ticker - mobile only, scrolls opposite direction */}
+          {isMobile && (
+            <div className="mb-8">
+              <h3 className="headline-sm text-center mb-4 text-muted-foreground">Recognition & Credentials</h3>
+              <div className="relative overflow-hidden">
+                <div className="flex gap-6 animate-[scroll-reverse_12s_linear_infinite]">
+                  {[...credentials, ...credentials].map((credential, index) => (
+                    <div key={index} className="flex-shrink-0 flex items-center gap-2 bg-background/50 border border-border rounded-full px-4 py-1.5">
+                      <Award className="w-3 h-3 text-primary flex-shrink-0" />
+                      <span className="text-xs text-foreground whitespace-nowrap">{credential}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
           <h3 className="headline-sm text-center mb-8 text-muted-foreground">Global Experience in media, tech, data & telco</h3>
           <div className="relative overflow-hidden">
             <div className="flex gap-12 animate-[scroll_4s_linear_infinite] md:animate-[scroll_6.5s_linear_infinite] hover:[animation-play-state:paused]">
