@@ -1225,6 +1225,156 @@ export type Database = {
           },
         ]
       }
+      edge_actions: {
+        Row: {
+          action_type: string
+          capability_key: string
+          created_at: string
+          delivered_to_email: string | null
+          delivered_via: string | null
+          id: string
+          input_context: Json | null
+          output_content: string | null
+          output_format: string
+          target_key: string
+          title: string
+          user_id: string
+          user_rating: number | null
+          was_used: boolean
+        }
+        Insert: {
+          action_type: string
+          capability_key: string
+          created_at?: string
+          delivered_to_email?: string | null
+          delivered_via?: string | null
+          id?: string
+          input_context?: Json | null
+          output_content?: string | null
+          output_format?: string
+          target_key: string
+          title: string
+          user_id: string
+          user_rating?: number | null
+          was_used?: boolean
+        }
+        Update: {
+          action_type?: string
+          capability_key?: string
+          created_at?: string
+          delivered_to_email?: string | null
+          delivered_via?: string | null
+          id?: string
+          input_context?: Json | null
+          output_content?: string | null
+          output_format?: string
+          target_key?: string
+          title?: string
+          user_id?: string
+          user_rating?: number | null
+          was_used?: boolean
+        }
+        Relationships: []
+      }
+      edge_feedback: {
+        Row: {
+          created_at: string
+          feedback_type: string
+          id: string
+          target_key: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          feedback_type: string
+          id?: string
+          target_key: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          feedback_type?: string
+          id?: string
+          target_key?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      edge_profiles: {
+        Row: {
+          created_at: string
+          id: string
+          intelligence_gaps: Json
+          last_synthesized_at: string
+          profile_version: number
+          strengths: Json
+          synthesis_inputs: Json
+          updated_at: string
+          user_id: string
+          weaknesses: Json
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          intelligence_gaps?: Json
+          last_synthesized_at?: string
+          profile_version?: number
+          strengths?: Json
+          synthesis_inputs?: Json
+          updated_at?: string
+          user_id: string
+          weaknesses?: Json
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          intelligence_gaps?: Json
+          last_synthesized_at?: string
+          profile_version?: number
+          strengths?: Json
+          synthesis_inputs?: Json
+          updated_at?: string
+          user_id?: string
+          weaknesses?: Json
+        }
+        Relationships: []
+      }
+      edge_subscriptions: {
+        Row: {
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          status: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       effortless_map_items: {
         Row: {
           activity_session_id: string | null
@@ -2393,6 +2543,54 @@ export type Database = {
         }
         Relationships: []
       }
+      llm_call_log: {
+        Row: {
+          cached: boolean
+          completion_tokens: number | null
+          created_at: string
+          error: string | null
+          estimated_cost_usd: number | null
+          function_name: string
+          id: string
+          latency_ms: number | null
+          model: string
+          prompt_tokens: number | null
+          provider: string
+          total_tokens: number | null
+          user_id: string | null
+        }
+        Insert: {
+          cached?: boolean
+          completion_tokens?: number | null
+          created_at?: string
+          error?: string | null
+          estimated_cost_usd?: number | null
+          function_name: string
+          id?: string
+          latency_ms?: number | null
+          model: string
+          prompt_tokens?: number | null
+          provider: string
+          total_tokens?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          cached?: boolean
+          completion_tokens?: number | null
+          created_at?: string
+          error?: string | null
+          estimated_cost_usd?: number | null
+          function_name?: string
+          id?: string
+          latency_ms?: number | null
+          model?: string
+          prompt_tokens?: number | null
+          provider?: string
+          total_tokens?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       meeting_prep_sessions: {
         Row: {
           agenda_text: string
@@ -2870,6 +3068,7 @@ export type Database = {
         Row: {
           created_at: string
           display_name: string | null
+          edge_delivery_email: string | null
           email: string | null
           id: string
           updated_at: string
@@ -2878,6 +3077,7 @@ export type Database = {
         Insert: {
           created_at?: string
           display_name?: string | null
+          edge_delivery_email?: string | null
           email?: string | null
           id?: string
           updated_at?: string
@@ -2886,6 +3086,7 @@ export type Database = {
         Update: {
           created_at?: string
           display_name?: string | null
+          edge_delivery_email?: string | null
           email?: string | null
           id?: string
           updated_at?: string
@@ -3505,8 +3706,10 @@ export type Database = {
       }
       user_memory: {
         Row: {
+          archived_at: string | null
           confidence_score: number | null
           created_at: string | null
+          embedding: string | null
           fact_category: Database["public"]["Enums"]["fact_category"]
           fact_context: string | null
           fact_key: string
@@ -3515,11 +3718,15 @@ export type Database = {
           id: string
           is_current: boolean | null
           is_high_stakes: boolean | null
+          last_referenced_at: string | null
+          reference_count: number | null
           source_session_id: string | null
           source_transcript_id: string | null
           source_type: Database["public"]["Enums"]["memory_source_type"]
           superseded_by: string | null
           supersedes: string | null
+          tags: string[] | null
+          temperature: string | null
           updated_at: string | null
           user_id: string | null
           verification_status:
@@ -3528,8 +3735,10 @@ export type Database = {
           verified_at: string | null
         }
         Insert: {
+          archived_at?: string | null
           confidence_score?: number | null
           created_at?: string | null
+          embedding?: string | null
           fact_category: Database["public"]["Enums"]["fact_category"]
           fact_context?: string | null
           fact_key: string
@@ -3538,11 +3747,15 @@ export type Database = {
           id?: string
           is_current?: boolean | null
           is_high_stakes?: boolean | null
+          last_referenced_at?: string | null
+          reference_count?: number | null
           source_session_id?: string | null
           source_transcript_id?: string | null
           source_type?: Database["public"]["Enums"]["memory_source_type"]
           superseded_by?: string | null
           supersedes?: string | null
+          tags?: string[] | null
+          temperature?: string | null
           updated_at?: string | null
           user_id?: string | null
           verification_status?:
@@ -3551,8 +3764,10 @@ export type Database = {
           verified_at?: string | null
         }
         Update: {
+          archived_at?: string | null
           confidence_score?: number | null
           created_at?: string | null
+          embedding?: string | null
           fact_category?: Database["public"]["Enums"]["fact_category"]
           fact_context?: string | null
           fact_key?: string
@@ -3561,11 +3776,15 @@ export type Database = {
           id?: string
           is_current?: boolean | null
           is_high_stakes?: boolean | null
+          last_referenced_at?: string | null
+          reference_count?: number | null
           source_session_id?: string | null
           source_transcript_id?: string | null
           source_type?: Database["public"]["Enums"]["memory_source_type"]
           superseded_by?: string | null
           supersedes?: string | null
+          tags?: string[] | null
+          temperature?: string | null
           updated_at?: string | null
           user_id?: string | null
           verification_status?:
@@ -4174,6 +4393,20 @@ export type Database = {
       }
     }
     Views: {
+      llm_cost_dashboard: {
+        Row: {
+          avg_latency_ms: number | null
+          cache_hits: number | null
+          call_count: number | null
+          day: string | null
+          errors: number | null
+          model: string | null
+          provider: string | null
+          total_cost_usd: number | null
+          total_tokens: number | null
+        }
+        Relationships: []
+      }
       public_index_snapshots: {
         Row: {
           avg_readiness_score: number | null
@@ -4276,6 +4509,7 @@ export type Database = {
       }
       cleanup_expired_memories: { Args: never; Returns: number }
       cleanup_expired_research_cache: { Args: never; Returns: undefined }
+      cleanup_old_llm_logs: { Args: never; Returns: undefined }
       export_user_memory: { Args: { p_user_id: string }; Returns: Json }
       generate_referral_code: {
         Args: { p_assessment_id: string; p_email: string }
@@ -4290,6 +4524,44 @@ export type Database = {
           industry: string
           organizer_name: string
         }[]
+      }
+      get_memory_by_temperature: {
+        Args: { p_temperature: string; p_user_id: string }
+        Returns: {
+          archived_at: string | null
+          confidence_score: number | null
+          created_at: string | null
+          embedding: string | null
+          fact_category: Database["public"]["Enums"]["fact_category"]
+          fact_context: string | null
+          fact_key: string
+          fact_label: string
+          fact_value: string
+          id: string
+          is_current: boolean | null
+          is_high_stakes: boolean | null
+          last_referenced_at: string | null
+          reference_count: number | null
+          source_session_id: string | null
+          source_transcript_id: string | null
+          source_type: Database["public"]["Enums"]["memory_source_type"]
+          superseded_by: string | null
+          supersedes: string | null
+          tags: string[] | null
+          temperature: string | null
+          updated_at: string | null
+          user_id: string | null
+          verification_status:
+            | Database["public"]["Enums"]["verification_status"]
+            | null
+          verified_at: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "user_memory"
+          isOneToOne: false
+          isSetofReturn: true
+        }
       }
       get_or_create_memory_settings: {
         Args: { p_user_id: string }
@@ -4356,6 +4628,23 @@ export type Database = {
         Args: { email_domain: string }
         Returns: string
       }
+      match_user_memory: {
+        Args: {
+          match_count?: number
+          min_similarity?: number
+          query_embedding: string
+          user_uuid?: string
+        }
+        Returns: {
+          confidence_score: number
+          fact_category: string
+          fact_label: string
+          fact_value: string
+          id: string
+          similarity: number
+          temperature: string
+        }[]
+      }
       process_pending_sync_logs: {
         Args: never
         Returns: {
@@ -4377,6 +4666,7 @@ export type Database = {
         }
         Returns: string
       }
+      touch_memory_fact: { Args: { p_fact_id: string }; Returns: undefined }
       track_referral_conversion: {
         Args: {
           p_referee_assessment_id: string
