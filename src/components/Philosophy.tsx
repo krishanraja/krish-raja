@@ -1,11 +1,45 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Rocket, Bot, RefreshCw, Target } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Rocket, Bot, RefreshCw, Target, FileText, Wrench, Smartphone } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Philosophy = () => {
   const isMobile = useIsMobile();
-  
+
+  const builds = [
+    {
+      icon: Smartphone,
+      title: "Products & Platforms",
+      count: "4 shipped",
+      description: "Full-stack apps from mobile-first exec tools to market intelligence dashboards"
+    },
+    {
+      icon: Bot,
+      title: "Autonomous Systems",
+      count: "7 running",
+      description: "Cron-driven agents handling ops, email triage, content synthesis, and job sourcing — 24/7"
+    },
+    {
+      icon: Target,
+      title: "Outbound Engines",
+      count: "80+ campaigns",
+      description: "AI-powered cold email, LinkedIn DMs, and named-account sequences across multiple ventures"
+    },
+    {
+      icon: FileText,
+      title: "Content Systems",
+      count: "5 pipelines",
+      description: "Automated newsletter production, slide generation, media pitches, and editorial calendars"
+    },
+    {
+      icon: Wrench,
+      title: "Operational Tools",
+      count: "5 systems",
+      description: "Domain intelligence, lead enrichment, decision-maker mapping, and automated job applications"
+    }
+  ];
+
   const principles = [
     {
       icon: Rocket,
@@ -33,95 +67,99 @@ const Philosophy = () => {
     }
   ];
 
+  const renderBuildCard = (build: typeof builds[0], index: number) => {
+    const Icon = build.icon;
+    return (
+      <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-shadow h-full flex flex-col">
+        <CardHeader className="pb-4 flex-shrink-0">
+          <div className="flex items-center gap-3 mb-2 min-h-[40px]">
+            <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
+              <Icon className="w-5 h-5 text-primary" />
+            </div>
+            <CardTitle className="text-lg leading-tight">{build.title}</CardTitle>
+          </div>
+          <div className="mb-2">
+            <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/15 text-primary">
+              {build.count}
+            </span>
+          </div>
+          <p className="text-sm text-muted-foreground">{build.description}</p>
+        </CardHeader>
+      </Card>
+    );
+  };
+
+  const renderPrincipleCard = (principle: typeof principles[0], index: number) => {
+    const Icon = principle.icon;
+    return (
+      <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-shadow h-full flex flex-col">
+        <CardHeader className="pb-4 flex-shrink-0">
+          <div className="flex items-center gap-3 mb-2 min-h-[40px]">
+            <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
+              <Icon className="w-5 h-5 text-primary" />
+            </div>
+            <CardTitle className="text-lg leading-tight">{principle.title}</CardTitle>
+          </div>
+          <div className="min-h-[72px]">
+            <p className="text-sm text-muted-foreground">{principle.description}</p>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-0 flex-1">
+          <div className="space-y-2">
+            {principle.points.map((point, pointIndex) => (
+              <div key={pointIndex} className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+                <p className="text-sm text-muted-foreground">{point}</p>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
+
   return (
     <section id="philosophy" className="section-padding bg-muted/30">
       <div className="container-width">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="headline-lg mb-6">How I Think About Building</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            16 years of scaling revenue across 3 continents — distilled into how I build today
+            16 years of scaling revenue across 3 continents — here's what that looks like in practice
           </p>
         </div>
 
-        {isMobile ? (
-          <MobileCarousel 
-            showDots={true}
-            uniformHeight={true}
-            minHeight="carousel-md"
-          >
-            {principles.map((principle, index) => {
-              const Icon = principle.icon;
-              return (
-                <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full flex flex-col">
-                  <CardHeader className="pb-4 flex-shrink-0">
-                    {/* Fixed height title area */}
-                    <div className="flex items-center gap-3 mb-2 min-h-[40px]">
-                      <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <CardTitle className="text-lg leading-tight">{principle.title}</CardTitle>
-                    </div>
-                    {/* Fixed height description area */}
-                    <div className="min-h-[72px]">
-                      <p className="text-sm text-muted-foreground">
-                        {principle.description}
-                      </p>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0 flex-1">
-                    <div className="space-y-2">
-                      {principle.points.map((point, pointIndex) => (
-                        <div key={pointIndex} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                          <p className="text-sm text-muted-foreground">
-                            {point}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </MobileCarousel>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {principles.map((principle, index) => {
-              const Icon = principle.icon;
-              return (
-                <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <CardHeader className="pb-4 flex-shrink-0">
-                    {/* Fixed height title area to ensure alignment */}
-                    <div className="flex items-center gap-3 mb-2 min-h-[40px]">
-                      <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <CardTitle className="text-lg leading-tight">{principle.title}</CardTitle>
-                    </div>
-                    {/* Fixed height description area */}
-                    <div className="min-h-[72px]">
-                      <p className="text-sm text-muted-foreground">
-                        {principle.description}
-                      </p>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0 flex-1">
-                    <div className="space-y-2">
-                      {principle.points.map((point, pointIndex) => (
-                        <div key={pointIndex} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                          <p className="text-sm text-muted-foreground">
-                            {point}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+        <Tabs defaultValue="what" className="w-full">
+          <div className="flex justify-center mb-10">
+            <TabsList>
+              <TabsTrigger value="what">What I Build</TabsTrigger>
+              <TabsTrigger value="how">How I Build</TabsTrigger>
+            </TabsList>
           </div>
-        )}
+
+          <TabsContent value="what">
+            {isMobile ? (
+              <MobileCarousel showDots={true} uniformHeight={true} minHeight="carousel-sm">
+                {builds.map((build, index) => renderBuildCard(build, index))}
+              </MobileCarousel>
+            ) : (
+              <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+                {builds.map((build, index) => renderBuildCard(build, index))}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="how">
+            {isMobile ? (
+              <MobileCarousel showDots={true} uniformHeight={true} minHeight="carousel-md">
+                {principles.map((principle, index) => renderPrincipleCard(principle, index))}
+              </MobileCarousel>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {principles.map((principle, index) => renderPrincipleCard(principle, index))}
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );
