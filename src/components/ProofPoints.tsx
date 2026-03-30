@@ -105,7 +105,7 @@ const ProofPoints = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">Corporate Success</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            Measurable outcomes and recognized expertise across three continents
+            Outcomes and expertise across the 3 continents.
           </p>
         </div>
 
