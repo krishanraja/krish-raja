@@ -70,7 +70,6 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
   };
 
   const heightClasses = uniformHeight ? getHeightClass(minHeight) : "";
-  const itemClasses = `pl-4 basis-[85%] ${itemClassName}`;
 
   return (
     <div className="relative">
