@@ -18,6 +18,7 @@ interface MobileCarouselProps {
   minHeight?: 'carousel-xs' | 'carousel-sm' | 'carousel-md' | 'carousel-lg' | 'carousel-xl' | 'carousel-2xl' | 'carousel-3xl' | 'carousel-4xl' | 'carousel-5xl';
   allowContentExpansion?: boolean;
   expandedIndex?: number | null;
+  alwaysCarousel?: boolean;
 }
 
 export const MobileCarousel: React.FC<MobileCarouselProps> = ({
