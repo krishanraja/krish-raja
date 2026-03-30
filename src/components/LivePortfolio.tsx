@@ -4,6 +4,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
+import { MobileCarousel } from '@/components/ui/mobile-carousel';
 
 // Import all business icons
 import mindmakerIcon from '@/assets/mindmaker-icon.png';
