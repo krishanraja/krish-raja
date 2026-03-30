@@ -87,7 +87,6 @@ const Index = () => {
         <ProofPoints />
         <LivePortfolio />
         <Work />
-        <Philosophy />
         <LearnWithMe />
       </main>
       
