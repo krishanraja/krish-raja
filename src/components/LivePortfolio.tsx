@@ -199,22 +199,16 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
 };
 
 const BusinessGrid = ({ businesses, isMobile }: { businesses: Business[]; isMobile: boolean }) => {
-  if (isMobile) {
-    return (
-      <div className="flex overflow-x-auto gap-3 pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
-        {businesses.map((business, index) => (
-          <BusinessCard key={index} business={business} isMobile={true} />
-        ))}
-      </div>
-    );
-  }
-
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+    <MobileCarousel 
+      className="grid grid-cols-2 lg:grid-cols-3 gap-4"
+      showDots={true}
+      uniformHeight={false}
+    >
       {businesses.map((business, index) => (
-        <BusinessCard key={index} business={business} isMobile={false} />
+        <BusinessCard key={index} business={business} isMobile={isMobile} />
       ))}
-    </div>
+    </MobileCarousel>
   );
 };
 
