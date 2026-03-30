@@ -150,20 +150,18 @@ const ProofPoints = () => {
             {/* Credentials */}
             <div>
               <h3 className="headline-md mb-8">Recognition & Credentials</h3>
-              <div className="overflow-x-auto">
-                <div className="flex gap-3 pb-4" style={{ width: 'max-content' }}>
-                  {credentials.map((credential, index) => (
-                    <Badge 
-                      key={index} 
-                      variant="outline" 
-                      className="text-sm py-2 px-4 bg-background/50 flex-shrink-0"
-                    >
-                      <Award className="w-3 h-3 mr-2" />
-                      {credential}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+              <MobileCarousel 
+                className="flex flex-wrap gap-3"
+                showDots={true}
+                uniformHeight={false}
+              >
+                {credentials.map((credential, index) => (
+                  <div key={index} className="bg-background/50 border border-border rounded-lg p-3 flex items-center gap-2">
+                    <Award className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                    <span className="text-sm text-foreground">{credential}</span>
+                  </div>
+                ))}
+              </MobileCarousel>
             </div>
 
             {/* Global Experience */}

@@ -105,9 +105,9 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
           })}
         </CarouselContent>
         
-        {/* Navigation buttons */}
-        <CarouselPrevious className="left-2 h-8 w-8" />
-        <CarouselNext className="right-2 h-8 w-8" />
+        {/* Navigation buttons - hidden on mobile for swipe-only experience */}
+        <CarouselPrevious className="left-2 h-8 w-8 hidden md:flex" />
+        <CarouselNext className="right-2 h-8 w-8 hidden md:flex" />
       </Carousel>
 
       {/* Dot indicators */}
