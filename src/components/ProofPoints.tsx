@@ -104,7 +104,7 @@ const ProofPoints = () => {
     <section id="proof-points" className="section-padding">
       <div className="container-width">
         <div className="text-center mb-16">
-          <h2 className="headline-lg mb-6">Corporate Success</h2>
+          <h2 className="headline-lg mb-6">Growth & Transformation Wins</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             Outcomes and expertise across the 3 continents.
           </p>
