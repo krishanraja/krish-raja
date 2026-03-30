@@ -178,6 +178,7 @@ const LearnWithMe = () => {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
             uniformHeight={true}
             minHeight="carousel-lg"
+            alwaysCarousel={true}
           >
             {lightningLessons.map((lesson, index) => (
               <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden h-full flex flex-col">
