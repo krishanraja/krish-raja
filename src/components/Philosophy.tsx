@@ -122,7 +122,7 @@ const Philosophy = () => {
     <section id="philosophy" className="section-padding bg-muted/30">
       <div className="container-width">
         <div className="text-center mb-10">
-          <h2 className="headline-lg mb-6">Using AI for myself as well as for business outcomes</h2>
+          <h2 className="headline-lg mb-6">Using AI to level up personally and in business.</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             I'm building tangible personal and professional unlocks, publicly. Explore them below.
           </p>
