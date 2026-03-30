@@ -62,7 +62,8 @@ const ProofPoints = () => {
 
   const credentials = [
     "Former 30 Under 30",
-    "Harvard Business School (Executive Programs)", 
+    "Harvard Business School (Finance, Analytics & Economics)", 
+    "MA Design Strategy (Distinction)",
     "Sydney Opera House Keynote Speaker",
     "Published Author, Speaker & Writer",
     "Ex-Microsoft Automation Specialist",
@@ -73,20 +74,20 @@ const ProofPoints = () => {
     { 
       city: "London", 
       period: "2008-2013", 
-      role: "Technical Foundation",
-      story: "Started at Microsoft, learning enterprise tech and what it takes to deliver at scale."
+      role: "Where it started",
+      story: "Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up."
     },
     { 
       city: "Sydney", 
       period: "2013-2024", 
-      role: "AdTech Scale & Leadership",
-      story: "Built APAC operations for AdTech companies, growing teams from zero to 18+."
+      role: "Modernizing legacy, launching new",
+      story: "Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch."
     },
     { 
       city: "New York", 
       period: "2024-Present", 
-      role: "AI Strategy & Advisory",
-      story: "Now in Brooklyn, helping leaders navigate AI transformation through teaching and building."
+      role: "Building what's next",
+      story: "Now in Brooklyn, combining everything into teaching, advising, and building with AI."
     }
   ];
 
