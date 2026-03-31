@@ -1,33 +1,31 @@
 
 
-## Credentials as a Reverse Ticker on Mobile
+## Remove "Forbes" From All References
 
-### What changes
+### Problem
+"Forbes" appears across meta tags, structured data, documentation, and component data. User wants it removed everywhere.
 
-**On mobile only**, replace the credentials carousel with a CSS-animated ticker strip (same technique as the company logos), scrolling in the **opposite direction** (right-to-left becomes left-to-right). Place it directly above the logo ticker, creating a paired visual effect.
+### Changes
 
-Desktop stays unchanged (wrapped badges in the grid).
+**1. `index.html`** — 8 edits
+- Title tags (title, og:title, twitter:title): `"Forbes 30 Under 30"` → `"30 Under 30"`
+- Description tags (meta, og:description, twitter:description): `"Forbes 30 Under 30"` → `"30 Under 30"`
+- Keywords meta: `"Forbes 30 Under 30"` → `"30 Under 30"`
+- JSON-LD Person `description`: remove "Forbes" prefix
+- JSON-LD Person `award`: `"Forbes 30 Under 30 (Marketing & Media)"` → `"30 Under 30 (Marketing & Media)"`
 
-### Files to change
+**2. `src/components/ProofPoints.tsx`** — 1 edit
+- Credentials array: `"Former 30 Under 30"` stays as-is (already has no "Forbes")
+- ✅ No changes needed here
 
-**1. `src/components/ProofPoints.tsx`**
-- In the mobile branch (`isMobile`), remove the `MobileCarousel`-wrapped credentials section from its current position
-- Move credentials into the bottom ticker area, above the logos
-- Render credentials as a `flex` strip with duplicated items (same `[...credentials, ...credentials]` pattern as logos), using `animate-[scroll-reverse_12s_linear_infinite]` to scroll the opposite direction
-- Each credential rendered as a compact badge with the Award icon
-- Keep the "Recognition & Credentials" heading as a small label above the ticker
+**3. `public/llms.txt`** — 2 edits
+- Recognition line: `"Forbes 30 Under 30"` → `"30 Under 30"`
+- Keywords line: `"Forbes 30 Under 30"` → `"30 Under 30"`
 
-**2. `tailwind.config.ts`**
-- Add a `scroll-reverse` keyframe: `0%: translateX(-50%)` → `100%: translateX(0)` (opposite of `scroll`)
+**4. `DOCUMENTATION.md`** — 1 edit
+- Title reference: `"Forbes 30 Under 30"` → `"30 Under 30"`
+- Description reference: `"Forbes 30 Under 30"` → `"30 Under 30"`
 
-### Visual result on mobile
-```text
-─────────────────────────────
-Recognition & Credentials
-←← Former 30 Under 30 | Harvard Business School | MA Design Strategy...
-→→ Nine | McCann | Captify | Singtel | BBC | Microsoft...
-─────────────────────────────
-```
-
-Two tickers moving in opposite directions, creating visual energy.
+### Also updates the OG image plan
+The previously approved OG image refresh plan referenced "Forbes 30 Under 30" — will use just "30 Under 30" instead.
 
