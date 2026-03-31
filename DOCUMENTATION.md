@@ -417,8 +417,8 @@ Persistent CTA button in navigation. Desktop: Popover. Mobile: Drawer.
 ## 7. SEO & Discoverability
 
 ### HTML Meta (index.html)
-- **Title**: "Krish Raja - AI Product Builder | 8 Live Products, Forbes 30 Under 30"
-- **Description**: "Krish Raja builds AI products and teaches AI literacy. Running 8 live products, 16 years scaling businesses. Forbes 30 Under 30. Brooklyn-based entrepreneur."
+- **Title**: "Krish Raja - AI Product Builder | 8 Live Products, 30 Under 30"
+- **Description**: "Krish Raja builds AI products and teaches AI literacy. Running 8 live products, 16 years scaling businesses. 30 Under 30. Brooklyn-based entrepreneur."
 - **Canonical**: `https://www.krishraja.com/`
 - **Robots**: `index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1`
 - **Geographic**: geo.region=US-NY, geo.placename=Brooklyn, geo.position=40.6782;-73.9442
