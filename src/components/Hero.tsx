@@ -1,6 +1,21 @@
 import { Button } from '@/components/ui/button';
-import { Linkedin, ArrowDown } from 'lucide-react';
+import { Linkedin, ArrowDown, MessageCircle } from 'lucide-react';
 import AnimatedProfilePicture from '@/components/AnimatedProfilePicture';
+import nineLogo from '@/assets/nine_logo.png';
+import mccannLogo from '@/assets/mccann_logo.png';
+import captifyLogo from '@/assets/captify_logo.png';
+import singtelLogo from '@/assets/singtel_logo.png';
+import bbcLogo from '@/assets/bbc_logo.png';
+import microsoftLogo from '@/assets/microsoft_logo.png';
+
+const trustLogos = [
+  { src: nineLogo, alt: "Nine" },
+  { src: mccannLogo, alt: "McCann" },
+  { src: captifyLogo, alt: "Captify" },
+  { src: singtelLogo, alt: "Singtel" },
+  { src: bbcLogo, alt: "BBC" },
+  { src: microsoftLogo, alt: "Microsoft" },
+];
 
 const Hero = () => {
   return (
@@ -38,16 +53,39 @@ const Hero = () => {
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a 
-                href="https://www.linkedin.com/in/krish-raja/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.linkedin.com/in/krish-raja/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2"
               >
                 <Linkedin size={16} />
                 LinkedIn
               </a>
             </Button>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
+              <a href="#contact" className="flex items-center gap-2">
+                <MessageCircle size={16} />
+                Let's Talk
+              </a>
+            </Button>
+          </div>
+
+          {/* Trust strip */}
+          <div className="mt-12 pt-8 border-t border-border/30">
+            <p className="text-xs text-muted-foreground mb-4 uppercase tracking-widest">Experience across</p>
+            <div className="flex items-center justify-center gap-8 flex-wrap">
+              {trustLogos.map((logo, index) => (
+                <img
+                  key={index}
+                  src={logo.src}
+                  alt={logo.alt}
+                  loading="eager"
+                  decoding="async"
+                  className="h-6 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -13,13 +13,8 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useEffect } from 'react';
 
-// Import icons for eager loading
 import mindmakerIcon from '@/assets/mindmaker-cta-icon.png';
-
-// Preload icons
-const preloadImages = [mindmakerIcon];
 
 type CTAOption = {
   id: string;
@@ -81,7 +76,6 @@ const IconRenderer = ({ type }: { type: CTAOption['icon'] }) => {
             alt="" 
             className="w-full h-full object-cover"
             loading="eager"
-            fetchPriority="high"
             decoding="async"
           />
         </div>
@@ -133,14 +127,6 @@ const CTAOptionItem = ({ option, onClick }: CTAOptionProps) => {
 
 const WorkWithMeMenu = () => {
   const isMobile = useIsMobile();
-
-  // Preload images on mount
-  useEffect(() => {
-    preloadImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
 
   if (isMobile) {
     return (

@@ -1,33 +1,11 @@
-import { useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, Users, Target, Rocket, Award, MapPin } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
-import nineLogo from '@/assets/nine_logo.png';
-import mccannLogo from '@/assets/mccann_logo.png';
-import captifyLogo from '@/assets/captify_logo.png';
-import singtelLogo from '@/assets/singtel_logo.png';
-import bbcLogo from '@/assets/bbc_logo.png';
-import microsoftLogo from '@/assets/microsoft_logo.png';
-
-// Preload all company logos for instant display
-const allLogos = [nineLogo, mccannLogo, captifyLogo, singtelLogo, bbcLogo, microsoftLogo];
-
-const preloadLogos = () => {
-  allLogos.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-};
 
 const ProofPoints = () => {
   const isMobile = useIsMobile();
-
-  // Preload logos on mount
-  useEffect(() => {
-    preloadLogos();
-  }, []);
 
   const achievements = [
     {
@@ -89,15 +67,6 @@ const ProofPoints = () => {
       role: "Building what's next",
       story: "Now in Brooklyn, combining everything into teaching, advising, and building with AI."
     }
-  ];
-
-  const logos = [
-    { src: nineLogo, alt: "Nine" },
-    { src: mccannLogo, alt: "McCann" },
-    { src: captifyLogo, alt: "Captify" },
-    { src: singtelLogo, alt: "Singtel" },
-    { src: bbcLogo, alt: "BBC" },
-    { src: microsoftLogo, alt: "Microsoft" }
   ];
 
   return (
@@ -225,43 +194,22 @@ const ProofPoints = () => {
           </div>
         )}
 
-        {/* Company Logos */}
-        <div className="mt-16 pt-12 border-t border-border/50">
-          {/* Credentials ticker - mobile only, scrolls opposite direction */}
-          {isMobile && (
-            <div className="mb-8">
-              <h3 className="headline-sm text-center mb-4 text-muted-foreground">Recognition & Credentials</h3>
-              <div className="relative overflow-hidden">
-                <div className="flex gap-6 animate-[scroll-reverse_12s_linear_infinite]">
-                  {[...credentials, ...credentials].map((credential, index) => (
-                    <div key={index} className="flex-shrink-0 flex items-center gap-2 bg-background/50 border border-border rounded-full px-4 py-1.5">
-                      <Award className="w-3 h-3 text-primary flex-shrink-0" />
-                      <span className="text-xs text-foreground whitespace-nowrap">{credential}</span>
-                    </div>
-                  ))}
-                </div>
+        {/* Credentials ticker - mobile only */}
+        {isMobile && (
+          <div className="mt-16 pt-12 border-t border-border/50">
+            <h3 className="headline-sm text-center mb-4 text-muted-foreground">Recognition & Credentials</h3>
+            <div className="relative overflow-hidden">
+              <div className="flex gap-6 animate-[scroll-reverse_12s_linear_infinite]">
+                {[...credentials, ...credentials].map((credential, index) => (
+                  <div key={index} className="flex-shrink-0 flex items-center gap-2 bg-background/50 border border-border rounded-full px-4 py-1.5">
+                    <Award className="w-3 h-3 text-primary flex-shrink-0" />
+                    <span className="text-xs text-foreground whitespace-nowrap">{credential}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          )}
-
-          <h3 className="headline-sm text-center mb-8 text-muted-foreground">Global Experience in media, tech, data & telco</h3>
-          <div className="relative overflow-hidden">
-            <div className="flex gap-12 animate-[scroll_4s_linear_infinite] md:animate-[scroll_6.5s_linear_infinite] hover:[animation-play-state:paused]">
-              {[...logos, ...logos].map((logo, index) => (
-                <div key={index} className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt}
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="high"
-                    className="h-8 w-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { ExternalLink, Briefcase, Rocket, Mic, Smartphone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -17,19 +16,6 @@ import adfixusIcon from '@/assets/adfixus-icon.png';
 import techonomicLogo from '@/assets/techonomic-logo.png';
 import signalAndNoiseLogo from '@/assets/signal-and-noise-logo.png';
 
-// Preload all portfolio icons for instant display
-const allIcons = [
-  mindmakerIcon, builderEconomyIcon, wellwellIcon, conclusivIcon,
-  lockstepIcon, melioraIcon,
-  adfixusIcon, techonomicLogo, signalAndNoiseLogo
-];
-
-const preloadImages = () => {
-  allIcons.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-};
 
 interface Business {
   name: string;
@@ -151,12 +137,11 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
           ? "w-12 h-12 flex-shrink-0 flex items-center justify-center" 
           : "h-20 flex items-end justify-center mb-3"}>
           <div className="rounded-lg p-1.5 bg-white/0 dark:bg-white/10 backdrop-blur-[2px] transition-colors duration-300">
-            <img 
-              src={business.icon} 
+            <img
+              src={business.icon}
               alt={`${business.name} icon`}
-              loading="eager"
+              loading="lazy"
               decoding="async"
-              fetchPriority="high"
               className={`${isMobile 
                 ? `${isLargerLogo ? 'h-8' : 'h-8'}` 
                 : `${isLargerLogo ? 'h-12' : 'h-12'}`} w-auto object-contain ${isLargerLogo ? 'dark:brightness-200 dark:invert' : 'dark:brightness-110 dark:contrast-105'} transition-all duration-300`}
@@ -214,11 +199,6 @@ const BusinessGrid = ({ businesses, isMobile }: { businesses: Business[]; isMobi
 
 const LivePortfolio = () => {
   const isMobile = useIsMobile();
-
-  // Preload images on component mount
-  useEffect(() => {
-    preloadImages();
-  }, []);
 
   return (
     <section id="portfolio" className="section-padding">

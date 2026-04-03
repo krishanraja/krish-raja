@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -14,30 +13,8 @@ import mavenMemoryImage from '@/assets/maven-memory.png';
 import mavenVibecodingImage from '@/assets/maven-vibecoding-leaders.png';
 import mavenOpenclawImage from '@/assets/maven-openclaw.png';
 
-// Preload all course images for instant display
-const allCourseImages = [
-  literacyToStrategyImage,
-  learnProgramAiImage,
-  buildInPublicImage,
-  mavenMemoryImage,
-  mavenVibecodingImage,
-  mavenOpenclawImage
-];
-
-const preloadCourseImages = () => {
-  allCourseImages.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-};
-
 const LearnWithMe = () => {
   const isMobile = useIsMobile();
-
-  // Preload images on mount
-  useEffect(() => {
-    preloadCourseImages();
-  }, []);
 
   const cohortCourse = {
     title: "AI Literacy-to-Strategy for Leaders",
@@ -107,12 +84,11 @@ const LearnWithMe = () => {
             <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'}`}>
               {/* Image */}
               <div className={`${isMobile ? 'h-48' : 'w-2/5'} overflow-hidden bg-muted/30 flex items-center justify-center`}>
-                <img 
+                <img
                   src={cohortCourse.image}
                   alt={cohortCourse.title}
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
-                  fetchPriority="high"
                   className={`${isMobile ? 'w-full h-full object-cover' : 'w-full h-auto object-contain'}`}
                 />
               </div>
@@ -184,12 +160,11 @@ const LearnWithMe = () => {
               <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group overflow-hidden h-full flex flex-col">
                 {/* Lesson image */}
                 <div className="w-full h-36 overflow-hidden flex-shrink-0">
-                  <img 
+                  <img
                     src={lesson.image}
                     alt={lesson.title}
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
-                    fetchPriority="high"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
