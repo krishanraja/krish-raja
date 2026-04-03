@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,28 +10,8 @@ import mastersThesis from '@/assets/masters-thesis-optimized.webp';
 import podcastTile from '@/assets/podcast-tile-optimized.webp';
 import giveItANudge from '@/assets/give-it-a-nudge-optimized.webp';
 
-// Preload all media images for instant display
-const allMediaImages = [
-  aiLiteracyWhitepaper,
-  mastersThesis,
-  podcastTile,
-  giveItANudge
-];
-
-const preloadMediaImages = () => {
-  allMediaImages.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-};
-
 const Work = () => {
   const isMobile = useIsMobile();
-
-  // Preload images on mount
-  useEffect(() => {
-    preloadMediaImages();
-  }, []);
   
   // Reordered: Interview and Podcast first
   const workItems = [
@@ -88,12 +67,11 @@ const Work = () => {
           <Card className="cursor-pointer border-0 shadow-sm h-full flex flex-col overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             {/* Image Section */}
             <div className="relative aspect-video overflow-hidden bg-muted">
-              <img 
-                src={item.image} 
+              <img
+                src={item.image}
                 alt={item.title}
-                loading="eager"
+                loading="lazy"
                 decoding="async"
-                fetchPriority="high"
                 className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
               {/* Gradient Overlay */}

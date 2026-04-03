@@ -4,10 +4,29 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+const ALLOWED_ORIGINS = [
+  "https://www.krishraja.com",
+  "https://krishraja.com",
+  "https://krish-raja.lovable.app",
+];
+
+function getCorsHeaders(req: Request) {
+  const origin = req.headers.get("Origin") ?? "";
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  };
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 interface ContactFormData {
   name: string;
@@ -17,6 +36,8 @@ interface ContactFormData {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  const corsHeaders = getCorsHeaders(req);
+
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -125,7 +146,8 @@ function getServiceTitle(serviceType: string): string {
 
 function generateConfirmationEmail(name: string, serviceType: string): string {
   const serviceTitle = getServiceTitle(serviceType);
-  
+  const safeName = escapeHtml(name);
+
   return `
     <!DOCTYPE html>
     <html>
@@ -136,7 +158,7 @@ function generateConfirmationEmail(name: string, serviceType: string): string {
     </head>
     <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333;">
       <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h1 style="color: #2563eb; border-bottom: 3px solid #2563eb; padding-bottom: 10px;">Thank you, ${name}!</h1>
+        <h1 style="color: #2563eb; border-bottom: 3px solid #2563eb; padding-bottom: 10px;">Thank you, ${safeName}!</h1>
         
         <p>I've received your inquiry about <strong>${serviceTitle}</strong> and I'm excited to help you navigate your AI transformation journey.</p>
         
@@ -171,6 +193,10 @@ function generateConfirmationEmail(name: string, serviceType: string): string {
 }
 
 function generateNotificationEmail(name: string, email: string, serviceType: string, message: string, bookingId: string): string {
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeMessage = escapeHtml(message);
+
   return `
     <!DOCTYPE html>
     <html>
@@ -182,24 +208,24 @@ function generateNotificationEmail(name: string, email: string, serviceType: str
     <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333;">
       <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
         <h1 style="color: #dc2626;">New Contact Form Submission</h1>
-        
+
         <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="margin-top: 0;">Contact Details</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Name:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
           <p><strong>Service Type:</strong> ${getServiceTitle(serviceType)}</p>
-          <p><strong>Booking ID:</strong> ${bookingId}</p>
+          <p><strong>Booking ID:</strong> ${escapeHtml(bookingId)}</p>
         </div>
-        
+
         <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="margin-top: 0;">Message</h3>
-          <p style="white-space: pre-wrap;">${message}</p>
+          <p style="white-space: pre-wrap;">${safeMessage}</p>
         </div>
-        
+
         <div style="margin-top: 30px;">
           <p><strong>Recommended Actions:</strong></p>
           <ul>
-            <li>Reply to ${email} within 24 hours</li>
+            <li>Reply to ${safeEmail} within 24 hours</li>
             <li>Schedule a strategy call to discuss their needs</li>
             <li>Review their inquiry in Supabase dashboard</li>
           </ul>
