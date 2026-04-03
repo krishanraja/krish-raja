@@ -8,9 +8,10 @@ import { MobileCarousel } from '@/components/ui/mobile-carousel';
 // Import all business icons
 import mindmakerIcon from '@/assets/mindmaker-icon.png';
 import builderEconomyIcon from '@/assets/builder-economy-icon.png';
-import wellwellIcon from '@/assets/wellwell-icon.png';
-import conclusivIcon from '@/assets/conclusiv-icon.png';
-import lockstepIcon from '@/assets/lockstep-icon.png';
+import fractionlIcon from '@/assets/fractionl-icon.png';
+import onalertIcon from '@/assets/onalert-icon.png';
+import ctrlIcon from '@/assets/ctrl-icon.png';
+import guttedIcon from '@/assets/gutted-icon.png';
 import melioraIcon from '@/assets/meliora-icon.png';
 import adfixusIcon from '@/assets/adfixus-icon.png';
 import techonomicLogo from '@/assets/techonomic-logo.png';
@@ -53,29 +54,35 @@ const operatorBusinesses: Business[] = [
 
 const builderBusinesses: Business[] = [
   {
-    name: "WellWell",
-    description: "Ancient Stoic philosophy for the modern workplace",
-    icon: wellwellIcon,
-    url: "https://wellwell.ai",
-    role: "Full-Stack Founder",
-    mobileOnly: true,
-    isBeta: true
-  },
-  {
-    name: "Conclusiv",
-    description: "From research to stunning business case in 60 seconds",
-    icon: conclusivIcon,
-    url: "https://conclusiv.ai",
+    name: "Fractionl",
+    description: "The operating system for the portfolio economy",
+    icon: fractionlIcon,
+    url: "https://fractionl.ai",
     role: "Full-Stack Founder",
     isBeta: true
   },
   {
-    name: "Lockstep",
-    description: "Arrange group events without any anxiety or chasing",
-    icon: lockstepIcon,
-    url: "https://inlockstep.ai",
+    name: "OnAlert",
+    description: "Real-time alerts when Global Entry and TSA PreCheck slots open up",
+    icon: onalertIcon,
+    url: "https://onalert.app",
     role: "Full-Stack Founder",
-    mobileOnly: true,
+    isBeta: true
+  },
+  {
+    name: "Ctrl",
+    description: "Build your portable, private memory web to accelerate your future with AI",
+    icon: ctrlIcon,
+    url: "https://ctrl.themindmaker.ai",
+    role: "Full-Stack Founder",
+    isBeta: true
+  },
+  {
+    name: "Gutted",
+    description: "Voice-powered gut health tracking and personalized meal plans",
+    icon: guttedIcon,
+    url: "https://gutted.app",
+    role: "Full-Stack Founder",
     isBeta: true
   }
 ];
