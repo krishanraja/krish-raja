@@ -52,19 +52,19 @@ const ProofPoints = () => {
     { 
       city: "London", 
       period: "2008-2013", 
-      role: "Where it started",
+      role: "From coding to customer success",
       story: "Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up."
     },
     { 
       city: "Sydney", 
       period: "2013-2024", 
-      role: "Modernizing legacy, launching new",
+      role: "From Sales to Product & Corp Strategy",
       story: "Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch."
     },
     { 
       city: "New York", 
       period: "2024-Present", 
-      role: "Building what's next",
+      role: "From commercial career to full-stack portfolio",
       story: "Now in Brooklyn, combining everything into teaching, advising, and building with AI."
     }
   ];
