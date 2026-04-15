@@ -847,6 +847,92 @@ export type Database = {
           },
         ]
       }
+      briefing_feedback: {
+        Row: {
+          briefing_id: string
+          created_at: string | null
+          id: string
+          reaction: string
+          segment_index: number
+        }
+        Insert: {
+          briefing_id: string
+          created_at?: string | null
+          id?: string
+          reaction: string
+          segment_index: number
+        }
+        Update: {
+          briefing_id?: string
+          created_at?: string | null
+          id?: string
+          reaction?: string
+          segment_index?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "briefing_feedback_briefing_id_fkey"
+            columns: ["briefing_id"]
+            isOneToOne: false
+            referencedRelation: "briefings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      briefings: {
+        Row: {
+          audio_duration_seconds: number | null
+          audio_url: string | null
+          briefing_date: string
+          briefing_type: string
+          context_snapshot: Json | null
+          created_at: string | null
+          custom_context: string | null
+          generation_model: string | null
+          id: string
+          is_pro_only: boolean
+          news_sources: Json | null
+          script_text: string | null
+          segments: Json
+          user_id: string
+          voice_note_url: string | null
+        }
+        Insert: {
+          audio_duration_seconds?: number | null
+          audio_url?: string | null
+          briefing_date: string
+          briefing_type?: string
+          context_snapshot?: Json | null
+          created_at?: string | null
+          custom_context?: string | null
+          generation_model?: string | null
+          id?: string
+          is_pro_only?: boolean
+          news_sources?: Json | null
+          script_text?: string | null
+          segments?: Json
+          user_id: string
+          voice_note_url?: string | null
+        }
+        Update: {
+          audio_duration_seconds?: number | null
+          audio_url?: string | null
+          briefing_date?: string
+          briefing_type?: string
+          context_snapshot?: Json | null
+          created_at?: string | null
+          custom_context?: string | null
+          generation_model?: string | null
+          id?: string
+          is_pro_only?: boolean
+          news_sources?: Json | null
+          script_text?: string | null
+          segments?: Json
+          user_id?: string
+          voice_note_url?: string | null
+        }
+        Relationships: []
+      }
       chat_messages: {
         Row: {
           assessment_id: string | null
@@ -1609,6 +1695,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      fact_extraction_log: {
+        Row: {
+          created_at: string
+          id: string
+          raw_fact: Json
+          reason: string
+          reason_id: string
+          session_id: string | null
+          training_material_version: number | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          raw_fact: Json
+          reason: string
+          reason_id: string
+          session_id?: string | null
+          training_material_version?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          raw_fact?: Json
+          reason?: string
+          reason_id?: string
+          session_id?: string | null
+          training_material_version?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
       feedback: {
         Row: {
@@ -2449,37 +2568,70 @@ export type Database = {
       }
       leaders: {
         Row: {
+          archived_at: string | null
+          biggest_fear: string | null
+          biggest_obstacle: string | null
           company: string | null
           company_size_band: string | null
+          company_stage: string | null
           created_at: string | null
           email: string
           id: string
+          industry: string | null
           name: string | null
           primary_focus: string | null
+          profile_completeness: number | null
+          quarterly_focus: string | null
           role: string | null
+          strategic_goal: string | null
+          strategic_problem: string | null
+          title: string | null
           updated_at: string | null
+          user_id: string | null
         }
         Insert: {
+          archived_at?: string | null
+          biggest_fear?: string | null
+          biggest_obstacle?: string | null
           company?: string | null
           company_size_band?: string | null
+          company_stage?: string | null
           created_at?: string | null
           email: string
           id?: string
+          industry?: string | null
           name?: string | null
           primary_focus?: string | null
+          profile_completeness?: number | null
+          quarterly_focus?: string | null
           role?: string | null
+          strategic_goal?: string | null
+          strategic_problem?: string | null
+          title?: string | null
           updated_at?: string | null
+          user_id?: string | null
         }
         Update: {
+          archived_at?: string | null
+          biggest_fear?: string | null
+          biggest_obstacle?: string | null
           company?: string | null
           company_size_band?: string | null
+          company_stage?: string | null
           created_at?: string | null
           email?: string
           id?: string
+          industry?: string | null
           name?: string | null
           primary_focus?: string | null
+          profile_completeness?: number | null
+          quarterly_focus?: string | null
           role?: string | null
+          strategic_goal?: string | null
+          strategic_problem?: string | null
+          title?: string | null
           updated_at?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -3590,6 +3742,105 @@ export type Database = {
           },
         ]
       }
+      training_material: {
+        Row: {
+          body_parsed: Json
+          body_raw: string
+          cohort_key: string | null
+          created_at: string
+          id: string
+          is_active: boolean
+          scope: string
+          user_id: string | null
+          version: number
+        }
+        Insert: {
+          body_parsed: Json
+          body_raw: string
+          cohort_key?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          scope: string
+          user_id?: string | null
+          version: number
+        }
+        Update: {
+          body_parsed?: Json
+          body_raw?: string
+          cohort_key?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          scope?: string
+          user_id?: string | null
+          version?: number
+        }
+        Relationships: []
+      }
+      tts_config: {
+        Row: {
+          id: string
+          is_active: boolean
+          model_id: string
+          provider: string
+          updated_at: string | null
+          voice_id: string
+        }
+        Insert: {
+          id?: string
+          is_active?: boolean
+          model_id?: string
+          provider?: string
+          updated_at?: string | null
+          voice_id?: string
+        }
+        Update: {
+          id?: string
+          is_active?: boolean
+          model_id?: string
+          provider?: string
+          updated_at?: string | null
+          voice_id?: string
+        }
+        Relationships: []
+      }
+      tts_quality_snapshots: {
+        Row: {
+          alert_triggered: boolean
+          created_at: string | null
+          current_elo: number | null
+          current_provider: string
+          id: string
+          provider_rankings: Json
+          snapshot_date: string
+          top_elo: number | null
+          top_provider: string | null
+        }
+        Insert: {
+          alert_triggered?: boolean
+          created_at?: string | null
+          current_elo?: number | null
+          current_provider?: string
+          id?: string
+          provider_rankings: Json
+          snapshot_date: string
+          top_elo?: number | null
+          top_provider?: string | null
+        }
+        Update: {
+          alert_triggered?: boolean
+          created_at?: string | null
+          current_elo?: number | null
+          current_provider?: string
+          id?: string
+          provider_rankings?: Json
+          snapshot_date?: string
+          top_elo?: number | null
+          top_provider?: string | null
+        }
+        Relationships: []
+      }
       unified_profiles: {
         Row: {
           company: string | null
@@ -3638,6 +3889,24 @@ export type Database = {
           source_tool?: string
           total_interactions?: number | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      user_briefing_directives: {
+        Row: {
+          body: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -3704,6 +3973,53 @@ export type Database = {
         }
         Relationships: []
       }
+      user_decisions: {
+        Row: {
+          context_snapshot: Json | null
+          created_at: string
+          decision_text: string
+          id: string
+          rationale: string | null
+          source: string | null
+          status: string | null
+          superseded_by: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          context_snapshot?: Json | null
+          created_at?: string
+          decision_text: string
+          id?: string
+          rationale?: string | null
+          source?: string | null
+          status?: string | null
+          superseded_by?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          context_snapshot?: Json | null
+          created_at?: string
+          decision_text?: string
+          id?: string
+          rationale?: string | null
+          source?: string | null
+          status?: string | null
+          superseded_by?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_decisions_superseded_by_fkey"
+            columns: ["superseded_by"]
+            isOneToOne: false
+            referencedRelation: "user_decisions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_memory: {
         Row: {
           archived_at: string | null
@@ -3714,6 +4030,7 @@ export type Database = {
           fact_context: string | null
           fact_key: string
           fact_label: string
+          fact_subtype: string | null
           fact_value: string
           id: string
           is_current: boolean | null
@@ -3727,6 +4044,7 @@ export type Database = {
           supersedes: string | null
           tags: string[] | null
           temperature: string | null
+          training_material_version: number | null
           updated_at: string | null
           user_id: string | null
           verification_status:
@@ -3743,6 +4061,7 @@ export type Database = {
           fact_context?: string | null
           fact_key: string
           fact_label: string
+          fact_subtype?: string | null
           fact_value: string
           id?: string
           is_current?: boolean | null
@@ -3756,6 +4075,7 @@ export type Database = {
           supersedes?: string | null
           tags?: string[] | null
           temperature?: string | null
+          training_material_version?: number | null
           updated_at?: string | null
           user_id?: string | null
           verification_status?:
@@ -3772,6 +4092,7 @@ export type Database = {
           fact_context?: string | null
           fact_key?: string
           fact_label?: string
+          fact_subtype?: string | null
           fact_value?: string
           id?: string
           is_current?: boolean | null
@@ -3785,6 +4106,7 @@ export type Database = {
           supersedes?: string | null
           tags?: string[] | null
           temperature?: string | null
+          training_material_version?: number | null
           updated_at?: string | null
           user_id?: string | null
           verification_status?:
@@ -3808,6 +4130,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_memory_budget: {
+        Row: {
+          hot_max_tokens: number | null
+          hot_token_count: number | null
+          id: string
+          last_audit_at: string | null
+          last_cleanup_at: string | null
+          total_facts: number | null
+          updated_at: string | null
+          user_id: string
+          warm_max_tokens: number | null
+          warm_token_count: number | null
+        }
+        Insert: {
+          hot_max_tokens?: number | null
+          hot_token_count?: number | null
+          id?: string
+          last_audit_at?: string | null
+          last_cleanup_at?: string | null
+          total_facts?: number | null
+          updated_at?: string | null
+          user_id: string
+          warm_max_tokens?: number | null
+          warm_token_count?: number | null
+        }
+        Update: {
+          hot_max_tokens?: number | null
+          hot_token_count?: number | null
+          id?: string
+          last_audit_at?: string | null
+          last_cleanup_at?: string | null
+          total_facts?: number | null
+          updated_at?: string | null
+          user_id?: string
+          warm_max_tokens?: number | null
+          warm_token_count?: number | null
+        }
+        Relationships: []
       }
       user_memory_settings: {
         Row: {
@@ -3838,6 +4199,48 @@ export type Database = {
           store_memory_enabled?: boolean | null
           store_voice_transcripts?: boolean | null
           updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_patterns: {
+        Row: {
+          confidence: number | null
+          created_at: string
+          evidence_count: number | null
+          first_observed_at: string | null
+          id: string
+          last_confirmed_at: string | null
+          pattern_text: string
+          pattern_type: string
+          source_facts: string[] | null
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          confidence?: number | null
+          created_at?: string
+          evidence_count?: number | null
+          first_observed_at?: string | null
+          id?: string
+          last_confirmed_at?: string | null
+          pattern_text: string
+          pattern_type: string
+          source_facts?: string[] | null
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          confidence?: number | null
+          created_at?: string
+          evidence_count?: number | null
+          first_observed_at?: string | null
+          id?: string
+          last_confirmed_at?: string | null
+          pattern_text?: string
+          pattern_type?: string
+          source_facts?: string[] | null
+          status?: string | null
           user_id?: string
         }
         Relationships: []
@@ -4393,6 +4796,15 @@ export type Database = {
       }
     }
     Views: {
+      extraction_health: {
+        Row: {
+          day: string | null
+          reason_id: string | null
+          rejections: number | null
+          training_material_version: number | null
+        }
+        Relationships: []
+      }
       llm_cost_dashboard: {
         Row: {
           avg_latency_ms: number | null
@@ -4536,6 +4948,7 @@ export type Database = {
           fact_context: string | null
           fact_key: string
           fact_label: string
+          fact_subtype: string | null
           fact_value: string
           id: string
           is_current: boolean | null
@@ -4549,6 +4962,7 @@ export type Database = {
           supersedes: string | null
           tags: string[] | null
           temperature: string | null
+          training_material_version: number | null
           updated_at: string | null
           user_id: string | null
           verification_status:
@@ -4723,6 +5137,7 @@ export type Database = {
         | "linkedin"
         | "calendar"
         | "enrichment"
+        | "manual"
       momentum_tier: "experimenting" | "scaling" | "institutionalizing"
       roi_provenance: "instrumented" | "system_report" | "estimate"
       roi_unit_type:
@@ -4882,6 +5297,7 @@ export const Constants = {
         "linkedin",
         "calendar",
         "enrichment",
+        "manual",
       ],
       momentum_tier: ["experimenting", "scaling", "institutionalizing"],
       roi_provenance: ["instrumented", "system_report", "estimate"],
