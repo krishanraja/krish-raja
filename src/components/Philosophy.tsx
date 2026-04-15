@@ -17,8 +17,8 @@ const Philosophy = () => {
     {
       icon: Bot,
       title: "Autonomous Systems",
-      count: "7+ agents · 37+ workflows",
-      description: "A multi-agent operating system replacing a 15–30 person team. Ops, email triage, content synthesis, and sourcing — running 24/7."
+      count: "7 agents, 37 workflows",
+      description: "A multi-agent operating system replacing a 15-30 person team. Ops, email triage, content synthesis, and sourcing running 24/7."
     },
     {
       icon: Target,
