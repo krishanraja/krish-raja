@@ -34,7 +34,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
-            16 years building revenue engines across 3 continents. From Microsoft to founding AI ventures generating real commercial outcomes.
+            16 years building revenue engines across 3 continents. The rare executive who can write production code and close a $4M enterprise deal.
           </p>
           
           <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">

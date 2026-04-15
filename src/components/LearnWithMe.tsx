@@ -74,8 +74,31 @@ const LearnWithMe = () => {
         <div className="text-center mb-16">
           <h2 className="headline-lg mb-6">Learn With Me</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            From free lightning lessons to deep cohort experiences. Pick your path to AI fluency
+            From free lightning lessons to deep cohort experiences. Pick your path to AI fluency.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
+            <Badge variant="outline" className="text-xs py-1.5 px-3 bg-background/50">
+              <a href="https://open.spotify.com/show/signal-and-noise" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
+                🎙️ Signal & Noise Podcast
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </Badge>
+            <Badge variant="outline" className="text-xs py-1.5 px-3 bg-background/50">
+              <a href="https://www.youtube.com/@buildereconomy" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
+                🎙️ Builder Economy
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </Badge>
+            <Badge variant="outline" className="text-xs py-1.5 px-3 bg-background/50">
+              🎓 UTS Guest Lecturer
+            </Badge>
+            <Badge variant="outline" className="text-xs py-1.5 px-3 bg-background/50">
+              <a href="https://www.youtube.com/@mindmakerlive" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
+                📺 Mindmaker Live
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </Badge>
+          </div>
         </div>
 
         {/* Featured Cohort Course */}

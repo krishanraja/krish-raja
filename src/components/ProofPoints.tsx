@@ -11,30 +11,30 @@ const ProofPoints = () => {
     {
       icon: TrendingUp,
       category: "Revenue Growth",
-      metric: "7x Growth",
-      context: "Major Media Broadcaster",
-      description: "Led CTV and programmatic revenue transformation over 3 years"
+      metric: "$9M → $61M",
+      context: "Broadcaster Digital Transformation",
+      description: "Led digital revenue 7x over 3 years. Triple-digit growth in 2 of 3 years. 70+ commercial products launched."
     },
     {
       icon: Rocket,
       category: "Market Creation", 
-      metric: "Zero-to-Millions",
-      context: "AdTech APAC Launch",
-      description: "Built programmatic advertising business from ground up"
+      metric: "$0 → $12M ARR",
+      context: "Built Region from Zero",
+      description: "Launched APAC programmatic business from scratch — team, product, pipeline. First hire to market leader."
     },
     {
       icon: Users,
       category: "Team Building",
       metric: "18-Person Team",
       context: "Cross-functional organization",
-      description: "Scaled technical and commercial teams across three continents"
+      description: "Scaled technical and commercial teams across three continents. Built the org chart, not just the strategy."
     },
     {
       icon: Target,
-      category: "Strategic Advisory",
-      metric: "M&A Guidance",
-      context: "Portfolio transformations",
-      description: "Advised companies through strategic acquisitions and exits"
+      category: "P&L Leadership",
+      metric: "$55M P&L",
+      context: "Data & Automation",
+      description: "Ran full P&L for data and automation division. 22% EBITDA. Guided M&A and portfolio transformation."
     }
   ];
 
