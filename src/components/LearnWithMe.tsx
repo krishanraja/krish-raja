@@ -35,35 +35,35 @@ const LearnWithMe = () => {
       title: "Run Your Life With OpenClaw",
       description: "The good, the bad and the ugly of running your life with AI-powered tools",
       duration: "Free",
-      link: "https://maven.com/aimindmaker/admin/lightning-lessons/9a1daa",
+      link: "https://maven.com/p/9a1daa/run-your-life-with-open-claw-the-good-the-bad-and-the-ugly",
       image: lessonOpenclawImage
     },
     {
       title: "AI Literacy: Everyone's Future Foundation",
       description: "Build the AI literacy every leader and team needs to thrive in the next era",
       duration: "Free",
-      link: "https://maven.com/aimindmaker/admin/lightning-lessons/ca6d71",
+      link: "https://maven.com/p/ca6d71/vibe-coding-for-leaders-build-what-you-brief",
       image: lessonAiLiteracyImage
-    },
-    {
-      title: "Build An Autonomous Business With AI",
-      description: "Design and run an autonomous business where AI handles the heavy lifting",
-      duration: "Free",
-      link: "https://maven.com/aimindmaker/admin/lightning-lessons/0cc82a",
-      image: lessonAutonomousBusinessImage
     },
     {
       title: "Make AI Your Co-Founder",
       description: "Learn how to use AI as a true building partner to ship products and scale faster",
       duration: "Free",
-      link: "https://maven.com/aimindmaker/admin/lightning-lessons/38d196",
+      link: "https://maven.com/p/0cc82a/make-ai-your-co-founder",
       image: lessonCoFounderImage
+    },
+    {
+      title: "Build An Autonomous Business With AI",
+      description: "Design and run an autonomous business where AI handles the heavy lifting",
+      duration: "Free",
+      link: "https://maven.com/p/38d196/build-an-autonomous-business-with-ai",
+      image: lessonAutonomousBusinessImage
     },
     {
       title: "Give Your AI Memory",
       description: "Give your AI persistent memory so it learns and compounds knowledge over time",
       duration: "Free",
-      link: "https://maven.com/aimindmaker/admin/lightning-lessons/8fba42",
+      link: "https://maven.com/p/8fba42/improve-the-memory-of-your-ai-tools",
       image: lessonAiMemoryImage
     }
   ];
