@@ -20,14 +20,14 @@ const ProofPoints = () => {
       category: "Market Creation",
       metric: "$0 → $12M ARR",
       context: "Built Region from Zero",
-      description: "Launched APAC programmatic business from scratch — team, product, pipeline. First hire to market leader."
+      description: "Launched APAC programmatic business from scratch: team, product, pipeline. First hire to market leader."
     },
     {
       icon: Users,
       category: "Team → Agent Fleet",
       metric: "18 People → 14 Agents",
       context: "From human team to autonomous OS",
-      description: "Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart — then built the agent chart."
+      description: "Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart, then built the agent chart."
     },
     {
       icon: Target,

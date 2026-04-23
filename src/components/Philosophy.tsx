@@ -16,7 +16,7 @@ const Philosophy = () => {
       icon: Bot,
       title: "The Operating System",
       count: "14 agents, 45 workflows",
-      description: "A 14-agent fleet replacing a 15-person team. Ops, email triage, content synthesis, lead scoring, dependency mapping, credential health — all running 24/7 with named roles (Marcus, Kai, Zara, Maya, and more)."
+      description: "A 14-agent fleet replacing a 15-person team. Ops, email triage, content synthesis, lead scoring, dependency mapping, credential health, all running 24/7 with named roles (Marcus, Kai, Zara, Maya, and more)."
     },
     {
       icon: FileText,
@@ -26,7 +26,7 @@ const Philosophy = () => {
     {
       icon: Wrench,
       title: "The Build Loop",
-      description: "I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, API-connected assistants. Voyage agents in production across Anthropic, Gemini, and OpenAI."
+      description: "I don't just use AI, I build with it. Voice clones, video agents, memory webs, autonomous researchers, API-connected assistants. Voyage agents in production across Anthropic, Gemini, and OpenAI."
     }
   ];
 

@@ -26,7 +26,7 @@ const Hero = () => {
           </div>
 
           <p className="text-lg md:text-xl font-display italic text-muted-foreground mb-3">
-            Hi — I'm Krish. Operator-advisor.
+            Hi, I'm Krish. Operator-advisor.
           </p>
           <h1 className="headline-xl mb-6 text-balance">
             I run an autonomous AI business; I help companies commercialize theirs.

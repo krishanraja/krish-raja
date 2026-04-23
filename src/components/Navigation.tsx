@@ -21,6 +21,7 @@ const Navigation = () => {
     { label: 'Portfolio', href: '#portfolio' },
     { label: 'Receipts', href: '#proof-points' },
     { label: 'Writing', href: '#writing' },
+    { label: 'Lessons', href: '#lightning-lessons' },
     { label: 'Contact', href: '#contact' }
   ];
 

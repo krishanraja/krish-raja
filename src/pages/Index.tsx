@@ -5,6 +5,7 @@ import Philosophy from '@/components/Philosophy';
 import LivePortfolio from '@/components/LivePortfolio';
 import ProofPoints from '@/components/ProofPoints';
 import Work from '@/components/Work';
+import LightningLessons from '@/components/LightningLessons';
 import WorkWithMe from '@/components/WorkWithMe';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -42,6 +43,7 @@ const Index = () => {
         <LivePortfolio />
         <ProofPoints />
         <Work />
+        <LightningLessons />
         <WorkWithMe />
         <Contact />
       </main>
