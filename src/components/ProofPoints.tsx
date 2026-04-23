@@ -27,7 +27,7 @@ const ProofPoints = () => {
       category: "Team → Agent Fleet",
       metric: "18 People → 14 Agents",
       context: "From human team to autonomous OS",
-      description: "Led an 18-person cross-functional organization across three continents. Now leading a 14-agent fleet that handles ops, GTM, content, and research for a 13-venture portfolio. Built the org chart — then built the agent chart."
+      description: "Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart — then built the agent chart."
     },
     {
       icon: Target,

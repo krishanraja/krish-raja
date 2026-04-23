@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Target, Bot, FileText, Wrench, RefreshCw } from 'lucide-react';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Target, Bot, FileText, Wrench, RefreshCw, ArrowRight } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -82,29 +82,51 @@ const Philosophy = () => {
         )}
 
         {/* Flywheel */}
-        <div className="mt-16 max-w-3xl mx-auto">
-          <Card className="border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-            <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
+        <div className="mt-16">
+          <Card className="border border-primary/20 shadow-sm bg-gradient-to-br from-primary/5 via-card/50 to-primary/10 backdrop-blur-sm ring-1 ring-primary/10">
+            <CardHeader className="text-center md:px-10 md:py-8">
+              <div className="flex items-center justify-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                   <RefreshCw className="w-5 h-5 text-primary" />
                 </div>
                 <CardTitle className="text-lg leading-tight">One flywheel</CardTitle>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-6">
                 Building, advising, and writing are parts of one engine. Each venture sharpens commercial instinct, produces case material, and compounds into the next.
               </p>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="grid sm:grid-cols-2 gap-3">
-                {flywheelPoints.map((point, index) => (
-                  <div key={index} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                    <p className="text-sm text-muted-foreground">{point}</p>
+
+              {isMobile ? (
+                <div className="flex flex-col items-stretch gap-2">
+                  {flywheelPoints.map((point, index) => (
+                    <div key={index} className="flex flex-col items-center gap-2">
+                      <div className="w-full bg-background/60 border border-border rounded-full px-4 py-2 text-xs text-foreground text-center">
+                        {point}
+                      </div>
+                      {index < flywheelPoints.length - 1 && (
+                        <ArrowRight className="w-4 h-4 text-primary/60 rotate-90" />
+                      )}
+                    </div>
+                  ))}
+                  <div className="flex justify-center mt-2">
+                    <RefreshCw className="w-4 h-4 text-primary/60" />
                   </div>
-                ))}
-              </div>
-            </CardContent>
+                </div>
+              ) : (
+                <div className="flex items-center justify-center flex-wrap gap-x-2 gap-y-3">
+                  {flywheelPoints.map((point, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <div className="bg-background/60 border border-border rounded-full px-4 py-1.5 text-xs text-foreground whitespace-nowrap">
+                        {point}
+                      </div>
+                      {index < flywheelPoints.length - 1 && (
+                        <ArrowRight className="w-4 h-4 text-primary/60 flex-shrink-0" />
+                      )}
+                    </div>
+                  ))}
+                  <RefreshCw className="w-4 h-4 text-primary/60 ml-2 flex-shrink-0" />
+                </div>
+              )}
+            </CardHeader>
           </Card>
         </div>
       </div>

@@ -48,8 +48,16 @@ const adviseBusinesses: Business[] = [
 
 const buildBusinesses: Business[] = [
   {
-    name: "Fractionl",
-    description: "The operating system for the portfolio economy",
+    name: "Fractionl Circle",
+    description: "The AI-powered matchmaker between your network, ideas and customers.",
+    icon: fractionlIcon,
+    url: "https://fractionl.ai",
+    role: "Full-Stack Founder",
+    isBeta: true
+  },
+  {
+    name: "Fractionl Pulse",
+    description: "Live unique market intelligence tracking fractional supply and demand trends.",
     icon: fractionlIcon,
     url: "https://fractionl.ai",
     role: "Full-Stack Founder",

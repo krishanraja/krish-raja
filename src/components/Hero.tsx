@@ -26,18 +26,14 @@ const Hero = () => {
           </div>
 
           <p className="text-lg md:text-xl font-display italic text-muted-foreground mb-3">
-            Hi — I'm Krish.
+            Hi — I'm Krish. Operator-advisor.
           </p>
           <h1 className="headline-xl mb-6 text-balance">
-            Operator-advisor.
+            I run an autonomous AI business; I help companies commercialize theirs.
           </h1>
 
-          <p className="text-base md:text-lg font-medium text-muted-foreground mb-6 max-w-2xl mx-auto text-balance">
-            I run an autonomous AI business. I help companies commercialize theirs.
-          </p>
-
           <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
-            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across 13 ventures from Brooklyn, NY.
+            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures from Brooklyn, NY.
           </p>
 
           <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
