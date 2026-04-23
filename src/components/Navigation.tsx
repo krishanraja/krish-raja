@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Menu, X } from 'lucide-react';
-import WorkWithMeMenu from '@/components/WorkWithMeMenu';
+import { Button } from '@/components/ui/button';
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,11 +17,11 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: 'Track Record', href: '#proof-points' },
+    { label: 'How I operate', href: '#how-i-operate' },
     { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Receipts', href: '#proof-points' },
     { label: 'Writing', href: '#writing' },
-    { label: 'Philosophy', href: '#philosophy' },
-    { label: 'Learn', href: '#learn' },
+    { label: 'Lessons', href: '#lightning-lessons' },
     { label: 'Contact', href: '#contact' }
   ];
 
@@ -34,8 +35,8 @@ const Navigation = () => {
       }`}>
         <nav className="container-width" role="navigation" aria-label="Main navigation">
           <div className="flex items-center justify-between py-4">
-            <a 
-              href="#hero" 
+            <a
+              href="#hero"
               className="text-xl font-semibold tracking-tight link-underline"
               aria-label="Krish Raja - Home"
             >
@@ -55,7 +56,9 @@ const Navigation = () => {
               ))}
               <ThemeToggle />
               <div className="ml-4">
-                <WorkWithMeMenu />
+                <Button asChild>
+                  <a href="#work-with-me">Work with me</a>
+                </Button>
               </div>
             </div>
 
@@ -71,7 +74,9 @@ const Navigation = () => {
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
               <ThemeToggle />
-              <WorkWithMeMenu />
+              <Button asChild size="sm">
+                <a href="#work-with-me">Work with me</a>
+              </Button>
             </div>
           </div>
 

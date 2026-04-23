@@ -1,22 +1,17 @@
-import { ExternalLink, Briefcase, Rocket, Mic, Smartphone } from 'lucide-react';
+import { ExternalLink, Briefcase, Rocket, Mic } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 
-// Import all business icons
 import mindmakerIcon from '@/assets/mindmaker-icon.png';
-import builderEconomyIcon from '@/assets/builder-economy-icon.png';
 import fractionlIcon from '@/assets/fractionl-icon.png';
-import onalertIcon from '@/assets/onalert-icon.png';
 import ctrlIcon from '@/assets/ctrl-icon.png';
-import guttedIcon from '@/assets/gutted-icon.png';
 import melioraIcon from '@/assets/meliora-icon.png';
 import adfixusIcon from '@/assets/adfixus-icon.png';
 import techonomicLogo from '@/assets/techonomic-logo.png';
 import signalAndNoiseLogo from '@/assets/signal-and-noise-logo.png';
-
+import builderEconomyIcon from '@/assets/builder-economy-icon.png';
 
 interface Business {
   name: string;
@@ -24,11 +19,10 @@ interface Business {
   icon: string;
   url: string;
   role: string;
-  mobileOnly?: boolean;
   isBeta?: boolean;
 }
 
-const operatorBusinesses: Business[] = [
+const adviseBusinesses: Business[] = [
   {
     name: "Mindmaker",
     description: "Helping leaders create their new personal working style alongside AI",
@@ -52,20 +46,20 @@ const operatorBusinesses: Business[] = [
   }
 ];
 
-const builderBusinesses: Business[] = [
+const buildBusinesses: Business[] = [
   {
-    name: "Fractionl",
-    description: "The operating system for the portfolio economy",
+    name: "Fractionl Circle",
+    description: "The AI-powered matchmaker between your network, ideas and customers.",
     icon: fractionlIcon,
     url: "https://fractionl.ai",
     role: "Full-Stack Founder",
     isBeta: true
   },
   {
-    name: "OnAlert",
-    description: "Real-time alerts when Global Entry and TSA PreCheck slots open up",
-    icon: onalertIcon,
-    url: "https://onalert.app",
+    name: "Fractionl Pulse",
+    description: "Live unique market intelligence tracking fractional supply and demand trends.",
+    icon: fractionlIcon,
+    url: "https://fractionl.ai",
     role: "Full-Stack Founder",
     isBeta: true
   },
@@ -76,25 +70,10 @@ const builderBusinesses: Business[] = [
     url: "https://ctrl.themindmaker.ai",
     role: "Full-Stack Founder",
     isBeta: true
-  },
-  {
-    name: "Gutted",
-    description: "Voice-powered gut health tracking and personalized meal plans",
-    icon: guttedIcon,
-    url: "https://gutted.app",
-    role: "Full-Stack Founder",
-    isBeta: true
   }
 ];
 
-const creatorBusinesses: Business[] = [
-  {
-    name: "The Builder Economy",
-    description: "Conversations with leaders building with AI",
-    icon: builderEconomyIcon,
-    url: "https://thebuildereconomy.com",
-    role: "Host"
-  },
+const writeBusinesses: Business[] = [
   {
     name: "Techonomic",
     description: "Strategic insights on AI, data commercialization, and revenue growth for executives",
@@ -103,26 +82,25 @@ const creatorBusinesses: Business[] = [
     role: "Writer"
   },
   {
-    name: "Mindmaker Live",
-    description: "Live learnings and real-time insights from my journey as an AI-native builder",
-    icon: mindmakerIcon,
-    url: "https://live.themindmaker.ai/",
-    role: "Host"
-  },
-  {
     name: "Signal & Noise",
     description: "Conversations with world-class media operators exploring how AI is reshaping the industry",
     icon: signalAndNoiseLogo,
     url: "https://www.mediaradar.com/signal-and-noise",
     role: "AI Host"
+  },
+  {
+    name: "The Builder Economy",
+    description: "Conversations with leaders building with AI",
+    icon: builderEconomyIcon,
+    url: "https://thebuildereconomy.com",
+    role: "Host"
   }
 ];
 
 const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: boolean }) => {
   const isLargerLogo = business.name === "Techonomic" || business.name === "Signal & Noise";
-  const showMobileWarning = business.mobileOnly && !isMobile && !business.isBeta;
-  
-  const cardContent = (
+
+  return (
     <a
       href={business.url}
       target="_blank"
@@ -136,24 +114,21 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
             Beta
           </Badge>
         )}
-        {showMobileWarning && (
-          <Smartphone className="absolute top-3 left-3 w-3.5 h-3.5 text-amber-500/70" />
-        )}
         <div className={isMobile ? "flex items-start gap-3" : "flex flex-col items-center text-center"}>
-        <div className={isMobile 
-          ? "w-12 h-12 flex-shrink-0 flex items-center justify-center" 
-          : "h-20 flex items-end justify-center mb-3"}>
-          <div className="rounded-lg p-1.5 bg-white/0 dark:bg-white/10 backdrop-blur-[2px] transition-colors duration-300">
-            <img
-              src={business.icon}
-              alt={`${business.name} icon`}
-              loading="lazy"
-              decoding="async"
-              className={`${isMobile 
-                ? `${isLargerLogo ? 'h-8' : 'h-8'}` 
-                : `${isLargerLogo ? 'h-12' : 'h-12'}`} w-auto object-contain ${isLargerLogo ? 'dark:brightness-200 dark:invert' : 'dark:brightness-110 dark:contrast-105'} transition-all duration-300`}
-            />
-          </div>
+          <div className={isMobile
+            ? "w-12 h-12 flex-shrink-0 flex items-center justify-center"
+            : "h-20 flex items-end justify-center mb-3"}>
+            <div className="rounded-lg p-1.5 bg-white/0 dark:bg-white/10 backdrop-blur-[2px] transition-colors duration-300">
+              <img
+                src={business.icon}
+                alt={`${business.name} icon`}
+                loading="lazy"
+                decoding="async"
+                className={`${isMobile
+                  ? `${isLargerLogo ? 'h-8' : 'h-8'}`
+                  : `${isLargerLogo ? 'h-12' : 'h-12'}`} w-auto object-contain ${isLargerLogo ? 'dark:brightness-200 dark:invert' : 'dark:brightness-110 dark:contrast-105'} transition-all duration-300`}
+              />
+            </div>
           </div>
           <div className={isMobile ? "flex-1 min-w-0" : ""}>
             <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-0.5 text-sm">
@@ -168,31 +143,11 @@ const BusinessCard = ({ business, isMobile }: { business: Business; isMobile: bo
       </div>
     </a>
   );
-
-  if (showMobileWarning) {
-    return (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            {cardContent}
-          </TooltipTrigger>
-          <TooltipContent className="bg-card border-border">
-            <p className="text-xs flex items-center gap-1.5">
-              <Smartphone className="w-3 h-3" />
-              Best experienced on mobile
-            </p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    );
-  }
-
-  return cardContent;
 };
 
 const BusinessGrid = ({ businesses, isMobile }: { businesses: Business[]; isMobile: boolean }) => {
   return (
-    <MobileCarousel 
+    <MobileCarousel
       className="grid grid-cols-2 lg:grid-cols-3 gap-4"
       showDots={true}
       uniformHeight={false}
@@ -211,47 +166,47 @@ const LivePortfolio = () => {
     <section id="portfolio" className="section-padding">
       <div className="container-width">
         <div className="text-center mb-10">
-          <h2 className="headline-lg mb-4">Live Portfolio</h2>
+          <h2 className="headline-lg mb-4">The portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            I work with enterprise & leadership on technical and commercial outcomes. I build systems as I go, tools to help me, and content channels to share it.
+            Three lanes: advising, building, writing. Each one feeds the others.
           </p>
         </div>
 
-        <Tabs defaultValue="advisor" className="w-full">
+        <Tabs defaultValue="advise" className="w-full">
           <TabsList className="grid w-full max-w-lg mx-auto grid-cols-3 mb-8 bg-muted/30 p-1 rounded-full h-auto">
-            <TabsTrigger 
-              value="advisor" 
+            <TabsTrigger
+              value="advise"
               className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
             >
               <Briefcase size={14} />
-              <span>Advisor</span>
+              <span>Advise</span>
             </TabsTrigger>
-            <TabsTrigger 
-              value="builder" 
+            <TabsTrigger
+              value="build"
               className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
             >
               <Rocket size={14} />
-              <span>Builder</span>
+              <span>Build</span>
             </TabsTrigger>
-            <TabsTrigger 
-              value="creator" 
+            <TabsTrigger
+              value="write"
               className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
             >
               <Mic size={14} />
-              <span>Creator</span>
+              <span>Write</span>
             </TabsTrigger>
           </TabsList>
-          
-          <TabsContent value="advisor" className="animate-fade-in mt-0">
-            <BusinessGrid businesses={operatorBusinesses} isMobile={isMobile} />
+
+          <TabsContent value="advise" className="animate-fade-in mt-0">
+            <BusinessGrid businesses={adviseBusinesses} isMobile={isMobile} />
           </TabsContent>
-          
-          <TabsContent value="builder" className="animate-fade-in mt-0">
-            <BusinessGrid businesses={builderBusinesses} isMobile={isMobile} />
+
+          <TabsContent value="build" className="animate-fade-in mt-0">
+            <BusinessGrid businesses={buildBusinesses} isMobile={isMobile} />
           </TabsContent>
-          
-          <TabsContent value="creator" className="animate-fade-in mt-0">
-            <BusinessGrid businesses={creatorBusinesses} isMobile={isMobile} />
+
+          <TabsContent value="write" className="animate-fade-in mt-0">
+            <BusinessGrid businesses={writeBusinesses} isMobile={isMobile} />
           </TabsContent>
         </Tabs>
       </div>
