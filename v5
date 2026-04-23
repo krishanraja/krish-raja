@@ -1,0 +1,719 @@
+# krishraja.com Rebuild Brief
+
+**For:** Claude Code
+**Prepared by:** Krish (with Claude sparring)
+**Version:** 1.0
+**Last Updated:** 2026-04-22
+
+---
+
+## 0. How to read this brief
+
+This is the full scope for a ground-up rewrite of krishraja.com. The site currently exists as a single-page React/Vite SPA with a Hero, ProofPoints, Philosophy, Work, LivePortfolio, LearnWithMe, and Contact section. The content is mostly there. **The positioning is what's broken.**
+
+Do not invent new sections. Do not add features. The rebuild is primarily a **repositioning and reordering** exercise, plus targeted copy replacement, schema updates, and a typography unification with Mindmaker.
+
+**Before you start:** Delete `DOCUMENTATION.md` from the repo root. It's 29KB of accumulated decisions that predate this brief. Treat this brief as the source of truth. Keep `README.md`.
+
+---
+
+## 1. Strategic context
+
+krishraja.com is the personal brand hub for Krish Raja. Its job, from now on, is one thing:
+
+**Make Krish look like the most credible operator-advisor in the AI commercialization space, then hand serious buyers to Mindmaker.**
+
+That's it. Not a resumé. Not a cohort catalog. Not a portfolio gallery. A conversion asset for Mindmaker and Techonomic, framed around a single claim: *Krish runs an autonomous AI business and helps companies commercialize theirs.*
+
+### The positioning shift
+
+**From:** "AI Revenue Leader | 16 Years Scaling Businesses" (reads as resumé)
+**To:** "Operator-advisor running an agentic AI business" (reads as differentiated practitioner)
+
+The 16 years of commercial track record do not disappear. They become **credentials for the advisor, not the identity.**
+
+### What this site is NOT
+
+- A career profile looking for inbound recruiter interest
+- A comprehensive directory of every venture or project
+- A cohort / course catalog (Mindmaker owns this)
+- A blog (Techonomic owns this)
+- A portfolio gallery of 11 ventures (trim to 6)
+
+---
+
+## 2. Information architecture
+
+krishraja.com stays a **single page**. Do not build multi-page routing.
+
+### New section order
+
+Current order: Hero → ProofPoints → Philosophy → Work → LivePortfolio → LearnWithMe → Contact
+
+**New order:**
+
+1. **Hero** — new copy, operator-advisor framing
+2. **Philosophy** — renamed section header to "How I operate"; leads the proof
+3. **LivePortfolio** — renamed to "The portfolio"; trimmed from 11 ventures to 6
+4. **ProofPoints** — renamed section header to "Sixteen years of receipts"; positioned as credential, not identity
+5. **Work** — renamed to "Writing & speaking"; decluttered
+6. **WorkWithMe** — renamed section header to "Work with me"; collapsed from 5 offers to 3 clear paths
+7. **Contact** — simplified; no long form
+
+The reorder is load-bearing. The operator narrative leads. The commercial track record follows. This is the inverse of today.
+
+### What to DELETE
+
+- `LearnWithMe.tsx` component as currently structured (5 cohort offers competing with Mindmaker). Replace with a much tighter **WorkWithMe** component (spec below).
+- Portfolio ventures: **Gutted** (voice-powered gut health) and **OnAlert** (TSA alerts) — both inconsistent with the operator-advisor positioning. Archive the code; remove from the rendered site.
+- The 6.8KB `Contact.tsx` form — simplify to a minimal version (spec below).
+
+---
+
+## 3. Hero — new copy
+
+Replace current Hero entirely. Keep `AnimatedProfilePicture` component. Keep trust logos strip.
+
+### Copy
+
+**Greeting line (italic Georgia serif, keep current styling):**
+`Hi — I'm Krish.`
+(Drop the wave emoji. Reads less professional than the new positioning warrants.)
+
+**Headline (H1, Space Grotesk, tight tracking, large):**
+`Operator-advisor.`
+
+**Sub-headline (H2, one line, balanced text, muted-foreground, medium weight):**
+`I run an autonomous AI business. I help companies commercialize theirs.`
+
+**Paragraph (body text, max-width ~640px, center-aligned):**
+`16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across 13 ventures from Brooklyn, NY.`
+
+**Location pill (keep existing styling with animated ping dot):**
+`Based in Brooklyn, NY`
+
+### CTAs
+
+Three buttons in a row on desktop, stacked on mobile:
+
+1. **Primary (solid):** `Work with me` → anchor link to `#work-with-me`
+2. **Secondary (outline):** `Read Techonomic` → opens `https://www.techonomic.co` in new tab
+3. **Tertiary (outline):** `How I operate` → anchor link to `#how-i-operate`
+
+**Drop the LinkedIn and "Let's Talk" buttons from the current Hero.** LinkedIn goes in the footer. "Let's Talk" is redundant with `Work with me`.
+
+### Trust strip
+
+Keep as-is. Current logos (Nine, McCann, Captify, Singtel, BBC, Microsoft) remain. Label copy stays: `Experience across`.
+
+### Visual treatment
+
+Keep existing subtle grid pattern background. Unchanged.
+
+---
+
+## 4. "How I operate" section (was Philosophy)
+
+**Primary repositioning lift.** This section now leads the proof narrative.
+
+### Section header
+
+**H2:** `How I operate`
+**Subhead:** `I don't theorize about AI. I run an autonomous business on it.`
+
+### Structural changes to existing Philosophy component
+
+The existing `Philosophy.tsx` has the right content structure (4 cards: AI-Native Revenue / Autonomous Systems / Content Systems / AI as Co-Founder) and the right flywheel explanation. Three specific updates:
+
+**1. Update agent and workflow count.**
+Current: `7 agents, 37 workflows`
+New: `14 agents, 45 workflows`
+
+(Source: userMemories on Mindmaker OS fleet audit.)
+
+**2. Rename the card headers for tighter framing:**
+
+| Current | New |
+|---|---|
+| AI-Native Revenue | The Revenue Engine |
+| Autonomous Systems | The Operating System |
+| Content Systems | The Content Engine |
+| AI as Co-Founder | The Build Loop |
+
+**3. Update card descriptions to be specific to the 14-agent architecture:**
+
+**The Revenue Engine**
+`AI-powered cold email, LinkedIn DMs, and named-account sequences across multiple ventures. Enterprise GTM engines built on agents, not people.`
+
+**The Operating System**
+`A 14-agent fleet replacing a 15-person team. Ops, email triage, content synthesis, lead scoring, dependency mapping, credential health — all running 24/7 with named roles (Marcus, Kai, Zara, Maya, and more).`
+
+**The Content Engine**
+`Automated newsletter production, podcast synthesis, slide generation, editorial calendars. Techonomic and Signal & Noise ship without me being the bottleneck.`
+
+**The Build Loop**
+`I don't just use AI — I build with it. Voice clones, video agents, memory webs, autonomous researchers, API-connected assistants. Voyage agents in production across Anthropic, Gemini, and OpenAI.`
+
+### The flywheel explanation (keep, lightly edit)
+
+Current: `Building, advising, and creating are parts of one engine. Each venture sharpens commercial instinct and compounds into the next.`
+New: `Building, advising, and writing are parts of one engine. Each venture sharpens commercial instinct, produces case material, and compounds into the next.`
+
+Keep the four-point flywheel list (`Every venture feeds the whole` / `Learnings carry across projects` / `One failure prevents the next` / `Momentum through iteration`) as-is.
+
+### Anchor ID
+
+Add `id="how-i-operate"` to the section element so the Hero tertiary CTA lands here.
+
+---
+
+## 5. "The portfolio" section (was LivePortfolio)
+
+### Section header
+
+**H2:** `The portfolio`
+**Subhead:** `Three lanes: advising, building, writing. Each one feeds the others.`
+
+### Structural changes to existing LivePortfolio component
+
+**Keep the three-tab structure:** Advisor / Builder / Creator. It works.
+
+**Rename tab labels:**
+
+| Current | New |
+|---|---|
+| Advisor | Advise |
+| Builder | Build |
+| Creator | Write |
+
+(Imperative verbs read as active operation, not job titles.)
+
+**Trim the venture list from 11 to 6.**
+
+**Advise tab — keep all 3:**
+1. Mindmaker (CEO & Founder) — unchanged
+2. Meliora (Associate) — unchanged
+3. AdFixus (Fractional SVP: Enterprise) — unchanged
+
+**Build tab — keep 2, delete 2:**
+1. **Fractionl** — unchanged (keep "The operating system for the portfolio economy")
+2. **Ctrl** — unchanged (keep "Build your portable, private memory web...")
+3. **DELETE: OnAlert** — remove from site
+4. **DELETE: Gutted** — remove from site
+
+**Write tab — keep 3, delete 1:**
+1. **Techonomic** — unchanged
+2. **Signal & Noise** — unchanged
+3. **The Builder Economy** — unchanged
+4. **DELETE: Mindmaker Live** — consolidate into Mindmaker (doesn't need its own card)
+
+### Final portfolio count
+
+- Advise: 3 ventures
+- Build: 2 ventures
+- Write: 3 ventures
+- **Total: 8 cards across 3 tabs, down from 11**
+
+### Visual treatment
+
+Keep all existing card styling, hover effects, beta badges. No component rewrite required — just delete unused venture data and update tab labels.
+
+---
+
+## 6. "Sixteen years of receipts" section (was ProofPoints)
+
+### Repositioning
+
+Current framing: *this is who I am*.
+New framing: *this is what I've done to earn the right to run what I'm running now*.
+
+The content (metrics, locations, credentials) is mostly right. The order and framing need to change.
+
+### Section header
+
+**H2:** `Sixteen years of receipts`
+**Subhead:** `The track record that informs the advice.`
+
+(Note the shift — not "proof points" or "wins" or "achievements." Receipts. A word that signals "here's what I've already paid for, in work." Matches the operator-advisor tone.)
+
+### Update to the 4 achievement cards
+
+**Card 1 — Revenue Growth (unchanged):**
+- `$9M → $61M`
+- Broadcaster Digital Transformation
+- Led digital revenue 7x over 3 years...
+
+**Card 2 — Market Creation (unchanged):**
+- `$0 → $12M ARR`
+- Built Region from Zero
+- Launched APAC programmatic business...
+
+**Card 3 — Team Building (UPDATE — this is the hero flip):**
+- Category: `Team → Agent Fleet`
+- Metric: `18 People → 14 Agents`
+- Context: `From human team to autonomous OS`
+- Description: `Led an 18-person cross-functional organization across three continents. Now leading a 14-agent fleet that handles ops, GTM, content, and research for a 13-venture portfolio. Built the org chart — then built the agent chart.`
+
+(This card is doing strategic work. It narrates the arc of your career in one tile: from human org to agent org. It earns its place on the page. Don't simplify it.)
+
+**Card 4 — P&L Leadership (unchanged):**
+- `$55M P&L`
+- Data & Automation
+- Ran full P&L for data and automation division...
+
+### Update to credentials list
+
+**Current list includes `"Former 30 Under 30"` without attribution.** Google can't verify, and serious buyers will note the lack of source. Fix:
+
+Replace `"Former 30 Under 30"` with either:
+- **Preferred:** `"AdNews 30 Under 30 (Marketing & Media)"` — or whichever publication actually granted it; be specific
+- **Fallback:** Remove entirely
+
+**Verify the Harvard entry:**
+`"Harvard Business School (Finance, Analytics & Economics)"` — if this was an MBA, leave as-is. If it was an executive education program (typical for mid-career operators), change to `"Harvard Business School Executive Education (Finance, Analytics & Economics)"`. Specificity matters here — buyers do check.
+
+**Add to credentials list:**
+- `"Founder, Mindmaker"`
+- `"Writer, Techonomic Newsletter"`
+
+### Locations timeline
+
+Current 3-location arc (London / Sydney / Brooklyn) is good. One update:
+
+**Brooklyn entry:**
+Current: `"Now in Brooklyn, combining everything into teaching, advising, and building with AI."`
+New: `"Now in Brooklyn, operating an autonomous AI business and advising companies commercializing theirs."`
+
+(Removes "teaching" — the educator framing has been demoted in the new architecture. "Operating" is the present-tense verb of the new identity.)
+
+---
+
+## 7. "Writing & speaking" section (was Work)
+
+### Repositioning
+
+The current Work component has 4 cards that mix thesis, case studies, podcast appearances, and essays — all of different vintages and relevance. Simplify.
+
+### Section header
+
+**H2:** `Writing & speaking`
+**Subhead:** `The longest-running arguments I've made, plus recent conversations.`
+
+### Structural changes
+
+**Drop to 3 cards (from 4):**
+
+**Card 1 — The Master's Thesis**
+- Title: `Predicting the Future of Haptic Design (2011)`
+- Description: `A Master's thesis predicting the evolution of haptic and tactile interfaces through interviews with UX leaders at IDEO, Microsoft, and Google. Most of what was predicted has now played out.`
+- Tag: `Research`
+
+**Card 2 — The APAC Scaling Playbook**
+- Title: `Zero to Multi-Million ARR: Scaling APAC`
+- Description: `Detailed walkthrough of building Captify's APAC business from zero. Team, GTM, product-market fit, and the decisions that enabled rapid scaling.`
+- Tag: `Case Study`
+
+**Card 3 — The AI in Media Conversation**
+- Title: `My Take on AI in Media`
+- Description: `November 2025 podcast discussing how AI is restructuring media businesses, from content creation to monetization.`
+- Tag: `Podcast`
+
+**DELETE the fourth card (`The Business Case for AI Literacy`).** Its content is now covered by Techonomic and Mindmaker.
+
+### Below the three cards — a "Where I publish regularly" block
+
+Add a simple two-link row below the three cards:
+
+```
+Writing regularly at [Techonomic →]    Hosting [Signal & Noise →]
+```
+
+Links out to the Substack and podcast. One row. Primary-colored link text.
+
+---
+
+## 8. "Work with me" section (was LearnWithMe)
+
+### Complete rewrite of this component
+
+The current `LearnWithMe.tsx` has 5 cohort offers competing with Mindmaker. Kill all of them. Replace with a tight **three-path router.**
+
+### Section header
+
+**H2:** `Work with me`
+**Subhead:** `Three ways in. Pick the one that fits.`
+
+### Three cards
+
+**Card 1 — Join the cohort**
+- Icon: Lucide `Users`
+- Title: `Join the AI Decision Cohort`
+- Body: `Three weeks, mostly async, fifteen senior leaders. You bring a nervous AI decision; you leave with a board-ready answer. Quarterly, $3,500 per seat.`
+- CTA: `See the cohort →` → `https://themindmaker.ai/cohort`
+
+**Card 2 — Hire the firm**
+- Icon: Lucide `Building2`
+- Title: `Hire Mindmaker for enterprise work`
+- Body: `If your company has AI capabilities but no clear commercial strategy, I help commercialize them. The Signal Session ($15k, 1 day) for alignment. The Revenue Architecture ($60k+, 30 days) for the full build.`
+- CTA: `See enterprise offers →` → `https://themindmaker.ai/enterprise`
+
+**Card 3 — Read and subscribe**
+- Icon: Lucide `BookOpen`
+- Title: `Read before you hire`
+- Body: `Techonomic is where I think out loud. Signal & Noise is where I interrogate peers. Both are free. Start there if you're not ready for a call.`
+- CTA: `Read Techonomic →` → `https://www.techonomic.co`
+
+### Anchor ID
+
+Add `id="work-with-me"` to the section element so the Hero primary CTA lands here.
+
+---
+
+## 9. Contact section — simplify
+
+### Replace the existing 6.8KB `Contact.tsx` component
+
+The form is overbuilt for a personal site that's primarily a conversion asset for Mindmaker. Most serious buyers will click "Work with me" and land at Mindmaker's consult modal. The Contact section should be quiet and minimal.
+
+### New structure
+
+**H2:** `Get in touch`
+**Subhead:** `For speaking, writing, or a direct line.`
+
+**Three link rows (no form):**
+1. **Email:** `hello@krishraja.com` (mailto link)
+2. **LinkedIn:** `linkedin.com/in/krish-raja` (external link)
+3. **For work inquiries:** `Book a call through Mindmaker →` (links to Mindmaker consult flow)
+
+**Kill the long form.** If the `send-contact-email` Supabase edge function is needed for anything else, leave it. If not, delete it too.
+
+---
+
+## 10. Visual identity — typography unification with Mindmaker
+
+### Keep distinct color palette, unify typography
+
+**Rationale:** Krish's answer on visual identity was "unify with Mindmaker." But fully copying Mindmaker's mint + ink palette makes krishraja.com look like a subpage of Mindmaker rather than the author's identity. The right move is **same typography, overlapping-but-distinct colors**.
+
+### Typography — CHANGE
+
+Adopt Mindmaker's type stack:
+- **Display font:** Space Grotesk Variable (for H1, H2 headlines)
+- **Body font:** Inter Variable
+
+Remove Georgia serif from the Hero greeting. Replace with Space Grotesk Italic at the same size.
+
+Add to `index.html` preloads:
+```html
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" as="style" />
+```
+
+Update `tailwind.config.ts` font family tokens to match Mindmaker's.
+
+### Color — EVOLVE, NOT REPLACE
+
+Keep the confident blue identity but shift to a more editorial tone:
+
+| Token | Current | New |
+|---|---|---|
+| Primary | `#0066FF` (saturated SaaS blue) | `#0055DD` (deeper, more editorial) |
+| Primary-foreground | white | white |
+| Background (light mode) | white/off-white | unchanged |
+| Background (dark mode) | dark gray | `#0e1a2b` (Ink — matches Mindmaker) |
+| Accent | none | `#7ef4c2` (Mint — used sparingly for link hovers and active states only) |
+
+**Critical rule (mirrors Mindmaker):** never use mint on white/light backgrounds. Mint appears only on dark-mode sections as accent, never as primary.
+
+### Why this works
+
+- **Shared typography** signals "same author, same voice" across properties
+- **Blue identity** preserves the personal brand distinct from Mindmaker
+- **Shared ink + mint accent on dark** creates visual rhyme when someone moves between the two sites
+- **Removes Georgia serif** which was the most dated element on the current site
+
+### Theme color metadata update
+
+Update `index.html`:
+```html
+<meta name="theme-color" content="#0055DD" />
+<meta name="msapplication-TileColor" content="#0055DD" />
+```
+
+---
+
+## 11. Schema + meta rewrite
+
+The current JSON-LD and meta setup positions Krish as "AI Revenue Leader & Enterprise Strategist." Rewrite for the operator-advisor positioning.
+
+### `<title>` tag
+
+**Current:** `Krish Raja - AI Revenue Leader | 16 Years Scaling Businesses`
+**New:** `Krish Raja — Operator-advisor running an agentic AI business`
+
+### Meta description
+
+**Current:** `I build revenue streams in an AI era. $9M→$61M revenue growth, $55M P&L, $0→$12M ARR. The rare exec who writes production code and closes $4M deals. Brooklyn, NY.`
+
+**New:** `I run a 14-agent AI business in production and help companies commercialize theirs. 16 years commercializing products at Microsoft, Nine, Captify, and Singtel. Founder of Mindmaker. Writer of Techonomic. Brooklyn, NY.`
+
+### Keywords meta tag
+
+**DELETE entirely.** Google ignores it. The current keyword list ("30 Under 30," "Brooklyn entrepreneur," "business scaling") is not where buyers are searching. Let the content do the work.
+
+### JSON-LD Person schema
+
+Replace current Person schema (`@id`: `https://www.krishraja.com/#person`) with:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.krishraja.com/#person",
+  "name": "Krish Raja",
+  "givenName": "Krish",
+  "familyName": "Raja",
+  "jobTitle": "Operator-advisor and founder of Mindmaker",
+  "description": "Operator-advisor running a 14-agent AI business across 13 ventures. Founder of Mindmaker. 16 years commercializing products at Microsoft, Nine Entertainment, Captify, and Singtel. $9M→$61M revenue growth. Writes Techonomic and hosts Signal & Noise.",
+  "url": "https://www.krishraja.com",
+  "email": "hello@krishraja.com",
+  "image": "https://www.krishraja.com/og-image.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brooklyn",
+    "addressRegion": "NY",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/krish-raja",
+    "https://themindmaker.ai",
+    "https://www.techonomic.co",
+    "https://thebuildereconomy.com"
+  ],
+  "knowsAbout": [
+    "Agentic Systems Architecture",
+    "AI Commercialization",
+    "Multi-Agent Orchestration",
+    "Memory Architecture for AI",
+    "Cost Optimization for AI Operations",
+    "Product Marketing for AI",
+    "Go-to-Market Strategy",
+    "The Builder Economy",
+    "AI Literacy for Executives",
+    "Revenue Operations"
+  ],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Operator-advisor",
+    "occupationLocation": {
+      "@type": "City",
+      "name": "Brooklyn, New York"
+    }
+  },
+  "alumniOf": [
+    {"@type": "Organization", "name": "Microsoft"},
+    {"@type": "Organization", "name": "University for Creative Arts"},
+    {"@type": "Organization", "name": "University of Manchester"}
+  ],
+  "memberOf": [
+    {"@type": "Organization", "name": "Mindmaker", "url": "https://themindmaker.ai"}
+  ]
+}
+```
+
+**Critical changes from current:**
+- `jobTitle` reflects operator-advisor positioning
+- `description` leads with operator framing, credentials support
+- `sameAs` drops `telephone` (privacy — phone shouldn't be in schema) and `maven.com/krish-raja` (cohort is now via Mindmaker); adds Mindmaker, Techonomic, Builder Economy
+- `knowsAbout` completely rewritten to match what Krish actually does and writes about
+- `hasOccupation.name` changed from "AI Product Builder" to "Operator-advisor"
+- `alumniOf` removes Harvard pending Krish's confirmation of program type (see §6)
+- `memberOf` updated (removed Fractionl listing as the public Fractional AI org)
+- `award` field removed pending 30 Under 30 source verification
+
+**If Krish confirms Harvard MBA vs. Executive Education, re-add with the correct program name.**
+**If Krish confirms the 30 Under 30 source publication, re-add `"award": "AdNews 30 Under 30 (Marketing & Media)"` (or whichever source).**
+
+### JSON-LD WebSite schema
+
+Update `description`:
+**Current:** `Personal website of Krish Raja, AI revenue leader and enterprise strategist`
+**New:** `Personal website of Krish Raja, operator-advisor and founder of Mindmaker`
+
+### JSON-LD ProfessionalService schema
+
+**DELETE entirely.** The current schema declares:
+```json
+{"@type": "ProfessionalService", "priceRange": "$$$$"}
+```
+
+This is not a professional services firm. Mindmaker is. This schema is muddying Google's understanding of what krishraja.com is. Remove it. Let the Person schema carry the identity.
+
+### OG image
+
+Current: `og-image.png`
+**Regenerate the OG image** to match new positioning. Text should read:
+
+```
+Krish Raja
+Operator-advisor
+
+I run an autonomous AI business.
+I help companies commercialize theirs.
+
+krishraja.com
+```
+
+1200x630px, using Space Grotesk for type, Ink (`#0e1a2b`) background, blue (`#0055DD`) accent, mint (`#7ef4c2`) used only on "Operator-advisor" label.
+
+### robots.txt
+
+No changes required. Current setup is fine.
+
+### Profile-type OG tags
+
+Current `og:type` is `profile`. Keep. Add `profile:username` metadata:
+
+```html
+<meta property="profile:first_name" content="Krish" />
+<meta property="profile:last_name" content="Raja" />
+<meta property="profile:username" content="krishraja" />
+```
+
+---
+
+## 12. Technical cleanup
+
+### Delete DOCUMENTATION.md
+
+The repo contains a 29KB DOCUMENTATION.md file. Delete it before starting the rebuild. It represents accumulated design decisions that predate this brief. This brief is the source of truth.
+
+### Delete unused components
+
+After the rewrite, remove:
+- `LearnWithMe.tsx` (replaced by new WorkWithMe component)
+- Any portfolio icons / data for deleted ventures (Gutted, OnAlert, Mindmaker Live)
+
+### SSG / rendering
+
+krishraja.com is a single-page SPA. With only one page, full SSR migration is overkill. However:
+
+**Implement static pre-rendering at build time** using either:
+- `vite-plugin-ssr` / Vike (overkill for one page)
+- **Recommended: `react-snap`** — crawls the built SPA at build time and writes static HTML. Minimal setup, right tool for one-page sites.
+
+This ensures all the new content renders in the HTML response for crawlers, LLMs, and link previews. Same reason Mindmaker v5 needs SSG — just at a smaller scale.
+
+Verification: after build, `curl https://www.krishraja.com` should return the Hero H1, the operator-advisor subheadline, and the rewritten meta description in the raw HTML response.
+
+### Performance budgets
+
+- Homepage LCP: < 2.0s on 4G (lower than Mindmaker because there's less on the page)
+- Total bundle: < 200KB gzipped
+- All images: `loading="lazy"` except trust logos in Hero (keep `loading="eager"` as currently)
+- Lighthouse Performance: >= 95 (personal site, one page, no excuse for < 95)
+
+### Analytics
+
+Keep whatever is currently installed (likely nothing visible from the meta — check). If nothing, add Plausible:
+
+```html
+<script defer data-domain="krishraja.com" src="https://plausible.io/js/script.js"></script>
+```
+
+Custom events to track:
+- `hero_cta_clicked` (work-with-me | techonomic | how-i-operate)
+- `work_with_me_clicked` (cohort | enterprise | read)
+- `portfolio_venture_clicked` (venture name)
+- `contact_method_clicked` (email | linkedin | mindmaker-booking)
+
+---
+
+## 13. Build order
+
+### Milestone 1 — Positioning layer (Day 1)
+
+1. Delete `DOCUMENTATION.md`
+2. Rewrite `<title>`, meta description, Person schema, WebSite schema
+3. Delete `ProfessionalService` schema
+4. Delete `keywords` meta tag
+5. Regenerate OG image
+
+### Milestone 2 — Hero + sections (Day 2-3)
+
+6. Rewrite Hero copy per §3
+7. Rewrite Philosophy section per §4 (rename to "How I operate", update agent counts, rename cards)
+8. Trim LivePortfolio from 11 to 6 ventures per §5
+9. Update ProofPoints "Team Building" card per §6 (the hero flip from 18 people to 14 agents)
+10. Update ProofPoints credentials list per §6 (fix 30 Under 30 source, verify Harvard)
+11. Update ProofPoints Brooklyn location copy per §6
+12. Simplify Work section from 4 to 3 cards per §7
+13. Add "Where I publish regularly" link row under Work section
+
+### Milestone 3 — WorkWithMe rewrite (Day 4)
+
+14. Delete existing `LearnWithMe.tsx`
+15. Create new `WorkWithMe.tsx` with three cards (cohort / enterprise / read)
+16. Wire anchor IDs (`#how-i-operate`, `#work-with-me`)
+17. Update Hero CTAs to target correct anchors
+
+### Milestone 4 — Contact + cleanup (Day 5)
+
+18. Simplify Contact section per §9
+19. Delete unused portfolio venture data (Gutted, OnAlert, Mindmaker Live)
+20. Remove unused assets from `/src/assets/`
+
+### Milestone 5 — Visual unification (Day 6)
+
+21. Update Tailwind config to add Space Grotesk + Inter
+22. Remove Georgia serif from Hero greeting
+23. Update primary color from `#0066FF` to `#0055DD`
+24. Add Mint accent color as hover/active state only
+25. Add Ink (`#0e1a2b`) as dark mode background
+26. Update `theme-color` meta tag
+
+### Milestone 6 — Technical hardening (Day 7)
+
+27. Install and configure `react-snap` for static pre-rendering
+28. Verify curl test: raw HTML contains all new content
+29. Lighthouse audit — fix any performance regressions
+30. Install Plausible, wire custom events
+31. Verify schema with Google's Rich Results Test
+32. Deploy
+
+**Total: 7 days. Solo-operator pace. Parallel to Mindmaker v5 if needed.**
+
+---
+
+## 14. What this brief does NOT cover
+
+- Fractional AI organization strategy (unrelated to site rebuild)
+- Mindmaker rebuild (see separate v5 brief)
+- Email sequences from contact form (form is being simplified)
+- Blog or content migration (Techonomic handles this)
+- SEO backlink strategy (out of scope)
+- Social media profile updates (parallel but separate — update LinkedIn, X bios to match new positioning)
+
+---
+
+## 15. Decision log
+
+| Decision | Rationale |
+|---|---|
+| Reposition from "AI Revenue Leader" to "Operator-advisor" | Current positioning reads like resumé; damages Mindmaker conversion when enterprise buyers google Krish |
+| Keep as single page | Complexity doesn't serve a personal bio; single-page forces focus |
+| Lead with "How I operate," demote ProofPoints | Operator narrative is the differentiator; 16 years of commercial track record is credential for the operator, not the other way around |
+| Flip the "18 People → 14 Agents" card | One card that narrates the career arc in a single line; highest-leverage copy change |
+| Trim portfolio from 11 to 6 ventures | More reads as scattered; fewer reads as focused |
+| Delete the 5-offer LearnWithMe; replace with 3-card WorkWithMe | Current cohort catalog competes with Mindmaker; better to route cleanly |
+| Adopt Mindmaker's typography, keep blue distinct | Signals "same person, different properties"; full palette copy would make krishraja.com look like Mindmaker subpage |
+| Delete `ProfessionalService` schema | Krish is a person; Mindmaker is the firm; schema was muddying the narrative |
+| Delete `DOCUMENTATION.md` | 29KB of prior decisions that predate this brief; source-of-truth conflict |
+| Delete 30 Under 30 unless source confirmed | Unverified award schema is a credibility risk |
+| Fix Harvard alumni entry if exec ed vs MBA | Specificity matters; "Harvard Business School" alone implies MBA |
+| Keep AnimatedProfilePicture | It works; no reason to rebuild |
+| Remove Georgia serif greeting | Dated element; Space Grotesk italic carries same tone |
+| Static pre-render via react-snap | Right tool for one-page SPA; full Vike is overkill |
+
+---
+
+**End of brief.**
