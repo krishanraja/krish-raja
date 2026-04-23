@@ -3,13 +3,11 @@ import { Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const navItems = [
-    { label: 'How I Help', href: '#how-i-help' },
-    { label: 'AI MindMaker', href: '#ai-mindmaker' },
-    { label: 'Creds', href: '#creds' },
-    { label: 'Outcomes', href: '#outcomes' },
-    { label: 'Work', href: '#work' },
-    { label: 'Journey', href: '#journey' },
-    { label: 'Strategic Advisor', href: '#strategic-advisor' },
+    { label: 'How I operate', href: '#how-i-operate' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Receipts', href: '#proof-points' },
+    { label: 'Writing', href: '#writing' },
+    { label: 'Work with me', href: '#work-with-me' },
     { label: 'Contact', href: '#contact' }
   ];
 
@@ -22,8 +20,7 @@ const Footer = () => {
               Krish Raja
             </a>
             <p className="text-sm text-muted-foreground max-w-md">
-              Turn AI literacy into AI strategy and revenue. Strategic advisor across AI, 
-              data, identity, and SaaS GTM.
+              Operator-advisor running an autonomous AI business. Helping companies commercialize theirs.
             </p>
           </div>
 
@@ -42,7 +39,7 @@ const Footer = () => {
 
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="sm" asChild>
-                <a 
+                <a
                   href="https://www.linkedin.com/in/krish-raja"
                   target="_blank"
                   rel="noopener noreferrer"

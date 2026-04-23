@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import LivePortfolio from '@/components/LivePortfolio';
 import Philosophy from '@/components/Philosophy';
-import LearnWithMe from '@/components/LearnWithMe';
+import LivePortfolio from '@/components/LivePortfolio';
 import ProofPoints from '@/components/ProofPoints';
 import Work from '@/components/Work';
+import WorkWithMe from '@/components/WorkWithMe';
+import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
-    // Simple scroll animation observer
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -24,7 +24,6 @@ const Index = () => {
       });
     }, observerOptions);
 
-    // Observe all fade-in-up elements
     const elements = document.querySelectorAll('.fade-in-up');
     elements.forEach((el) => observer.observe(el));
 
@@ -36,16 +35,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main id="main">
         <Hero />
         <Philosophy />
-        <ProofPoints />
         <LivePortfolio />
+        <ProofPoints />
         <Work />
-        <LearnWithMe />
+        <WorkWithMe />
+        <Contact />
       </main>
-      
+
       <Footer />
     </div>
   );

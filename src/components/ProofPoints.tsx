@@ -17,17 +17,17 @@ const ProofPoints = () => {
     },
     {
       icon: Rocket,
-      category: "Market Creation", 
+      category: "Market Creation",
       metric: "$0 → $12M ARR",
       context: "Built Region from Zero",
       description: "Launched APAC programmatic business from scratch — team, product, pipeline. First hire to market leader."
     },
     {
       icon: Users,
-      category: "Team Building",
-      metric: "18-Person Team",
-      context: "Cross-functional organization",
-      description: "Scaled technical and commercial teams across three continents. Built the org chart, not just the strategy."
+      category: "Team → Agent Fleet",
+      metric: "18 People → 14 Agents",
+      context: "From human team to autonomous OS",
+      description: "Led an 18-person cross-functional organization across three continents. Now leading a 14-agent fleet that handles ops, GTM, content, and research for a 13-venture portfolio. Built the org chart — then built the agent chart."
     },
     {
       icon: Target,
@@ -39,8 +39,9 @@ const ProofPoints = () => {
   ];
 
   const credentials = [
-    "Former 30 Under 30",
-    "Harvard Business School (Finance, Analytics & Economics)", 
+    "Founder, Mindmaker",
+    "Writer, Techonomic Newsletter",
+    "Harvard Business School (Finance, Analytics & Economics)",
     "MA Design Strategy (Distinction)",
     "Sydney Opera House Keynote Speaker",
     "Published Author, Speaker & Writer",
@@ -49,23 +50,23 @@ const ProofPoints = () => {
   ];
 
   const locations = [
-    { 
-      city: "London", 
-      period: "2008-2013", 
+    {
+      city: "London",
+      period: "2008-2013",
       role: "From coding to customer success",
       story: "Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up."
     },
-    { 
-      city: "Sydney", 
-      period: "2013-2024", 
+    {
+      city: "Sydney",
+      period: "2013-2024",
       role: "From Sales to Product & Corp Strategy",
       story: "Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch."
     },
-    { 
-      city: "New York", 
-      period: "2024-Present", 
+    {
+      city: "New York",
+      period: "2024-Present",
       role: "From commercial career to full-stack portfolio",
-      story: "Now in Brooklyn, combining everything into teaching, advising, and building with AI."
+      story: "Now in Brooklyn, operating an autonomous AI business and advising companies commercializing theirs."
     }
   ];
 
@@ -73,15 +74,15 @@ const ProofPoints = () => {
     <section id="proof-points" className="section-padding">
       <div className="container-width">
         <div className="text-center mb-16">
-          <h2 className="headline-lg mb-6">Growth & Transformation Wins</h2>
+          <h2 className="headline-lg mb-6">Sixteen years of receipts</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            Building from 0 &gt; 1 to grow or transform businesses.
+            The track record that informs the advice.
           </p>
         </div>
 
         {/* Key Achievements */}
         <div className="mb-12">
-          <MobileCarousel 
+          <MobileCarousel
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             itemClassName="h-full"
             showDots={true}
@@ -119,7 +120,7 @@ const ProofPoints = () => {
             {/* Global Experience */}
             <div>
               <h3 className="headline-md mb-8">Global Journey</h3>
-              <MobileCarousel 
+              <MobileCarousel
                 className="space-y-4"
                 itemClassName="h-full"
                 showDots={true}
@@ -154,9 +155,9 @@ const ProofPoints = () => {
               <h3 className="headline-md mb-8">Recognition & Credentials</h3>
               <div className="flex flex-wrap gap-3">
                 {credentials.map((credential, index) => (
-                  <Badge 
-                    key={index} 
-                    variant="outline" 
+                  <Badge
+                    key={index}
+                    variant="outline"
                     className="text-sm py-2 px-4 bg-background/50"
                   >
                     <Award className="w-3 h-3 mr-2" />

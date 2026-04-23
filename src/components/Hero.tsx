@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { Linkedin, ArrowDown, MessageCircle } from 'lucide-react';
 import AnimatedProfilePicture from '@/components/AnimatedProfilePicture';
 import nineLogo from '@/assets/nine_logo.png';
 import mccannLogo from '@/assets/mccann_logo.png';
@@ -25,18 +24,22 @@ const Hero = () => {
           <div className="mb-8 flex justify-center">
             <AnimatedProfilePicture />
           </div>
-          
-          <p className="text-lg md:text-xl font-medium italic text-muted-foreground mb-3" style={{ fontFamily: "'Georgia', serif" }}>
-            Hi! I'm Krish. 👋
+
+          <p className="text-lg md:text-xl font-display italic text-muted-foreground mb-3">
+            Hi — I'm Krish.
           </p>
           <h1 className="headline-xl mb-6 text-balance">
-            I <span className="text-primary">build revenue streams</span> in an AI era and help others to do the same.
+            Operator-advisor.
           </h1>
-          
-          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
-            16 years building revenue engines across 3 continents. The rare executive who can write production code and close a $4M enterprise deal.
+
+          <p className="text-base md:text-lg font-medium text-muted-foreground mb-6 max-w-2xl mx-auto text-balance">
+            I run an autonomous AI business. I help companies commercialize theirs.
           </p>
-          
+
+          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
+            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across 13 ventures from Brooklyn, NY.
+          </p>
+
           <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -44,30 +47,22 @@ const Hero = () => {
             </span>
             Based in Brooklyn, NY
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a href="#proof-points" className="flex items-center gap-2">
-                See My Track Record
-                <ArrowDown size={16} />
-              </a>
+              <a href="#work-with-me">Work with me</a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
               <a
-                href="https://www.linkedin.com/in/krish-raja/"
+                href="https://www.techonomic.co"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2"
               >
-                <Linkedin size={16} />
-                LinkedIn
+                Read Techonomic
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a href="#contact" className="flex items-center gap-2">
-                <MessageCircle size={16} />
-                Let's Talk
-              </a>
+              <a href="#how-i-operate">How I operate</a>
             </Button>
           </div>
 
