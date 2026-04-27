@@ -18,25 +18,35 @@ const trustLogos = [
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center section-padding">
+    <section id="hero" className="relative min-h-[80svh] md:min-h-screen flex items-center justify-center section-padding scroll-mt-16">
       <div className="container-width text-center relative z-10">
         <div className="fade-in-up">
-          <div className="mb-8 flex justify-center">
-            <AnimatedProfilePicture />
+          <div className="mb-6 md:mb-8 flex justify-center">
+            <div className="scale-90 md:scale-100">
+              <AnimatedProfilePicture />
+            </div>
           </div>
 
-          <p className="text-lg md:text-xl font-display italic text-muted-foreground mb-3">
+          <p className="text-base md:text-xl font-display italic text-muted-foreground mb-2 md:mb-3">
             Hi, I'm Krish. Operator-advisor.
           </p>
-          <h1 className="headline-xl mb-6 text-balance">
+          <h1 className="headline-xl mb-4 md:mb-6 text-balance">
             I run an autonomous AI business; I help companies commercialize theirs.
           </h1>
 
-          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-4 max-w-2xl mx-auto text-balance">
-            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures from Brooklyn, NY.
+          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-3 md:mb-4 max-w-2xl mx-auto text-balance">
+            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures from Brooklyn, NY.{' '}
+            <a
+              href="https://www.techonomic.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-medium link-underline whitespace-nowrap"
+            >
+              Read Techonomic →
+            </a>
           </p>
 
-          <div className="text-sm text-muted-foreground mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
+          <div className="text-sm text-muted-foreground mb-6 md:mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
@@ -44,28 +54,33 @@ const Hero = () => {
             Based in Brooklyn, NY
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center max-w-md mx-auto sm:max-w-none">
             <Button size="lg" asChild className="w-full sm:w-auto">
               <a href="#work-with-me">Work with me</a>
-            </Button>
-            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a
-                href="https://www.techonomic.co"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read Techonomic
-              </a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
               <a href="#how-i-operate">How I operate</a>
             </Button>
           </div>
 
-          {/* Trust strip */}
-          <div className="mt-12 pt-8 border-t border-border/30">
-            <p className="text-xs text-muted-foreground mb-4 uppercase tracking-widest">Experience across</p>
-            <div className="flex items-center justify-center gap-8 flex-wrap">
+          {/* Trust strip — marquee on mobile, wrapped flex on desktop */}
+          <div className="mt-8 pt-6 md:mt-12 md:pt-8 border-t border-border/30">
+            <p className="text-xs text-muted-foreground mb-3 md:mb-4 uppercase tracking-widest">Experience across</p>
+            <div className="md:hidden relative overflow-hidden">
+              <div className="flex gap-8 animate-[scroll_22s_linear_infinite] motion-reduce:animate-none w-max">
+                {[...trustLogos, ...trustLogos].map((logo, index) => (
+                  <img
+                    key={index}
+                    src={logo.src}
+                    alt={logo.alt}
+                    loading="eager"
+                    decoding="async"
+                    className="h-6 w-auto object-contain grayscale opacity-60 flex-shrink-0"
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="hidden md:flex items-center justify-center gap-8 flex-wrap">
               {trustLogos.map((logo, index) => (
                 <img
                   key={index}

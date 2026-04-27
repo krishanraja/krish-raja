@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, Users, Target, Rocket, Award, MapPin } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const ProofPoints = () => {
@@ -71,57 +72,73 @@ const ProofPoints = () => {
   ];
 
   return (
-    <section id="proof-points" className="section-padding">
+    <section id="proof-points" className="section-padding scroll-mt-16">
       <div className="container-width">
-        <div className="text-center mb-16">
-          <h2 className="headline-lg mb-6">Sixteen years of receipts</h2>
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="headline-lg mb-4 md:mb-6">Sixteen years of receipts</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             The track record that informs the advice.
           </p>
         </div>
 
-        {/* Key Achievements */}
-        <div className="mb-12">
-          <MobileCarousel
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-            itemClassName="h-full"
-            showDots={true}
-            minHeight="carousel-sm"
-          >
-            {achievements.map((achievement, index) => {
-              const Icon = achievement.icon;
-              return (
-                <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm text-center h-full">
-                  <CardContent className="p-6">
-                    <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
-                      {achievement.metric}
-                    </div>
-                    <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
-                      {achievement.category}
-                    </div>
-                    <div className="text-xs text-muted-foreground mb-3 break-words hyphens-auto">
-                      {achievement.context}
-                    </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
-                      {achievement.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </MobileCarousel>
-        </div>
-
         {isMobile ? (
-          <div className="space-y-12">
-            {/* Global Experience */}
-            <div>
-              <h3 className="headline-md mb-8">Global Journey</h3>
+          <Tabs defaultValue="receipts" className="w-full">
+            <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-6 bg-muted/30 p-1 rounded-full h-auto">
+              <TabsTrigger
+                value="receipts"
+                className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+              >
+                Receipts
+              </TabsTrigger>
+              <TabsTrigger
+                value="journey"
+                className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+              >
+                Journey
+              </TabsTrigger>
+              <TabsTrigger
+                value="credentials"
+                className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+              >
+                Credentials
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="receipts" className="animate-fade-in mt-0">
               <MobileCarousel
-                className="space-y-4"
+                itemClassName="h-full"
+                showDots={true}
+                minHeight="carousel-sm"
+              >
+                {achievements.map((achievement, index) => {
+                  const Icon = achievement.icon;
+                  return (
+                    <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm text-center h-full">
+                      <CardContent className="p-6">
+                        <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
+                          <Icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
+                          {achievement.metric}
+                        </div>
+                        <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
+                          {achievement.category}
+                        </div>
+                        <div className="text-xs text-muted-foreground mb-3 break-words hyphens-auto">
+                          {achievement.context}
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
+                          {achievement.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </MobileCarousel>
+            </TabsContent>
+
+            <TabsContent value="journey" className="animate-fade-in mt-0">
+              <MobileCarousel
                 itemClassName="h-full"
                 showDots={true}
                 minHeight="carousel-xs"
@@ -146,70 +163,101 @@ const ProofPoints = () => {
                   </Card>
                 ))}
               </MobileCarousel>
-            </div>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Credentials */}
-            <div>
-              <h3 className="headline-md mb-8">Recognition & Credentials</h3>
-              <div className="flex flex-wrap gap-3">
+            </TabsContent>
+
+            <TabsContent value="credentials" className="animate-fade-in mt-0">
+              <div className="flex flex-wrap justify-center gap-2">
                 {credentials.map((credential, index) => (
                   <Badge
                     key={index}
                     variant="outline"
-                    className="text-sm py-2 px-4 bg-background/50"
+                    className="text-xs py-1.5 px-3 bg-background/50"
                   >
-                    <Award className="w-3 h-3 mr-2" />
+                    <Award className="w-3 h-3 mr-1.5 text-primary" />
                     {credential}
                   </Badge>
                 ))}
               </div>
-            </div>
-
-            {/* Global Experience */}
-            <div>
-              <h3 className="headline-md mb-8">Global Journey</h3>
-              <div className="space-y-4">
-                {locations.map((location, index) => (
-                  <Card key={index} className="border-0 shadow-sm bg-muted/30">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <div className="font-semibold text-sm">{location.city}</div>
-                        <Badge variant="secondary" className="text-xs">
-                          {location.period}
-                        </Badge>
-                      </div>
-                      <p className="text-xs font-medium text-foreground mb-1">
-                        {location.role}
-                      </p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        {location.story}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
+            </TabsContent>
+          </Tabs>
+        ) : (
+          <>
+            <div className="mb-12">
+              <div
+                className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+              >
+                {achievements.map((achievement, index) => {
+                  const Icon = achievement.icon;
+                  return (
+                    <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm text-center h-full">
+                      <CardContent className="p-6">
+                        <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
+                          <Icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
+                          {achievement.metric}
+                        </div>
+                        <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
+                          {achievement.category}
+                        </div>
+                        <div className="text-xs text-muted-foreground mb-3 break-words hyphens-auto">
+                          {achievement.context}
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
+                          {achievement.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
-          </div>
-        )}
 
-        {/* Credentials ticker - mobile only */}
-        {isMobile && (
-          <div className="mt-16 pt-12 border-t border-border/50">
-            <h3 className="headline-sm text-center mb-4 text-muted-foreground">Recognition & Credentials</h3>
-            <div className="relative overflow-hidden">
-              <div className="flex gap-6 animate-[scroll-reverse_12s_linear_infinite]">
-                {[...credentials, ...credentials].map((credential, index) => (
-                  <div key={index} className="flex-shrink-0 flex items-center gap-2 bg-background/50 border border-border rounded-full px-4 py-1.5">
-                    <Award className="w-3 h-3 text-primary flex-shrink-0" />
-                    <span className="text-xs text-foreground whitespace-nowrap">{credential}</span>
-                  </div>
-                ))}
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Credentials */}
+              <div>
+                <h3 className="headline-md mb-8">Recognition & Credentials</h3>
+                <div className="flex flex-wrap gap-3">
+                  {credentials.map((credential, index) => (
+                    <Badge
+                      key={index}
+                      variant="outline"
+                      className="text-sm py-2 px-4 bg-background/50"
+                    >
+                      <Award className="w-3 h-3 mr-2" />
+                      {credential}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Global Experience */}
+              <div>
+                <h3 className="headline-md mb-8">Global Journey</h3>
+                <div className="space-y-4">
+                  {locations.map((location, index) => (
+                    <Card key={index} className="border-0 shadow-sm bg-muted/30">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-3 mb-2">
+                          <MapPin className="w-4 h-4 text-primary" />
+                          <div className="font-semibold text-sm">{location.city}</div>
+                          <Badge variant="secondary" className="text-xs">
+                            {location.period}
+                          </Badge>
+                        </div>
+                        <p className="text-xs font-medium text-foreground mb-1">
+                          {location.role}
+                        </p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          {location.story}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </section>

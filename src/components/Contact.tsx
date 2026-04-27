@@ -26,11 +26,11 @@ const contactLinks = [
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-padding bg-muted/30">
+    <section id="contact" className="section-padding bg-muted/30 scroll-mt-16">
       <div className="container-width">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="headline-lg mb-4">Get in touch</h2>
+          <div className="text-center mb-6 md:mb-10">
+            <h2 className="headline-lg mb-3 md:mb-4">Get in touch</h2>
             <p className="text-muted-foreground">
               For speaking, writing, or a direct line.
             </p>

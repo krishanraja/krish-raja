@@ -9,6 +9,7 @@ import LightningLessons from '@/components/LightningLessons';
 import WorkWithMe from '@/components/WorkWithMe';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import MobileJumpNav from '@/components/MobileJumpNav';
 
 const Index = () => {
   useEffect(() => {
@@ -37,7 +38,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main id="main">
+      <main id="main" className="pb-16 lg:pb-0">
         <Hero />
         <Philosophy />
         <LivePortfolio />
@@ -49,6 +50,7 @@ const Index = () => {
       </main>
 
       <Footer />
+      <MobileJumpNav />
     </div>
   );
 };
