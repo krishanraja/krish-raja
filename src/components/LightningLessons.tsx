@@ -78,10 +78,10 @@ const LightningLessons = () => {
   );
 
   return (
-    <section id="lightning-lessons" className="section-padding">
+    <section id="lightning-lessons" className="section-padding scroll-mt-16">
       <div className="container-width">
-        <div className="text-center mb-12">
-          <h2 className="headline-lg mb-6">Lightning Lessons</h2>
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="headline-lg mb-4 md:mb-6">Lightning Lessons</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             Free, 60-minute sessions on Maven. Deep learnings from 20 years of business building, with 100+ enterprise students.
           </p>

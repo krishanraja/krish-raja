@@ -163,10 +163,10 @@ const LivePortfolio = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section id="portfolio" className="section-padding">
+    <section id="portfolio" className="section-padding scroll-mt-16">
       <div className="container-width">
-        <div className="text-center mb-10">
-          <h2 className="headline-lg mb-4">The portfolio</h2>
+        <div className="text-center mb-6 md:mb-10">
+          <h2 className="headline-lg mb-3 md:mb-4">The portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             Three lanes: advising, building, writing. Each one feeds the others.
           </p>

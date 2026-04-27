@@ -125,10 +125,10 @@ const Work = () => {
   };
 
   return (
-    <section id="writing" className="section-padding bg-muted/30">
+    <section id="writing" className="section-padding bg-muted/30 scroll-mt-16">
       <div className="container-width">
-        <div className="text-center mb-16">
-          <h2 className="headline-lg mb-6">Writing & speaking</h2>
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="headline-lg mb-4 md:mb-6">Writing & speaking</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             The longest-running arguments I've made, plus recent conversations.
           </p>
@@ -147,8 +147,8 @@ const Work = () => {
           </div>
         )}
 
-        {/* Where I publish regularly */}
-        <div className="mt-12 pt-8 border-t border-border/40">
+        {/* Where I publish regularly — desktop only; LivePortfolio's Write tab covers this on mobile */}
+        <div className="hidden md:block mt-12 pt-8 border-t border-border/40">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10 text-center sm:text-left">
             <p className="text-sm text-muted-foreground">
               Writing regularly at{' '}

@@ -65,10 +65,10 @@ const WorkWithMe = () => {
   };
 
   return (
-    <section id="work-with-me" className="section-padding">
+    <section id="work-with-me" className="section-padding scroll-mt-16">
       <div className="container-width">
-        <div className="text-center mb-12">
-          <h2 className="headline-lg mb-6">Work with me</h2>
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="headline-lg mb-4 md:mb-6">Work with me</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             Three ways in. Pick the one that fits.
           </p>

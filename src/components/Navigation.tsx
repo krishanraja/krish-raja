@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -62,39 +60,14 @@ const Navigation = () => {
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile: theme toggle + primary CTA only. Section nav lives in MobileJumpNav. */}
             <div className="lg:hidden flex items-center gap-2">
-              <button
-                className="p-2"
-                onClick={() => setIsOpen(!isOpen)}
-                aria-expanded={isOpen}
-                aria-controls="mobile-menu"
-                aria-label="Toggle navigation menu"
-              >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
               <ThemeToggle />
               <Button asChild size="sm">
                 <a href="#work-with-me">Work with me</a>
               </Button>
             </div>
           </div>
-
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <div id="mobile-menu" className="lg:hidden py-4 border-t border-border bg-background">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          )}
         </nav>
       </header>
     </>

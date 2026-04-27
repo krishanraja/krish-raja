@@ -62,17 +62,17 @@ const Philosophy = () => {
   };
 
   return (
-    <section id="how-i-operate" className="section-padding bg-muted/30">
+    <section id="how-i-operate" className="section-padding bg-muted/30 scroll-mt-16">
       <div className="container-width">
-        <div className="text-center mb-10">
-          <h2 className="headline-lg mb-6">How I operate</h2>
+        <div className="text-center mb-6 md:mb-10">
+          <h2 className="headline-lg mb-4 md:mb-6">How I operate</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             I don't theorize about AI. I run an autonomous business on it.
           </p>
         </div>
 
         {isMobile ? (
-          <MobileCarousel showDots={true} uniformHeight={true} minHeight="carousel-md">
+          <MobileCarousel showDots={true} uniformHeight={true} minHeight="carousel-sm">
             {pillars.map((pillar, index) => renderPillarCard(pillar, index))}
           </MobileCarousel>
         ) : (
@@ -96,20 +96,16 @@ const Philosophy = () => {
               </p>
 
               {isMobile ? (
-                <div className="flex flex-col items-stretch gap-2">
+                <div className="flex flex-wrap justify-center items-center gap-1.5">
                   {flywheelPoints.map((point, index) => (
-                    <div key={index} className="flex flex-col items-center gap-2">
-                      <div className="w-full bg-background/60 border border-border rounded-full px-4 py-2 text-xs text-foreground text-center">
-                        {point}
-                      </div>
-                      {index < flywheelPoints.length - 1 && (
-                        <ArrowRight className="w-4 h-4 text-primary/60 rotate-90" />
-                      )}
+                    <div
+                      key={index}
+                      className="bg-background/60 border border-border rounded-full px-3 py-1 text-[11px] text-foreground"
+                    >
+                      {point}
                     </div>
                   ))}
-                  <div className="flex justify-center mt-2">
-                    <RefreshCw className="w-4 h-4 text-primary/60" />
-                  </div>
+                  <RefreshCw className="w-3.5 h-3.5 text-primary/60 ml-1 flex-shrink-0" />
                 </div>
               ) : (
                 <div className="flex items-center justify-center flex-wrap gap-x-2 gap-y-3">
