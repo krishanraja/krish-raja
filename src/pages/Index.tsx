@@ -9,36 +9,28 @@ import LightningLessons from '@/components/LightningLessons';
 import WorkWithMe from '@/components/WorkWithMe';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import MobileJumpNav from '@/components/MobileJumpNav';
+import MobileIndex from '@/components/mobile/MobileIndex';
+import { useIsMobileResolved } from '@/hooks/use-mobile';
 
-const Index = () => {
+const DesktopIndex = () => {
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('animate');
       });
     }, observerOptions);
 
     const elements = document.querySelectorAll('.fade-in-up');
     elements.forEach((el) => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main id="main" className="pb-16 lg:pb-0">
+      <main id="main">
         <Hero />
         <Philosophy />
         <LivePortfolio />
@@ -50,9 +42,14 @@ const Index = () => {
       </main>
 
       <Footer />
-      <MobileJumpNav />
     </div>
   );
+};
+
+const Index = () => {
+  const isMobile = useIsMobileResolved();
+  if (isMobile === undefined) return <div className="min-h-screen bg-background" />;
+  return isMobile ? <MobileIndex /> : <DesktopIndex />;
 };
 
 export default Index;

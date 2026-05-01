@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobileResolved } from '@/hooks/use-mobile';
 import krishBitmoji from '@/assets/krish_bitmoji.jpg';
 import krishHeadshot from '@/assets/krish-headshot.jpg';
 
@@ -14,7 +14,7 @@ const preloadProfileImages = () => {
 const AnimatedProfilePicture = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobileResolved();
 
   // Preload images on mount
   useEffect(() => {
@@ -71,8 +71,8 @@ const AnimatedProfilePicture = () => {
         </div>
       </div>
       
-      {/* Desktop: "Tap me" hint */}
-      {!isMobile && !hasInteracted && (
+      {/* Desktop: "Tap me" hint. Strict equality so the hint never flashes before the hook resolves. */}
+      {isMobile === false && !hasInteracted && (
         <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-muted-foreground animate-pulse whitespace-nowrap">
           Tap me
         </span>
