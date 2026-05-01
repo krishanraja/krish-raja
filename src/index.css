@@ -220,6 +220,81 @@ All colors MUST be HSL.
   .skip-link {
     @apply absolute left-4 top-4 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md transform -translate-y-16 focus:translate-y-0 transition-transform;
   }
+
+  /* Mobile-only typography. Used inside src/components/mobile/* — desktop is unaffected. */
+  .mobile-eyebrow {
+    @apply text-[11px] uppercase tracking-[0.14em] font-medium text-muted-foreground;
+  }
+
+  .mobile-h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.625rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .mobile-h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .mobile-h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .mobile-body {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .mobile-meta {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Mobile section shell */
+  .mobile-section {
+    padding: 2.25rem 1.25rem;
+    scroll-margin-top: 4rem;
+  }
+
+  /* Hide scrollbars on horizontal nav rails */
+  .mobile-scroll-x {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mobile-scroll-x::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Snap-scroll horizontal track for mobile decks */
+  .mobile-snap-track {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mobile-snap-track::-webkit-scrollbar {
+    display: none;
+  }
+  .mobile-snap-item {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  /* Tap row used for contact links and list items */
+  .mobile-tap-row {
+    @apply flex items-center gap-3 px-4 py-3.5 rounded-xl bg-card border border-border/60 active:bg-muted transition-colors;
+    min-height: 56px;
+  }
 }
 
 @layer utilities {
