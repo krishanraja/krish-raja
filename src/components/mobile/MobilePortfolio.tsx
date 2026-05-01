@@ -95,24 +95,26 @@ const MobilePortfolio = () => {
       title="Three lanes, one flywheel"
       intro="Advising, building, writing. Each one feeds the others."
     >
-      <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40 mb-4">
-        {lanes.map((l) => {
-          const Icon = l.icon;
-          const isActive = l.id === active;
-          return (
-            <button
-              key={l.id}
-              type="button"
-              onClick={() => setActive(l.id)}
-              className={`flex items-center justify-center gap-1.5 py-2 rounded-full text-xs font-medium transition-colors ${
-                isActive ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground'
-              }`}
-            >
-              <Icon className="w-3.5 h-3.5" />
-              {l.label}
-            </button>
-          );
-        })}
+      <div className="sticky top-11 z-20 -mx-1 mb-4 py-1 mobile-dock-blur rounded-full">
+        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
+          {lanes.map((l) => {
+            const Icon = l.icon;
+            const isActive = l.id === active;
+            return (
+              <button
+                key={l.id}
+                type="button"
+                onClick={() => setActive(l.id)}
+                className={`flex items-center justify-center gap-1.5 py-2 rounded-full text-xs font-medium mobile-tap-spring transition-colors ${
+                  isActive ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                {l.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <ul className="space-y-2.5">
