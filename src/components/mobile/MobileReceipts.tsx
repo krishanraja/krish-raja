@@ -39,19 +39,21 @@ const MobileReceipts = () => {
       title="Sixteen years of proof"
       intro="The track record that informs the advice."
     >
-      <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40 mb-4">
-        {(['receipts', 'journey', 'credentials'] as Tab[]).map((t) => (
-          <button
-            key={t}
-            type="button"
-            onClick={() => setTab(t)}
-            className={`py-2 rounded-full text-xs font-medium capitalize transition-colors ${
-              tab === t ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground'
-            }`}
-          >
-            {t}
-          </button>
-        ))}
+      <div className="sticky top-11 z-20 -mx-1 mb-4 py-1 mobile-dock-blur rounded-full">
+        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
+          {(['receipts', 'journey', 'credentials'] as Tab[]).map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTab(t)}
+              className={`py-2 rounded-full text-xs font-medium capitalize mobile-tap-spring transition-colors ${
+                tab === t ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground'
+              }`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
       </div>
 
       {tab === 'receipts' && (

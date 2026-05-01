@@ -24,22 +24,19 @@ const MobileTopBar = () => {
   }, []);
 
   return (
-    <>
-      <a href="#main" className="skip-link">Skip to main content</a>
-      <header
-        className={`fixed top-0 inset-x-0 z-40 transition-transform duration-300 ${
-          hidden ? '-translate-y-full' : 'translate-y-0'
-        } ${scrolled ? 'bg-background/90 backdrop-blur border-b border-border/60' : 'bg-background/60 backdrop-blur-sm'}`}
-        role="banner"
-      >
-        <div className="flex items-center justify-between px-5 h-12">
-          <a href="#hero" className="text-base font-semibold tracking-tight" aria-label="Krish Raja - Home">
-            Krish Raja
-          </a>
-          <ThemeToggle />
-        </div>
-      </header>
-    </>
+    <header
+      className={`fixed top-0 inset-x-0 z-40 transition-transform duration-300 ${
+        hidden ? '-translate-y-full' : 'translate-y-0'
+      } ${scrolled ? 'mobile-dock-blur border-b border-border/60' : ''}`}
+      role="banner"
+    >
+      <div className="flex items-center justify-between px-5 h-11">
+        <a href="#hero" className="text-[15px] font-semibold tracking-tight" aria-label="Krish Raja - Home">
+          Krish Raja
+        </a>
+        <ThemeToggle />
+      </div>
+    </header>
   );
 };
 

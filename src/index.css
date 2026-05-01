@@ -264,7 +264,23 @@ All colors MUST be HSL.
   /* Mobile section shell */
   .mobile-section {
     padding: 2.25rem 1.25rem;
-    scroll-margin-top: 4rem;
+    scroll-margin-top: 3.5rem;
+    scroll-snap-align: start;
+  }
+
+  /* Frosted glass shared by top bar + dock so they tune together */
+  .mobile-dock-blur {
+    background-color: hsl(var(--background) / 0.85);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+  }
+
+  /* Haptic-feel press on dock buttons + tap rows */
+  .mobile-tap-spring {
+    transition: transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .mobile-tap-spring:active {
+    transform: scale(0.97);
   }
 
   /* Hide scrollbars on horizontal nav rails */
@@ -302,11 +318,20 @@ All colors MUST be HSL.
     text-wrap: balance;
   }
 
+  /* Mobile vertical snap. Opt-in via data-mobile-snap on <body> so desktop is unaffected. */
+  body[data-mobile-snap="true"] {
+    scroll-snap-type: y proximity;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+    }
+
+    body[data-mobile-snap="true"] {
+      scroll-snap-type: none;
     }
   }
 }

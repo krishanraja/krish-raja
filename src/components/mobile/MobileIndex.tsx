@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MobileTopBar from './MobileTopBar';
-import MobileBottomNav from './MobileBottomNav';
+import MobileActionDock from './MobileActionDock';
+import MobileWorkSheet from './MobileWorkSheet';
+import MobileContactSheet from './MobileContactSheet';
 import MobileHero from './MobileHero';
 import MobilePhilosophy from './MobilePhilosophy';
 import MobilePortfolio from './MobilePortfolio';
@@ -12,24 +14,41 @@ import MobileContact from './MobileContact';
 import MobileFooter from './MobileFooter';
 
 const MobileIndex = () => {
-  useEffect(() => {
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('animate');
-      });
-    }, observerOptions);
+  const [workOpen, setWorkOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
-    const elements = document.querySelectorAll('.fade-in-up');
-    elements.forEach((el) => observer.observe(el));
+  // Opt body into snap-proximity scrolling while the mobile tree is mounted.
+  useEffect(() => {
+    document.body.dataset.mobileSnap = 'true';
+    return () => {
+      delete document.body.dataset.mobileSnap;
+    };
+  }, []);
+
+  // Reveal-on-scroll for any .fade-in-up elements inside section content.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('animate');
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+    );
+
+    document.querySelectorAll('.fade-in-up').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
     <div className="min-h-screen bg-background">
+      <a href="#main" className="skip-link">Skip to main content</a>
       <MobileTopBar />
-      <main id="main" className="pb-20">
-        <MobileHero />
+      <main id="main" className="pb-32">
+        <MobileHero
+          onOpenWork={() => setWorkOpen(true)}
+          onOpenContact={() => setContactOpen(true)}
+        />
         <MobilePhilosophy />
         <MobilePortfolio />
         <MobileReceipts />
@@ -39,7 +58,12 @@ const MobileIndex = () => {
         <MobileContact />
       </main>
       <MobileFooter />
-      <MobileBottomNav />
+      <MobileActionDock
+        onOpenWork={() => setWorkOpen(true)}
+        onOpenContact={() => setContactOpen(true)}
+      />
+      <MobileWorkSheet open={workOpen} onOpenChange={setWorkOpen} />
+      <MobileContactSheet open={contactOpen} onOpenChange={setContactOpen} />
     </div>
   );
 };
