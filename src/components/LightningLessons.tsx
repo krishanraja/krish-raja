@@ -4,35 +4,42 @@ import { Zap, ExternalLink } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-import lessonVibeCoding from '@/assets/lesson-vibe-coding.png';
-import lessonCoFounder from '@/assets/lesson-co-founder.png';
-import lessonAutonomousBusiness from '@/assets/lesson-autonomous-business.png';
-import lessonAiMemory from '@/assets/lesson-ai-memory.png';
+import lessonPermanentIdentity from '@/assets/lesson-permanent-identity.png';
+import lessonAutonomousBusiness from '@/assets/lesson-autonomous-business-new.png';
+import lessonVibeCodingUnfair from '@/assets/lesson-vibe-coding-unfair.png';
+import lessonAgenticOrgChart from '@/assets/lesson-agentic-org-chart.png';
+import lessonAiChiefOfStaff from '@/assets/lesson-ai-chief-of-staff.png';
 
 const lessons = [
   {
-    title: "Vibe Coding for Leaders: Build What You Brief",
-    description: "Learn how to turn a clear brief into a working prototype using AI-native tools.",
-    image: lessonVibeCoding,
-    link: "https://maven.com/p/ca6d71/vibe-coding-for-leaders-build-what-you-brief"
-  },
-  {
-    title: "Make AI Your Co-Founder",
-    description: "Use AI as a true building partner to ship products and scale faster.",
-    image: lessonCoFounder,
-    link: "https://maven.com/p/0cc82a/make-ai-your-co-founder"
+    title: "Build Your AI's Permanent Identity",
+    description: "Give your AI a durable identity so it stays consistent across tools, sessions, and teams.",
+    image: lessonPermanentIdentity,
+    link: "https://maven.com/p/8fba42/build-your-ai-s-permanent-identity"
   },
   {
     title: "Build an Autonomous Business with AI",
     description: "Design and run an autonomous business where AI handles the heavy lifting.",
     image: lessonAutonomousBusiness,
-    link: "https://maven.com/p/38d196/build-an-autonomous-business-with-ai"
+    link: "https://maven.com/p/99a529/build-an-autonomous-business-with-ai"
   },
   {
-    title: "Give Your AI Memory",
-    description: "Give your AI persistent memory so it learns and compounds knowledge over time.",
-    image: lessonAiMemory,
-    link: "https://maven.com/p/8fba42/improve-the-memory-of-your-ai-tools"
+    title: "Vibe Coding: How Your Competitors Are Pulling Ahead",
+    description: "See how AI-native teams are shipping faster, and the unfair advantage you can build with vibe coding.",
+    image: lessonVibeCodingUnfair,
+    link: "https://maven.com/p/b118d0/vibe-coding-how-your-competitors-are-pulling-ahead"
+  },
+  {
+    title: "Create Your Business Agentic Org Chart",
+    description: "Map out the agents, roles, and handoffs that run your business alongside your team.",
+    image: lessonAgenticOrgChart,
+    link: "https://maven.com/p/48674a/create-your-business-agentic-org-chart"
+  },
+  {
+    title: "Build Your AI Chief of Staff",
+    description: "Stand up an AI chief of staff that drives execution, follow-ups, and decisions for you.",
+    image: lessonAiChiefOfStaff,
+    link: "https://maven.com/p/dd0ebd/build-your-ai-chief-of-staff"
   }
 ];
 
@@ -92,7 +99,7 @@ const LightningLessons = () => {
             {lessons.map((lesson, index) => renderCard(lesson, index))}
           </MobileCarousel>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {lessons.map((lesson, index) => renderCard(lesson, index))}
           </div>
         )}
