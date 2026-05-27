@@ -168,7 +168,7 @@ const LivePortfolio = () => {
         <div className="text-center mb-6 md:mb-10">
           <h2 className="headline-lg mb-3 md:mb-4">The portfolio</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            Three lanes: advising, building, writing. Each one feeds the others.
+            Advising clients, building ventures, and writing about both.
           </p>
         </div>
 

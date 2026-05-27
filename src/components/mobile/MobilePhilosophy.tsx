@@ -21,7 +21,7 @@ const pillars = [
   {
     icon: Wrench,
     title: 'Build loop',
-    body: "I don't just use AI, I build with it. Voice clones, video agents, memory webs, autonomous researchers, API-connected assistants in production.",
+    body: 'Voice clones, video agents, memory webs, autonomous researchers, API-connected assistants in production.',
   },
 ];
 
@@ -36,8 +36,8 @@ const MobilePhilosophy = () => (
   <MobileSection
     id="how-i-operate"
     eyebrow="How I operate"
-    title="Four pillars, one flywheel"
-    intro="I don't theorize about AI. I run an autonomous business on it."
+    title="The operating stack"
+    intro="An autonomous business running on AI in production — here's the stack."
     tone="muted"
   >
     <ul className="space-y-2.5">
@@ -77,7 +77,7 @@ const MobilePhilosophy = () => (
         <h3 className="mobile-h3">One flywheel</h3>
       </div>
       <p className="mobile-meta mb-4">
-        Building, advising, writing — parts of one engine. Each venture sharpens commercial instinct, produces case material, compounds into the next.
+        The ventures generate case material that advising and writing both draw on, which is why the same lessons keep showing up across all three.
       </p>
       <ol className="relative pl-5 space-y-2.5 border-l border-primary/30">
         {flywheelPoints.map((point, i) => (

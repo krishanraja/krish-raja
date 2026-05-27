@@ -26,7 +26,7 @@ const Philosophy = () => {
     {
       icon: Wrench,
       title: "The Build Loop",
-      description: "I don't just use AI, I build with it. Voice clones, video agents, memory webs, autonomous researchers, API-connected assistants. Voyage agents in production across Anthropic, Gemini, and OpenAI."
+      description: "Voice clones, video agents, memory webs, autonomous researchers, API-connected assistants. Voyage agents in production across Anthropic, Gemini, and OpenAI."
     }
   ];
 
@@ -67,7 +67,7 @@ const Philosophy = () => {
         <div className="text-center mb-6 md:mb-10">
           <h2 className="headline-lg mb-4 md:mb-6">How I operate</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            I don't theorize about AI. I run an autonomous business on it.
+            An autonomous business running on AI in production — here's the stack.
           </p>
         </div>
 
@@ -92,7 +92,7 @@ const Philosophy = () => {
                 <CardTitle className="text-lg leading-tight">One flywheel</CardTitle>
               </div>
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-6">
-                Building, advising, and writing are parts of one engine. Each venture sharpens commercial instinct, produces case material, and compounds into the next.
+                The ventures generate case material that advising and writing both draw on, which is why the same lessons keep showing up across all three.
               </p>
 
               {isMobile ? (

@@ -92,8 +92,8 @@ const MobilePortfolio = () => {
     <MobileSection
       id="portfolio"
       eyebrow="Portfolio"
-      title="Three lanes, one flywheel"
-      intro="Advising, building, writing. Each one feeds the others."
+      title="The portfolio"
+      intro="Advising clients, building ventures, and writing about both."
     >
       <div className="sticky top-11 z-20 -mx-1 mb-4 py-1 mobile-dock-blur rounded-full">
         <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
