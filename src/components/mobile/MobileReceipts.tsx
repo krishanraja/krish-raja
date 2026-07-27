@@ -24,7 +24,7 @@ const credentials = [
 const locations = [
   { city: 'London', period: '2008-2013', role: 'From coding to customer success', story: 'Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up.' },
   { city: 'Sydney', period: '2013-2024', role: 'From Sales to Product & Corp Strategy', story: 'Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch.' },
-  { city: 'New York', period: '2024-Present', role: 'From career to full-stack portfolio', story: 'Now in Brooklyn, operating an autonomous AI business and advising companies commercializing theirs.' },
+  { city: 'New York', period: '2024-2026', role: 'From career to full-stack portfolio', story: 'Operating an autonomous AI business and advising companies commercializing theirs.' },
 ];
 
 type Tab = 'receipts' | 'journey' | 'credentials';

@@ -48,8 +48,6 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 motion-reduce:animate-none"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              Brooklyn, NY
-              <span className="text-muted-foreground/50">·</span>
               <span>14 agents · 45 workflows</span>
             </p>
           </div>
@@ -60,7 +58,7 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
         </h1>
 
         <p className="mobile-body text-muted-foreground mb-5">
-          16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue. $0 → $12M ARR. Now operating a 14-agent fleet from Brooklyn.
+          16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue. $0 → $12M ARR. Now operating a 14-agent fleet.
         </p>
 
         <div className="flex flex-col gap-2 mb-5">

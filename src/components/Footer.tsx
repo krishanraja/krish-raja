@@ -85,9 +85,6 @@ const Footer = () => {
           <p className="text-xs md:text-sm text-muted-foreground">
             © {new Date().getFullYear()} Krish Raja. All rights reserved.
           </p>
-          <p className="text-xs md:text-sm text-muted-foreground">
-            Brooklyn, New York
-          </p>
         </div>
       </div>
     </footer>

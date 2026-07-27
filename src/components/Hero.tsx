@@ -35,7 +35,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-3 md:mb-4 max-w-2xl mx-auto text-balance">
-            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures from Brooklyn, NY.{' '}
+            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures.{' '}
             <a
               href="https://www.techonomic.co"
               target="_blank"
@@ -45,14 +45,6 @@ const Hero = () => {
               Read Techonomic →
             </a>
           </p>
-
-          <div className="text-sm text-muted-foreground mb-6 md:mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
-            </span>
-            Based in Brooklyn, NY
-          </div>
 
           <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center max-w-md mx-auto sm:max-w-none">
             <Button size="lg" asChild className="w-full sm:w-auto">
