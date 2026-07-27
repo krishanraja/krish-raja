@@ -67,7 +67,7 @@ const ProofPoints = () => {
       city: "New York",
       period: "2024-2026",
       role: "From commercial career to full-stack portfolio",
-      story: "Now in Brooklyn, operating an autonomous AI business and advising companies commercializing theirs."
+      story: "Operating an autonomous AI business and advising companies commercializing theirs."
     }
   ];
 
