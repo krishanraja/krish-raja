@@ -46,14 +46,6 @@ const Hero = () => {
             </a>
           </p>
 
-          <div className="text-sm text-muted-foreground mb-6 md:mb-10 max-w-2xl mx-auto flex items-center justify-center gap-2">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
-            </span>
-            Based in Brooklyn, NY
-          </div>
-
           <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center max-w-md mx-auto sm:max-w-none">
             <Button size="lg" asChild className="w-full sm:w-auto">
               <a href="#work-with-me">Work with me</a>
