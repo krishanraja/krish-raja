@@ -27,7 +27,7 @@ export const nav: NavContent = {
   ],
 
   footerTagline:
-    'Operator-advisor running an autonomous AI business. Helping companies commercialize theirs.',
+    'Sixteen years commercialising content, media and IP businesses. Now building the AI systems that run them.',
   footerRights: 'All rights reserved.',
   sitemapLabel: 'Sitemap',
   linkedInAria: 'LinkedIn profile',

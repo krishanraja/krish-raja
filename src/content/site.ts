@@ -13,41 +13,44 @@ export const site: SiteContent = {
   lastName: 'Raja',
   username: 'krishraja',
 
-  spine: 'I run an autonomous AI business; I help companies commercialize theirs.',
+  // The spine sentence. Also on his LinkedIn. Must not drift.
+  spine:
+    'Sixteen years commercialising content, media and IP businesses. Now I build the AI systems that run them.',
   cluster: 'content, media and IP businesses',
 
-  title: 'Krish Raja: Operator-advisor running an agentic AI business',
+  title: 'Krish Raja: commercial leader for content, media and IP businesses',
   description:
-    'I run a 14-agent AI business in production and help companies commercialize theirs. 16 years commercializing products at Microsoft, Nine, Captify, and Singtel. Founder of Mindmaker. Writer of Techonomic.',
-  jobTitle: 'Operator-advisor and founder of Mindmaker',
+    'Sixteen years commercialising content, media and IP businesses. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmaker OS, a 14-agent AI operating system in production.',
+  jobTitle: 'Commercial leader and founder of Mindmaker',
 
   url: 'https://www.krishraja.com',
   canonical: 'https://www.krishraja.com/',
   email: 'hello@krishraja.com',
   ogImage: 'https://www.krishraja.com/og-image.png',
-  ogImageAlt: 'Krish Raja: Operator-advisor',
+  ogImageAlt: 'Krish Raja, commercial leader for content, media and IP businesses',
   twitterHandle: '@krishraja',
   locale: 'en_US',
   language: 'en-US',
   websiteDescription:
-    'Personal website of Krish Raja, operator-advisor and founder of Mindmaker',
+    'Personal website of Krish Raja, commercial leader for content, media and IP businesses and founder of Mindmaker',
   updated: '2026-08-11',
 
   // Prose below is rendered into public/llms.txt by scripts/generate-static.mts.
   // It lives here, next to the meta it has to agree with, so the two cannot drift.
-  bio: 'Krish Raja runs an autonomous AI business and helps companies commercialize theirs. Sixteen years commercializing media, data and technology businesses across London, Sydney and New York.',
+  bio: 'Krish Raja is a commercial leader for content, media and IP businesses, and the founder of Mindmaker. Sixteen years commercialising media, data and technology businesses across London, Sydney and New York. He now builds the AI systems that run commercial engines in that same sector.',
 
   nowHeading: 'What he does now',
   now: [
     {
       name: 'Mindmaker OS',
       detail:
-        'a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of.',
+        'a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of. Mindmaker is the advisory operated with the OS, Mindmaker Live is its content pillar, CTRL is its app, and Fractionl Circle and Fractionl Pulse sit alongside it.',
     },
     {
       name: 'Mindmaker',
       qualifier: 'Founder',
-      detail: 'advisory for leaders building their working style alongside AI. Sold at themindmaker.ai.',
+      detail:
+        'a capped advisory practice. A small number of engagements a year, from taking one decision apart to rebuilding how a business decides. Sold at themindmaker.ai.',
     },
     {
       name: 'CTRL',
@@ -59,8 +62,10 @@ export const site: SiteContent = {
   writingHeading: 'Writing and audio',
   writing: [
     {
-      name: 'Techonomic',
-      detail: 'newsletter on AI, data commercialization and revenue growth for executives.',
+      name: 'Mindmaker Live',
+      qualifier: 'https://live.themindmaker.ai',
+      detail:
+        'the editorial channel. Two formats. Built gets to why someone built the thing they built. Paid follows the money in a shift and names the mechanism. Replaces Techonomic and The Builder Economy.',
     },
     {
       name: 'Signal & Noise',
@@ -76,11 +81,14 @@ export const site: SiteContent = {
   education:
     'MA Design Strategy (Distinction), University for the Creative Arts. BA English Language and Linguistics, University of Manchester. Harvard Business School Executive Education. Keynote speaker, Sydney Opera House.',
 
+  // TODO(krish): techonomic.co no longer resolves and thebuildereconomy.com
+  // returns 404. Both are dropped here. Redirect them to live.themindmaker.ai,
+  // archive them, or let them lapse?
+
   sameAs: [
     'https://www.linkedin.com/in/krish-raja',
     'https://themindmaker.ai',
-    'https://www.techonomic.co',
-    'https://thebuildereconomy.com',
+    'https://live.themindmaker.ai',
   ],
 
   knowsAbout: [
@@ -91,7 +99,7 @@ export const site: SiteContent = {
     'Cost Optimization for AI Operations',
     'Product Marketing for AI',
     'Go-to-Market Strategy',
-    'The Builder Economy',
+    'Media and Entertainment Commercial Strategy',
     'AI Literacy for Executives',
     'Revenue Operations',
   ],

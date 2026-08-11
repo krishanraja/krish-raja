@@ -33,8 +33,7 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
             />
           </button>
           <div className="min-w-0">
-            <p className="mobile-eyebrow text-primary">{hero.eyebrow}</p>
-            <p className="text-[12.5px] text-muted-foreground flex items-center gap-1.5 mt-0.5 flex-wrap">
+            <p className="text-[12.5px] text-muted-foreground flex items-center gap-1.5 flex-wrap">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 motion-reduce:animate-none"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>

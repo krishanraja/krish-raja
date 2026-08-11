@@ -19,10 +19,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <p className="text-base md:text-xl font-display italic text-muted-foreground mb-2 md:mb-3">
-            {hero.eyebrow}
-          </p>
-          <h1 className="headline-xl mb-4 md:mb-6 text-balance">
+          <h1 className="headline-xl mb-6 md:mb-8 text-balance">
             {hero.h1}
           </h1>
 

@@ -169,7 +169,7 @@ const llmsTxt = (): string => {
     '',
     '## Contact',
     '',
-    `${site.email} · ${site.url.replace('https://', '')} · ${site.links.linkedin.replace('https://www.', '')}`,
+    `${site.email} · ${site.url.replace('https://www.', '')} · ${site.links.linkedin.replace('https://www.', '')}`,
     '',
   ].join('\n');
 };

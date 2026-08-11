@@ -2,12 +2,12 @@
 
 ## Who is Krish Raja
 
-Krish Raja runs an autonomous AI business and helps companies commercialize theirs. Sixteen years commercializing media, data and technology businesses across London, Sydney and New York.
+Krish Raja is a commercial leader for content, media and IP businesses, and the founder of Mindmaker. Sixteen years commercialising media, data and technology businesses across London, Sydney and New York. He now builds the AI systems that run commercial engines in that same sector.
 
 ## What he does now
 
-- **Mindmaker OS**: a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of.
-- **Mindmaker** (Founder): advisory for leaders building their working style alongside AI. Sold at themindmaker.ai.
+- **Mindmaker OS**: a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of. Mindmaker is the advisory operated with the OS, Mindmaker Live is its content pillar, CTRL is its app, and Fractionl Circle and Fractionl Pulse sit alongside it.
+- **Mindmaker** (Founder): a capped advisory practice. A small number of engagements a year, from taking one decision apart to rebuilding how a business decides. Sold at themindmaker.ai.
 - **CTRL**: a portable, private memory system that keeps an operator's judgment usable across the tools they work in.
 
 ## Commercial track record
@@ -19,7 +19,7 @@ Krish Raja runs an autonomous AI business and helps companies commercialize thei
 
 ## Writing and audio
 
-- **Techonomic**: newsletter on AI, data commercialization and revenue growth for executives.
+- **Mindmaker Live** (https://live.themindmaker.ai): the editorial channel. Two formats. Built gets to why someone built the thing they built. Paid follows the money in a shift and names the mechanism. Replaces Techonomic and The Builder Economy.
 - **Signal & Noise**: podcast with media operators on how AI is reshaping the industry.
 - **Teaches on Maven**
 
@@ -33,4 +33,4 @@ MA Design Strategy (Distinction), University for the Creative Arts. BA English L
 
 ## Contact
 
-hello@krishraja.com · www.krishraja.com · linkedin.com/in/krish-raja
+hello@krishraja.com · krishraja.com · linkedin.com/in/krish-raja
