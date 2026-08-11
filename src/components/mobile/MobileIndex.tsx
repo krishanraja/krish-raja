@@ -9,6 +9,7 @@ import MobileOperatingSystem from './MobileOperatingSystem';
 import MobilePortfolio from './MobilePortfolio';
 import MobileReceipts from './MobileReceipts';
 import MobileWriting from './MobileWriting';
+import MobileLatest from './MobileLatest';
 import MobileLessons from './MobileLessons';
 import MobileWorkWithMe from './MobileWorkWithMe';
 import MobileContact from './MobileContact';
@@ -56,6 +57,7 @@ const MobileIndex = () => {
         <MobilePortfolio />
         <MobileReceipts />
         <MobileWriting />
+        <MobileLatest />
         <MobileLessons />
         <MobileWorkWithMe />
         <MobileContact />

@@ -6,6 +6,7 @@ import OperatingSystem from '@/components/OperatingSystem';
 import LivePortfolio from '@/components/LivePortfolio';
 import ProofPoints from '@/components/ProofPoints';
 import Work from '@/components/Work';
+import Latest from '@/components/Latest';
 import LightningLessons from '@/components/LightningLessons';
 import WorkWithMe from '@/components/WorkWithMe';
 import Contact from '@/components/Contact';
@@ -38,6 +39,7 @@ const DesktopIndex = () => {
         <LivePortfolio />
         <ProofPoints />
         <Work />
+        <Latest />
         <LightningLessons />
         <WorkWithMe />
         <Contact />

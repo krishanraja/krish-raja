@@ -174,7 +174,8 @@ export type LatestFormat = 'Built' | 'Paid';
 export interface LatestEntry {
   readonly id: string;
   readonly title: string;
-  readonly blurb: string;
+  /** Optional. Left unset where no sourced description exists. Never guessed. */
+  readonly blurb?: string;
   readonly type: LatestType;
   readonly format?: LatestFormat;
   readonly href: string;
