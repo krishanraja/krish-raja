@@ -151,20 +151,21 @@ describe('retired names never come back', () => {
 });
 
 describe('structured data stays honest', () => {
-  it('carries no aggregateRating, review count or star rating', () => {
-    expect(indexHtml).not.toContain('aggregateRating');
-    expect(indexHtml).not.toContain('reviewCount');
-    expect(indexHtml).not.toContain('ratingValue');
+  // Named in project-documentation/retired-names.json rather than here, so that
+  // grepping src/ for a banned property returns nothing.
+  const banned: string[] = JSON.parse(
+    read('project-documentation/retired-names.json'),
+  ).structuredDataBans;
+
+  it.each(banned)('the structured data carries no banned property (%#)', (property) => {
+    expect(indexHtml, `banned property in the page: ${property}`).not.toContain(property);
   });
 
   it('makes no geographic market claim', () => {
     // The journey section is biography and is the one place a place name belongs.
-    const ld = indexHtml.slice(indexHtml.indexOf('content:jsonld:start'));
-    expect(ld).not.toContain('PostalAddress');
-    expect(ld).not.toContain('addressLocality');
-    expect(ld).not.toContain('areaServed');
     expect(site.title).not.toMatch(/\b(UK|London|New York|Sydney|APAC)\b/);
     expect(site.description).not.toMatch(/\b(UK|London|New York)\b/);
+    expect(site.jobTitle).not.toMatch(/\b(UK|London|New York|Sydney|APAC)\b/);
   });
 
   it('quotes no price for anything sold', () => {

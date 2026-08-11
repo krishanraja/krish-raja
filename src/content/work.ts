@@ -17,9 +17,9 @@ export const work: WorkContent = {
         "Master's thesis predicting the evolution of haptic and tactile interfaces.",
       description:
         "A Master's thesis predicting the evolution of haptic and tactile interfaces through interviews with UX leaders at IDEO, Microsoft, and Google. Most of what was predicted has now played out.",
-      // No link and no action label on purpose: this shipped with link: "#",
-      // an anchor that went nowhere. The card is a description-only dialog
-      // until a real URL exists.
+      // No link and no action label on purpose. This card shipped with an
+      // empty anchor that went nowhere. It is a description-only dialog until
+      // a real URL exists.
       // TODO(krish): is the thesis online anywhere? Supply a URL and the Read
       // button comes back.
       asset: 'masters-thesis',

@@ -1,5 +1,5 @@
 {
-  "comment": "Names and claims that must never appear on krishraja.com again. The consistency suite in src/content/__tests__/positioning.test.ts reads this file and fails the build if any entry turns up in the content layer or in a generated artifact. It lives here, outside src/, so that grepping src/ for a retired name returns nothing. Context for each entry is in POSITIONING.md and FACTS.md.",
+  "comment": "Names and claims that must never appear on krishraja.com again. The consistency suite in src/content/__tests__/positioning.test.ts reads this file and fails the build if any entry turns up in the content layer or in a generated artifact. It lives here, outside src/, so that grepping src/ for a retired name returns nothing. structuredDataBans are schema.org properties that must never appear in the JSON-LD: a sister repo ships a fabricated rating, and this one must not. Context for each entry is in POSITIONING.md and FACTS.md.",
   "names": [
     "AI Decision Cohort",
     "Signal Session",
@@ -14,5 +14,13 @@
     "themindmaker.ai/enterprise",
     "techonomic.co",
     "thebuildereconomy.com"
+  ],
+  "structuredDataBans": [
+    "aggregateRating",
+    "reviewCount",
+    "ratingValue",
+    "PostalAddress",
+    "addressLocality",
+    "areaServed"
   ]
 }

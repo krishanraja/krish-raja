@@ -70,8 +70,10 @@ const metaBlock = (): string =>
 
 /* --------------------------------------------------------------- json-ld */
 
-// No aggregateRating, no review count, no star rating, and no venture count.
-// See the "deliberately absent" list in CLAUDE.md.
+// Nothing here fabricates a rating, a review count or a venture count. The
+// properties that must never appear are listed in
+// project-documentation/retired-names.json and the test suite enforces it.
+// See also the "deliberately absent" list in CLAUDE.md.
 const personLd = () => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
