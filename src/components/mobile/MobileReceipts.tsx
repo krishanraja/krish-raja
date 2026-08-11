@@ -1,31 +1,10 @@
 import { useState } from 'react';
-import { TrendingUp, Users, Target, Rocket, Award, MapPin } from 'lucide-react';
+import { Award, MapPin } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { Badge } from '@/components/ui/badge';
-
-const achievements = [
-  { icon: TrendingUp, category: 'Revenue Growth', metric: '$9M → $61M', context: 'Broadcaster Digital Transformation', description: 'Led digital revenue 7x over 3 years. Triple-digit growth in 2 of 3 years. 70+ commercial products launched.' },
-  { icon: Rocket, category: 'Market Creation', metric: '$0 → $12M ARR', context: 'Built Region from Zero', description: 'Launched APAC programmatic from scratch: team, product, pipeline. First hire to market leader.' },
-  { icon: Users, category: 'Team → Agent Fleet', metric: '18 People → 14 Agents', context: 'From human team to autonomous OS', description: 'Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures.' },
-  { icon: Target, category: 'P&L Leadership', metric: '$55M P&L', context: 'Data & Automation', description: 'Ran full P&L for data and automation division. 22% EBITDA. Guided M&A and portfolio transformation.' },
-];
-
-const credentials = [
-  'Founder, Mindmaker',
-  'Writer, Techonomic Newsletter',
-  'Harvard Business School',
-  'MA Design Strategy (Distinction)',
-  'Sydney Opera House Keynote',
-  'Published Author & Speaker',
-  'Ex-Microsoft Automation Specialist',
-  'First Global Automated Media Campaigns (2010)',
-];
-
-const locations = [
-  { city: 'London', period: '2008-2013', role: 'From coding to customer success', story: 'Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up.' },
-  { city: 'Sydney', period: '2013-2024', role: 'From Sales to Product & Corp Strategy', story: 'Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch.' },
-  { city: 'New York', period: '2024-2026', role: 'From career to full-stack portfolio', story: 'Operating an autonomous AI business and advising companies commercializing theirs.' },
-];
+import { receipts } from '@/content';
+import { pick } from '@/content/types';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
 type Tab = 'receipts' | 'journey' | 'credentials';
 
@@ -34,10 +13,10 @@ const MobileReceipts = () => {
 
   return (
     <MobileSection
-      id="proof-points"
-      eyebrow="Receipts"
-      title="Sixteen years of proof"
-      intro="The track record that informs the advice."
+      id={receipts.id}
+      eyebrow={pick(receipts.eyebrow, 'mobile')}
+      title={pick(receipts.title, 'mobile')}
+      intro={pick(receipts.sub, 'mobile')}
     >
       <div className="sticky top-11 z-20 -mx-1 mb-4 py-1 mobile-dock-blur rounded-full">
         <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
@@ -50,7 +29,7 @@ const MobileReceipts = () => {
                 tab === t ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground'
               }`}
             >
-              {t}
+              {pick(receipts.tabs[t], 'mobile')}
             </button>
           ))}
         </div>
@@ -58,8 +37,8 @@ const MobileReceipts = () => {
 
       {tab === 'receipts' && (
         <div className="-mx-5 px-5 mobile-snap-track flex gap-3 overflow-x-auto pb-2">
-          {achievements.map((a, i) => {
-            const Icon = a.icon;
+          {receipts.achievements.map((a, i) => {
+            const Icon = resolveIcon(a.icon);
             return (
               <article
                 key={i}
@@ -71,7 +50,7 @@ const MobileReceipts = () => {
                 <div className="text-2xl font-bold text-primary leading-tight mb-1">{a.metric}</div>
                 <div className="text-sm font-semibold text-foreground mb-1">{a.category}</div>
                 <div className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">{a.context}</div>
-                <p className="text-[12.5px] leading-snug text-muted-foreground">{a.description}</p>
+                <p className="text-[12.5px] leading-snug text-muted-foreground">{pick(a.description, 'mobile')}</p>
               </article>
             );
           })}
@@ -80,7 +59,7 @@ const MobileReceipts = () => {
 
       {tab === 'journey' && (
         <ol className="relative pl-6 space-y-4 border-l border-border/60">
-          {locations.map((l, i) => (
+          {receipts.journey.map((l, i) => (
             <li key={i} className="relative">
               <span className="absolute -left-[27px] top-1 flex items-center justify-center w-5 h-5 rounded-full bg-primary text-primary-foreground">
                 <MapPin className="w-3 h-3" />
@@ -89,7 +68,7 @@ const MobileReceipts = () => {
                 <h3 className="text-sm font-semibold">{l.city}</h3>
                 <Badge variant="secondary" className="text-[10px] py-0 px-1.5">{l.period}</Badge>
               </div>
-              <p className="text-[12.5px] font-medium text-foreground mb-1">{l.role}</p>
+              <p className="text-[12.5px] font-medium text-foreground mb-1">{pick(l.role, 'mobile')}</p>
               <p className="text-[12.5px] leading-snug text-muted-foreground">{l.story}</p>
             </li>
           ))}
@@ -98,13 +77,13 @@ const MobileReceipts = () => {
 
       {tab === 'credentials' && (
         <ul className="grid grid-cols-1 gap-2">
-          {credentials.map((c, i) => (
+          {receipts.credentials.map((c, i) => (
             <li
               key={i}
               className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-card border border-border/60"
             >
               <Award className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              <span className="text-[13px] text-foreground">{c}</span>
+              <span className="text-[13px] text-foreground">{pick(c, 'mobile')}</span>
             </li>
           ))}
         </ul>

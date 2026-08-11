@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { nav } from '@/content';
 
 const MobileTopBar = () => {
   const lastY = useRef(0);
@@ -31,8 +32,8 @@ const MobileTopBar = () => {
       role="banner"
     >
       <div className="flex items-center justify-between px-5 h-11">
-        <a href="#hero" className="text-[15px] font-semibold tracking-tight" aria-label="Krish Raja - Home">
-          Krish Raja
+        <a href="#hero" className="text-[15px] font-semibold tracking-tight" aria-label={nav.brandAria}>
+          {nav.brand}
         </a>
         <ThemeToggle />
       </div>

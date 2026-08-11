@@ -49,8 +49,14 @@ npm run generate   # regenerate meta, JSON-LD, llms.txt and sitemap.xml from src
 | `contact.ts` | Contact links |
 | `nav.ts` | Navigation and footer labels |
 
-Every module is exported `as const satisfies` its type, so a missing field is a compile
-error rather than a blank card.
+Every module is annotated with its type from `src/content/types.ts`, so a missing field is
+a compile error rather than a blank card, and a stray field is a compile error rather than
+dead data.
+
+The modules are pure data. No React, no lucide, no asset imports, because
+`scripts/generate-static.mts` and the test suite import them under plain Node, where a
+`.png` import would throw. Icons and images are named by string key and resolved through
+`src/lib/icon-map.ts` and `src/lib/asset-map.ts`.
 
 ## Changing the positioning in one place
 

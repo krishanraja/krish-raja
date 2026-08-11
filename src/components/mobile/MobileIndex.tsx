@@ -12,6 +12,7 @@ import MobileLessons from './MobileLessons';
 import MobileWorkWithMe from './MobileWorkWithMe';
 import MobileContact from './MobileContact';
 import MobileFooter from './MobileFooter';
+import { nav } from '@/content';
 
 const MobileIndex = () => {
   const [workOpen, setWorkOpen] = useState(false);
@@ -42,7 +43,7 @@ const MobileIndex = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <a href="#main" className="skip-link">Skip to main content</a>
+      <a href="#main" className="skip-link">{nav.skipLink}</a>
       <MobileTopBar />
       <main id="main" className="pb-32">
         <MobileHero

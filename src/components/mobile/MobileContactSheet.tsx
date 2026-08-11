@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Calendar, Copy, Check, ArrowUpRight } from 'lucide-react';
+import { Copy, Check, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import {
@@ -7,13 +7,14 @@ import {
   DrawerTitle,
   DrawerDescription,
 } from '@/components/ui/drawer';
+import { contact, site } from '@/content';
+import { pick } from '@/content/types';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
 interface MobileContactSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
-
-const EMAIL = 'hello@krishraja.com';
 
 const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => {
   const [copied, setCopied] = useState(false);
@@ -22,12 +23,12 @@ const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => 
     e.preventDefault();
     e.stopPropagation();
     try {
-      await navigator.clipboard.writeText(EMAIL);
+      await navigator.clipboard.writeText(site.email);
       setCopied(true);
-      toast.success('Email copied');
+      toast.success(contact.copySuccess);
       setTimeout(() => setCopied(false), 1500);
     } catch {
-      toast.error('Could not copy');
+      toast.error(contact.copyError);
     }
   };
 
@@ -35,74 +36,51 @@ const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => 
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
         <div className="px-5 pt-4 pb-2">
-          <DrawerTitle className="text-xl">Get in touch</DrawerTitle>
+          <DrawerTitle className="text-xl">{pick(contact.title, 'sheet')}</DrawerTitle>
           <DrawerDescription className="mt-1">
-            For speaking, writing, or a direct line.
+            {pick(contact.sub, 'sheet')}
           </DrawerDescription>
         </div>
         <ul
           className="px-4 pb-6 space-y-2"
           style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}
         >
-          <li>
-            <a
-              href={`mailto:${EMAIL}`}
-              className="mobile-tap-row mobile-tap-spring group"
-              onClick={() => onOpenChange(false)}
-            >
-              <span className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                <Mail className="w-4 h-4 text-primary" />
-              </span>
-              <span className="flex-1 min-w-0">
-                <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">Email</span>
-                <span className="block text-[13.5px] font-medium text-foreground truncate">{EMAIL}</span>
-              </span>
-              <button
-                type="button"
-                onClick={onCopy}
-                className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 mobile-tap-spring flex-shrink-0"
-                aria-label="Copy email"
-              >
-                {copied ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
-              </button>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.linkedin.com/in/krish-raja"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => onOpenChange(false)}
-              className="mobile-tap-row mobile-tap-spring"
-            >
-              <span className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                <Linkedin className="w-4 h-4 text-primary" />
-              </span>
-              <span className="flex-1 min-w-0">
-                <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">LinkedIn</span>
-                <span className="block text-[13.5px] font-medium text-foreground truncate">linkedin.com/in/krish-raja</span>
-              </span>
-              <ArrowUpRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://themindmaker.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => onOpenChange(false)}
-              className="mobile-tap-row mobile-tap-spring"
-            >
-              <span className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                <Calendar className="w-4 h-4 text-primary" />
-              </span>
-              <span className="flex-1 min-w-0">
-                <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">For work inquiries</span>
-                <span className="block text-[13.5px] font-medium text-foreground truncate">Book through Mindmaker</span>
-              </span>
-              <ArrowUpRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-            </a>
-          </li>
+          {contact.links.map((link) => {
+            const Icon = resolveIcon(link.sheetIcon ?? link.icon);
+            return (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  onClick={() => onOpenChange(false)}
+                  className="mobile-tap-row mobile-tap-spring group"
+                >
+                  <span className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
+                    <Icon className="w-4 h-4 text-primary" />
+                  </span>
+                  <span className="flex-1 min-w-0">
+                    <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">{link.label}</span>
+                    <span className="block text-[13.5px] font-medium text-foreground truncate">
+                      {pick(link.value, 'sheet')}
+                    </span>
+                  </span>
+                  {link.copyable ? (
+                    <button
+                      type="button"
+                      onClick={onCopy}
+                      className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 mobile-tap-spring flex-shrink-0"
+                      aria-label={contact.copyLabel}
+                    >
+                      {copied ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
+                    </button>
+                  ) : (
+                    <ArrowUpRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </DrawerContent>
     </Drawer>

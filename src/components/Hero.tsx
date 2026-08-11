@@ -1,22 +1,15 @@
 import { Button } from '@/components/ui/button';
 import AnimatedProfilePicture from '@/components/AnimatedProfilePicture';
-import nineLogo from '@/assets/nine_logo.png';
-import mccannLogo from '@/assets/mccann_logo.png';
-import captifyLogo from '@/assets/captify_logo.png';
-import singtelLogo from '@/assets/singtel_logo.png';
-import bbcLogo from '@/assets/bbc_logo.png';
-import microsoftLogo from '@/assets/microsoft_logo.png';
-
-const trustLogos = [
-  { src: nineLogo, alt: "Nine" },
-  { src: mccannLogo, alt: "McCann" },
-  { src: captifyLogo, alt: "Captify" },
-  { src: singtelLogo, alt: "Singtel" },
-  { src: bbcLogo, alt: "BBC" },
-  { src: microsoftLogo, alt: "Microsoft" },
-];
+import { hero } from '@/content';
+import { pick } from '@/content/types';
+import { asset } from '@/lib/asset-map';
 
 const Hero = () => {
+  const trustLogos = hero.trustLogos.map((logo) => ({
+    src: asset(logo.asset),
+    alt: logo.alt,
+  }));
+
   return (
     <section id="hero" className="relative min-h-[80svh] md:min-h-screen flex items-center justify-center section-padding scroll-mt-16">
       <div className="container-width text-center relative z-10">
@@ -28,36 +21,36 @@ const Hero = () => {
           </div>
 
           <p className="text-base md:text-xl font-display italic text-muted-foreground mb-2 md:mb-3">
-            Hi, I'm Krish. Operator-advisor.
+            {pick(hero.eyebrow, 'desktop')}
           </p>
           <h1 className="headline-xl mb-4 md:mb-6 text-balance">
-            I run an autonomous AI business; I help companies commercialize theirs.
+            {pick(hero.h1, 'desktop')}
           </h1>
 
           <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-3 md:mb-4 max-w-2xl mx-auto text-balance">
-            16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures.{' '}
+            {pick(hero.sub, 'desktop')}{' '}
             <a
-              href="https://www.techonomic.co"
+              href={hero.channel.href}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary font-medium link-underline whitespace-nowrap"
             >
-              Read Techonomic →
+              {pick(hero.channel.label, 'desktop')}
             </a>
           </p>
 
           <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center max-w-md mx-auto sm:max-w-none">
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a href="#work-with-me">Work with me</a>
+              <a href="#work-with-me">{hero.primaryCta}</a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a href="#how-i-operate">How I operate</a>
+              <a href={hero.secondaryHref}>{pick(hero.secondaryCta, 'desktop')}</a>
             </Button>
           </div>
 
-          {/* Trust strip — marquee on mobile, wrapped flex on desktop */}
+          {/* Trust strip: marquee on mobile, wrapped flex on desktop */}
           <div className="mt-8 pt-6 md:mt-12 md:pt-8 border-t border-border/30">
-            <p className="text-xs text-muted-foreground mb-3 md:mb-4 uppercase tracking-widest">Experience across</p>
+            <p className="text-xs text-muted-foreground mb-3 md:mb-4 uppercase tracking-widest">{hero.trustLabel}</p>
             <div className="md:hidden relative overflow-hidden">
               <div className="flex gap-8 animate-[scroll_22s_linear_infinite] motion-reduce:animate-none w-max">
                 {[...trustLogos, ...trustLogos].map((logo, index) => (

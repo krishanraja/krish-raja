@@ -1,21 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { Home, Compass, Layers, Award, BookOpen, Mic, Mail, Phone, ArrowRight } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
+import { nav } from '@/content';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
-type Section = {
-  id: string;
-  label: string;
-  icon: typeof Home;
-};
-
-const sections: Section[] = [
-  { id: 'hero', label: 'Home', icon: Home },
-  { id: 'how-i-operate', label: 'Operate', icon: Compass },
-  { id: 'portfolio', label: 'Portfolio', icon: Layers },
-  { id: 'proof-points', label: 'Receipts', icon: Award },
-  { id: 'writing', label: 'Writing', icon: BookOpen },
-  { id: 'lightning-lessons', label: 'Lessons', icon: Mic },
-  { id: 'contact', label: 'Contact', icon: Mail },
-];
+const sections = nav.dockItems;
 
 interface MobileActionDockProps {
   onOpenWork: () => void;
@@ -60,16 +48,16 @@ const MobileActionDock = ({ onOpenWork, onOpenContact }: MobileActionDockProps) 
       className="fixed bottom-0 inset-x-0 z-40 mobile-dock-blur border-t border-border/60"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       role="navigation"
-      aria-label="Section navigation and primary actions"
+      aria-label={nav.dockAria}
     >
-      {/* Top row: chip rail with all 7 sections */}
+      {/* Top row: chip rail with every section */}
       <div
         ref={railRef}
         className="mobile-scroll-x flex gap-1.5 px-3 pt-2 pb-1.5 overflow-x-auto"
         style={{ scrollbarWidth: 'none' }}
       >
         {sections.map((section) => {
-          const Icon = section.icon;
+          const Icon = resolveIcon(section.icon);
           const isActive = activeId === section.id;
           return (
             <a
@@ -96,7 +84,7 @@ const MobileActionDock = ({ onOpenWork, onOpenContact }: MobileActionDockProps) 
           type="button"
           onClick={onOpenContact}
           className="w-11 h-11 rounded-full bg-card border border-border/60 text-foreground flex items-center justify-center mobile-tap-spring flex-shrink-0"
-          aria-label="Contact options"
+          aria-label={nav.contactAria}
         >
           <Phone className="w-4 h-4" />
         </button>
@@ -105,7 +93,7 @@ const MobileActionDock = ({ onOpenWork, onOpenContact }: MobileActionDockProps) 
           onClick={onOpenWork}
           className="flex-1 h-11 rounded-full bg-primary text-primary-foreground font-semibold text-sm flex items-center justify-center gap-1.5 shadow-sm mobile-tap-spring"
         >
-          Work with me
+          {nav.ctaLabel}
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>

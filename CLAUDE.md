@@ -45,6 +45,20 @@ spine sentence or any headline number disagrees across surfaces.
 Before adding a string to a component, ask which content module it belongs in.
 `grep -rn "61M" src/components/` must always return nothing.
 
+Two rules keep the layer honest:
+
+1. **Every module is annotated with its type** from `src/content/types.ts`
+   (`export const hero: HeroContent = {...}`). A missing field is a compile error, a stray
+   field is a compile error.
+2. **The modules are pure data.** No React, no lucide, no asset imports. The generator
+   script and the test suite import them under plain Node, where a `.png` import throws.
+   Icons and images are named by string key and resolved in `src/lib/icon-map.ts` and
+   `src/lib/asset-map.ts`.
+
+Where the desktop and mobile trees still disagree on wording, the `Copy` type carries the
+variants (`{ desktop, mobile, sheet? }`) and components read through `pick()`. Plain
+`string` is the goal. Use the variant form only to record drift that already exists.
+
 ## Hard rules for copy
 
 1. **No em dashes. Anywhere. Including code and commit messages.** Use commas, periods

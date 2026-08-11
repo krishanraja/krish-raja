@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
+import { nav } from '@/content';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,36 +15,27 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { label: 'How I operate', href: '#how-i-operate' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Receipts', href: '#proof-points' },
-    { label: 'Writing', href: '#writing' },
-    { label: 'Lessons', href: '#lightning-lessons' },
-    { label: 'Contact', href: '#contact' }
-  ];
-
   return (
     <>
       <a href="#main" className="skip-link">
-        Skip to main content
+        {nav.skipLink}
       </a>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-background/95 backdrop-blur-sm border-b border-border' : 'bg-transparent'
       }`}>
-        <nav className="container-width" role="navigation" aria-label="Main navigation">
+        <nav className="container-width" role="navigation" aria-label={nav.navAria}>
           <div className="flex items-center justify-between py-4">
             <a
               href="#hero"
               className="text-xl font-semibold tracking-tight link-underline"
-              aria-label="Krish Raja - Home"
+              aria-label={nav.brandAria}
             >
-              Krish Raja
+              {nav.brand}
             </a>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              {navItems.map((item) => (
+              {nav.items.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
@@ -55,16 +47,16 @@ const Navigation = () => {
               <ThemeToggle />
               <div className="ml-4">
                 <Button asChild>
-                  <a href="#work-with-me">Work with me</a>
+                  <a href={nav.ctaHref}>{nav.ctaLabel}</a>
                 </Button>
               </div>
             </div>
 
-            {/* Mobile: theme toggle + primary CTA only. Section nav lives in MobileJumpNav. */}
+            {/* Mobile: theme toggle + primary CTA only. Section nav lives in the action dock. */}
             <div className="lg:hidden flex items-center gap-2">
               <ThemeToggle />
               <Button asChild size="sm">
-                <a href="#work-with-me">Work with me</a>
+                <a href={nav.ctaHref}>{nav.ctaLabel}</a>
               </Button>
             </div>
           </div>
