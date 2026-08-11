@@ -7,7 +7,7 @@ import { icon as resolveIcon } from '@/lib/icon-map';
 const MobileContact = () => (
   <MobileSection
     id={contact.id}
-    eyebrow={pick(contact.eyebrow, 'mobile')}
+    eyebrow={contact.eyebrow}
     title={pick(contact.title, 'mobile')}
     intro={pick(contact.sub, 'mobile')}
   >
@@ -28,7 +28,7 @@ const MobileContact = () => (
               <span className="flex-1 min-w-0">
                 <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">{l.label}</span>
                 <span className="block text-[13.5px] font-medium text-foreground truncate group-active:text-primary transition-colors">
-                  {pick(l.value, 'mobile')}
+                  {l.value}
                 </span>
               </span>
               <ArrowUpRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />

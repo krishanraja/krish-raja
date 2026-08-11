@@ -35,14 +35,21 @@ export const pick = (copy: Copy, surface: Surface): string => {
 
 /** A link that leaves the site. */
 export interface ExternalLink {
-  readonly label: Copy;
+  readonly label: string;
   readonly href: string;
 }
 
-/** Standard section framing. `eyebrow` is rendered by the mobile tree only. */
+/**
+ * Standard section framing.
+ *
+ * `eyebrow` is rendered by the mobile tree only. `title` and `sub` are the last
+ * fields allowed to differ by surface, because mobile pairs an eyebrow with a
+ * different title where desktop uses a single h2, and splitting the desktop sub
+ * across the two is the point. Card-level copy below must never differ.
+ */
 export interface SectionHeader {
   readonly id: string;
-  readonly eyebrow: Copy;
+  readonly eyebrow: string;
   readonly title: Copy;
   readonly sub: Copy;
 }
@@ -53,13 +60,13 @@ export interface TrustLogo {
 }
 
 export interface HeroContent {
-  readonly eyebrow: Copy;
+  readonly eyebrow: string;
   readonly status: string;
-  readonly h1: Copy;
-  readonly sub: Copy;
+  readonly h1: string;
+  readonly sub: string;
   readonly channel: ExternalLink;
   readonly primaryCta: string;
-  readonly secondaryCta: Copy;
+  readonly secondaryCta: string;
   readonly secondaryHref: string;
   readonly trustLabel: string;
   readonly trustLogos: readonly TrustLogo[];
@@ -67,9 +74,9 @@ export interface HeroContent {
 
 export interface Pillar {
   readonly icon: string;
-  readonly title: Copy;
-  readonly badge?: Copy;
-  readonly body: Copy;
+  readonly title: string;
+  readonly badge?: string;
+  readonly body: string;
 }
 
 export interface OperateContent extends SectionHeader {
@@ -101,17 +108,17 @@ export interface OsContent extends SectionHeader {
 
 export interface PortfolioItem {
   readonly name: string;
-  readonly description: Copy;
+  readonly description: string;
   readonly asset: string;
   readonly url: string;
-  readonly role: Copy;
+  readonly role: string;
   readonly isBeta?: boolean;
   readonly invertOnDark?: boolean;
 }
 
 export interface PortfolioTab {
   readonly id: string;
-  readonly label: Copy;
+  readonly label: string;
   readonly icon: string;
   readonly note?: string;
   readonly items: readonly PortfolioItem[];
@@ -127,7 +134,7 @@ export interface Achievement {
   readonly category: string;
   readonly metric: string;
   readonly context: string;
-  readonly description: Copy;
+  readonly description: string;
 }
 
 export interface Engagement {
@@ -139,22 +146,22 @@ export interface Engagement {
 export interface JourneyStop {
   readonly city: string;
   readonly period: string;
-  readonly role: Copy;
+  readonly role: string;
   readonly story: string;
 }
 
 export interface ReceiptsContent extends SectionHeader {
   readonly tabs: {
-    readonly receipts: Copy;
-    readonly journey: Copy;
-    readonly credentials: Copy;
+    readonly receipts: string;
+    readonly journey: string;
+    readonly credentials: string;
   };
   readonly credentialsHeading: string;
   readonly journeyHeading: string;
   readonly engagementsHeading: string;
   readonly achievements: readonly Achievement[];
   readonly engagements: readonly Engagement[];
-  readonly credentials: readonly Copy[];
+  readonly credentials: readonly string[];
   readonly journey: readonly JourneyStop[];
 }
 
@@ -184,7 +191,7 @@ export interface LatestContent extends SectionHeader {
 export interface WorkItem {
   readonly title: string;
   readonly type: string;
-  readonly summary: Copy;
+  readonly summary: string;
   readonly description: string;
   readonly link?: string;
   readonly actionLabel?: string;
@@ -198,8 +205,8 @@ export interface WorkContent extends SectionHeader {
 }
 
 export interface Lesson {
-  readonly title: Copy;
-  readonly description: Copy;
+  readonly title: string;
+  readonly description: string;
   readonly asset: string;
   readonly link: string;
 }
@@ -211,9 +218,9 @@ export interface LessonsContent extends SectionHeader {
 
 export interface OfferCard {
   readonly icon: string;
-  readonly title: Copy;
+  readonly title: string;
   readonly eyebrow?: string;
-  readonly body: Copy;
+  readonly body: string;
   readonly cta: string;
   readonly href: string;
   readonly primary?: boolean;
@@ -225,7 +232,7 @@ export interface OfferContent extends SectionHeader {
 
 export interface ContactLink {
   readonly label: string;
-  readonly value: Copy;
+  readonly value: string;
   readonly href: string;
   readonly icon: string;
   readonly sheetIcon?: string;
@@ -267,6 +274,8 @@ export interface NavContent {
   readonly dockAria: string;
   readonly dockItems: readonly DockItem[];
   readonly contactAria: string;
+  readonly jumpItems: readonly NavItem[];
+  readonly jumpAria: string;
 }
 
 export interface SiteContent {

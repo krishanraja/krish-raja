@@ -14,7 +14,7 @@ const MobileReceipts = () => {
   return (
     <MobileSection
       id={receipts.id}
-      eyebrow={pick(receipts.eyebrow, 'mobile')}
+      eyebrow={receipts.eyebrow}
       title={pick(receipts.title, 'mobile')}
       intro={pick(receipts.sub, 'mobile')}
     >
@@ -29,7 +29,7 @@ const MobileReceipts = () => {
                 tab === t ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground'
               }`}
             >
-              {pick(receipts.tabs[t], 'mobile')}
+              {receipts.tabs[t]}
             </button>
           ))}
         </div>
@@ -50,7 +50,7 @@ const MobileReceipts = () => {
                 <div className="text-2xl font-bold text-primary leading-tight mb-1">{a.metric}</div>
                 <div className="text-sm font-semibold text-foreground mb-1">{a.category}</div>
                 <div className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">{a.context}</div>
-                <p className="text-[12.5px] leading-snug text-muted-foreground">{pick(a.description, 'mobile')}</p>
+                <p className="text-[12.5px] leading-snug text-muted-foreground">{a.description}</p>
               </article>
             );
           })}
@@ -68,7 +68,7 @@ const MobileReceipts = () => {
                 <h3 className="text-sm font-semibold">{l.city}</h3>
                 <Badge variant="secondary" className="text-[10px] py-0 px-1.5">{l.period}</Badge>
               </div>
-              <p className="text-[12.5px] font-medium text-foreground mb-1">{pick(l.role, 'mobile')}</p>
+              <p className="text-[12.5px] font-medium text-foreground mb-1">{l.role}</p>
               <p className="text-[12.5px] leading-snug text-muted-foreground">{l.story}</p>
             </li>
           ))}
@@ -83,7 +83,7 @@ const MobileReceipts = () => {
               className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-card border border-border/60"
             >
               <Award className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              <span className="text-[13px] text-foreground">{pick(c, 'mobile')}</span>
+              <span className="text-[13px] text-foreground">{c}</span>
             </li>
           ))}
         </ul>

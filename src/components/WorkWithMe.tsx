@@ -22,9 +22,9 @@ const WorkWithMe = () => {
             <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
               <Icon className="w-5 h-5 text-primary" />
             </div>
-            <CardTitle className="text-lg leading-tight">{pick(path.title, 'desktop')}</CardTitle>
+            <CardTitle className="text-lg leading-tight">{path.title}</CardTitle>
           </div>
-          <p className="text-sm text-muted-foreground">{pick(path.body, 'desktop')}</p>
+          <p className="text-sm text-muted-foreground">{path.body}</p>
         </CardHeader>
         <CardContent className="pt-0 mt-auto">
           <Button asChild variant="outline" size="sm" className="w-full">

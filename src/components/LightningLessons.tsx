@@ -11,7 +11,7 @@ const LightningLessons = () => {
   const isMobile = useIsMobile();
 
   const renderCard = (lesson: Lesson, index: number) => {
-    const title = pick(lesson.title, 'desktop');
+    const title = lesson.title;
     return (
       <a
         key={index}
@@ -43,7 +43,7 @@ const LightningLessons = () => {
               {title}
             </h3>
             <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-              {pick(lesson.description, 'desktop')}
+              {lesson.description}
             </p>
           </CardContent>
         </Card>

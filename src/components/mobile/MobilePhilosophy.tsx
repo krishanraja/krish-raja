@@ -7,7 +7,7 @@ import { icon as resolveIcon } from '@/lib/icon-map';
 const MobilePhilosophy = () => (
   <MobileSection
     id={operate.id}
-    eyebrow={pick(operate.eyebrow, 'mobile')}
+    eyebrow={operate.eyebrow}
     title={pick(operate.title, 'mobile')}
     intro={pick(operate.sub, 'mobile')}
     tone="muted"
@@ -26,14 +26,14 @@ const MobilePhilosophy = () => (
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <h3 className="mobile-h3 text-foreground">{pick(p.title, 'mobile')}</h3>
+                  <h3 className="mobile-h3 text-foreground">{p.title}</h3>
                   {p.badge && (
                     <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/15 text-primary">
-                      {pick(p.badge, 'mobile')}
+                      {p.badge}
                     </span>
                   )}
                 </div>
-                <p className="mobile-meta">{pick(p.body, 'mobile')}</p>
+                <p className="mobile-meta">{p.body}</p>
               </div>
             </div>
           </li>

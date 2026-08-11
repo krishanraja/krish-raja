@@ -45,9 +45,9 @@ const BusinessCard = ({ business, isMobile }: { business: PortfolioItem; isMobil
             <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-0.5 text-sm">
               {business.name}
             </h3>
-            <span className="text-xs text-primary/80 font-medium">{pick(business.role, 'desktop')}</span>
+            <span className="text-xs text-primary/80 font-medium">{business.role}</span>
             <p className={`text-xs text-muted-foreground leading-relaxed ${isMobile ? 'mt-1.5' : 'mt-2'}`}>
-              {pick(business.description, 'desktop')}
+              {business.description}
             </p>
           </div>
         </div>
@@ -94,7 +94,7 @@ const LivePortfolio = () => {
                   className="rounded-full py-2.5 px-3 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
                 >
                   <Icon size={14} />
-                  <span>{pick(tab.label, 'desktop')}</span>
+                  <span>{tab.label}</span>
                 </TabsTrigger>
               );
             })}

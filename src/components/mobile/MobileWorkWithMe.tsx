@@ -8,7 +8,7 @@ import { icon as resolveIcon } from '@/lib/icon-map';
 const MobileWorkWithMe = () => (
   <MobileSection
     id={offer.id}
-    eyebrow={pick(offer.eyebrow, 'mobile')}
+    eyebrow={offer.eyebrow}
     title={pick(offer.title, 'mobile')}
     intro={pick(offer.sub, 'mobile')}
     tone="muted"
@@ -29,14 +29,14 @@ const MobileWorkWithMe = () => (
               <span className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                 <Icon className="w-4 h-4 text-primary" />
               </span>
-              <h3 className="mobile-h3 text-foreground">{pick(path.title, 'mobile')}</h3>
+              <h3 className="mobile-h3 text-foreground">{path.title}</h3>
             </div>
             {path.eyebrow && (
               <p className="text-[11px] uppercase tracking-wide text-primary/80 font-medium mb-1.5">
                 {path.eyebrow}
               </p>
             )}
-            <p className="mobile-meta mb-3">{pick(path.body, 'mobile')}</p>
+            <p className="mobile-meta mb-3">{path.body}</p>
             <Button
               asChild
               variant={path.primary ? 'default' : 'outline'}

@@ -25,11 +25,7 @@ export const contact: ContactContent = {
     },
     {
       label: 'For work inquiries',
-      value: {
-        desktop: 'Book a call through Mindmaker',
-        mobile: 'Book a call through Mindmaker',
-        sheet: 'Book through Mindmaker',
-      },
+      value: 'Book a call through Mindmaker',
       href: site.links.mindmaker,
       icon: 'arrow-up-right',
       sheetIcon: 'calendar',

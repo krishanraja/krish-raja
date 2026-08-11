@@ -1,24 +1,17 @@
 import type { HeroContent } from './types';
 
 export const hero: HeroContent = {
-  eyebrow: {
-    desktop: "Hi, I'm Krish. Operator-advisor.",
-    mobile: 'Operator-advisor',
-  },
+  eyebrow: "Hi, I'm Krish. Operator-advisor.",
   status: '14 agents · 45 workflows',
   h1: 'I run an autonomous AI business; I help companies commercialize theirs.',
-  sub: {
-    desktop:
-      '16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures.',
-    mobile:
-      '16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue. $0 → $12M ARR. Now operating a 14-agent fleet.',
-  },
+  sub: '16 years commercializing products at Microsoft, Nine, Captify, and Singtel. $9M → $61M revenue growth. $0 → $12M ARR. Now operating a 14-agent fleet across multiple ventures.',
   channel: {
-    label: { desktop: 'Read Techonomic →', mobile: 'Read Techonomic' },
+    // Arrows are affordances, not copy. Each surface renders its own.
+    label: 'Read Techonomic',
     href: 'https://www.techonomic.co',
   },
   primaryCta: 'Work with me',
-  secondaryCta: { desktop: 'How I operate', mobile: 'How I operate ↓' },
+  secondaryCta: 'How I operate',
   secondaryHref: '#how-i-operate',
   trustLabel: 'Experience across',
   trustLogos: [

@@ -1,6 +1,5 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { hero, nav } from '@/content';
-import { pick } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
 interface MobileHeroProps {
@@ -34,7 +33,7 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
             />
           </button>
           <div className="min-w-0">
-            <p className="mobile-eyebrow text-primary">{pick(hero.eyebrow, 'mobile')}</p>
+            <p className="mobile-eyebrow text-primary">{hero.eyebrow}</p>
             <p className="text-[12.5px] text-muted-foreground flex items-center gap-1.5 mt-0.5 flex-wrap">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 motion-reduce:animate-none"></span>
@@ -46,11 +45,11 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
         </div>
 
         <h1 className="mobile-h1 text-balance mb-3">
-          {pick(hero.h1, 'mobile')}
+          {hero.h1}
         </h1>
 
         <p className="mobile-body text-muted-foreground mb-5">
-          {pick(hero.sub, 'mobile')}
+          {hero.sub}
         </p>
 
         <div className="flex flex-col gap-2 mb-5">
@@ -66,7 +65,7 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
             href={hero.secondaryHref}
             className="text-center text-sm text-muted-foreground hover:text-foreground py-2 mobile-tap-spring"
           >
-            {pick(hero.secondaryCta, 'mobile')}
+            {hero.secondaryCta} ↓
           </a>
         </div>
 
@@ -76,7 +75,7 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-xs text-primary font-medium link-underline mb-5"
         >
-          {pick(hero.channel.label, 'mobile')}
+          {hero.channel.label}
           <ArrowUpRight className="w-3 h-3" />
         </a>
 

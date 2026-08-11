@@ -7,13 +7,13 @@ import { asset } from '@/lib/asset-map';
 const MobileLessons = () => (
   <MobileSection
     id={lessonsContent.id}
-    eyebrow={pick(lessonsContent.eyebrow, 'mobile')}
+    eyebrow={lessonsContent.eyebrow}
     title={pick(lessonsContent.title, 'mobile')}
     intro={pick(lessonsContent.sub, 'mobile')}
   >
     <ul className="space-y-3">
       {lessonsContent.lessons.map((lesson, i) => {
-        const title = pick(lesson.title, 'mobile');
+        const title = lesson.title;
         return (
           <li key={i}>
             <a
@@ -37,7 +37,7 @@ const MobileLessons = () => (
                   {title}
                 </h3>
                 <p className="text-[12px] text-muted-foreground leading-snug line-clamp-2">
-                  {pick(lesson.description, 'mobile')}
+                  {lesson.description}
                 </p>
               </div>
             </a>

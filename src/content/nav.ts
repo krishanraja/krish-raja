@@ -43,4 +43,18 @@ export const nav: NavContent = {
     { id: 'contact', label: 'Contact', icon: 'mail' },
   ],
   contactAria: 'Contact options',
+
+  // Used only by MobileJumpNav, which is currently imported nowhere.
+  // TODO(krish): MobileJumpNav is unreferenced dead code. Delete it, or wire it
+  // back in? Left in place rather than removed, since it is not on the kill list.
+  jumpItems: [
+    { label: 'Operate', href: '#how-i-operate' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Receipts', href: '#proof-points' },
+    { label: 'Writing', href: '#writing' },
+    { label: 'Lessons', href: '#lightning-lessons' },
+    { label: 'Work', href: '#work-with-me' },
+    { label: 'Contact', href: '#contact' },
+  ],
+  jumpAria: 'Section quick nav',
 };

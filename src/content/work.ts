@@ -36,11 +36,8 @@ export const work: WorkContent = {
     {
       title: 'My Take on AI in Media',
       type: 'Podcast',
-      summary: {
-        desktop:
-          'November 2025 podcast discussing how AI is restructuring media businesses.',
-        mobile: 'November 2025 podcast on how AI is restructuring media businesses.',
-      },
+      summary:
+        'November 2025 podcast discussing how AI is restructuring media businesses.',
       description:
         'November 2025 podcast discussing how AI is restructuring media businesses, from content creation to monetization.',
       link: 'https://open.spotify.com/episode/2c5xrFDlPC1Oqw9kcFKDay?si=ocqEDPLPSummNkaPT6T2Tg',

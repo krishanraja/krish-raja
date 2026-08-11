@@ -20,16 +20,16 @@ const Philosophy = () => {
             <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
               <Icon className="w-5 h-5 text-primary" />
             </div>
-            <CardTitle className="text-lg leading-tight">{pick(pillar.title, 'desktop')}</CardTitle>
+            <CardTitle className="text-lg leading-tight">{pillar.title}</CardTitle>
           </div>
           {pillar.badge && (
             <div className="mb-2">
               <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/15 text-primary">
-                {pick(pillar.badge, 'desktop')}
+                {pillar.badge}
               </span>
             </div>
           )}
-          <p className="text-sm text-muted-foreground">{pick(pillar.body, 'desktop')}</p>
+          <p className="text-sm text-muted-foreground">{pillar.body}</p>
         </CardHeader>
       </Card>
     );

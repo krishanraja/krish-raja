@@ -62,7 +62,7 @@ const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => 
                   <span className="flex-1 min-w-0">
                     <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">{link.label}</span>
                     <span className="block text-[13.5px] font-medium text-foreground truncate">
-                      {pick(link.value, 'sheet')}
+                      {link.value}
                     </span>
                   </span>
                   {link.copyable ? (

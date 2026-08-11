@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { nav as navContent } from '@/content';
 
-const sections = [
-  { id: 'how-i-operate', label: 'Operate' },
-  { id: 'portfolio', label: 'Portfolio' },
-  { id: 'proof-points', label: 'Receipts' },
-  { id: 'writing', label: 'Writing' },
-  { id: 'lightning-lessons', label: 'Lessons' },
-  { id: 'work-with-me', label: 'Work' },
-  { id: 'contact', label: 'Contact' },
-];
+// TODO(krish): this component is imported nowhere. MobileActionDock replaced it.
+// Delete it, or wire it back in? Left in place because it is not on the kill list.
+const sections = navContent.jumpItems.map((item) => ({
+  id: item.href.replace('#', ''),
+  label: item.label,
+}));
 
 const MobileJumpNav = () => {
   const [activeId, setActiveId] = useState<string>(sections[0].id);
@@ -53,7 +51,7 @@ const MobileJumpNav = () => {
     <div
       className="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-background/95 backdrop-blur border-t border-border"
       role="navigation"
-      aria-label="Section quick nav"
+      aria-label={navContent.jumpAria}
     >
       <div
         ref={navRef}

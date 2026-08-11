@@ -36,8 +36,8 @@ const BusinessRow = ({ business }: { business: PortfolioItem }) => (
           )}
           <ExternalLink className="w-3 h-3 text-muted-foreground ml-auto flex-shrink-0" />
         </div>
-        <p className="text-[11px] font-medium text-primary/80 mb-1">{pick(business.role, 'mobile')}</p>
-        <p className="text-[12.5px] leading-snug text-muted-foreground">{pick(business.description, 'mobile')}</p>
+        <p className="text-[11px] font-medium text-primary/80 mb-1">{business.role}</p>
+        <p className="text-[12.5px] leading-snug text-muted-foreground">{business.description}</p>
       </div>
     </div>
   </a>
@@ -50,7 +50,7 @@ const MobilePortfolio = () => {
   return (
     <MobileSection
       id={portfolio.id}
-      eyebrow={pick(portfolio.eyebrow, 'mobile')}
+      eyebrow={portfolio.eyebrow}
       title={pick(portfolio.title, 'mobile')}
       intro={pick(portfolio.sub, 'mobile')}
     >
@@ -69,7 +69,7 @@ const MobilePortfolio = () => {
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
-                {pick(l.label, 'mobile')}
+                {l.label}
               </button>
             );
           })}

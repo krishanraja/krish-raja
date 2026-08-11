@@ -27,7 +27,7 @@ const MobileWorkSheet = ({ open, onOpenChange }: MobileWorkSheetProps) => (
       >
         {offer.cards.map((path) => {
           const Icon = resolveIcon(path.icon);
-          const title = pick(path.title, 'sheet');
+          const title = path.title;
           return (
             <li key={title}>
               <a
@@ -53,7 +53,7 @@ const MobileWorkSheet = ({ open, onOpenChange }: MobileWorkSheetProps) => (
                     {path.eyebrow}
                   </p>
                 )}
-                <p className="mobile-meta">{pick(path.body, 'sheet')}</p>
+                <p className="mobile-meta">{path.body}</p>
                 <p className={`mt-3 text-sm font-semibold ${path.primary ? 'text-primary' : 'text-foreground'}`}>
                   {path.cta} →
                 </p>

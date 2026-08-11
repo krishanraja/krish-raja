@@ -13,54 +13,27 @@ export const offer: OfferContent = {
   cards: [
     {
       icon: 'users',
-      title: {
-        desktop: 'Join the AI Decision Cohort',
-        mobile: 'AI Decision Cohort',
-        sheet: 'AI Decision Cohort',
-      },
+      title: 'Join the AI Decision Cohort',
       eyebrow: 'Quarterly · $3,500 / seat',
-      body: {
-        desktop:
-          'Three weeks, mostly async, fifteen senior leaders. You bring a nervous AI decision; you leave with a board-ready answer. Quarterly, $3,500 per seat.',
-        mobile:
-          'Three weeks, mostly async, fifteen senior leaders. Bring a nervous AI decision; leave with a board-ready answer.',
-      },
+      body: 'Three weeks, mostly async, fifteen senior leaders. You bring a nervous AI decision; you leave with a board-ready answer. Quarterly, $3,500 per seat.',
       cta: 'See the cohort',
       href: 'https://themindmaker.ai/cohort',
       primary: true,
     },
     {
       icon: 'building-2',
-      title: {
-        desktop: 'Hire Mindmaker for enterprise work',
-        mobile: 'Mindmaker enterprise',
-        sheet: 'Mindmaker enterprise',
-      },
+      title: 'Hire Mindmaker for enterprise work',
       eyebrow: 'Signal Session $15k · Revenue Architecture $60k+',
-      body: {
-        desktop:
-          'If your company has AI capabilities but no clear commercial strategy, I help commercialize them. The Signal Session ($15k, 1 day) for alignment. The Revenue Architecture ($60k+, 30 days) for the full build.',
-        mobile:
-          'If your company has AI capability but no clear commercial strategy, I help commercialize it.',
-      },
+      body: 'If your company has AI capabilities but no clear commercial strategy, I help commercialize them. The Signal Session ($15k, 1 day) for alignment. The Revenue Architecture ($60k+, 30 days) for the full build.',
       cta: 'See enterprise offers',
       href: 'https://themindmaker.ai/enterprise',
       primary: false,
     },
     {
       icon: 'book-open',
-      title: {
-        desktop: 'Read before you hire',
-        mobile: 'Read before you hire',
-        sheet: 'Read first',
-      },
+      title: 'Read before you hire',
       eyebrow: 'Free',
-      body: {
-        desktop:
-          "Techonomic is where I think out loud. Signal & Noise is where I interrogate peers. Both are free. Start there if you're not ready for a call.",
-        mobile:
-          "Techonomic is where I think out loud. Signal & Noise is where I interrogate peers. Start there if you're not ready for a call.",
-      },
+      body: "Techonomic is where I think out loud. Signal & Noise is where I interrogate peers. Both are free. Start there if you're not ready for a call.",
       cta: 'Read Techonomic',
       href: 'https://www.techonomic.co',
       primary: false,

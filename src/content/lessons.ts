@@ -2,7 +2,7 @@ import type { LessonsContent } from './types';
 
 export const lessons: LessonsContent = {
   id: 'lightning-lessons',
-  eyebrow: { desktop: 'Lightning Lessons', mobile: 'Lightning lessons' },
+  eyebrow: 'Lightning Lessons',
   title: { desktop: 'Lightning Lessons', mobile: 'Free, 60-minute Maven sessions' },
   sub: {
     desktop:
@@ -15,12 +15,8 @@ export const lessons: LessonsContent = {
   lessons: [
     {
       title: "Build Your AI's Permanent Identity",
-      description: {
-        desktop:
-          'Give your AI a durable identity so it stays consistent across tools, sessions, and teams.',
-        mobile:
-          'Give your AI a durable identity so it stays consistent across tools and sessions.',
-      },
+      description:
+        'Give your AI a durable identity so it stays consistent across tools, sessions, and teams.',
       asset: 'lesson-permanent-identity',
       link: 'https://maven.com/p/8fba42/build-your-ai-s-permanent-identity',
     },
@@ -32,39 +28,23 @@ export const lessons: LessonsContent = {
       link: 'https://maven.com/p/99a529/build-an-autonomous-business-with-ai',
     },
     {
-      title: {
-        desktop: 'Vibe Coding: How Your Competitors Are Pulling Ahead',
-        mobile: 'Vibe Coding: The Unfair Advantage',
-      },
-      description: {
-        desktop:
-          'See how AI-native teams are shipping faster, and the unfair advantage you can build with vibe coding.',
-        mobile:
-          'How AI-native teams are shipping faster, and the edge you can build with vibe coding.',
-      },
+      title: 'Vibe Coding: How Your Competitors Are Pulling Ahead',
+      description:
+        'See how AI-native teams are shipping faster, and the unfair advantage you can build with vibe coding.',
       asset: 'lesson-vibe-coding-unfair',
       link: 'https://maven.com/p/b118d0/vibe-coding-how-your-competitors-are-pulling-ahead',
     },
     {
-      title: {
-        desktop: 'Create Your Business Agentic Org Chart',
-        mobile: 'Create Your Agentic Org Chart',
-      },
-      description: {
-        desktop:
-          'Map out the agents, roles, and handoffs that run your business alongside your team.',
-        mobile: 'Map the agents, roles, and handoffs that run your business alongside your team.',
-      },
+      title: 'Create Your Business Agentic Org Chart',
+      description:
+        'Map out the agents, roles, and handoffs that run your business alongside your team.',
       asset: 'lesson-agentic-org-chart',
       link: 'https://maven.com/p/48674a/create-your-business-agentic-org-chart',
     },
     {
       title: 'Build Your AI Chief of Staff',
-      description: {
-        desktop:
-          'Stand up an AI chief of staff that drives execution, follow-ups, and decisions for you.',
-        mobile: 'Stand up an AI chief of staff that drives execution, follow-ups, and decisions.',
-      },
+      description:
+        'Stand up an AI chief of staff that drives execution, follow-ups, and decisions for you.',
       asset: 'lesson-ai-chief-of-staff',
       link: 'https://maven.com/p/dd0ebd/build-your-ai-chief-of-staff',
     },

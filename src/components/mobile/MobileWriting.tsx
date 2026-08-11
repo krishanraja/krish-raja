@@ -19,7 +19,7 @@ const MobileWriting = () => {
   return (
     <MobileSection
       id={work.id}
-      eyebrow={pick(work.eyebrow, 'mobile')}
+      eyebrow={work.eyebrow}
       title={pick(work.title, 'mobile')}
       intro={pick(work.sub, 'mobile')}
       tone="muted"
@@ -62,7 +62,7 @@ const MobileWriting = () => {
                           {item.title}
                         </h3>
                         <p className="text-[12px] text-muted-foreground leading-snug line-clamp-2">
-                          {pick(item.summary, 'mobile')}
+                          {item.summary}
                         </p>
                       </div>
                     </div>

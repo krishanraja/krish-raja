@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import AnimatedProfilePicture from '@/components/AnimatedProfilePicture';
 import { hero } from '@/content';
-import { pick } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
 const Hero = () => {
@@ -21,21 +20,21 @@ const Hero = () => {
           </div>
 
           <p className="text-base md:text-xl font-display italic text-muted-foreground mb-2 md:mb-3">
-            {pick(hero.eyebrow, 'desktop')}
+            {hero.eyebrow}
           </p>
           <h1 className="headline-xl mb-4 md:mb-6 text-balance">
-            {pick(hero.h1, 'desktop')}
+            {hero.h1}
           </h1>
 
           <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-3 md:mb-4 max-w-2xl mx-auto text-balance">
-            {pick(hero.sub, 'desktop')}{' '}
+            {hero.sub}{' '}
             <a
               href={hero.channel.href}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary font-medium link-underline whitespace-nowrap"
             >
-              {pick(hero.channel.label, 'desktop')}
+              {hero.channel.label} →
             </a>
           </p>
 
@@ -44,7 +43,7 @@ const Hero = () => {
               <a href="#work-with-me">{hero.primaryCta}</a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
-              <a href={hero.secondaryHref}>{pick(hero.secondaryCta, 'desktop')}</a>
+              <a href={hero.secondaryHref}>{hero.secondaryCta}</a>
             </Button>
           </div>
 

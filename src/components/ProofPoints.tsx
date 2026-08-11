@@ -31,7 +31,7 @@ const ProofPoints = () => {
             {achievement.context}
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
-            {pick(achievement.description, 'desktop')}
+            {achievement.description}
           </p>
         </CardContent>
       </Card>
@@ -51,7 +51,7 @@ const ProofPoints = () => {
           </Badge>
         </div>
         <p className="text-xs font-medium text-foreground mb-1">
-          {pick(location.role, 'desktop')}
+          {location.role}
         </p>
         <p className="text-xs text-muted-foreground leading-relaxed">
           {location.story}
@@ -77,19 +77,19 @@ const ProofPoints = () => {
                 value="receipts"
                 className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
               >
-                {pick(receipts.tabs.receipts, 'desktop')}
+                {receipts.tabs.receipts}
               </TabsTrigger>
               <TabsTrigger
                 value="journey"
                 className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
               >
-                {pick(receipts.tabs.journey, 'desktop')}
+                {receipts.tabs.journey}
               </TabsTrigger>
               <TabsTrigger
                 value="credentials"
                 className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
               >
-                {pick(receipts.tabs.credentials, 'desktop')}
+                {receipts.tabs.credentials}
               </TabsTrigger>
             </TabsList>
 
@@ -122,7 +122,7 @@ const ProofPoints = () => {
                     className="text-xs py-1.5 px-3 bg-background/50"
                   >
                     <Award className="w-3 h-3 mr-1.5 text-primary" />
-                    {pick(credential, 'desktop')}
+                    {credential}
                   </Badge>
                 ))}
               </div>
@@ -171,7 +171,7 @@ const ProofPoints = () => {
                       className="text-sm py-2 px-4 bg-background/50"
                     >
                       <Award className="w-3 h-3 mr-2" />
-                      {pick(credential, 'desktop')}
+                      {credential}
                     </Badge>
                   ))}
                 </div>

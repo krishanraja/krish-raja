@@ -8,13 +8,13 @@ import type { ReceiptsContent } from './types';
 export const receipts: ReceiptsContent = {
   id: 'proof-points',
   eyebrow: 'Receipts',
-  title: { desktop: 'Sixteen years of receipts', mobile: 'Sixteen years of proof' },
+  title: 'Sixteen years of receipts',
   sub: 'The track record that informs the advice.',
 
   tabs: {
-    receipts: { desktop: 'Receipts', mobile: 'receipts' },
-    journey: { desktop: 'Journey', mobile: 'journey' },
-    credentials: { desktop: 'Credentials', mobile: 'credentials' },
+    receipts: 'Receipts',
+    journey: 'Journey',
+    credentials: 'Credentials',
   },
   credentialsHeading: 'Recognition & Credentials',
   journeyHeading: 'Global Journey',
@@ -34,24 +34,16 @@ export const receipts: ReceiptsContent = {
       category: 'Market Creation',
       metric: '$0 → $12M ARR',
       context: 'Built Region from Zero',
-      description: {
-        desktop:
-          'Launched APAC programmatic business from scratch: team, product, pipeline. First hire to market leader.',
-        mobile:
-          'Launched APAC programmatic from scratch: team, product, pipeline. First hire to market leader.',
-      },
+      description:
+        'Launched APAC programmatic business from scratch: team, product, pipeline. First hire to market leader.',
     },
     {
       icon: 'users',
       category: 'Team → Agent Fleet',
       metric: '18 People → 14 Agents',
       context: 'From human team to autonomous OS',
-      description: {
-        desktop:
-          'Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart, then built the agent chart.',
-        mobile:
-          'Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures.',
-      },
+      description:
+        'Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart, then built the agent chart.',
     },
     {
       icon: 'target',
@@ -68,13 +60,10 @@ export const receipts: ReceiptsContent = {
   credentials: [
     'Founder, Mindmaker',
     'Writer, Techonomic Newsletter',
-    {
-      desktop: 'Harvard Business School (Finance, Analytics & Economics)',
-      mobile: 'Harvard Business School',
-    },
+    'Harvard Business School (Finance, Analytics & Economics)',
     'MA Design Strategy (Distinction)',
-    { desktop: 'Sydney Opera House Keynote Speaker', mobile: 'Sydney Opera House Keynote' },
-    { desktop: 'Published Author, Speaker & Writer', mobile: 'Published Author & Speaker' },
+    'Sydney Opera House Keynote Speaker',
+    'Published Author, Speaker & Writer',
     'Ex-Microsoft Automation Specialist',
     'First Global Automated Media Campaigns (2010)',
   ],
@@ -97,10 +86,7 @@ export const receipts: ReceiptsContent = {
     {
       city: 'New York',
       period: '2024-2026',
-      role: {
-        desktop: 'From commercial career to full-stack portfolio',
-        mobile: 'From career to full-stack portfolio',
-      },
+      role: 'From commercial career to full-stack portfolio',
       story:
         'Operating an autonomous AI business and advising companies commercializing theirs.',
     },

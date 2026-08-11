@@ -34,7 +34,7 @@ const Contact = () => {
                       {link.label}
                     </p>
                     <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
-                      {pick(link.value, 'desktop')}
+                      {link.value}
                     </p>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />

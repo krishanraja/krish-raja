@@ -52,7 +52,7 @@ const Work = () => {
                 {item.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                {pick(item.summary, 'desktop')}
+                {item.summary}
               </p>
             </CardContent>
           </Card>
@@ -128,7 +128,7 @@ const Work = () => {
                   rel="noopener noreferrer"
                   className="text-primary font-medium link-underline inline-flex items-center gap-1"
                 >
-                  {pick(row.link.label, 'desktop')}
+                  {row.link.label}
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </p>
