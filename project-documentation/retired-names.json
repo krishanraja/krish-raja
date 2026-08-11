@@ -1,0 +1,18 @@
+{
+  "comment": "Names and claims that must never appear on krishraja.com again. The consistency suite in src/content/__tests__/positioning.test.ts reads this file and fails the build if any entry turns up in the content layer or in a generated artifact. It lives here, outside src/, so that grepping src/ for a retired name returns nothing. Context for each entry is in POSITIONING.md and FACTS.md.",
+  "names": [
+    "AI Decision Cohort",
+    "Signal Session",
+    "Revenue Architecture",
+    "AI Revenue Leader",
+    "8 live products",
+    "13 ventures",
+    "30 Under 30"
+  ],
+  "urlFragments": [
+    "themindmaker.ai/cohort",
+    "themindmaker.ai/enterprise",
+    "techonomic.co",
+    "thebuildereconomy.com"
+  ]
+}

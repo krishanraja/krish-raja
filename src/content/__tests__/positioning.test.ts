@@ -124,34 +124,29 @@ describe('the canonical numbers do not drift', () => {
 });
 
 describe('retired names never come back', () => {
-  const retired = [
-    'AI Decision Cohort',
-    'Signal Session',
-    'Revenue Architecture',
-    'AI Revenue Leader',
-    '8 live products',
-    '13 ventures',
-  ];
+  // The list lives outside src/ on purpose, so that grepping the source for a
+  // retired name returns nothing. See project-documentation/retired-names.json.
+  const retired: { names: string[]; urlFragments: string[] } = JSON.parse(
+    read('project-documentation/retired-names.json'),
+  );
 
-  it.each(retired)('%s appears nowhere in the content layer', (name) => {
+  it.each(retired.names)('a retired name appears nowhere in the content layer (%#)', (name) => {
     const hits = prose.filter((s) => s.value.includes(name)).map((s) => s.path);
-    expect(hits).toEqual([]);
+    expect(hits, `retired name still in the content layer: ${name}`).toEqual([]);
   });
 
-  it.each(retired)('%s appears nowhere in the generated artifacts', (name) => {
-    expect(indexHtml).not.toContain(name);
-    expect(llmsTxt).not.toContain(name);
+  it.each(retired.names)('a retired name appears nowhere in the generated files (%#)', (name) => {
+    expect(indexHtml, `retired name still in index.html: ${name}`).not.toContain(name);
+    expect(llmsTxt, `retired name still in llms.txt: ${name}`).not.toContain(name);
   });
 
-  it('nothing links to the orphaned Mindmaker routes', () => {
+  it.each(retired.urlFragments)('nothing links to a dead or orphaned URL (%#)', (fragment) => {
     const urls = contentStrings.filter((s) => s.value.startsWith('http')).map((s) => s.value);
     for (const url of urls) {
-      expect(url, 'link to a retired Mindmaker route').not.toMatch(
-        /themindmaker\.ai\/(cohort|enterprise)/,
-      );
+      expect(url, `link to a retired URL: ${fragment}`).not.toContain(fragment);
     }
-    expect(indexHtml).not.toMatch(/themindmaker\.ai\/(cohort|enterprise)/);
-    expect(llmsTxt).not.toMatch(/themindmaker\.ai\/(cohort|enterprise)/);
+    expect(indexHtml, `retired URL in index.html: ${fragment}`).not.toContain(fragment);
+    expect(llmsTxt, `retired URL in llms.txt: ${fragment}`).not.toContain(fragment);
   });
 });
 

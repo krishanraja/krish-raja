@@ -13,7 +13,7 @@ const MobileWorkWithMe = () => (
     intro={pick(offer.sub, 'mobile')}
     tone="muted"
   >
-    <ul className="space-y-3">
+    <ul className="space-y-3" role={offer.cards.length === 1 ? 'presentation' : undefined}>
       {offer.cards.map((path, i) => {
         const Icon = resolveIcon(path.icon);
         return (

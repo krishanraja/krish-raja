@@ -1,42 +1,31 @@
 import type { OfferContent } from './types';
+import { site } from './site';
 
+/**
+ * One card, because there is one thing sold and it is sold somewhere else.
+ *
+ * No price appears here or anywhere in this repo. Pricing lives on
+ * themindmaker.ai only, so there is exactly one place to keep current.
+ *
+ * Link to the Mindmaker root only. The two deeper routes it used to link to
+ * are orphaned on that site and serve retired prices. They are listed in
+ * project-documentation/retired-names.json and the test suite enforces it.
+ */
 export const offer: OfferContent = {
   id: 'work-with-me',
-  eyebrow: 'Work with me',
-  title: { desktop: 'Work with me', mobile: 'Three ways in', sheet: 'Work with me' },
-  sub: {
-    desktop: 'Three ways in. Pick the one that fits.',
-    mobile: 'Pick the one that fits.',
-    sheet: 'Three ways in. Pick the one that fits.',
-  },
+  // No eyebrow: with one card the title says it, and mobile would repeat itself.
+  eyebrow: '',
+  title: 'Work with me',
+  sub: 'One practice, capped. Everything else here is build work.',
 
   cards: [
     {
-      icon: 'users',
-      title: 'Join the AI Decision Cohort',
-      eyebrow: 'Quarterly · $3,500 / seat',
-      body: 'Three weeks, mostly async, fifteen senior leaders. You bring a nervous AI decision; you leave with a board-ready answer. Quarterly, $3,500 per seat.',
-      cta: 'See the cohort',
-      href: 'https://themindmaker.ai/cohort',
-      primary: true,
-    },
-    {
       icon: 'building-2',
-      title: 'Hire Mindmaker for enterprise work',
-      eyebrow: 'Signal Session $15k · Revenue Architecture $60k+',
-      body: 'If your company has AI capabilities but no clear commercial strategy, I help commercialize them. The Signal Session ($15k, 1 day) for alignment. The Revenue Architecture ($60k+, 30 days) for the full build.',
-      cta: 'See enterprise offers',
-      href: 'https://themindmaker.ai/enterprise',
-      primary: false,
-    },
-    {
-      icon: 'book-open',
-      title: 'Read before you hire',
-      eyebrow: 'Free',
-      body: "Techonomic is where I think out loud. Signal & Noise is where I interrogate peers. Both are free. Start there if you're not ready for a call.",
-      cta: 'Read Techonomic',
-      href: 'https://www.techonomic.co',
-      primary: false,
+      title: 'Work with Mindmaker',
+      body: 'Mindmaker is a capped advisory practice. I take a small number of engagements a year, from one decision to a full rebuild of how a business decides. Everything, including pricing, lives on the Mindmaker site.',
+      cta: 'See how it works',
+      href: site.links.mindmaker,
+      primary: true,
     },
   ],
 };
