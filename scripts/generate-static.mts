@@ -209,41 +209,62 @@ const replaceBetween = (source: string, marker: string, body: string): string =>
   return source.slice(0, from + start.length) + '\n' + body + '\n    ' + source.slice(to);
 };
 
-const outputs: { path: string; label: string; next: string }[] = [];
+export interface Artifact {
+  path: string;
+  label: string;
+  expected: string;
+  actual: string | null;
+}
 
-const indexHtml = readFileSync(INDEX, 'utf8');
-outputs.push({
-  path: INDEX,
-  label: 'index.html',
-  next: replaceBetween(replaceBetween(indexHtml, 'meta', metaBlock()), 'jsonld', jsonLdBlock()),
-});
-outputs.push({ path: LLMS, label: 'public/llms.txt', next: llmsTxt() });
-outputs.push({ path: SITEMAP, label: 'public/sitemap.xml', next: sitemapXml() });
-
-let drifted = 0;
-for (const out of outputs) {
-  const current = (() => {
+/**
+ * What every generated file should contain, next to what it does contain.
+ * Exported so the consistency suite can check for drift without shelling out.
+ */
+export const artifacts = (): Artifact[] => {
+  const readOrNull = (p: string) => {
     try {
-      return readFileSync(out.path, 'utf8');
+      return readFileSync(p, 'utf8');
     } catch {
       return null;
     }
-  })();
+  };
 
-  if (current === out.next) continue;
+  const indexHtml = readFileSync(INDEX, 'utf8');
+
+  return [
+    {
+      path: INDEX,
+      label: 'index.html',
+      expected: replaceBetween(replaceBetween(indexHtml, 'meta', metaBlock()), 'jsonld', jsonLdBlock()),
+      actual: indexHtml,
+    },
+    { path: LLMS, label: 'public/llms.txt', expected: llmsTxt(), actual: readOrNull(LLMS) },
+    { path: SITEMAP, label: 'public/sitemap.xml', expected: sitemapXml(), actual: readOrNull(SITEMAP) },
+  ];
+};
+
+/** Labels of the artifacts that have drifted from src/content/. */
+export const staleArtifacts = (): string[] =>
+  artifacts()
+    .filter((a) => a.actual !== a.expected)
+    .map((a) => a.label);
+
+const isEntry = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isEntry) {
+  const stale = artifacts().filter((a) => a.actual !== a.expected);
 
   if (check) {
-    drifted += 1;
-    console.error(`stale: ${out.label} does not match src/content/. Run \`npm run generate\`.`);
+    for (const a of stale) {
+      console.error(`stale: ${a.label} does not match src/content/. Run \`npm run generate\`.`);
+    }
+    if (stale.length > 0) process.exit(1);
+    console.log('all generated files are in sync with src/content/');
   } else {
-    writeFileSync(out.path, out.next, 'utf8');
-    console.log(`wrote ${out.label}`);
+    for (const a of stale) {
+      writeFileSync(a.path, a.expected, 'utf8');
+      console.log(`wrote ${a.label}`);
+    }
+    console.log('generate: done');
   }
-}
-
-if (check) {
-  if (drifted > 0) process.exit(1);
-  console.log('all generated files are in sync with src/content/');
-} else if (outputs.every((o) => readFileSync(o.path, 'utf8') === o.next)) {
-  console.log('generate: done');
 }
