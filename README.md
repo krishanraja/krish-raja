@@ -1,73 +1,91 @@
-# Welcome to your Lovable project
+# krishraja.com
 
-## Project info
+The personal site of Krish Raja. A portfolio site: what he has built, what he is building,
+and what he publishes.
 
-**URL**: https://lovable.dev/projects/eb53690d-c2b6-480e-a3fd-776edca05e82
+There is exactly one thing sold here, Mindmaker, and it is sold on
+[themindmaker.ai](https://themindmaker.ai) rather than on this site. No prices appear in
+this repo.
 
-## How can I edit this code?
+## Stack
 
-There are several ways of editing your application.
+Vite 5, React 18, TypeScript, Tailwind CSS 3, shadcn/ui. Single page. Deployed as a static
+build.
 
-**Use Lovable**
+Desktop and mobile render as two separate component trees, swapped whole at 768px by
+`useIsMobileResolved()` in `src/pages/Index.tsx`. Both trees read the same copy.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/eb53690d-c2b6-480e-a3fd-776edca05e82) and start prompting.
+## Running it
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+npm ci
+npm run dev        # http://localhost:8080
 ```
 
-**Edit a file directly in GitHub**
+```bash
+npm run build      # regenerates static artifacts, then builds to dist/
+npm run preview    # serve the production build
+npm run lint
+npm test           # includes the positioning consistency suite
+npm run generate   # regenerate meta, JSON-LD, llms.txt and sitemap.xml from src/content/
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Where copy lives
 
-**Use GitHub Codespaces**
+**All of it is in `src/content/`.** Components hold layout, not words.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+| Module | What it holds |
+|---|---|
+| `site.ts` | Name, spine sentence, meta, canonical URL, email, socials |
+| `hero.ts` | H1, sub, CTAs, trust logos |
+| `operate.ts` | "How I operate": sub and the four cards |
+| `os.ts` | The Autonomous OS gallery entries |
+| `portfolio.ts` | Every portfolio item, every tab |
+| `receipts.ts` | Stat cards, named engagements, credentials, journey |
+| `latest.ts` | Mindmaker Live posts and appearances |
+| `work.ts` | Writing and speaking items |
+| `lessons.ts` | Maven lightning lessons |
+| `offer.ts` | The single Mindmaker card |
+| `contact.ts` | Contact links |
+| `nav.ts` | Navigation and footer labels |
 
-## What technologies are used for this project?
+Every module is exported `as const satisfies` its type, so a missing field is a compile
+error rather than a blank card.
 
-This project is built with:
+## Changing the positioning in one place
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Edit `src/content/site.ts` and run `npm run generate`.
 
-## How can I deploy this project?
+That one file feeds the hero, the `<title>` and every meta tag, both JSON-LD blocks,
+`public/llms.txt` and `public/sitemap.xml`. Those four artifacts are **generated** by
+`scripts/generate-static.mts`, which runs automatically before every build. Do not
+hand-edit them; your changes will be overwritten.
 
-Simply open [Lovable](https://lovable.dev/projects/eb53690d-c2b6-480e-a3fd-776edca05e82) and click on Share -> Publish.
+`npm test` fails the build if a generated file has drifted from the content layer, or if
+the spine sentence or any headline number disagrees between the page, the meta, the
+structured data and `llms.txt`.
 
-## Can I connect a custom domain to my Lovable project?
+## Adding content without touching a component
 
-Yes, you can!
+**A screenshot or clip of the operating system:** drop the file into `src/assets/os/` and
+add one entry to `src/content/os.ts`. Stills and short mp4 or webm loops both work. Video
+respects `prefers-reduced-motion` by showing a still frame instead of autoplaying.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+**A Mindmaker Live post or a podcast appearance:** add one entry to `src/content/latest.ts`.
+Newest first is handled for you; the six most recent are shown.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+**A portfolio item, a receipt, a lesson:** the matching module in `src/content/`.
+
+## Rules
+
+Copy rules, the settled position and the list of things deliberately absent from this site
+are in [`CLAUDE.md`](./CLAUDE.md). The two that catch people out:
+
+1. **No em dashes anywhere**, including code and commit messages.
+2. **Never invent a number.** Every approved figure is in
+   [`project-documentation/FACTS.md`](./project-documentation/FACTS.md). If it is not
+   there, it does not go on the site.
+
+Positioning detail is in
+[`project-documentation/POSITIONING.md`](./project-documentation/POSITIONING.md), including
+the names that are retired and must never return.
