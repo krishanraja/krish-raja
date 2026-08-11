@@ -10,6 +10,7 @@ export const nav: NavContent = {
 
   items: [
     { label: 'How I operate', href: '#how-i-operate' },
+    { label: 'The OS', href: '#operating-system' },
     { label: 'Portfolio', href: '#portfolio' },
     { label: 'Receipts', href: '#proof-points' },
     { label: 'Writing', href: '#writing' },
@@ -19,6 +20,7 @@ export const nav: NavContent = {
 
   footerItems: [
     { label: 'How I operate', href: '#how-i-operate' },
+    { label: 'The OS', href: '#operating-system' },
     { label: 'Portfolio', href: '#portfolio' },
     { label: 'Receipts', href: '#proof-points' },
     { label: 'Writing', href: '#writing' },
@@ -36,6 +38,7 @@ export const nav: NavContent = {
   dockItems: [
     { id: 'hero', label: 'Home', icon: 'home' },
     { id: 'how-i-operate', label: 'Operate', icon: 'compass' },
+    { id: 'operating-system', label: 'The OS', icon: 'monitor' },
     { id: 'portfolio', label: 'Portfolio', icon: 'layers' },
     { id: 'proof-points', label: 'Receipts', icon: 'award' },
     { id: 'writing', label: 'Writing', icon: 'book-open' },

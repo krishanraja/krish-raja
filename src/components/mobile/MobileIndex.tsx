@@ -5,6 +5,7 @@ import MobileWorkSheet from './MobileWorkSheet';
 import MobileContactSheet from './MobileContactSheet';
 import MobileHero from './MobileHero';
 import MobilePhilosophy from './MobilePhilosophy';
+import MobileOperatingSystem from './MobileOperatingSystem';
 import MobilePortfolio from './MobilePortfolio';
 import MobileReceipts from './MobileReceipts';
 import MobileWriting from './MobileWriting';
@@ -51,6 +52,7 @@ const MobileIndex = () => {
           onOpenContact={() => setContactOpen(true)}
         />
         <MobilePhilosophy />
+        <MobileOperatingSystem />
         <MobilePortfolio />
         <MobileReceipts />
         <MobileWriting />
