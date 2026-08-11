@@ -163,6 +163,8 @@ export interface ReceiptsContent extends SectionHeader {
   readonly engagements: readonly Engagement[];
   readonly credentials: readonly string[];
   readonly journey: readonly JourneyStop[];
+  /** The commercial track record as prose, for llms.txt. */
+  readonly roles: readonly Role[];
 }
 
 export type LatestType = 'post' | 'podcast' | 'talk';
@@ -278,6 +280,20 @@ export interface NavContent {
   readonly jumpAria: string;
 }
 
+/** One employer or engagement, as prose for llms.txt. */
+export interface Role {
+  readonly org: string;
+  readonly title: string;
+  readonly detail: string;
+}
+
+/** A named thing Krish runs now, as prose for llms.txt. */
+export interface CurrentWork {
+  readonly name: string;
+  readonly qualifier?: string;
+  readonly detail: string;
+}
+
 export interface SiteContent {
   readonly name: string;
   readonly firstName: string;
@@ -299,6 +315,16 @@ export interface SiteContent {
   readonly locale: string;
   readonly language: string;
   readonly websiteDescription: string;
+  /** ISO date used for sitemap lastmod. Bump when the page changes materially. */
+  readonly updated: string;
+  /** Opening paragraph of llms.txt. Must agree with `description`. */
+  readonly bio: string;
+  readonly nowHeading: string;
+  readonly now: readonly CurrentWork[];
+  readonly writingHeading: string;
+  readonly writing: readonly CurrentWork[];
+  readonly buildWorkNote: string;
+  readonly education: string;
   readonly sameAs: readonly string[];
   readonly knowsAbout: readonly string[];
   readonly alumniOf: readonly string[];

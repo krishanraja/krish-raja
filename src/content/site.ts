@@ -31,6 +31,50 @@ export const site: SiteContent = {
   language: 'en-US',
   websiteDescription:
     'Personal website of Krish Raja, operator-advisor and founder of Mindmaker',
+  updated: '2026-08-11',
+
+  // Prose below is rendered into public/llms.txt by scripts/generate-static.mts.
+  // It lives here, next to the meta it has to agree with, so the two cannot drift.
+  bio: 'Krish Raja runs an autonomous AI business and helps companies commercialize theirs. Sixteen years commercializing media, data and technology businesses across London, Sydney and New York.',
+
+  nowHeading: 'What he does now',
+  now: [
+    {
+      name: 'Mindmaker OS',
+      detail:
+        'a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of.',
+    },
+    {
+      name: 'Mindmaker',
+      qualifier: 'Founder',
+      detail: 'advisory for leaders building their working style alongside AI. Sold at themindmaker.ai.',
+    },
+    {
+      name: 'CTRL',
+      detail:
+        "a portable, private memory system that keeps an operator's judgment usable across the tools they work in.",
+    },
+  ],
+
+  writingHeading: 'Writing and audio',
+  writing: [
+    {
+      name: 'Techonomic',
+      detail: 'newsletter on AI, data commercialization and revenue growth for executives.',
+    },
+    {
+      name: 'Signal & Noise',
+      detail: 'podcast with media operators on how AI is reshaping the industry.',
+    },
+    { name: 'Teaches on Maven', detail: '' },
+  ],
+
+  // The Build tab names are prefixed by the generator. This is the tail only.
+  buildWorkNote:
+    'are live experiments from the operating system, not products for sale.',
+
+  education:
+    'MA Design Strategy (Distinction), University for the Creative Arts. BA English Language and Linguistics, University of Manchester. Harvard Business School Executive Education. Keynote speaker, Sydney Opera House.',
 
   sameAs: [
     'https://www.linkedin.com/in/krish-raja',

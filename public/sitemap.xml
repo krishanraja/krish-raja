@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.krishraja.com/</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.krishraja.com/og-image.png</image:loc>
-      <image:title>Krish Raja - AI Product Builder</image:title>
-      <image:caption>Krish Raja building AI products and teaching AI literacy</image:caption>
+      <image:title>Krish Raja</image:title>
+      <image:caption>Krish Raja: Operator-advisor</image:caption>
     </image:image>
   </url>
 </urlset>

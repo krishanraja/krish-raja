@@ -91,4 +91,33 @@ export const receipts: ReceiptsContent = {
         'Operating an autonomous AI business and advising companies commercializing theirs.',
     },
   ],
+
+  // The same canonical figures as `achievements`, written as prose for
+  // public/llms.txt. The consistency suite fails the build if the two disagree.
+  roles: [
+    {
+      org: 'Nine Entertainment',
+      title: 'Head of Data & Automation',
+      detail:
+        'grew data and automation revenue from $9M to $61M in three years. Launched 70+ commercial products. Built a $55M automated marketplace from scratch. Ran a $55M P&L at 22% EBITDA.',
+    },
+    {
+      org: 'Captify',
+      title: 'Managing Director APAC',
+      detail:
+        'built APAC from $0 to $12M ARR in three years at 22% EBITDA, as first hire scaling to an 18-person team.',
+    },
+    {
+      org: 'Nexxen (SingTel)',
+      title: 'Head of Platform & Product Strategy APAC',
+      detail:
+        "scaled platform revenue from $4M to $38M across twelve markets through two technology M&As. Launched APAC's first authenticated CTV product.",
+    },
+    {
+      org: 'Microsoft UK',
+      title: '',
+      detail:
+        'built and deployed automated media campaigns in 2010, years before programmatic had a name.',
+    },
+  ],
 };
