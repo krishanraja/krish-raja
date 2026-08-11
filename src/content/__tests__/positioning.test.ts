@@ -167,10 +167,19 @@ describe('structured data stays honest', () => {
     expect(site.description).not.toMatch(/\b(UK|London|New York)\b/);
   });
 
-  it('quotes no price anywhere on this site', () => {
-    // Pricing lives on themindmaker.ai only.
+  it('quotes no price for anything sold', () => {
+    // Pricing lives on themindmaker.ai only, so there is one place to keep
+    // current. Track-record figures are a different thing and are allowed:
+    // $9M to $61M is a receipt, not a price.
+    const offerCopy = [
+      ...offer.cards.map((c) => `${c.title} ${c.body} ${c.cta} ${c.eyebrow ?? ''}`),
+      typeof offer.sub === 'string' ? offer.sub : Object.values(offer.sub).join(' '),
+    ].join('\n');
+    expect(offerCopy, 'the offer quotes a figure').not.toMatch(/[$£€]\s?[\d,]/);
+
     const all = [...prose.map((s) => s.value), indexHtml, llmsTxt].join('\n');
-    expect(all).not.toMatch(/\$[\d,]+\s*(per seat|\/\s*seat|k\b)/i);
+    expect(all, 'a per-seat price survives').not.toMatch(/per seat|\/\s?seat/i);
+    expect(all, 'a retired price survives').not.toMatch(/\$3,500|\$15k|\$60k/i);
   });
 });
 

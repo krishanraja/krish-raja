@@ -4,7 +4,7 @@ export const portfolio: PortfolioContent = {
   id: 'portfolio',
   eyebrow: 'Portfolio',
   title: 'The portfolio',
-  sub: 'Advising clients, building ventures, and writing about both.',
+  sub: 'What I advise on, what I am building, and what I publish.',
   betaBadge: 'Beta',
 
   tabs: [
@@ -19,7 +19,7 @@ export const portfolio: PortfolioContent = {
             'Helping leaders create their new personal working style alongside AI',
           asset: 'mindmaker',
           url: 'https://themindmaker.ai',
-          role: 'CEO & Founder',
+          role: 'Founder, capped practice',
         },
         {
           name: 'Meliora',
@@ -40,8 +40,9 @@ export const portfolio: PortfolioContent = {
     },
     {
       id: 'build',
-      label: 'Build',
+      label: 'Build work',
       icon: 'rocket',
+      note: 'Live experiments from the operating system. Some become products, most are how I learn the stack.',
       items: [
         {
           name: 'Fractionl Circle',

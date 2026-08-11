@@ -4,7 +4,7 @@ export const operate: OperateContent = {
   id: 'how-i-operate',
   eyebrow: 'How I operate',
   title: { desktop: 'How I operate', mobile: 'The operating stack' },
-  sub: "An autonomous business running on AI in production — here's the stack.",
+  sub: 'The lab. What one operator can run with the right stack, tested on real commercial problems.',
 
   pillars: [
     {

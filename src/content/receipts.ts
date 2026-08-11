@@ -46,6 +46,14 @@ export const receipts: ReceiptsContent = {
         'Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart, then built the agent chart.',
     },
     {
+      icon: 'globe',
+      category: 'Platform Revenue, APAC',
+      metric: '$4M → $38M',
+      context: 'Twelve markets, two technology M&As',
+      description:
+        "Scaled SingTel platform revenue across twelve markets through two technology M&As. Launched APAC's first authenticated CTV product.",
+    },
+    {
       icon: 'target',
       category: 'P&L Leadership',
       metric: '$55M P&L',
@@ -55,7 +63,21 @@ export const receipts: ReceiptsContent = {
     },
   ],
 
-  engagements: [],
+  engagements: [
+    {
+      name: 'AdFixus',
+      role: 'Fractional SVP Enterprise',
+      // The $254K client is never named. Hearst, Arena Group and The Weather
+      // Company are pipeline, which is a different claim. See FACTS.md.
+      description:
+        'Repositioned from cookie-deprecation defence to first-party identity infrastructure. Contracted a $254K POC with a major US publisher and rebuilt enterprise pipeline with Hearst, Arena Group and The Weather Company.',
+    },
+    {
+      name: 'Meliora',
+      role: 'Executive Advisory',
+      description: 'Gen AI advisory and ventures for media, telco and entertainment.',
+    },
+  ],
 
   credentials: [
     'Founder, Mindmaker',
