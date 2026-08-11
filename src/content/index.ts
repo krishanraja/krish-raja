@@ -6,7 +6,7 @@ export { os } from './os';
 export { portfolio } from './portfolio';
 export { receipts } from './receipts';
 export { work } from './work';
-export { latest } from './latest';
+export { latest, recentEntries } from './latest';
 export { lessons } from './lessons';
 export { offer } from './offer';
 export { contact } from './contact';

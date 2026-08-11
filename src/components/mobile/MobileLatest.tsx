@@ -1,8 +1,8 @@
 import { ArrowUpRight } from 'lucide-react';
 import MobileSection from './MobileSection';
-import { latest } from '@/content';
+import { latest, recentEntries } from '@/content';
 import { pick } from '@/content/types';
-import { LatestCard, recentEntries } from '@/components/LatestList';
+import { LatestCard } from '@/components/LatestList';
 
 const MobileLatest = () => (
   <MobileSection

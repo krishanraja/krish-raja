@@ -1,4 +1,4 @@
-import type { LatestContent } from './types';
+import type { LatestContent, LatestEntry } from './types';
 import { site } from './site';
 
 /**
@@ -101,3 +101,9 @@ export const latest: LatestContent = {
     },
   ],
 };
+
+/** Newest first, capped at `latest.limit`. Undated entries sort last. */
+export const recentEntries = (): LatestEntry[] =>
+  [...latest.entries]
+    .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
+    .slice(0, latest.limit);

@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
-import { latest } from '@/content';
+import { latest, recentEntries } from '@/content';
 import { pick } from '@/content/types';
-import { LatestCard, recentEntries } from '@/components/LatestList';
+import { LatestCard } from '@/components/LatestList';
 
 const Latest = () => (
   <section id={latest.id} className="section-padding scroll-mt-16">

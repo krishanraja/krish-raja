@@ -213,10 +213,14 @@ describe('the copy rules hold', () => {
   });
 
   it('contains no em dash', () => {
-    const hits = contentStrings.filter((s) => s.value.includes('—')).map((s) => s.path);
+    // Written as an escape so that grepping src/ for the character itself
+    // returns nothing, which is the check Krish runs.
+    const EM_DASH = '\u2014';
+    const hits = contentStrings.filter((s) => s.value.includes(EM_DASH)).map((s) => s.path);
     expect(hits).toEqual([]);
-    expect(indexHtml).not.toContain('—');
-    expect(llmsTxt).not.toContain('—');
+    expect(indexHtml).not.toContain(EM_DASH);
+    expect(llmsTxt).not.toContain(EM_DASH);
+    expect(sitemapXml).not.toContain(EM_DASH);
   });
 
   it('ships no dead anchor', () => {

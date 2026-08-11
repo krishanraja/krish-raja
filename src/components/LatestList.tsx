@@ -3,12 +3,6 @@ import { latest } from '@/content';
 import type { LatestEntry } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
-/** Newest first, capped at `latest.limit`. Undated entries sort last. */
-export const recentEntries = (): LatestEntry[] =>
-  [...latest.entries]
-    .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
-    .slice(0, latest.limit);
-
 const formatDate = (iso?: string) => {
   if (!iso) return null;
   const [year, month] = iso.split('-');
