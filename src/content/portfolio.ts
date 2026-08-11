@@ -78,13 +78,14 @@ export const portfolio: PortfolioContent = {
       icon: 'mic',
       items: [
         {
-          name: 'Techonomic',
+          name: 'Mindmaker Live',
           description:
-            'Strategic insights on AI, data commercialization, and revenue growth for executives',
-          asset: 'techonomic',
-          url: 'https://www.techonomic.co',
-          role: 'Writer',
-          invertOnDark: true,
+            'The editorial channel. Built gets to why someone built the thing they built. Paid follows the money in a shift and names the mechanism.',
+          // TODO(krish): supply a Mindmaker Live mark for src/assets/. Using the
+          // Mindmaker icon until then, which is accurate but not distinct.
+          asset: 'mindmaker',
+          url: 'https://live.themindmaker.ai',
+          role: 'Writer and host',
         },
         {
           name: 'Signal & Noise',
@@ -94,13 +95,6 @@ export const portfolio: PortfolioContent = {
           url: 'https://www.mediaradar.com/signal-and-noise',
           role: 'AI Host',
           invertOnDark: true,
-        },
-        {
-          name: 'The Builder Economy',
-          description: 'Conversations with leaders building with AI',
-          asset: 'builder-economy',
-          url: 'https://thebuildereconomy.com',
-          role: 'Host',
         },
       ],
     },

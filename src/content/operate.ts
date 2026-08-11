@@ -21,7 +21,7 @@ export const operate: OperateContent = {
     {
       icon: 'file-text',
       title: 'The Content Engine',
-      body: 'Automated newsletter production, podcast synthesis, slide generation, editorial calendars. Techonomic and Signal & Noise ship without me being the bottleneck.',
+      body: 'Automated newsletter production, podcast synthesis, slide generation, editorial calendars. Mindmaker Live and Signal & Noise ship without me being the bottleneck.',
     },
     {
       icon: 'wrench',

@@ -51,7 +51,7 @@ export const work: WorkContent = {
   publishRow: [
     {
       prefix: 'Writing regularly at',
-      link: { label: 'Techonomic', href: 'https://www.techonomic.co' },
+      link: { label: 'Mindmaker Live', href: 'https://live.themindmaker.ai' },
     },
     {
       prefix: 'Hosting',
