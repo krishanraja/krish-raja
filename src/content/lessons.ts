@@ -1,14 +1,22 @@
 import type { LessonsContent } from './types';
 
+/**
+ * The student count is gone and not replaced. Sources say both 100+ and 4,000+,
+ * so neither is publishable. The old sentence also claimed "20 years of
+ * business building", which contradicts the spine sentence's sixteen.
+ *
+ * TODO(krish): confirm the student count and it can come back. Same for the
+ * years figure, though sixteen is what every other surface says.
+ */
 export const lessons: LessonsContent = {
   id: 'lightning-lessons',
   eyebrow: 'Lightning Lessons',
   title: { desktop: 'Lightning Lessons', mobile: 'Free, 60-minute Maven sessions' },
   sub: {
     desktop:
-      'Free, 60-minute sessions on Maven. Deep learnings from 20 years of business building, with 100+ enterprise students.',
+      'Free, 60-minute sessions on Maven. What I have learned building and running commercial businesses, taught to people doing the same.',
     mobile:
-      'Deep learnings from 20 years of business building, with 100+ enterprise students.',
+      'What I have learned building and running commercial businesses, taught to people doing the same.',
   },
   badge: 'Free',
 

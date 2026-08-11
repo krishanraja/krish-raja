@@ -117,6 +117,28 @@ describe('the canonical numbers do not drift', () => {
     expect(llmsTxt).toContain('14-agent, 45-workflow');
   });
 
+  it('every years-of-experience claim says sixteen', () => {
+    // The spine sentence says sixteen. Lightning Lessons used to say twenty.
+    // Only career-length claims count: "7x over 3 years" is a duration, so the
+    // pattern starts at ten.
+    const claims = prose.filter((s) =>
+      /\b(1[0-9]|2[0-9]|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\s+years\b/i.test(
+        s.value,
+      ),
+    );
+    for (const claim of claims) {
+      expect(claim.value, `${claim.path} disagrees on years of experience`).toMatch(
+        /\bsixteen years\b/i,
+      );
+    }
+  });
+
+  it('publishes no Maven student count', () => {
+    // Sources say both 100+ and 4,000+. Publish neither.
+    const all = [...prose.map((s) => s.value), llmsTxt].join('\n');
+    expect(all).not.toMatch(/[\d,]+\+?\s+(enterprise\s+)?students/i);
+  });
+
   it('no surface invents a venture count', () => {
     const all = [...prose.map((s) => s.value), indexHtml, llmsTxt].join('\n');
     expect(all).not.toMatch(/\b\d+\s+ventures\b/);
