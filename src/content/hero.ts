@@ -7,7 +7,7 @@ export const hero: HeroContent = {
   eyebrow: '',
   status: '14 agents · 45 workflows',
   h1: site.spine,
-  sub: 'Nine: $9M to $61M. Captify: $0 to $12M ARR as first hire. SingTel: $4M to $38M. For the last two years, a 14-agent operating system in production, pointed at the same problem from the other side.',
+  sub: 'I\'ve spent 16 years commercializing data and tech for content and media businesses, and now I\'m an operator, builder and advisor, helping commercial leaders who want to take control of AI. Read my Substack →',
   channel: {
     // Arrows are affordances, not copy. Each surface renders its own.
     label: 'Read Mindmaker Live',

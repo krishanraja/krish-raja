@@ -15,38 +15,38 @@ import type { OperateContent } from './types';
 export const operate: OperateContent = {
   id: 'how-i-operate',
   eyebrow: 'How I operate',
-  title: { desktop: 'How I operate', mobile: 'The operating stack' },
-  sub: 'The lab. What one person can run with the right stack, tested on problems that actually pay.',
+  title: { desktop: "I've built my own AI OS.", mobile: 'The operating stack' },
+  sub: 'I use only what I\'ve tested on myself to solve customer problems.',
 
   pillars: [
     {
       icon: 'target',
       title: 'The Revenue Engine',
-      body: 'Cold email, LinkedIn DMs and named-account sequences, all run by agents. The pipeline keeps moving whether or not I am at my desk.',
+      body: 'I don\'t take care of research, cold email, nurture or CRM any more. My goal is to begin my day with decisions and selections, not questions and admin.',
     },
     {
       icon: 'bot',
       title: 'The Operating System',
-      body: 'A 14-agent fleet doing what a 15-person team used to. Ops, email triage, lead scoring, content, credential health, all of it running while I sleep.',
+      body: 'My 14-agent fleet does what a 15-person team used to as they work: hand offs, audits and health checks, so the system is the IT team.',
     },
     {
       icon: 'file-text',
       title: 'The Content Engine',
-      body: 'Newsletters, podcast synthesis, slide decks, editorial calendars. Mindmaker Live and Signal & Noise both ship without me in the way.',
+      body: 'I have very specific writing standards, so I constantly work to encode my taste, standards & judgement, building my AI brain.',
     },
     {
       icon: 'wrench',
       title: 'The Build Loop',
-      body: 'Voice clones, video agents, memory webs, autonomous researchers, in production across Anthropic, Gemini and OpenAI. The ones that break teach me the most.',
+      body: 'Voice clones, video clones, memory webs & learning loops in production across all models. I hold a Friday arvo WIP so they self-reflect on their week.',
     },
   ],
 
   flywheel: {
     title: 'One flywheel',
     points: [
-      'Every venture feeds the next',
-      'What I learn in one carries to the rest',
-      'Each failure saves the next one',
+      'Standards are universal',
+      'Learnings carry forward',
+      'Failure and check ins are important lessons',
       'Momentum compounds',
     ],
   },

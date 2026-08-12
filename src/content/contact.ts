@@ -19,7 +19,7 @@ export const contact: ContactContent = {
   id: 'contact',
   eyebrow: 'Contact',
   title: 'Get in touch',
-  sub: 'Email comes straight to me. Speaking, writing, advisory, it all starts here.',
+  sub: 'I\'d love to hear from you - get in touch.',
 
   links: [
     {
