@@ -126,6 +126,14 @@ have folded into it.
 **Signal and Noise** stays as its own show and remains in the portfolio. It did not fold
 into anything.
 
+**The channel is linked, its posts are not listed.** Decided 12 August 2026. The site links
+to Mindmaker Live from the hero and the portfolio, and that is all. There is no feed of
+posts, because the site already carries enough content and Krish is relaunching the
+channel. Do not add one back.
+
+**techonomic.co and thebuildereconomy.com are being left to lapse.** Decided 12 August
+2026. Neither resolves, neither is linked, and neither gets a redirect.
+
 ## How Mindmaker is described
 
 A capped advisory practice. A small number of engagements a year, from taking one decision

@@ -82,9 +82,9 @@ export const site: SiteContent = {
   education:
     'MA Design Strategy (Distinction), University for the Creative Arts. BA English Language and Linguistics, University of Manchester. Harvard Business School Executive Education. Keynote speaker, Sydney Opera House.',
 
-  // TODO(krish): techonomic.co no longer resolves and thebuildereconomy.com
-  // returns 404. Both are dropped here. Redirect them to live.themindmaker.ai,
-  // archive them, or let them lapse?
+  // techonomic.co and thebuildereconomy.com are dropped from sameAs. Both are
+  // dead (TLS failure and a 404 respectively) and Krish is letting them lapse,
+  // decided 12 August 2026. Do not add a redirect for either.
 
   sameAs: [
     'https://www.linkedin.com/in/krish-raja',
