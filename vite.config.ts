@@ -31,6 +31,7 @@ const keepMastersOutOfTheBuild = (): Plugin => ({
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
+    allowedHosts: [".vercel.run"],
     host: "::",
     port: 8080,
   },
