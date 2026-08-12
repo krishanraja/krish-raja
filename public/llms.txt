@@ -6,7 +6,7 @@ Krish Raja is a commercial leader for content, media and IP businesses, and the 
 
 ## What he does now
 
-- **Mindmaker OS**: a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of. Mindmaker is the advisory operated with the OS, Mindmaker Live is its content pillar, CTRL is its app, and Fractionl Circle and Fractionl Pulse sit alongside it.
+- **Mindmaker OS**: a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of. Mindmaker is the advisory operated with the OS, Mindmaker Live is its content pillar, CTRL is its app, and Fractionl Pulse sits alongside it.
 - **Mindmaker** (Founder): a capped advisory practice. A small number of engagements a year, from taking one decision apart to rebuilding how a business decides. Sold at themindmaker.ai.
 - **CTRL**: a portable, private memory system that keeps an operator's judgment usable across the tools they work in.
 
@@ -25,7 +25,7 @@ Krish Raja is a commercial leader for content, media and IP businesses, and the 
 
 ## Build work
 
-Fractionl Circle, Fractionl Pulse and CTRL are live experiments from the operating system, not products for sale.
+Fractionl Pulse and CTRL are live experiments from the operating system, not products for sale.
 
 ## Education and recognition
 
@@ -33,4 +33,4 @@ MA Design Strategy (Distinction), University for the Creative Arts. BA English L
 
 ## Contact
 
-hello@krishraja.com · krishraja.com · linkedin.com/in/krish-raja
+krish@themindmaker.ai · krishraja.com · linkedin.com/in/krish-raja

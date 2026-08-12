@@ -14,8 +14,6 @@ import bbc from '@/assets/bbc_logo.png';
 import microsoft from '@/assets/microsoft_logo.png';
 
 import mindmaker from '@/assets/mindmaker-icon.png';
-import meliora from '@/assets/meliora-icon.png';
-import adfixus from '@/assets/adfixus-icon.png';
 import fractionl from '@/assets/fractionl-icon.png';
 import ctrl from '@/assets/ctrl-icon.png';
 import signalAndNoise from '@/assets/signal-and-noise-logo.png';
@@ -44,8 +42,6 @@ const assets: Record<string, string> = {
   microsoft,
 
   mindmaker,
-  meliora,
-  adfixus,
   fractionl,
   ctrl,
   'signal-and-noise': signalAndNoise,

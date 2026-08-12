@@ -25,7 +25,10 @@ export const site: SiteContent = {
 
   url: 'https://www.krishraja.com',
   canonical: 'https://www.krishraja.com/',
-  email: 'hello@krishraja.com',
+  // Every public address on this site points here, decided 12 Aug 2026. It is
+  // the same address the Calendly account bills to, so booking and email land
+  // in one inbox rather than two.
+  email: 'krish@themindmaker.ai',
   ogImage: 'https://www.krishraja.com/og-image.png',
   ogImageAlt: 'Krish Raja, commercial leader for content, media and IP businesses',
   twitterHandle: '@krishraja',
@@ -45,7 +48,7 @@ export const site: SiteContent = {
     {
       name: 'Mindmaker OS',
       detail:
-        'a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of. Mindmaker is the advisory operated with the OS, Mindmaker Live is its content pillar, CTRL is its app, and Fractionl Circle and Fractionl Pulse sit alongside it.',
+        'a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of. Mindmaker is the advisory operated with the OS, Mindmaker Live is its content pillar, CTRL is its app, and Fractionl Pulse sits alongside it.',
     },
     {
       name: 'Mindmaker',
@@ -112,5 +115,9 @@ export const site: SiteContent = {
     mindmaker: 'https://themindmaker.ai',
     mindmakerLive: 'https://live.themindmaker.ai',
     signalAndNoise: 'https://www.mediaradar.com/signal-and-noise',
+    // The account root rather than one event type, so retiring or renaming an
+    // event type cannot leave a 404 on the contact section. Swap it for
+    // /krish-raja (30 min, first-time intros) if you want to pin the length.
+    calendly: 'https://calendly.com/krish-raja',
   },
 };

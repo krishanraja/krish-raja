@@ -13,7 +13,12 @@ export const hero: HeroContent = {
     label: 'Read Mindmaker Live',
     href: site.links.mindmakerLive,
   },
-  primaryCta: 'Work with me',
+  // One label, one destination, shared with the nav CTA. Both used to say
+  // "Work with me" and point at a section of that name; that section folded
+  // into Contact on 12 Aug 2026, so both now say what the section they land on
+  // says.
+  primaryCta: 'Get in touch',
+  primaryHref: '#contact',
   secondaryCta: 'How I operate',
   secondaryHref: '#how-i-operate',
   trustLabel: 'Experience across',

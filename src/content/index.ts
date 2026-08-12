@@ -8,6 +8,5 @@ export { portfolio } from './portfolio';
 export { receipts } from './receipts';
 export { appearances } from './appearances';
 export { lessons } from './lessons';
-export { offer } from './offer';
 export { contact } from './contact';
 export { nav } from './nav';

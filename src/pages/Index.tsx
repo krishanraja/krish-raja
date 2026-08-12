@@ -8,7 +8,6 @@ import LivePortfolio from '@/components/LivePortfolio';
 import ProofPoints from '@/components/ProofPoints';
 import SelectedWork from '@/components/SelectedWork';
 import LightningLessons from '@/components/LightningLessons';
-import WorkWithMe from '@/components/WorkWithMe';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import MobileIndex from '@/components/mobile/MobileIndex';
@@ -41,7 +40,6 @@ const DesktopIndex = () => {
         <ProofPoints />
         <SelectedWork />
         <LightningLessons />
-        <WorkWithMe />
         <Contact />
       </main>
 

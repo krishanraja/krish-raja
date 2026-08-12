@@ -25,14 +25,7 @@ const MobilePhilosophy = () => (
                 <Icon className="w-4 h-4 text-primary" />
               </span>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <h3 className="mobile-h3 text-foreground">{p.title}</h3>
-                  {p.badge && (
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/15 text-primary">
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
+                <h3 className="mobile-h3 text-foreground mb-1">{p.title}</h3>
                 <p className="mobile-meta">{p.body}</p>
               </div>
             </div>
@@ -42,15 +35,12 @@ const MobilePhilosophy = () => (
     </ul>
 
     <div className="mt-6 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-4">
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center gap-2 mb-4">
         <span className="p-1.5 rounded-lg bg-primary/15">
           <RefreshCw className="w-3.5 h-3.5 text-primary" />
         </span>
         <h3 className="mobile-h3">{operate.flywheel.title}</h3>
       </div>
-      <p className="mobile-meta mb-4">
-        {operate.flywheel.body}
-      </p>
       <ol className="relative pl-5 space-y-2.5 border-l border-primary/30">
         {operate.flywheel.points.map((point, i) => (
           <li key={i} className="relative">

@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { Badge } from '@/components/ui/badge';
 import { portfolio } from '@/content';
 import { pick, type PortfolioItem } from '@/content/types';
 import { asset } from '@/lib/asset-map';
-import { icon as resolveIcon } from '@/lib/icon-map';
 
 const BusinessRow = ({ business }: { business: PortfolioItem }) => (
   <a
@@ -43,50 +41,26 @@ const BusinessRow = ({ business }: { business: PortfolioItem }) => (
   </a>
 );
 
-const MobilePortfolio = () => {
-  const [active, setActive] = useState<string>(portfolio.tabs[0].id);
-  const lane = portfolio.tabs.find((l) => l.id === active) ?? portfolio.tabs[0];
-
-  return (
-    <MobileSection
-      id={portfolio.id}
-      eyebrow={portfolio.eyebrow}
-      title={pick(portfolio.title, 'mobile')}
-      intro={pick(portfolio.sub, 'mobile')}
-    >
-      <div className="sticky top-11 z-20 -mx-1 mb-4 py-1 mobile-dock-blur rounded-full">
-        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
-          {portfolio.tabs.map((l) => {
-            const Icon = resolveIcon(l.icon);
-            const isActive = l.id === active;
-            return (
-              <button
-                key={l.id}
-                type="button"
-                onClick={() => setActive(l.id)}
-                className={`flex items-center justify-center gap-1.5 py-2 rounded-full text-xs font-medium mobile-tap-spring transition-colors ${
-                  isActive ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground'
-                }`}
-              >
-                <Icon className="w-3.5 h-3.5" />
-                {l.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {lane.note && <p className="mobile-meta mb-3">{lane.note}</p>}
-
-      <ul className="space-y-2.5">
-        {lane.items.map((b, i) => (
-          <li key={i}>
-            <BusinessRow business={b} />
-          </li>
-        ))}
-      </ul>
-    </MobileSection>
-  );
-};
+/**
+ * One list, no tab strip. Matches the desktop grid: the three lanes collapsed
+ * on 12 Aug 2026, and five rows is a shorter scroll than a sticky control that
+ * hid two thirds of them.
+ */
+const MobilePortfolio = () => (
+  <MobileSection
+    id={portfolio.id}
+    eyebrow={portfolio.eyebrow}
+    title={pick(portfolio.title, 'mobile')}
+    intro={pick(portfolio.sub, 'mobile')}
+  >
+    <ul className="space-y-2.5">
+      {portfolio.items.map((b) => (
+        <li key={b.name}>
+          <BusinessRow business={b} />
+        </li>
+      ))}
+    </ul>
+  </MobileSection>
+);
 
 export default MobilePortfolio;

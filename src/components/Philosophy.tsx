@@ -11,25 +11,20 @@ const Philosophy = () => {
 
   const { pillars, flywheel } = operate;
 
+  // The icon sits above the title rather than beside it. Inline, the title had
+  // roughly 180px to work with and "The Operating System" wrapped to two lines
+  // while its three neighbours did not. Stacked, every title has the full card
+  // width and all four cards read the same.
   const renderPillarCard = (pillar: Pillar, index: number) => {
     const Icon = resolveIcon(pillar.icon);
     return (
       <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-lg transition-shadow h-full flex flex-col">
-        <CardHeader className="pb-4 flex-shrink-0">
-          <div className="flex items-center gap-3 mb-3 min-h-[40px]">
-            <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-              <Icon className="w-5 h-5 text-primary" />
-            </div>
-            <CardTitle className="text-lg leading-tight">{pillar.title}</CardTitle>
+        <CardHeader className="pb-6 flex-shrink-0 space-y-0">
+          <div className="p-2 rounded-lg bg-primary/10 w-fit mb-4">
+            <Icon className="w-5 h-5 text-primary" />
           </div>
-          {pillar.badge && (
-            <div className="mb-2">
-              <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/15 text-primary">
-                {pillar.badge}
-              </span>
-            </div>
-          )}
-          <p className="text-sm text-muted-foreground">{pillar.body}</p>
+          <CardTitle className="text-lg leading-tight mb-2.5">{pillar.title}</CardTitle>
+          <p className="text-sm text-muted-foreground leading-relaxed">{pillar.body}</p>
         </CardHeader>
       </Card>
     );
@@ -59,15 +54,12 @@ const Philosophy = () => {
         <div className="mt-16">
           <Card className="border border-primary/20 shadow-sm bg-gradient-to-br from-primary/5 via-card/50 to-primary/10 backdrop-blur-sm ring-1 ring-primary/10">
             <CardHeader className="text-center md:px-10 md:py-8">
-              <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="flex items-center justify-center gap-3 mb-6">
                 <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                   <RefreshCw className="w-5 h-5 text-primary" />
                 </div>
                 <CardTitle className="text-lg leading-tight">{flywheel.title}</CardTitle>
               </div>
-              <p className="text-sm text-muted-foreground max-w-2xl mx-auto mb-6">
-                {flywheel.body}
-              </p>
 
               {isMobile ? (
                 <div className="flex flex-wrap justify-center items-center gap-1.5">

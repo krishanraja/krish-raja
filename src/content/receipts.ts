@@ -2,14 +2,24 @@ import type { ReceiptsContent } from './types';
 
 /**
  * Every figure here is canonical. See project-documentation/FACTS.md for the
- * source of each one and the rules attached to it, including the rule that
- * the $254K client is never named.
+ * source of each one.
+ *
+ * Two changes on 12 Aug 2026:
+ *
+ * 1. Four achievement cards, not five. The grid is four wide, so the fifth
+ *    orphaned onto a row of its own. Captify and Nexxen were both market
+ *    launches, so they are one card now and both figures survive: the metric
+ *    carries $0 to $12M, the description carries $4M to $38M.
+ * 2. The named engagements are gone. AdFixus and Meliora are now one
+ *    anonymized advisory entry, with no client name and no dollar figure. The
+ *    $254K POC, Hearst, Arena Group and The Weather Company are all off the
+ *    site. FACTS.md still records them; the site does not publish them.
  */
 export const receipts: ReceiptsContent = {
   id: 'proof-points',
   eyebrow: 'Receipts',
   title: 'Sixteen years of receipts',
-  sub: 'The track record that informs the advice.',
+  sub: 'The track record the advice comes out of.',
 
   tabs: {
     receipts: 'Receipts',
@@ -18,7 +28,7 @@ export const receipts: ReceiptsContent = {
   },
   credentialsHeading: 'Recognition & Credentials',
   journeyHeading: 'Global Journey',
-  engagementsHeading: 'Named Engagements',
+  engagementsHeading: 'Advisory work',
 
   achievements: [
     {
@@ -27,15 +37,15 @@ export const receipts: ReceiptsContent = {
       metric: '$9M → $61M',
       context: 'Broadcaster Digital Transformation',
       description:
-        "Led digital revenue 7x over 3 years. Triple-digit growth in 2 of 3 years. 70+ commercial products launched, including APAC's first authenticated CTV product.",
+        "Took digital revenue up 7x in three years, triple-digit growth in two of them. 70+ commercial products out the door, including APAC's first authenticated CTV product.",
     },
     {
       icon: 'rocket',
-      category: 'Market Creation',
+      category: 'Market Launches',
       metric: '$0 → $12M ARR',
-      context: 'Built Region from Zero',
+      context: 'Built one region, scaled another',
       description:
-        'Launched APAC programmatic business from scratch: team, product, pipeline. First hire to market leader.',
+        'Launched an APAC programmatic business from scratch as first hire: team, product, pipeline. Then took a platform business from $4M to $38M across twelve markets through two technology M&As.',
     },
     {
       icon: 'users',
@@ -43,15 +53,7 @@ export const receipts: ReceiptsContent = {
       metric: '18 People → 14 Agents',
       context: 'From human team to autonomous OS',
       description:
-        'Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart, then built the agent chart.',
-    },
-    {
-      icon: 'globe',
-      category: 'Platform Revenue, APAC',
-      metric: '$4M → $38M',
-      context: 'Twelve markets, two technology M&As',
-      description:
-        'Scaled SingTel platform revenue across twelve markets through two technology M&As.',
+        'Led an 18-person org across three continents. Now I run a 14-agent fleet across the ventures. Built the org chart, then built the agent chart.',
     },
     {
       icon: 'target',
@@ -59,23 +61,18 @@ export const receipts: ReceiptsContent = {
       metric: '$55M P&L',
       context: 'Data & Automation',
       description:
-        'Ran full P&L for data and automation division. 22% EBITDA. Guided M&A and portfolio transformation.',
+        'Ran the full P&L for a data and automation division at 22% EBITDA. Guided M&A and portfolio transformation.',
     },
   ],
 
+  // One entry, anonymized. No client name and no dollar figure, so nothing
+  // here needs a permission it does not have. See the note at the top.
   engagements: [
     {
-      name: 'AdFixus',
-      role: 'Fractional SVP Enterprise',
-      // The $254K client is never named. Hearst, Arena Group and The Weather
-      // Company are pipeline, which is a different claim. See FACTS.md.
+      name: 'Executive advisory',
+      role: 'Media, telco and entertainment',
       description:
-        'Repositioned from cookie-deprecation defense to first-party identity infrastructure. Contracted a $254K POC with a major US publisher and rebuilt enterprise pipeline with Hearst, Arena Group and The Weather Company.',
-    },
-    {
-      name: 'Meliora',
-      role: 'Executive Advisory',
-      description: 'Gen AI advisory and ventures for media, telco and entertainment.',
+        'First-party data infrastructure, IP, content and AI. The work is usually repositioning what a business sells, then rebuilding the pipeline behind it. Clients stay unnamed.',
     },
   ],
 

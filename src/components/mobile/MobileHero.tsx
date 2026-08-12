@@ -3,11 +3,10 @@ import { hero, nav } from '@/content';
 import { asset } from '@/lib/asset-map';
 
 interface MobileHeroProps {
-  onOpenWork: () => void;
   onOpenContact: () => void;
 }
 
-const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
+const MobileHero = ({ onOpenContact }: MobileHeroProps) => {
   const trustLogos = hero.trustLogos.map((logo) => ({
     src: asset(logo.asset),
     alt: logo.alt,
@@ -52,9 +51,12 @@ const MobileHero = ({ onOpenWork, onOpenContact }: MobileHeroProps) => {
         </p>
 
         <div className="flex flex-col gap-2 mb-5">
+          {/* Opens the contact sheet. It used to open a work sheet holding one
+              card that linked to themindmaker.ai; that sheet went with the
+              "Work with me" section on 12 Aug 2026. */}
           <button
             type="button"
-            onClick={onOpenWork}
+            onClick={onOpenContact}
             className="w-full h-12 rounded-full bg-primary text-primary-foreground font-semibold text-sm flex items-center justify-center gap-1.5 shadow-sm mobile-tap-spring"
           >
             {hero.primaryCta}

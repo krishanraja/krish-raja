@@ -116,8 +116,12 @@ Both trees render the same order. Desktop lives in `src/pages/Index.tsx`, mobile
 6. Sixteen years of receipts (`ProofPoints.tsx`)
 7. Selected work (`SelectedWork.tsx`)
 8. Lightning Lessons (`LightningLessons.tsx`)
-9. Work with me (`WorkWithMe.tsx`)
-10. Contact (`Contact.tsx`)
+9. Contact (`Contact.tsx`)
+
+"Work with me" was section 9 until 12 August 2026. It was a whole section explaining one
+card whose button linked to themindmaker.ai, which is what Contact does in a single row,
+so it folded in there. The nav CTA and the hero button both say "Get in touch" and both
+land on `#contact`.
 
 ## Media: `public/files/` in, `public/media/` out
 
@@ -177,6 +181,17 @@ These are not oversights. Each was removed on purpose and must not come back.
   Mindmaker Live. Both domains are dead.
 - **"Operator-advisor" as the primary self-description.** Superseded by the spine
   sentence.
+- **Any client name or dollar figure against the advisory work.** AdFixus, Meliora, the
+  $254K POC, Hearst, Arena Group and The Weather Company are all off the site as of
+  12 August 2026. The receipts section carries one anonymized `Executive advisory` entry
+  instead. FACTS.md still records the detail; the site does not publish it, and the test
+  suite fails if any of those strings returns.
+- **A "Work with me" section, and a nav or hero CTA by that name.** Folded into Contact.
+- **Portfolio tabs.** Advise, Build work and Write were three tabs of three cards. One
+  flat grid now. Fractionl Circle came off with them: same brand, same logo and the same
+  URL as Fractionl Pulse.
+- **A count chip on any "How I operate" card.** The Operating System card carried one and
+  its three neighbours did not, so one of four read as a different component.
 
 ## Further reading
 

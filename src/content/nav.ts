@@ -5,8 +5,10 @@ export const nav: NavContent = {
   brand: 'Krish Raja',
   brandAria: 'Krish Raja - Home',
   navAria: 'Main navigation',
-  ctaLabel: 'Work with me',
-  ctaHref: '#work-with-me',
+  // Matches hero.primaryCta and the section it lands on, so the same words
+  // appear in the nav, the hero and the section heading.
+  ctaLabel: 'Get in touch',
+  ctaHref: '#contact',
 
   items: [
     { label: 'How I operate', href: '#how-i-operate' },
@@ -24,7 +26,6 @@ export const nav: NavContent = {
     { label: 'Portfolio', href: '#portfolio' },
     { label: 'Receipts', href: '#proof-points' },
     { label: 'Selected work', href: '#selected-work' },
-    { label: 'Work with me', href: '#work-with-me' },
     { label: 'Contact', href: '#contact' },
   ],
 

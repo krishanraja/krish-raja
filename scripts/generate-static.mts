@@ -134,8 +134,9 @@ const bullet = (w: { name: string; qualifier?: string; detail: string }) => {
 };
 
 const llmsTxt = (): string => {
-  const buildNames =
-    portfolio.tabs.find((t) => t.id === 'build')?.items.map((i) => i.name) ?? [];
+  // The portfolio is one flat list now, so the build work is whatever carries
+  // the Beta flag rather than whatever sat in a tab called "build".
+  const buildNames = portfolio.items.filter((i) => i.isBeta).map((i) => i.name);
   const buildList =
     buildNames.length > 1
       ? `${buildNames.slice(0, -1).join(', ')} and ${buildNames[buildNames.length - 1]}`

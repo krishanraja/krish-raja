@@ -36,25 +36,38 @@ const MobileReceipts = () => {
       </div>
 
       {tab === 'receipts' && (
-        <div className="-mx-5 px-5 mobile-snap-track flex gap-3 overflow-x-auto pb-2">
-          {receipts.achievements.map((a, i) => {
-            const Icon = resolveIcon(a.icon);
-            return (
-              <article
-                key={i}
-                className="mobile-snap-item flex-shrink-0 w-[78%] bg-card border border-border/60 rounded-2xl p-5 shadow-sm"
-              >
-                <span className="inline-flex p-2.5 rounded-full bg-primary/10 mb-3">
-                  <Icon className="w-5 h-5 text-primary" />
-                </span>
-                <div className="text-2xl font-bold text-primary leading-tight mb-1">{a.metric}</div>
-                <div className="text-sm font-semibold text-foreground mb-1">{a.category}</div>
-                <div className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">{a.context}</div>
-                <p className="text-[12.5px] leading-snug text-muted-foreground">{a.description}</p>
-              </article>
-            );
-          })}
-        </div>
+        <>
+          <div className="-mx-5 px-5 mobile-snap-track flex gap-3 overflow-x-auto pb-2">
+            {receipts.achievements.map((a, i) => {
+              const Icon = resolveIcon(a.icon);
+              return (
+                <article
+                  key={i}
+                  className="mobile-snap-item flex-shrink-0 w-[78%] bg-card border border-border/60 rounded-2xl p-5 shadow-sm"
+                >
+                  <span className="inline-flex p-2.5 rounded-full bg-primary/10 mb-3">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </span>
+                  <div className="text-2xl font-bold text-primary leading-tight mb-1">{a.metric}</div>
+                  <div className="text-sm font-semibold text-foreground mb-1">{a.category}</div>
+                  <div className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">{a.context}</div>
+                  <p className="text-[12.5px] leading-snug text-muted-foreground">{a.description}</p>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* The advisory entry was desktop-only until 12 Aug 2026. It is one
+              anonymized card now, short enough to sit under the carousel
+              rather than need a tab of its own. */}
+          {receipts.engagements.map((e) => (
+            <article key={e.name} className="mt-4 rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
+              <h3 className="text-sm font-semibold text-foreground">{e.name}</h3>
+              <p className="text-[11px] font-medium text-primary/80 mb-1.5">{e.role}</p>
+              <p className="text-[12.5px] leading-snug text-muted-foreground">{e.description}</p>
+            </article>
+          ))}
+        </>
       )}
 
       {tab === 'journey' && (

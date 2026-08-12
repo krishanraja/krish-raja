@@ -15,7 +15,7 @@ const MobileContact = () => (
       {contact.links.map((l) => {
         const Icon = resolveIcon(l.icon);
         return (
-          <li key={l.label}>
+          <li key={l.action}>
             <a
               href={l.href}
               target={l.external ? '_blank' : undefined}
@@ -26,10 +26,10 @@ const MobileContact = () => (
                 <Icon className="w-4 h-4 text-primary" />
               </span>
               <span className="flex-1 min-w-0">
-                <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">{l.label}</span>
-                <span className="block text-[13.5px] font-medium text-foreground truncate group-active:text-primary transition-colors">
-                  {l.value}
+                <span className="block text-[13.5px] font-medium text-foreground group-active:text-primary transition-colors">
+                  {l.action}
                 </span>
+                <span className="block text-[11px] text-muted-foreground truncate">{l.detail}</span>
               </span>
               <ArrowUpRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
             </a>

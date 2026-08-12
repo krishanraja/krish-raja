@@ -48,7 +48,7 @@ const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => 
           {contact.links.map((link) => {
             const Icon = resolveIcon(link.sheetIcon ?? link.icon);
             return (
-              <li key={link.label}>
+              <li key={link.action}>
                 <a
                   href={link.href}
                   target={link.external ? '_blank' : undefined}
@@ -60,10 +60,10 @@ const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => 
                     <Icon className="w-4 h-4 text-primary" />
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">{link.label}</span>
-                    <span className="block text-[13.5px] font-medium text-foreground truncate">
-                      {link.value}
+                    <span className="block text-[13.5px] font-medium text-foreground">
+                      {link.action}
                     </span>
+                    <span className="block text-[11px] text-muted-foreground truncate">{link.detail}</span>
                   </span>
                   {link.copyable ? (
                     <button

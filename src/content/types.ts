@@ -66,24 +66,31 @@ export interface HeroContent {
   readonly sub: string;
   readonly channel: ExternalLink;
   readonly primaryCta: string;
+  readonly primaryHref: string;
   readonly secondaryCta: string;
   readonly secondaryHref: string;
   readonly trustLabel: string;
   readonly trustLogos: readonly TrustLogo[];
 }
 
+/**
+ * One card in "How I operate".
+ *
+ * No badge field. The Operating System card used to carry a count chip that
+ * no other card had, which made one of four look like a different component.
+ * The counts live in the hero status line and the OS section instead.
+ */
 export interface Pillar {
   readonly icon: string;
   readonly title: string;
-  readonly badge?: string;
   readonly body: string;
 }
 
 export interface OperateContent extends SectionHeader {
   readonly pillars: readonly Pillar[];
+  /** Title and steps only. The explanatory sentence was cut on 12 Aug 2026. */
   readonly flywheel: {
     readonly title: string;
-    readonly body: string;
     readonly points: readonly string[];
   };
 }
@@ -175,17 +182,17 @@ export interface PortfolioItem {
   readonly plateOnDark?: boolean;
 }
 
-export interface PortfolioTab {
-  readonly id: string;
-  readonly label: string;
-  readonly icon: string;
-  readonly note?: string;
-  readonly items: readonly PortfolioItem[];
-}
-
+/**
+ * One flat list, no tabs.
+ *
+ * Advise, Build and Write were three tabs holding three cards each, which hid
+ * two thirds of the section behind a click to save no space. Collapsed
+ * 12 Aug 2026. `isBeta` is what the generator reads to name the build work in
+ * llms.txt, so it is load-bearing rather than decoration.
+ */
 export interface PortfolioContent extends SectionHeader {
   readonly betaBadge: string;
-  readonly tabs: readonly PortfolioTab[];
+  readonly items: readonly PortfolioItem[];
 }
 
 export interface Achievement {
@@ -254,23 +261,18 @@ export interface LessonsContent extends SectionHeader {
   readonly lessons: readonly Lesson[];
 }
 
-export interface OfferCard {
-  readonly icon: string;
-  readonly title: string;
-  readonly eyebrow?: string;
-  readonly body: string;
-  readonly cta: string;
-  readonly href: string;
-  readonly primary?: boolean;
-}
-
-export interface OfferContent extends SectionHeader {
-  readonly cards: readonly OfferCard[];
-}
-
+/**
+ * One way to reach Krish.
+ *
+ * `action` is what the visitor is about to do and is the line they read.
+ * `detail` is where it lands, set underneath in small type so the destination
+ * is never a surprise. There is no OfferContent any more: "Work with me" was a
+ * section explaining one card that linked here anyway, so it folded into these
+ * four rows on 12 Aug 2026.
+ */
 export interface ContactLink {
-  readonly label: string;
-  readonly value: string;
+  readonly action: string;
+  readonly detail: string;
   readonly href: string;
   readonly icon: string;
   readonly sheetIcon?: string;
@@ -369,5 +371,6 @@ export interface SiteContent {
     readonly mindmaker: string;
     readonly mindmakerLive: string;
     readonly signalAndNoise: string;
+    readonly calendly: string;
   };
 }

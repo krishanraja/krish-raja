@@ -21,7 +21,11 @@ const ProofPoints = () => {
           <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
             <Icon className="w-6 h-6 text-primary" />
           </div>
-          <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
+          {/* Two lines reserved. "18 People to 14 Agents" wraps where the
+              other three metrics do not, and without the floor that one card
+              pushes its category, context and body a line lower than its
+              neighbours across an otherwise aligned row. */}
+          <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto min-h-[4rem]">
             {achievement.metric}
           </div>
           <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
@@ -141,7 +145,10 @@ const ProofPoints = () => {
             {engagements.length > 0 && (
               <div className="mb-12">
                 <h3 className="headline-md mb-8">{receipts.engagementsHeading}</h3>
-                <div className="grid md:grid-cols-2 gap-6">
+                {/* Full width at one entry. Two named engagements became one
+                    anonymized one on 12 Aug 2026, and a half-width card with
+                    nothing beside it reads as a missing card. */}
+                <div className={`grid gap-6${engagements.length > 1 ? ' md:grid-cols-2' : ''}`}>
                   {engagements.map((engagement, index) => (
                     <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full">
                       <CardContent className="p-6">

@@ -37,7 +37,7 @@ const Hero = () => {
 
           <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center max-w-md mx-auto sm:max-w-none">
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a href="#work-with-me">{hero.primaryCta}</a>
+              <a href={hero.primaryHref}>{hero.primaryCta}</a>
             </Button>
             <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
               <a href={hero.secondaryHref}>{hero.secondaryCta}</a>

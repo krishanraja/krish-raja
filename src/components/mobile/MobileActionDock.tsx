@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import { Phone, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { nav } from '@/content';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const sections = nav.dockItems;
 
 interface MobileActionDockProps {
-  onOpenWork: () => void;
   onOpenContact: () => void;
 }
 
-const MobileActionDock = ({ onOpenWork, onOpenContact }: MobileActionDockProps) => {
+const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
   const [activeId, setActiveId] = useState<string>(sections[0].id);
   const railRef = useRef<HTMLDivElement>(null);
 
@@ -78,19 +77,14 @@ const MobileActionDock = ({ onOpenWork, onOpenContact }: MobileActionDockProps) 
         })}
       </div>
 
-      {/* Bottom row: contact icon + persistent Work CTA */}
-      <div className="flex items-center gap-2 px-3 pb-2.5 pt-1">
+      {/* Bottom row: one CTA. It was a phone icon opening the contact sheet
+          next to a Work CTA opening a work sheet; both destinations merged on
+          12 Aug 2026, so two controls doing the same thing became one. */}
+      <div className="flex items-center px-3 pb-2.5 pt-1">
         <button
           type="button"
           onClick={onOpenContact}
-          className="w-11 h-11 rounded-full bg-card border border-border/60 text-foreground flex items-center justify-center mobile-tap-spring flex-shrink-0"
           aria-label={nav.contactAria}
-        >
-          <Phone className="w-4 h-4" />
-        </button>
-        <button
-          type="button"
-          onClick={onOpenWork}
           className="flex-1 h-11 rounded-full bg-primary text-primary-foreground font-semibold text-sm flex items-center justify-center gap-1.5 shadow-sm mobile-tap-spring"
         >
           {nav.ctaLabel}

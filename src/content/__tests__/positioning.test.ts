@@ -24,7 +24,6 @@ import { appearances } from '../appearances';
 import { deck } from '../deck';
 import { os } from '../os';
 import { lessons } from '../lessons';
-import { offer } from '../offer';
 import { contact } from '../contact';
 import { nav } from '../nav';
 
@@ -35,7 +34,7 @@ const indexHtml = read('index.html');
 const llmsTxt = read('public/llms.txt');
 const sitemapXml = read('public/sitemap.xml');
 
-const modules = { site, hero, operate, os, deck, portfolio, receipts, appearances, lessons, offer, contact, nav };
+const modules = { site, hero, operate, os, deck, portfolio, receipts, appearances, lessons, contact, nav };
 
 /** Every string value anywhere in the content layer, with its path. */
 const contentStrings: { path: string; value: string }[] = [];
@@ -103,6 +102,16 @@ describe('the canonical numbers do not drift', () => {
     expect(metrics).toContain('$0 → $12M ARR');
     expect(prosaic).toContain('$0 to $12M ARR');
     expect(llmsTxt).toContain('$0 to $12M ARR');
+  });
+
+  it('the Nexxen figure survives the Market Launches merge', () => {
+    // Captify and Nexxen share one card now, so $4M to $38M lives in that
+    // card's description rather than in a metric of its own. Without this,
+    // the merge could quietly drop a canonical figure and nothing would fail.
+    const descriptions = receipts.achievements.map((a) => a.description).join(' ');
+    expect(descriptions).toContain('$4M to $38M');
+    expect(prosaic).toContain('$4M to $38M');
+    expect(llmsTxt).toContain('$4M to $38M');
   });
 
   it('Nine P&L is $55M at 22% EBITDA wherever it appears', () => {
@@ -200,15 +209,38 @@ describe('structured data stays honest', () => {
     // Pricing lives on themindmaker.ai only, so there is one place to keep
     // current. Track-record figures are a different thing and are allowed:
     // $9M to $61M is a receipt, not a price.
-    const offerCopy = [
-      ...offer.cards.map((c) => `${c.title} ${c.body} ${c.cta} ${c.eyebrow ?? ''}`),
-      typeof offer.sub === 'string' ? offer.sub : Object.values(offer.sub).join(' '),
+    // The offer used to be its own section. It folded into Contact on
+    // 12 Aug 2026, so the section that asks for the sale is the one checked.
+    const contactCopy = [
+      ...contact.links.map((l) => `${l.action} ${l.detail}`),
+      typeof contact.sub === 'string' ? contact.sub : Object.values(contact.sub).join(' '),
     ].join('\n');
-    expect(offerCopy, 'the offer quotes a figure').not.toMatch(/[$£€]\s?[\d,]/);
+    expect(contactCopy, 'the contact section quotes a figure').not.toMatch(/[$£€]\s?[\d,]/);
 
     const all = [...prose.map((s) => s.value), indexHtml, llmsTxt].join('\n');
     expect(all, 'a per-seat price survives').not.toMatch(/per seat|\/\s?seat/i);
     expect(all, 'a retired price survives').not.toMatch(/\$3,500|\$15k|\$60k/i);
+  });
+});
+
+describe('the advisory work stays anonymous', () => {
+  // Decided 12 Aug 2026: no client name and no dollar figure anywhere near the
+  // advisory engagements. FACTS.md still records all of it; the site does not
+  // publish any of it. The receipts section carries one anonymized entry.
+  const confidential = [
+    'AdFixus',
+    'Meliora',
+    '$254K',
+    'Hearst',
+    'Arena Group',
+    'The Weather Company',
+  ];
+
+  it.each(confidential)('no surface names %s', (name) => {
+    const hits = prose.filter((s) => s.value.includes(name)).map((s) => s.path);
+    expect(hits, `confidential detail in the content layer: ${name}`).toEqual([]);
+    expect(indexHtml, `confidential detail in index.html: ${name}`).not.toContain(name);
+    expect(llmsTxt, `confidential detail in llms.txt: ${name}`).not.toContain(name);
   });
 });
 

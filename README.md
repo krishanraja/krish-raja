@@ -43,11 +43,10 @@ npm run media      # rebuild public/media/ from the masters in public/files/ (sl
 | `os.ts` | The four Mindmaker OS recordings |
 | `deck.ts` | The slide deck: which slides, and which talk each came from |
 | `appearances.ts` | Selected work, tied to the content-index manifest |
-| `portfolio.ts` | Every portfolio item, every tab |
-| `receipts.ts` | Stat cards, named engagements, credentials, journey |
+| `portfolio.ts` | Every portfolio item, one flat list |
+| `receipts.ts` | Stat cards, the anonymized advisory entry, credentials, journey |
 | `lessons.ts` | Maven lightning lessons |
-| `offer.ts` | The single Mindmaker card |
-| `contact.ts` | Contact links |
+| `contact.ts` | The four ways in, including the Mindmaker link the old offer card held |
 | `nav.ts` | Navigation and footer labels |
 
 Every module is annotated with its type from `src/content/types.ts`, so a missing field is

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import MobileTopBar from './MobileTopBar';
 import MobileActionDock from './MobileActionDock';
-import MobileWorkSheet from './MobileWorkSheet';
 import MobileContactSheet from './MobileContactSheet';
 import MobileHero from './MobileHero';
 import MobilePhilosophy from './MobilePhilosophy';
@@ -11,13 +10,11 @@ import MobilePortfolio from './MobilePortfolio';
 import MobileReceipts from './MobileReceipts';
 import MobileSelectedWork from './MobileSelectedWork';
 import MobileLessons from './MobileLessons';
-import MobileWorkWithMe from './MobileWorkWithMe';
 import MobileContact from './MobileContact';
 import MobileFooter from './MobileFooter';
 import { nav } from '@/content';
 
 const MobileIndex = () => {
-  const [workOpen, setWorkOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
   // Opt body into snap-proximity scrolling while the mobile tree is mounted.
@@ -48,10 +45,7 @@ const MobileIndex = () => {
       <a href="#main" className="skip-link">{nav.skipLink}</a>
       <MobileTopBar />
       <main id="main" className="pb-32">
-        <MobileHero
-          onOpenWork={() => setWorkOpen(true)}
-          onOpenContact={() => setContactOpen(true)}
-        />
+        <MobileHero onOpenContact={() => setContactOpen(true)} />
         <MobilePhilosophy />
         <MobileOperatingSystem />
         <SlideDeck />
@@ -59,15 +53,10 @@ const MobileIndex = () => {
         <MobileReceipts />
         <MobileSelectedWork />
         <MobileLessons />
-        <MobileWorkWithMe />
         <MobileContact />
       </main>
       <MobileFooter />
-      <MobileActionDock
-        onOpenWork={() => setWorkOpen(true)}
-        onOpenContact={() => setContactOpen(true)}
-      />
-      <MobileWorkSheet open={workOpen} onOpenChange={setWorkOpen} />
+      <MobileActionDock onOpenContact={() => setContactOpen(true)} />
       <MobileContactSheet open={contactOpen} onOpenChange={setContactOpen} />
     </div>
   );

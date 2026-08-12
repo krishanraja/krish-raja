@@ -20,7 +20,7 @@ const Contact = () => {
               const Icon = resolveIcon(link.icon);
               return (
                 <a
-                  key={link.label}
+                  key={link.action}
                   href={link.href}
                   target={link.external ? '_blank' : undefined}
                   rel={link.external ? 'noopener noreferrer' : undefined}
@@ -29,13 +29,15 @@ const Contact = () => {
                   <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                     <Icon className="w-4 h-4 text-primary" />
                   </div>
+                  {/* Action first, destination underneath. This section
+                      absorbed "Work with me" on 12 Aug 2026, so these four
+                      rows are the whole ask and the visitor should read what
+                      they are about to do before where it goes. */}
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-0.5">
-                      {link.label}
+                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      {link.action}
                     </p>
-                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
-                      {link.value}
-                    </p>
+                    <p className="text-xs text-muted-foreground truncate">{link.detail}</p>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                 </a>
