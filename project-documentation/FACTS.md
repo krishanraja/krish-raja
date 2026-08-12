@@ -58,7 +58,14 @@ section is the strongest external evidence this repo has, and it cuts both ways.
   Krish stands behind it, but nobody should describe it as independently confirmed.
 - **McCann: no verified employment, byline or case study.** Do not infer a McCann role.
   This is why McCann came off the trust strip.
-- **BBC: appears only on Krish-controlled Maven material.** Same reason it came off.
+- **BBC: appears only on Krish-controlled Maven material.** It came off the trust strip
+  for that reason, then went back on 12 August 2026 on Krish's instruction, replacing
+  Captify. Note what that trade costs: Captify was the one logo on the strip with a
+  receipt attached, both the $0 to $12M ARR figure and a hire announcement published by
+  Captify itself, which is in the content index. BBC has neither, and it is eleven months
+  in 2007 to 2008. The strip is Krish's call and the site does not claim anything about
+  BBC beyond the logo, but the evidence behind the strip is weaker than it was. There is a
+  `TODO(krish)` on `hero.trustLogos` recording this.
 - **Fractionl, Plinth and Full Time have no verified public pages.** They stay in the
   portfolio as Krish's own Beta build work, which claims nothing about traction. Do not
   add a customer, a user count or an outcome for any of them.

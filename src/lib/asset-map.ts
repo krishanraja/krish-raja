@@ -7,7 +7,6 @@
  * not emitted into the build.
  */
 import nine from '@/assets/nine_logo.png';
-import mccann from '@/assets/mccann_logo.png';
 import captify from '@/assets/captify_logo.png';
 import singtel from '@/assets/singtel_logo.png';
 import bbc from '@/assets/bbc_logo.png';
@@ -20,9 +19,11 @@ import signalAndNoise from '@/assets/signal-and-noise-logo.png';
 import mindmakerLive from '@/assets/mindmaker-live-logo.png';
 
 
+// podcast-tile and give-it-a-nudge came out on 12 Aug 2026. Both had been
+// superseded by content-index captures under /media/appearances/, but the
+// imports stayed, and an explicit import is a build instruction: 2.5MB of
+// unreachable WebP was being emitted into dist/ on every deploy.
 import mastersThesis from '@/assets/masters-thesis-optimized.webp';
-import podcastTile from '@/assets/podcast-tile-optimized.webp';
-import giveItANudge from '@/assets/give-it-a-nudge-optimized.webp';
 
 import lessonPermanentIdentity from '@/assets/lesson-permanent-identity.png';
 import lessonAutonomousBusiness from '@/assets/lesson-autonomous-business-new.png';
@@ -35,7 +36,6 @@ import krishBitmoji from '@/assets/krish_bitmoji.jpg';
 
 const assets: Record<string, string> = {
   nine,
-  mccann,
   captify,
   singtel,
   bbc,
@@ -48,8 +48,6 @@ const assets: Record<string, string> = {
   'mindmaker-live': mindmakerLive,
 
   'masters-thesis': mastersThesis,
-  'podcast-tile': podcastTile,
-  'give-it-a-nudge': giveItANudge,
 
   'lesson-permanent-identity': lessonPermanentIdentity,
   'lesson-autonomous-business': lessonAutonomousBusiness,

@@ -23,7 +23,11 @@ const Hero = () => {
             {hero.h1}
           </h1>
 
-          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-3 md:mb-4 max-w-2xl mx-auto text-balance">
+          {/* Wider than the old max-w-2xl, which broke this paragraph over five
+              short lines under a two-line headline. text-pretty rather than
+              text-balance: balancing evens the line lengths, which means the
+              paragraph refuses to use the extra width it was just given. */}
+          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-3 md:mb-4 max-w-3xl lg:max-w-4xl mx-auto text-pretty">
             {hero.sub}{' '}
             <a
               href={hero.channel.href}

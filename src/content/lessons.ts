@@ -14,7 +14,6 @@ export const lessons: LessonsContent = {
       'Here are some of the live sessions I lead to help leaders paint a better picture of the future of AI businesses.',
     mobile: 'Taken by more than 4,000 people.',
   },
-  badge: 'Free',
 
   lessons: [
     {

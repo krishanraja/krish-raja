@@ -1,6 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Zap, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { lessons as lessonsContent } from '@/content';
@@ -29,13 +28,6 @@ const LightningLessons = () => {
               decoding="async"
               className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
             />
-            <Badge
-              variant="secondary"
-              className="absolute top-3 left-3 bg-background/90 backdrop-blur-sm text-xs flex items-center gap-1"
-            >
-              <Zap className="w-3 h-3" />
-              {lessonsContent.badge}
-            </Badge>
             <ExternalLink className="absolute top-3 right-3 w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow" />
           </div>
           <CardContent className="p-4 flex-1 flex flex-col">

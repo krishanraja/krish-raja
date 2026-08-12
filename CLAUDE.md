@@ -16,7 +16,26 @@ else, on themindmaker.ai.
 - Tailwind CSS 3 with shadcn/ui primitives in `src/components/ui/`
 - Single page, no routes other than `/` and a 404
 - Two component trees: desktop (`src/components/`) and mobile (`src/components/mobile/`),
-  swapped whole at 768px by `useIsMobileResolved()` in `src/pages/Index.tsx`
+  swapped whole by `useIsMobileResolved()` in `src/pages/Index.tsx`
+
+## The mobile tree is chosen by input, not only by width
+
+`useIsMobileResolved()` returns true below 768px, **and** for any device whose primary
+pointer is coarse and cannot hover, up to 1024px.
+
+The second half is load-bearing. Chrome for Android's "Request desktop site" lays the page
+out in a virtual viewport of about 980 CSS pixels and scales the result down to fit the
+screen. The viewport meta tag is ignored by design, so nothing in the document changes it.
+Under width-only detection every `sm:` and `md:` breakpoint fired and a handset got the
+desktop tree at roughly 40% scale. What survives that setting is the input model: the only
+pointer is still a finger. A touchscreen laptop reports neither `pointer: coarse` nor
+`hover: none`, because its primary pointer is a trackpad, so it keeps the desktop tree.
+
+When that happens `useIsForcedDesktopViewport()` also clamps the mobile shell, the top bar
+and the dock to 34rem, so the phone layout stays a phone-width column instead of stretching
+to 980px. On a real handset the clamp is wider than the screen and does nothing.
+
+**Test any layout change at 980px with touch emulation, not just at 390px.**
 
 ## How to run
 
@@ -145,6 +164,16 @@ The work list comes from the content layer, so:
 
 then `npm run media`. No component edits, ever.
 
+Two things about uploading a master:
+
+1. **Do not use the GitHub web UI for video.** A 31MB replacement of
+   `os-content-final-lite.mp4` arrived on 12 August 2026 as a two-byte file containing a
+   CRLF. Push it with git, or drag it into the repo locally. `ffprobe` the file after it
+   lands: a master that will not probe cannot be transcoded.
+2. **Name it for the entry, not for the day.** The masters are `os-<id>-final.mp4`, so a
+   file called `new os content vid.mp4` gets renamed to `os-content-final.mp4` before its
+   `source` goes into `os.ts`. Four masters, four entries, one naming rule.
+
 ## The content index is authoritative
 
 `public/files/content index/krish-raja-content-index.md` is a manifest of every verified
@@ -164,6 +193,9 @@ These are not oversights. Each was removed on purpose and must not come back.
   has a fabricated one. Do not replicate that pattern.
 - **Prices.** Pricing lives on themindmaker.ai only, so there is one place to keep
   current. No price appears anywhere in this repo.
+- **A "Free" chip on the Lightning Lessons cards.** Free is a price. `LessonsContent` has
+  no `badge` field, on both trees, and adding one back reintroduces the only price on the
+  site.
 - **Links to `themindmaker.ai/cohort` or `themindmaker.ai/enterprise`.** Both routes are
   orphaned and serve retired prices. Link to the root only.
 - **Any geographic market claim.** No "UK", "London-based", "New York", no market

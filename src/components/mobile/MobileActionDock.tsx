@@ -49,6 +49,8 @@ const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
       role="navigation"
       aria-label={nav.dockAria}
     >
+      {/* Clamped to match the shell. Inert at phone widths. */}
+      <div className="mx-auto w-full max-w-[34rem]">
       {/* Top row: chip rail with every section */}
       <div
         ref={railRef}
@@ -90,6 +92,7 @@ const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
           {nav.ctaLabel}
           <ArrowRight className="w-4 h-4" />
         </button>
+      </div>
       </div>
     </div>
   );

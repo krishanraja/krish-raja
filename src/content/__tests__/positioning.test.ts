@@ -132,6 +132,11 @@ describe('the canonical numbers do not drift', () => {
     // The spine sentence says sixteen. Lightning Lessons used to say twenty.
     // Only career-length claims count: "7x over 3 years" is a duration, so the
     // pattern starts at ten.
+    //
+    // Digits pass as well as the word. What must not drift is the number, and
+    // "16" is the same number as "sixteen"; the twenty this test was written to
+    // catch fails either way. The hero says 16 and the meta and the footer say
+    // sixteen, which is a style split rather than a factual one.
     const claims = prose.filter((s) =>
       /\b(1[0-9]|2[0-9]|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\s+years\b/i.test(
         s.value,
@@ -139,7 +144,7 @@ describe('the canonical numbers do not drift', () => {
     );
     for (const claim of claims) {
       expect(claim.value, `${claim.path} disagrees on years of experience`).toMatch(
-        /\bsixteen years\b/i,
+        /\b(sixteen|16) years\b/i,
       );
     }
   });

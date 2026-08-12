@@ -1,4 +1,4 @@
-import { Zap, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { lessons as lessonsContent } from '@/content';
 import { pick } from '@/content/types';
@@ -27,9 +27,8 @@ const MobileLessons = () => (
               </div>
               <div className="min-w-0 flex-1 py-3 pr-3">
                 <div className="flex items-center gap-1 mb-1.5">
-                  <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-primary">
-                    <Zap className="w-3 h-3 fill-current" />
-                    {lessonsContent.badge}
+                  <span className="text-[10px] font-semibold uppercase tracking-wide text-primary">
+                    {lessonsContent.eyebrow}
                   </span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground ml-auto" />
                 </div>

@@ -256,8 +256,11 @@ export interface Lesson {
   readonly link: string;
 }
 
+/**
+ * No badge field. Every card carried a "Free" chip, which is a price, and
+ * pricing lives on themindmaker.ai only. Removed 12 Aug 2026.
+ */
 export interface LessonsContent extends SectionHeader {
-  readonly badge: string;
   readonly lessons: readonly Lesson[];
 }
 

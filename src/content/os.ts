@@ -29,7 +29,7 @@ export const os: OsContent = {
       id: 'content',
       title: 'Content',
       note: 'I know why I don\'t publish as often as I should and so does my Content OS. It is designed to push me through my bottlenecks and make it easy to iterate, even on the fly.',
-      source: 'os-content-final-lite.mp4',
+      source: 'os-content-final.mp4',
       alt: 'Screen recording of the Mindmaker OS content editor, swiping through queued content ideas',
     },
     {

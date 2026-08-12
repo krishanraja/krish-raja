@@ -12,8 +12,13 @@ this repo.
 Vite 5, React 18, TypeScript, Tailwind CSS 3, shadcn/ui. Single page. Deployed as a static
 build.
 
-Desktop and mobile render as two separate component trees, swapped whole at 768px by
+Desktop and mobile render as two separate component trees, swapped whole by
 `useIsMobileResolved()` in `src/pages/Index.tsx`. Both trees read the same copy.
+
+The swap is on input, not only on width: below 768px, or any device whose primary pointer
+is coarse and cannot hover, up to 1024px. The second clause is what keeps a handset on the
+mobile tree when the browser is in "Request desktop site" mode and reporting a 980px
+viewport. See CLAUDE.md for why.
 
 ## Running it
 

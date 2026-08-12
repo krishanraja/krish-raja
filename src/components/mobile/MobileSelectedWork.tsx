@@ -11,7 +11,7 @@ const MobileSelectedWork = () => (
     intro={pick(appearances.sub, 'mobile')}
     tone="muted"
   >
-    <SelectedWork compact />
+    <SelectedWork layout="rail" />
   </MobileSection>
 );
 

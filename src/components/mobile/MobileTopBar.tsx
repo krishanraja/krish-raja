@@ -31,7 +31,8 @@ const MobileTopBar = () => {
       } ${scrolled ? 'mobile-dock-blur border-b border-border/60' : ''}`}
       role="banner"
     >
-      <div className="flex items-center justify-between px-5 h-11">
+      {/* Clamped to match the shell. Inert at phone widths. */}
+      <div className="mx-auto flex h-11 w-full max-w-[34rem] items-center justify-between px-5">
         <a href="#hero" className="text-[15px] font-semibold tracking-tight" aria-label={nav.brandAria}>
           {nav.brand}
         </a>
