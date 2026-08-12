@@ -58,14 +58,65 @@ for (const [name, profile] of phones) {
   );
   check(!overflows, `${name}: no horizontal overflow`);
 
+  /**
+   * The check that was missing, and the reason three rounds of mobile fixes
+   * looked like nothing had changed.
+   *
+   * Rendering the mobile tree is half the job. The other half is rendering it
+   * at phone scale. Chrome's desktop-site mode lays out at ~980px and shrinks
+   * the result to fit the screen, so a correct mobile layout still arrived at
+   * 42% size with 6px body text. Nothing measured that, because every
+   * measurement was taken inside the 980px document where all of it looked
+   * right.
+   *
+   * `offsetWidth` is the layout width and reflects the root zoom; the bounding
+   * rect does not. The gap between the two is the correction.
+   */
+  const scale = await page.evaluate(() => ({
+    layout: document.body.offsetWidth,
+    painted: Math.round(document.body.getBoundingClientRect().width),
+    bodyText: Math.round(
+      parseFloat(getComputedStyle(document.querySelector('#hero p')).fontSize),
+    ),
+  }));
+  check(
+    scale.layout >= 320 && scale.layout <= 460,
+    `${name}: the document lays out at phone width`,
+    `${scale.layout}px`,
+  );
+  check(
+    scale.painted >= scale.layout,
+    `${name}: painted at least as wide as it is laid out`,
+    `${scale.layout} -> ${scale.painted}`,
+  );
+
+  // Breakpoints measure the viewport, which zoom does not change, so a phone in
+  // desktop-site mode still fires `md:`. Nothing in the mobile tree may depend
+  // on that: shared components take their layout from a prop instead.
+  const desktopVariants = await page.evaluate(() => {
+    const bad = [];
+    const roots = document.querySelectorAll('main#main, header[role="banner"], [role="navigation"]');
+    for (const el of [...roots].flatMap((r) => [r, ...r.querySelectorAll('[class]')])) {
+      const cls = typeof el.className === 'string' ? el.className : '';
+      const hit = cls.match(/\b(sm|md|lg|xl):[A-Za-z0-9_./[\]-]+/g);
+      if (hit) bad.push(`${el.tagName.toLowerCase()} ${hit.slice(0, 2).join(' ')}`);
+    }
+    return bad;
+  });
+  check(
+    desktopVariants.length === 0,
+    `${name}: nothing in the mobile tree keys off a breakpoint`,
+    desktopVariants.slice(0, 3).join('; '),
+  );
+
   // A tap target under 40px is a miss on a phone.
   const small = await page.evaluate(() => {
     const bad = [];
     for (const el of document.querySelectorAll('a, button')) {
       const r = el.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) continue;
-      if (r.height < 40 && (el.textContent ?? '').trim().length > 0) {
-        bad.push(`${el.tagName.toLowerCase()} "${(el.textContent ?? '').trim().slice(0, 28)}" ${Math.round(r.height)}px`);
+      if (el.offsetHeight < 40 && (el.textContent ?? '').trim().length > 0) {
+        bad.push(`${el.tagName.toLowerCase()} "${(el.textContent ?? '').trim().slice(0, 28)}" ${el.offsetHeight}px`);
       }
     }
     return bad;
@@ -79,7 +130,7 @@ for (const [name, profile] of phones) {
   const tall = await page.evaluate(() => {
     const BUDGET = 950;
     return [...document.querySelectorAll('section[id]')]
-      .map((s) => ({ id: s.id, h: Math.round(s.getBoundingClientRect().height) }))
+      .map((s) => ({ id: s.id, h: s.offsetHeight }))
       .filter((s) => s.h > BUDGET)
       .map((s) => `${s.id} ${s.h}px`);
   });
@@ -89,9 +140,8 @@ for (const [name, profile] of phones) {
   const dock = await page.evaluate(() => {
     const el = document.querySelector('[role="navigation"][aria-label]');
     if (!el) return null;
-    const r = el.getBoundingClientRect();
     return {
-      height: Math.round(r.height),
+      height: el.offsetHeight,
       scrolls: [...el.querySelectorAll('*')].some((n) => n.scrollWidth > n.clientWidth + 1),
       items: el.querySelectorAll('a, button').length,
     };

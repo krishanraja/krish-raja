@@ -119,8 +119,15 @@ const Reader = ({
  *
  * When nobody is touching it, it drifts. Any interaction stops the drift; it
  * resumes a few seconds after the last one.
+ *
+ * `compact` is passed by the mobile tree. It is not a duplicate of a media
+ * query: a phone in desktop-site mode lays out at 400px while every breakpoint
+ * still measures the 980px viewport it was handed, so `md:` fires inside a
+ * phone-width document and the desktop deck renders in a column a third its
+ * width. Which tree is rendering is the fact this component needs, and only the
+ * caller knows it.
  */
-const SlideDeck = () => {
+const SlideDeck = ({ compact = false }: { compact?: boolean }) => {
   const reduced = usePrefersReducedMotion();
   const [emblaRef, embla] = useEmblaCarousel({
     loop: true,
@@ -214,7 +221,9 @@ const SlideDeck = () => {
   const renderCard = (slide: DeckSlide, i: number) => (
     <div
       key={slide.id}
-      className="min-w-0 flex-[0_0_72%] px-2 sm:flex-[0_0_46%] lg:flex-[0_0_30%]"
+      className={`min-w-0 px-2 ${
+        compact ? 'flex-[0_0_72%]' : 'flex-[0_0_72%] sm:flex-[0_0_46%] lg:flex-[0_0_30%]'
+      }`}
     >
       <div
         ref={(el) => {
@@ -239,7 +248,11 @@ const SlideDeck = () => {
           />
           <span className="flex items-center justify-between gap-2 px-3 py-2 text-[10px] uppercase tracking-wider text-muted-foreground">
             {deckTitle(slide.deck)}
-            <span className="text-primary opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100">
+            <span
+              className={`text-primary transition-opacity ${
+                compact ? 'opacity-100' : 'opacity-100 md:opacity-0 md:group-hover:opacity-100'
+              }`}
+            >
               {deck.readerHint}
             </span>
           </span>
@@ -249,11 +262,20 @@ const SlideDeck = () => {
   );
 
   return (
-    <section id={deck.id} className="overflow-hidden bg-muted/30 py-12 md:py-20 scroll-mt-16">
+    <section
+      id={deck.id}
+      className={`overflow-hidden bg-muted/30 scroll-mt-16 ${compact ? 'py-12' : 'py-12 md:py-20'}`}
+    >
       <div className="container-width">
-        <div className="mb-5 px-5 md:mb-10 md:px-0 md:text-center">
-          <h2 className="mobile-h2 md:headline-lg md:mb-4">{deck.title}</h2>
-          <p className="mobile-body mt-2 text-muted-foreground md:body-lg md:mx-auto md:mt-0 md:max-w-2xl">
+        <div className={compact ? 'mb-5 px-5' : 'mb-5 px-5 md:mb-10 md:px-0 md:text-center'}>
+          <h2 className={compact ? 'mobile-h2' : 'mobile-h2 md:headline-lg md:mb-4'}>
+            {deck.title}
+          </h2>
+          <p
+            className={`mobile-body mt-2 text-muted-foreground ${
+              compact ? '' : 'md:body-lg md:mx-auto md:mt-0 md:max-w-2xl'
+            }`}
+          >
             {deck.sub}
           </p>
         </div>

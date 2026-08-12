@@ -44,7 +44,7 @@ const MobileLessons = () => (
       })}
     </ul>
 
-    <AttendeeStrip />
+    <AttendeeStrip compact />
   </MobileSection>
 );
 

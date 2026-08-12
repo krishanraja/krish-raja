@@ -16,9 +16,14 @@ Desktop and mobile render as two separate component trees, swapped whole by
 `useIsMobileResolved()` in `src/pages/Index.tsx`. Both trees read the same copy.
 
 The swap is on input, not only on width: below 768px, or any device whose primary pointer
-is coarse and cannot hover, up to 1024px. The second clause is what keeps a handset on the
-mobile tree when the browser is in "Request desktop site" mode and reporting a 980px
-viewport. See CLAUDE.md for why.
+is coarse and cannot hover, up to 1024px. That keeps a handset on the mobile tree when the
+browser is in "Request desktop site" mode and reporting a 980px viewport.
+
+Rendering the mobile tree is only half of it. Chrome then scales that 980px layout down to
+fit the screen, so `useForcedDesktopZoom()` applies a compensating `zoom` to the root: the
+document lays out at 400px and paints at 980, and the two cancel. The consequence is that
+**the mobile tree must not use Tailwind breakpoints**, because zoom does not move a media
+query. Shared components take their layout from a prop. See CLAUDE.md.
 
 ## Running it
 
@@ -32,6 +37,7 @@ npm run build      # regenerates static artifacts, then builds to dist/
 npm run preview    # serve the production build
 npm run lint
 npm test           # includes the positioning consistency suite
+npm run mobile:check   # drives a real browser at four phone sizes, needs a server on :4173
 npm run generate   # regenerate meta, JSON-LD, llms.txt, sitemap.xml, webmanifest
 npm run media      # rebuild public/media/ from the masters in public/files/ (slow)
 ```

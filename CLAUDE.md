@@ -18,22 +18,50 @@ else, on themindmaker.ai.
 - Two component trees: desktop (`src/components/`) and mobile (`src/components/mobile/`),
   swapped whole by `useIsMobileResolved()` in `src/pages/Index.tsx`
 
-## The mobile tree is chosen by input, not only by width
+## The mobile experience is two facts, and both have to be handled
+
+A phone gets a good page only if **the right tree renders** and **it renders at phone
+scale**. These are separate, and getting one right does nothing for the other. Missing the
+second is what made three rounds of mobile fixes look like nothing had shipped.
+
+### 1. Which tree renders: input, not width
 
 `useIsMobileResolved()` returns true below 768px, **and** for any device whose primary
 pointer is coarse and cannot hover, up to 1024px.
 
-The second half is load-bearing. Chrome for Android's "Request desktop site" lays the page
-out in a virtual viewport of about 980 CSS pixels and scales the result down to fit the
-screen. The viewport meta tag is ignored by design, so nothing in the document changes it.
-Under width-only detection every `sm:` and `md:` breakpoint fired and a handset got the
-desktop tree at roughly 40% scale. What survives that setting is the input model: the only
-pointer is still a finger. A touchscreen laptop reports neither `pointer: coarse` nor
+Chrome for Android's "Request desktop site" lays the page out in a virtual viewport of
+about 980 CSS pixels. The viewport meta tag is ignored by design, so nothing in the
+document changes it, and under width-only detection every `sm:` and `md:` breakpoint fired
+and a handset got the desktop tree. What survives that setting is the input model: the
+only pointer is still a finger. A touchscreen laptop reports neither `pointer: coarse` nor
 `hover: none`, because its primary pointer is a trackpad, so it keeps the desktop tree.
 
-When that happens `useIsForcedDesktopViewport()` also clamps the mobile shell, the top bar
-and the dock to 34rem, so the phone layout stays a phone-width column instead of stretching
-to 980px. On a real handset the clamp is wider than the screen and does nothing.
+### 2. What scale it renders at: `useForcedDesktopZoom()`
+
+Desktop-site mode does not stop at the layout. Chrome then **scales the whole 980px result
+down to fit the physical screen**, about 0.42 on a 410px handset. So a perfectly correct
+mobile layout still arrived at 42% size, with 6px body text.
+
+The first attempt at this clamped the shell to 34rem, which fixed the wrong half: it
+changed the column's width and left the scale alone, so the page became a 228px strip of a
+410px screen with dead margins either side. Predicted and measured agreed to within a
+pixel, which is how the diagnosis was confirmed.
+
+The fix is `zoom` on the root element: lay out at 400px, paint at `innerWidth / 400`, and
+Chrome's fit-to-width puts it back at 1:1. `zoom` and not a transform, because a transform
+would make the fixed dock's containing block the page instead of the screen.
+
+### The consequence: the mobile tree may not use breakpoints
+
+`zoom` changes the used value of a length. It does **not** change the viewport a media
+query measures, so `md:` still fires at 980 inside a 400px document. Any `sm:`/`md:`/`lg:`
+class reachable from the mobile tree will therefore render its desktop variant in a
+phone-width column.
+
+The mobile tree itself has none. The three components shared with the desktop tree,
+`SlideDeck`, `AttendeeStrip` and `SelectedWork`, take their layout from a **prop** rather
+than a breakpoint, and `MobileIndex` passes it. `npm run mobile:check` fails if a
+breakpoint class appears anywhere under `main#main`, the top bar or the dock.
 
 **Test any layout change at 980px with touch emulation, not just at 390px.**
 
@@ -46,10 +74,16 @@ npm run mobile:check
 
 `scripts/mobile-check.mjs` drives Chromium at Pixel 7, iPhone 13, iPhone SE and an Android
 in forced-desktop mode, and asserts on what actually rendered: the mobile tree is the one
-serving, nothing overflows sideways, every tap target clears 40px, no section outruns a
-950px budget, the dock is one row of five with no sideways scroll, every rail has
-something to swipe to, the contact sheet opens, and no retired mobile-only string is on
-the page.
+serving, **the document lays out between 320 and 460px whatever the viewport claims**,
+nothing overflows sideways, no breakpoint class is reachable from the mobile tree, every
+tap target clears 40px, no section outruns a 950px budget, the dock is one row of five
+with no sideways scroll, every rail has something to swipe to, the contact sheet opens,
+and no retired mobile-only string is on the page.
+
+Measure in `offsetWidth`/`offsetHeight`, never `getBoundingClientRect()`. The rect returns
+painted pixels, which the root zoom inflates by 2.45; the offsets are layout pixels, which
+is the unit a thumb actually experiences. Two budget checks silently passed against the
+wrong unit before this was noticed.
 
 It exists because on 12 August 2026 the build was green, the unit suite was green, and the
 phone was serving the desktop tree at 40% scale under a marquee animating four logos that

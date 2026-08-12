@@ -49,8 +49,7 @@ const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
       role="navigation"
       aria-label={nav.dockAria}
     >
-      {/* Clamped to match the shell. Inert at phone widths. */}
-      <div className="mx-auto grid w-full max-w-[34rem] grid-cols-5 px-1 py-1.5">
+      <div className="grid w-full grid-cols-5 px-1 py-1.5">
         {sections.map((section) => {
           const Icon = resolveIcon(section.icon);
           const isActive = activeId === section.id;

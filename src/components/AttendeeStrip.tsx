@@ -15,7 +15,7 @@ import { lessons } from '@/content';
  * reader from hearing every company twice, and the whole strip collapses to a
  * static wrapped grid under prefers-reduced-motion.
  */
-const AttendeeStrip = () => {
+const AttendeeStrip = ({ compact = false }: { compact?: boolean }) => {
   const marks = lessons.attendees;
 
   /**
@@ -35,15 +35,15 @@ const AttendeeStrip = () => {
       // Every derivative is the same 200x72 canvas with the mark scaled to a
       // constant area inside it, so one height here sizes all 28 evenly. No
       // max-width needed: the box already is the width.
-      className={`h-8 w-auto flex-shrink-0 object-contain opacity-60 grayscale md:h-10 dark:opacity-70 dark:invert ${
-        spaced ? 'mr-6 md:mr-8' : ''
+      className={`w-auto flex-shrink-0 object-contain opacity-60 grayscale ${compact ? 'h-8' : 'h-8 md:h-10'} dark:opacity-70 dark:invert ${
+        spaced ? (compact ? 'mr-6' : 'mr-6 md:mr-8') : ''
       }`}
     />
   );
 
   return (
-    <div className="mt-8 border-t border-border/40 pt-6 md:mt-12 md:pt-8">
-      <p className="mb-4 text-center text-xs uppercase tracking-widest text-muted-foreground md:mb-6">
+    <div className={`border-t border-border/40 ${compact ? 'mt-8 pt-6' : 'mt-8 pt-6 md:mt-12 md:pt-8'}`}>
+      <p className={`text-center text-xs uppercase tracking-widest text-muted-foreground ${compact ? 'mb-4' : 'mb-4 md:mb-6'}`}>
         {lessons.attendeesLabel}
       </p>
 

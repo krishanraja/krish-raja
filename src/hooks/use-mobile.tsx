@@ -82,26 +82,40 @@ export function useIsMobileResolved() {
   return isMobile
 }
 
+/** The width the mobile tree is designed to lay out at. */
+const PHONE_WIDTH = 400
+
 /**
- * True when a touch-primary device has been handed a desktop-width viewport.
+ * How much to scale the page up when a phone is in desktop-site mode.
+ * Returns 1 when there is nothing to correct.
  *
- * The mobile tree is designed for a single thumb-width column. Letting it run
- * to 980px would trade one bad layout for another, so the shell clamps itself
- * when this is true. On a real handset the clamp is wider than the screen and
- * costs nothing.
+ * The earlier version of this returned a boolean and the shell clamped itself
+ * to 34rem, which fixed the wrong half of the problem. Chrome lays the page out
+ * in a ~980px virtual viewport and then scales the whole result down to fit the
+ * physical screen, roughly 0.42 on a 410px handset. Clamping the column changed
+ * its width and left the scale alone, so the page became a 228px strip of a
+ * 410px screen with 6px body text and dead margins either side. Every mobile
+ * fix was present and correct, and then multiplied by 0.42.
+ *
+ * Scaling is the other half. Lay out at 400px, render at `980 / 400`, and
+ * Chrome's fit-to-width puts it back at 1:1. `zoom` on the root element is what
+ * does this: it changes the used value of every length, so the document lays
+ * out as a phone and paints at desktop size, and fixed positioning still pins
+ * to the visual viewport. A transform would not, because it would make the
+ * dock's containing block the page rather than the screen.
  */
-export function useIsForcedDesktopViewport() {
-  const [forced, setForced] = React.useState(false)
+export function useForcedDesktopZoom() {
+  const [zoom, setZoom] = React.useState(1)
 
   React.useEffect(() => {
-    const onChange = () =>
-      setForced(
-        window.matchMedia(TOUCH_PRIMARY).matches &&
-          window.innerWidth >= MOBILE_BREAKPOINT,
-      )
+    const onChange = () => {
+      const forced =
+        window.matchMedia(TOUCH_PRIMARY).matches && window.innerWidth >= MOBILE_BREAKPOINT
+      setZoom(forced ? window.innerWidth / PHONE_WIDTH : 1)
+    }
     onChange()
     return subscribe(onChange)
   }, [])
 
-  return forced
+  return zoom
 }
