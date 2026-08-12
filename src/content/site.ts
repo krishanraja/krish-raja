@@ -15,12 +15,12 @@ export const site: SiteContent = {
 
   // The spine sentence. Also on his LinkedIn. Must not drift.
   spine:
-    'Sixteen years commercialising content, media and IP businesses. Now I build the AI systems that run them.',
+    'Sixteen years commercializing content, media and IP businesses. Now I build the AI systems that run them.',
   cluster: 'content, media and IP businesses',
 
   title: 'Krish Raja: commercial leader for content, media and IP businesses',
   description:
-    'Sixteen years commercialising content, media and IP businesses. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmaker OS, a 14-agent AI operating system in production.',
+    'Sixteen years commercializing content, media and IP businesses. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmaker OS, a 14-agent AI operating system in production.',
   jobTitle: 'Commercial leader and founder of Mindmaker',
 
   url: 'https://www.krishraja.com',
@@ -33,11 +33,12 @@ export const site: SiteContent = {
   language: 'en-US',
   websiteDescription:
     'Personal website of Krish Raja, commercial leader for content, media and IP businesses and founder of Mindmaker',
-  updated: '2026-08-11',
+  updated: '2026-08-12',
+  themeColor: '#0055DD',
 
   // Prose below is rendered into public/llms.txt by scripts/generate-static.mts.
   // It lives here, next to the meta it has to agree with, so the two cannot drift.
-  bio: 'Krish Raja is a commercial leader for content, media and IP businesses, and the founder of Mindmaker. Sixteen years commercialising media, data and technology businesses across London, Sydney and New York. He now builds the AI systems that run commercial engines in that same sector.',
+  bio: 'Krish Raja is a commercial leader for content, media and IP businesses, and the founder of Mindmaker. Sixteen years commercializing media, data and technology businesses across London, Sydney and New York. He now builds the AI systems that run commercial engines in that same sector.',
 
   nowHeading: 'What he does now',
   now: [

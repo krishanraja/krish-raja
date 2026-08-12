@@ -27,7 +27,7 @@ export const receipts: ReceiptsContent = {
       metric: '$9M → $61M',
       context: 'Broadcaster Digital Transformation',
       description:
-        'Led digital revenue 7x over 3 years. Triple-digit growth in 2 of 3 years. 70+ commercial products launched.',
+        "Led digital revenue 7x over 3 years. Triple-digit growth in 2 of 3 years. 70+ commercial products launched, including APAC's first authenticated CTV product.",
     },
     {
       icon: 'rocket',
@@ -51,7 +51,7 @@ export const receipts: ReceiptsContent = {
       metric: '$4M → $38M',
       context: 'Twelve markets, two technology M&As',
       description:
-        "Scaled SingTel platform revenue across twelve markets through two technology M&As. Launched APAC's first authenticated CTV product.",
+        'Scaled SingTel platform revenue across twelve markets through two technology M&As.',
     },
     {
       icon: 'target',
@@ -70,7 +70,7 @@ export const receipts: ReceiptsContent = {
       // The $254K client is never named. Hearst, Arena Group and The Weather
       // Company are pipeline, which is a different claim. See FACTS.md.
       description:
-        'Repositioned from cookie-deprecation defence to first-party identity infrastructure. Contracted a $254K POC with a major US publisher and rebuilt enterprise pipeline with Hearst, Arena Group and The Weather Company.',
+        'Repositioned from cookie-deprecation defense to first-party identity infrastructure. Contracted a $254K POC with a major US publisher and rebuilt enterprise pipeline with Hearst, Arena Group and The Weather Company.',
     },
     {
       name: 'Meliora',
@@ -81,6 +81,7 @@ export const receipts: ReceiptsContent = {
 
   credentials: [
     'Founder, Mindmaker',
+    'B&T 30 Under 30, Strategy',
     'Writer, Mindmaker Live',
     'Harvard Business School (Finance, Analytics & Economics)',
     'MA Design Strategy (Distinction)',
@@ -121,7 +122,7 @@ export const receipts: ReceiptsContent = {
       org: 'Nine Entertainment',
       title: 'Head of Data & Automation',
       detail:
-        'grew data and automation revenue from $9M to $61M in three years. Launched 70+ commercial products. Built a $55M automated marketplace from scratch. Ran a $55M P&L at 22% EBITDA.',
+        "grew data and automation revenue from $9M to $61M in three years. Launched 70+ commercial products, including APAC's first authenticated CTV product. Built a $55M automated marketplace from scratch. Ran a $55M P&L at 22% EBITDA.",
     },
     {
       org: 'Captify',
@@ -133,7 +134,7 @@ export const receipts: ReceiptsContent = {
       org: 'Nexxen (SingTel)',
       title: 'Head of Platform & Product Strategy APAC',
       detail:
-        "scaled platform revenue from $4M to $38M across twelve markets through two technology M&As. Launched APAC's first authenticated CTV product.",
+        'scaled platform revenue from $4M to $38M across twelve markets through two technology M&As.',
     },
     {
       org: 'Microsoft UK',

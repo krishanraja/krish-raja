@@ -15,7 +15,7 @@ const BusinessRow = ({ business }: { business: PortfolioItem }) => (
     className="block bg-card border border-border/60 rounded-2xl p-4 shadow-sm active:bg-muted/50 transition-colors"
   >
     <div className="flex items-start gap-3">
-      <div className="w-11 h-11 rounded-lg bg-muted/40 flex items-center justify-center flex-shrink-0">
+      <div className={`w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 ${business.plateOnDark ? "bg-muted/40 dark:bg-white p-1" : "bg-muted/40"}`}>
         <img
           src={asset(business.asset)}
           alt={`${business.name} icon`}

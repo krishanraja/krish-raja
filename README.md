@@ -27,7 +27,8 @@ npm run build      # regenerates static artifacts, then builds to dist/
 npm run preview    # serve the production build
 npm run lint
 npm test           # includes the positioning consistency suite
-npm run generate   # regenerate meta, JSON-LD, llms.txt and sitemap.xml from src/content/
+npm run generate   # regenerate meta, JSON-LD, llms.txt, sitemap.xml, webmanifest
+npm run media      # rebuild public/media/ from the masters in public/files/ (slow)
 ```
 
 ## Where copy lives
@@ -39,11 +40,11 @@ npm run generate   # regenerate meta, JSON-LD, llms.txt and sitemap.xml from src
 | `site.ts` | Name, spine sentence, meta, canonical URL, email, socials |
 | `hero.ts` | H1, sub, CTAs, trust logos |
 | `operate.ts` | "How I operate": sub and the four cards |
-| `os.ts` | The Autonomous OS gallery entries |
+| `os.ts` | The four Mindmaker OS recordings |
+| `deck.ts` | The slide deck: which slides, and which talk each came from |
+| `appearances.ts` | Selected work, tied to the content-index manifest |
 | `portfolio.ts` | Every portfolio item, every tab |
 | `receipts.ts` | Stat cards, named engagements, credentials, journey |
-| `latest.ts` | Mindmaker Live posts and appearances |
-| `work.ts` | Writing and speaking items |
 | `lessons.ts` | Maven lightning lessons |
 | `offer.ts` | The single Mindmaker card |
 | `contact.ts` | Contact links |
@@ -73,14 +74,26 @@ structured data and `llms.txt`.
 
 ## Adding content without touching a component
 
-**A screenshot or clip of the operating system:** drop the file into `src/assets/os/` and
-add one entry to `src/content/os.ts`. Stills and short mp4 or webm loops both work. Video
-respects `prefers-reduced-motion` by showing a still frame instead of autoplaying.
+Masters go in `public/files/`. The site never references them directly: `npm run media`
+renders shippable versions into `public/media/`, which is committed. That step is not part
+of `npm run build`, because it takes minutes and the inputs change rarely.
 
-**A Mindmaker Live post or a podcast appearance:** add one entry to `src/content/latest.ts`.
-Newest first is handled for you; the six most recent are shown.
+**A recording of the OS:** drop the mp4 in `public/files/os screenshots/`, add an entry to
+`src/content/os.ts`, run `npm run media`. It is transcoded to 720p with a poster still,
+framed as a phone (all four sources are portrait captures), lazy loaded, played only when
+on screen, and it respects `prefers-reduced-motion` by showing the poster with controls.
+
+**A slide:** add an entry to `src/content/deck.ts` naming a file in `public/files/slides/`,
+run `npm run media`. Two WebP widths are produced: one for the card, one for the
+full-screen reader.
+
+**An appearance:** add an entry to `src/content/appearances.ts` with the `appearanceId`
+from the content index, run `npm run media`. The build fails if that record is not marked
+`approved` in the manifest, or if the link you gave is not one of its own `source_urls`.
 
 **A portfolio item, a receipt, a lesson:** the matching module in `src/content/`.
+
+Everything above is content-only. No component edits, ever.
 
 ## Rules
 

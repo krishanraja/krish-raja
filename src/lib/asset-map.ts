@@ -19,10 +19,8 @@ import adfixus from '@/assets/adfixus-icon.png';
 import fractionl from '@/assets/fractionl-icon.png';
 import ctrl from '@/assets/ctrl-icon.png';
 import signalAndNoise from '@/assets/signal-and-noise-logo.png';
+import mindmakerLive from '@/assets/mindmaker-live-logo.png';
 
-// TODO(krish): techonomic-logo.png and builder-economy-icon.png are still on
-// disk but no longer referenced, so they are not bundled. Both channels folded
-// into Mindmaker Live. Delete the files, or keep them for an archive page?
 
 import mastersThesis from '@/assets/masters-thesis-optimized.webp';
 import podcastTile from '@/assets/podcast-tile-optimized.webp';
@@ -51,6 +49,7 @@ const assets: Record<string, string> = {
   fractionl,
   ctrl,
   'signal-and-noise': signalAndNoise,
+  'mindmaker-live': mindmakerLive,
 
   'masters-thesis': mastersThesis,
   'podcast-tile': podcastTile,

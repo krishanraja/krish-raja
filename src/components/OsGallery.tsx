@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { ImageOff, Play } from 'lucide-react';
 import type { OsEntry } from '@/content/types';
-import { asset } from '@/lib/asset-map';
 
-/** True when the visitor has asked for reduced motion. */
-const usePrefersReducedMotion = () => {
+/** True when the visitor has asked for reduced motion. Defaults to true until known. */
+export const usePrefersReducedMotion = () => {
   const [reduced, setReduced] = useState(true);
 
   useEffect(() => {
@@ -18,98 +16,70 @@ const usePrefersReducedMotion = () => {
   return reduced;
 };
 
-/** Plays only once the tile is actually on screen, and only if motion is welcome. */
-const useInView = <T extends HTMLElement>(enabled: boolean) => {
-  const ref = useRef<T>(null);
+/**
+ * One recording, framed as the phone it was captured on.
+ *
+ * All four sources are portrait screen captures, so a 16:9 tile would letterbox
+ * them into nothing. The frame is the honest presentation and it reads at a
+ * glance as "this is the app, running".
+ *
+ * Nothing downloads until the clip is near the viewport: preload is none and
+ * the src is only attached once observed. Playback starts when it is on screen
+ * and pauses when it leaves, so four videos never decode at once.
+ */
+export const OsClip = ({ entry }: { entry: OsEntry }) => {
+  const reduced = usePrefersReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [armed, setArmed] = useState(false);
   const [inView, setInView] = useState(false);
 
+  const src = `/media/os/${entry.id}.mp4`;
+  const poster = `/media/os/${entry.id}.jpg`;
+
   useEffect(() => {
-    if (!enabled) return;
-    const el = ref.current;
+    const el = videoRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.25 },
+      ([e]) => {
+        if (e.isIntersecting) setArmed(true);
+        setInView(e.isIntersecting);
+      },
+      { rootMargin: '200px', threshold: 0.2 },
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [enabled]);
-
-  return { ref, inView };
-};
-
-/**
- * One screen or clip. An entry with no asset renders a labelled placeholder
- * rather than a broken image, so a section that is still being filled says so.
- */
-export const OsTile = ({ entry, compact = false }: { entry: OsEntry; compact?: boolean }) => {
-  const reduced = usePrefersReducedMotion();
-  const isVideo = entry.kind === 'video';
-  const src = asset(entry.asset);
-  const poster = asset(entry.poster);
-  const { ref, inView } = useInView<HTMLVideoElement>(Boolean(src) && isVideo && !reduced);
+  }, []);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const el = videoRef.current;
+    if (!el || reduced || !armed) return;
     if (inView) void el.play().catch(() => undefined);
     else el.pause();
-  }, [inView, ref]);
+  }, [inView, reduced, armed]);
 
   return (
-    <figure className="group h-full overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">
-      <div className="relative aspect-video overflow-hidden bg-muted/50">
-        {!src ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
-            <ImageOff className="h-5 w-5 text-muted-foreground/60" aria-hidden="true" />
-            <span className="text-[11px] uppercase tracking-widest text-muted-foreground/70">
-              Screenshot to come
-            </span>
-          </div>
-        ) : isVideo ? (
-          <>
-            <video
-              ref={ref}
-              src={src}
-              poster={poster}
-              muted
-              loop
-              playsInline
-              preload="none"
-              controls={reduced}
-              aria-label={entry.alt}
-              className="h-full w-full object-cover"
-            />
-            {reduced && !poster && (
-              <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                <Play className="h-8 w-8 text-foreground/70" aria-hidden="true" />
-              </div>
-            )}
-          </>
-        ) : (
-          <img
-            src={src}
-            alt={entry.alt}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+    <figure className="flex h-full flex-col">
+      <div className="relative mx-auto w-full max-w-[260px]">
+        {/* Device frame. The bezel is what makes a portrait capture read as an app. */}
+        <div className="relative aspect-[9/16] overflow-hidden rounded-[1.75rem] border border-border/70 bg-black shadow-lg ring-1 ring-black/5">
+          <video
+            ref={videoRef}
+            src={armed ? src : undefined}
+            poster={poster}
+            muted
+            loop
+            playsInline
+            preload="none"
+            controls={reduced}
+            aria-label={entry.alt}
+            className="h-full w-full object-cover"
           />
-        )}
-      </div>
-      <figcaption className={compact ? 'p-3' : 'p-4'}>
-        <div className="mb-1 flex items-baseline gap-2">
-          <h3 className={`font-semibold text-foreground ${compact ? 'text-[13.5px]' : 'text-sm'}`}>
-            {entry.title}
-          </h3>
-          {entry.date && (
-            <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              {entry.date}
-            </span>
-          )}
         </div>
-        <p className={`leading-snug text-muted-foreground ${compact ? 'text-[12px]' : 'text-xs'}`}>
-          {entry.note}
-        </p>
+      </div>
+
+      <figcaption className="mx-auto mt-4 max-w-[280px] text-center">
+        <h3 className="mb-1 text-sm font-semibold text-foreground">{entry.title}</h3>
+        <p className="text-xs leading-snug text-muted-foreground">{entry.note}</p>
       </figcaption>
     </figure>
   );

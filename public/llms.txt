@@ -2,7 +2,7 @@
 
 ## Who is Krish Raja
 
-Krish Raja is a commercial leader for content, media and IP businesses, and the founder of Mindmaker. Sixteen years commercialising media, data and technology businesses across London, Sydney and New York. He now builds the AI systems that run commercial engines in that same sector.
+Krish Raja is a commercial leader for content, media and IP businesses, and the founder of Mindmaker. Sixteen years commercializing media, data and technology businesses across London, Sydney and New York. He now builds the AI systems that run commercial engines in that same sector.
 
 ## What he does now
 
@@ -12,9 +12,9 @@ Krish Raja is a commercial leader for content, media and IP businesses, and the 
 
 ## Commercial track record
 
-- **Nine Entertainment**, Head of Data & Automation: grew data and automation revenue from $9M to $61M in three years. Launched 70+ commercial products. Built a $55M automated marketplace from scratch. Ran a $55M P&L at 22% EBITDA.
+- **Nine Entertainment**, Head of Data & Automation: grew data and automation revenue from $9M to $61M in three years. Launched 70+ commercial products, including APAC's first authenticated CTV product. Built a $55M automated marketplace from scratch. Ran a $55M P&L at 22% EBITDA.
 - **Captify**, Managing Director APAC: built APAC from $0 to $12M ARR in three years at 22% EBITDA, as first hire scaling to an 18-person team.
-- **Nexxen (SingTel)**, Head of Platform & Product Strategy APAC: scaled platform revenue from $4M to $38M across twelve markets through two technology M&As. Launched APAC's first authenticated CTV product.
+- **Nexxen (SingTel)**, Head of Platform & Product Strategy APAC: scaled platform revenue from $4M to $38M across twelve markets through two technology M&As.
 - **Microsoft UK**: built and deployed automated media campaigns in 2010, years before programmatic had a name.
 
 ## Writing and audio
@@ -25,7 +25,7 @@ Krish Raja is a commercial leader for content, media and IP businesses, and the 
 
 ## Build work
 
-Fractionl Circle, Fractionl Pulse and Ctrl are live experiments from the operating system, not products for sale.
+Fractionl Circle, Fractionl Pulse and CTRL are live experiments from the operating system, not products for sale.
 
 ## Education and recognition
 

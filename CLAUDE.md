@@ -26,7 +26,8 @@ npm run dev        # http://localhost:8080
 npm run build      # runs `generate` first, then vite build
 npm run lint
 npm test           # vitest, includes the positioning consistency suite
-npm run generate   # regenerate index.html meta, llms.txt and sitemap.xml from src/content/
+npm run generate   # regenerate index.html meta, llms.txt, sitemap.xml, webmanifest
+npm run media      # transcode public/files/ masters into public/media/ (slow, run by hand)
 ```
 
 ## THE RULE: all copy lives in `src/content/`
@@ -63,21 +64,23 @@ variants (`{ desktop, mobile, sheet? }`) and components read through `pick()`. P
 
 1. **No em dashes. Anywhere. Including code and commit messages.** Use commas, periods
    or parentheses.
-2. **Never invent a number, client name, date or outcome.** Every approved figure is in
+2. **US spelling throughout**, including the spine sentence. Decided 12 August 2026. The
+   test suite fails on `commercialis`, `organis`, `defence`, `optimis` and `recognis`.
+3. **Never invent a number, client name, date or outcome.** Every approved figure is in
    `project-documentation/FACTS.md`. If a figure is not there, it does not go on the site.
    Leave a `TODO(krish):` instead.
-3. **Banned vocabulary in user-facing copy:** leverage, synergy, empower, unlock as
+4. **Banned vocabulary in user-facing copy:** leverage, synergy, empower, unlock as
    metaphor, seamless, journey, landscape, ecosystem (unless naming a real market
    structure), game-changer, cutting-edge, best-in-class, solutions, drive value,
-   impactful, robust, transformative, elevate, harness, delve, deep dive, unpack,
+   impactful, robust, transformative, elevate, harness as a verb, delve, deep dive, unpack,
    spearhead as metaphor, navigate as metaphor, at the end of the day, in today's world,
    it's worth noting, mission-critical.
-4. **Banned constructions:** "It is not just X, it is Y", "at the intersection of",
+5. **Banned constructions:** "It is not just X, it is Y", "at the intersection of",
    "uniquely positioned to", "what sets X apart", "I am passionate about",
    rhetorical-question openers, any paragraph starting "Additionally".
-5. **The test:** could a senior peer who knows Krish well have written this in ten
+6. **The test:** could a senior peer who knows Krish well have written this in ten
    minutes? If it reads like marketing, cut it.
-6. **When in doubt, keep and flag.** Deleting good detail is the failure mode. Leave a
+7. **When in doubt, keep and flag.** Deleting good detail is the failure mode. Leave a
    `TODO(krish):` rather than removing something you are unsure about.
 
 ## The settled position
@@ -88,7 +91,7 @@ variants (`{ desktop, mobile, sheet? }`) and components read through `pick()`. P
 
 The spine sentence, which also appears on his LinkedIn and must not drift:
 
-> Sixteen years commercialising content, media and IP businesses. Now I build the AI
+> Sixteen years commercializing content, media and IP businesses. Now I build the AI
 > systems that run them.
 
 Three things must never differ across krishraja.com, LinkedIn and themindmaker.ai:
@@ -108,13 +111,45 @@ Both trees render the same order. Desktop lives in `src/pages/Index.tsx`, mobile
 1. Hero
 2. How I operate (`Philosophy.tsx`)
 3. The operating system, running (`OperatingSystem.tsx`)
-4. The portfolio (`LivePortfolio.tsx`)
-5. Sixteen years of receipts (`ProofPoints.tsx`)
-6. Writing and speaking (`Work.tsx`)
-7. Latest (`Latest.tsx`)
+4. The thinking (`SlideDeck.tsx`, shared by both trees)
+5. The portfolio (`LivePortfolio.tsx`)
+6. Sixteen years of receipts (`ProofPoints.tsx`)
+7. Selected work (`SelectedWork.tsx`)
 8. Lightning Lessons (`LightningLessons.tsx`)
 9. Work with me (`WorkWithMe.tsx`)
 10. Contact (`Contact.tsx`)
+
+## Media: `public/files/` in, `public/media/` out
+
+`public/files/` holds the masters Krish supplies: OS screen recordings, talk slides, the
+content-index captures and its manifest. They are large (85MB of video, 74MB of slides)
+and are never referenced by the site directly.
+
+`npm run media` renders the shippable versions into `public/media/`, which is committed.
+Video goes to 720p H.264 with a poster still, slides to two WebP widths, appearance
+captures to 800px WebP. The whole of `public/media/` is about 5.6MB.
+
+It is deliberately **not** part of `npm run build`. Run it by hand after adding a master.
+`npm run media -- --check` fails if a referenced derivative is missing, and the test suite
+calls the same check.
+
+The work list comes from the content layer, so:
+
+- a recording: drop it in `public/files/os screenshots/`, add an entry to `os.ts`
+- a slide: add an entry to `deck.ts` naming a file in `public/files/slides/`
+- an appearance: add an entry to `appearances.ts` with its `appearanceId`
+
+then `npm run media`. No component edits, ever.
+
+## The content index is authoritative
+
+`public/files/content index/krish-raja-content-index.md` is a manifest of every verified
+appearance: the capture, its `screenshot_status`, and the `source_urls` that back it.
+
+Two of its records are marked do-not-publish (`krish-raja-linkedin` is an auth wall,
+`techonomic-author-page` failed TLS). **Never publish a capture the manifest does not mark
+`approved`.** The test suite enforces this, and also checks that every appearance link is
+one of that record's own `source_urls`, so a link cannot drift from its evidence.
 
 ## Deliberately absent. Do not re-add.
 
@@ -131,8 +166,10 @@ These are not oversights. Each was removed on purpose and must not come back.
   qualifier in the positioning, the meta or the structured data. The site is
   international. The journey section (London, Sydney, New York) is biography and is the
   one exception.
-- **The Maven student count.** Sources say both 100+ and 4,000+. Publish neither.
-- **A 30 Under 30 category.** Sources disagree on Strategy versus Marketing and Media.
+- **Any Maven student count other than 4,000+.** An earlier source said 100+. That figure
+  must not return.
+- **A 30 Under 30 category other than Strategy.** B&T verifies Strategy. Marketing and
+  Media was the disputed reading and must not return.
 - **The client name against the $254K POC.** Never named.
 - **"AI Decision Cohort", "Signal Session", "Revenue Architecture".** Retired names. They
   must never reappear in this repo.

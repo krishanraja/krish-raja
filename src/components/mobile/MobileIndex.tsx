@@ -6,10 +6,10 @@ import MobileContactSheet from './MobileContactSheet';
 import MobileHero from './MobileHero';
 import MobilePhilosophy from './MobilePhilosophy';
 import MobileOperatingSystem from './MobileOperatingSystem';
+import SlideDeck from '@/components/SlideDeck';
 import MobilePortfolio from './MobilePortfolio';
 import MobileReceipts from './MobileReceipts';
-import MobileWriting from './MobileWriting';
-import MobileLatest from './MobileLatest';
+import MobileSelectedWork from './MobileSelectedWork';
 import MobileLessons from './MobileLessons';
 import MobileWorkWithMe from './MobileWorkWithMe';
 import MobileContact from './MobileContact';
@@ -54,10 +54,10 @@ const MobileIndex = () => {
         />
         <MobilePhilosophy />
         <MobileOperatingSystem />
+        <SlideDeck />
         <MobilePortfolio />
         <MobileReceipts />
-        <MobileWriting />
-        <MobileLatest />
+        <MobileSelectedWork />
         <MobileLessons />
         <MobileWorkWithMe />
         <MobileContact />

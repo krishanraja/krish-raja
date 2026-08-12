@@ -88,22 +88,79 @@ export interface OperateContent extends SectionHeader {
   };
 }
 
-/** One screen or clip from the operating system. */
+/**
+ * One recording from the operating system.
+ *
+ * `source` is the file under public/files/, which scripts/generate-media.mts
+ * transcodes. The player reads the derivatives by convention:
+ * /media/os/<id>.mp4 and /media/os/<id>.jpg. All four are portrait phone
+ * captures, so they render inside a device frame.
+ */
 export interface OsEntry {
   readonly id: string;
   readonly title: string;
   readonly note: string;
-  readonly date?: string;
-  /** Key into src/lib/asset-map.ts. Undefined renders a placeholder tile. */
-  readonly asset?: string;
-  readonly kind: 'image' | 'video';
-  /** Still frame for a video. Shown when prefers-reduced-motion is set. */
-  readonly poster?: string;
+  readonly source: string;
   readonly alt: string;
 }
 
 export interface OsContent extends SectionHeader {
   readonly entries: readonly OsEntry[];
+}
+
+/** One slide from a talk. Sources live in public/files/slides/. */
+export interface DeckSlide {
+  readonly id: string;
+  readonly deck: string;
+  readonly source: string;
+  readonly alt: string;
+}
+
+export interface DeckSource {
+  readonly id: string;
+  readonly title: string;
+  /** The Maven session this deck comes from, where one exists. */
+  readonly href?: string;
+}
+
+export interface DeckContent extends SectionHeader {
+  readonly decks: readonly DeckSource[];
+  readonly slides: readonly DeckSlide[];
+  readonly readerHint: string;
+  readonly sessionLabel: string;
+}
+
+export type AppearanceKind = 'podcast' | 'talk' | 'press' | 'research';
+
+/**
+ * One third-party appearance, drawn from the content index at
+ * public/files/content index/krish-raja-content-index.md.
+ *
+ * `appearanceId` ties the entry back to its record in that manifest. The test
+ * suite uses it to check that the image is approved and that `href` is one of
+ * the record's own source_urls, so a link cannot drift from its evidence.
+ */
+export interface Appearance {
+  readonly appearanceId?: string;
+  readonly title: string;
+  readonly outlet: string;
+  readonly kind: AppearanceKind;
+  readonly year?: string;
+  readonly href?: string;
+  /** Path under public/media/. Preferred. */
+  readonly media?: string;
+  /** Key into src/lib/asset-map.ts, for items with no content-index record. */
+  readonly asset?: string;
+  readonly note?: string;
+  /** True for the curated set shown before the full index is opened. */
+  readonly flagship?: boolean;
+}
+
+export interface AppearancesContent extends SectionHeader {
+  readonly filters: readonly { readonly id: AppearanceKind | 'all'; readonly label: string }[];
+  readonly moreLabel: string;
+  readonly lessLabel: string;
+  readonly items: readonly Appearance[];
 }
 
 export interface PortfolioItem {
@@ -114,6 +171,8 @@ export interface PortfolioItem {
   readonly role: string;
   readonly isBeta?: boolean;
   readonly invertOnDark?: boolean;
+  /** Needs a light plate behind it in dark mode, for a dark-to-light gradient mark. */
+  readonly plateOnDark?: boolean;
 }
 
 export interface PortfolioTab {
@@ -165,30 +224,6 @@ export interface ReceiptsContent extends SectionHeader {
   readonly journey: readonly JourneyStop[];
   /** The commercial track record as prose, for llms.txt. */
   readonly roles: readonly Role[];
-}
-
-export type LatestType = 'post' | 'podcast' | 'talk';
-/** Mindmaker Live's two formats. See project-documentation/POSITIONING.md. */
-export type LatestFormat = 'Built' | 'Paid';
-
-export interface LatestEntry {
-  readonly id: string;
-  readonly title: string;
-  /** Optional. Left unset where no sourced description exists. Never guessed. */
-  readonly blurb?: string;
-  readonly type: LatestType;
-  readonly format?: LatestFormat;
-  readonly href: string;
-  /** ISO date. Used for sorting and display. */
-  readonly date?: string;
-  readonly asset?: string;
-}
-
-export interface LatestContent extends SectionHeader {
-  readonly limit: number;
-  readonly archive: ExternalLink;
-  readonly typeLabels: Readonly<Record<LatestType, string>>;
-  readonly entries: readonly LatestEntry[];
 }
 
 export interface WorkItem {
@@ -277,8 +312,6 @@ export interface NavContent {
   readonly dockAria: string;
   readonly dockItems: readonly DockItem[];
   readonly contactAria: string;
-  readonly jumpItems: readonly NavItem[];
-  readonly jumpAria: string;
 }
 
 /** One employer or engagement, as prose for llms.txt. */
@@ -318,6 +351,8 @@ export interface SiteContent {
   readonly websiteDescription: string;
   /** ISO date used for sitemap lastmod. Bump when the page changes materially. */
   readonly updated: string;
+  /** Browser and manifest theme colour. One value, used everywhere. */
+  readonly themeColor: string;
   /** Opening paragraph of llms.txt. Must agree with `description`. */
   readonly bio: string;
   readonly nowHeading: string;

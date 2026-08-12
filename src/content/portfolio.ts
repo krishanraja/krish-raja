@@ -62,7 +62,7 @@ export const portfolio: PortfolioContent = {
           isBeta: true,
         },
         {
-          name: 'Ctrl',
+          name: 'CTRL',
           description:
             'Build your portable, private memory web to accelerate your future with AI',
           asset: 'ctrl',
@@ -81,11 +81,10 @@ export const portfolio: PortfolioContent = {
           name: 'Mindmaker Live',
           description:
             'The editorial channel. Built gets to why someone built the thing they built. Paid follows the money in a shift and names the mechanism.',
-          // TODO(krish): supply a Mindmaker Live mark for src/assets/. Using the
-          // Mindmaker icon until then, which is accurate but not distinct.
-          asset: 'mindmaker',
+          asset: 'mindmaker-live',
           url: 'https://live.themindmaker.ai',
           role: 'Writer and host',
+          plateOnDark: true,
         },
         {
           name: 'Signal & Noise',

@@ -9,7 +9,7 @@
  * project-documentation/POSITIONING.md. If a test here fails, the fix is
  * usually the copy, not the test.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -20,7 +20,9 @@ import { hero } from '../hero';
 import { operate } from '../operate';
 import { portfolio } from '../portfolio';
 import { receipts } from '../receipts';
-import { work } from '../work';
+import { appearances } from '../appearances';
+import { deck } from '../deck';
+import { os } from '../os';
 import { lessons } from '../lessons';
 import { offer } from '../offer';
 import { contact } from '../contact';
@@ -33,7 +35,7 @@ const indexHtml = read('index.html');
 const llmsTxt = read('public/llms.txt');
 const sitemapXml = read('public/sitemap.xml');
 
-const modules = { site, hero, operate, portfolio, receipts, work, lessons, offer, contact, nav };
+const modules = { site, hero, operate, os, deck, portfolio, receipts, appearances, lessons, offer, contact, nav };
 
 /** Every string value anywhere in the content layer, with its path. */
 const contentStrings: { path: string; value: string }[] = [];
@@ -133,10 +135,14 @@ describe('the canonical numbers do not drift', () => {
     }
   });
 
-  it('publishes no Maven student count', () => {
-    // Sources say both 100+ and 4,000+. Publish neither.
+  it('the Maven student count is 4,000 wherever it appears', () => {
+    // Confirmed by Krish. An earlier source said 100+, which must not return.
+    const claims = prose.filter((s) => /\b(students|people have taken|taken by)\b/i.test(s.value));
+    for (const claim of claims) {
+      expect(claim.value, `${claim.path} states a different student count`).toMatch(/4,000/);
+    }
     const all = [...prose.map((s) => s.value), llmsTxt].join('\n');
-    expect(all).not.toMatch(/[\d,]+\+?\s+(enterprise\s+)?students/i);
+    expect(all, 'the retired 100+ student count is back').not.toMatch(/\b100\+\s+(enterprise\s+)?students/i);
   });
 
   it('no surface invents a venture count', () => {
@@ -210,7 +216,7 @@ describe('the copy rules hold', () => {
   const bannedWords = [
     'leverage', 'synergy', 'empower', 'seamless', 'game-changer', 'cutting-edge',
     'best-in-class', 'drive value', 'impactful', 'robust', 'transformative',
-    'elevate', 'harness', 'delve', 'deep dive', 'unpack', 'at the end of the day',
+    'elevate', 'delve', 'deep dive', 'unpack', 'at the end of the day',
     "in today's world", "it's worth noting", 'mission-critical',
   ];
 
@@ -235,6 +241,15 @@ describe('the copy rules hold', () => {
     expect(hits).toEqual([]);
   });
 
+  it('never uses harness as a metaphor', () => {
+    // Banned as a verb ("harness the power of"). The noun is a real term of art
+    // in the agent decks, so "building the harness" stays.
+    const hits = prose
+      .filter((s) => /\bharness(es|ing|ed)?\s+(the|your|our|its|their)\s/i.test(s.value))
+      .map((s) => s.path);
+    expect(hits).toEqual([]);
+  });
+
   it('contains no em dash', () => {
     // Written as an escape so that grepping src/ for the character itself
     // returns nothing, which is the check Krish runs.
@@ -253,6 +268,113 @@ describe('the copy rules hold', () => {
       expect(link.value.length, `${link.path} is empty`).toBeGreaterThan(0);
     }
   });
+});
+
+describe('the content index is the authority on what may be published', () => {
+  // public/files/content index/krish-raja-content-index.md carries a capture,
+  // a verification status and the source URLs for every appearance. Two of its
+  // records are marked do-not-publish. These tests make that a build failure
+  // rather than a instruction someone has to remember.
+  const manifest = read('public/files/content index/krish-raja-content-index.md');
+
+  const records = new Map<string, { status: string; filename: string | null; urls: string[] }>();
+  for (const block of manifest.split('```yaml').slice(1)) {
+    const body = block.split('```')[0];
+    const id = /appearance_id:\s*(\S+)/.exec(body)?.[1];
+    if (!id) continue;
+    records.set(id, {
+      status: /screenshot_status:\s*(\S+)/.exec(body)?.[1] ?? 'unknown',
+      filename: (/screenshot_filename:\s*(\S+)/.exec(body)?.[1] ?? 'null').replace('null', ''),
+      urls: [...body.matchAll(/^\s*-\s+(https?:\/\/\S+)$/gm)].map((m) => m[1]),
+    });
+  }
+
+  const withRecord = appearances.items.filter((i) => i.appearanceId);
+
+  it('the manifest parsed', () => {
+    expect(records.size).toBeGreaterThan(30);
+    expect(withRecord.length).toBeGreaterThan(10);
+  });
+
+  it.each(withRecord.map((i) => [i.appearanceId!, i] as const))(
+    'the capture for %s is approved',
+    (id, item) => {
+      const record = records.get(id);
+      expect(record, `no manifest record for ${id}`).toBeDefined();
+      expect(record!.status, `${id} is marked "${record!.status}" and must not be published`).toBe(
+        'approved',
+      );
+      expect(item.media, `${id} has no image`).toBeTruthy();
+    },
+  );
+
+  it.each(withRecord.filter((i) => i.href).map((i) => [i.appearanceId!, i.href!] as const))(
+    'the link for %s is one of its own source URLs',
+    (id, href) => {
+      const record = records.get(id)!;
+      const normalise = (u: string) => u.replace(/#page=\d+$/, '').replace(/\/$/, '');
+      expect(
+        record.urls.map(normalise),
+        `${href} is not evidence listed against ${id}`,
+      ).toContain(normalise(href));
+    },
+  );
+
+  it('nothing anywhere references a rejected or unavailable capture', () => {
+    const banned = [...records.entries()]
+      .filter(([, r]) => r.status !== 'approved')
+      .map(([id]) => id);
+    expect(banned.length, 'expected the manifest to still mark some records unusable').toBeGreaterThan(0);
+    const everything = [...contentStrings.map((s) => s.value), indexHtml, llmsTxt].join('\n');
+    for (const id of banned) {
+      expect(everything, `${id} is marked do-not-publish in the content index`).not.toContain(id);
+    }
+  });
+});
+
+describe('every referenced media file exists', () => {
+  const exists = (p: string) => existsSync(resolve(root, 'public', p.replace(/^\//, '')));
+
+  it.each(os.entries.map((e) => e.id))('the %s recording and poster are built', (id) => {
+    expect(exists(`/media/os/${id}.mp4`), `/media/os/${id}.mp4 is missing`).toBe(true);
+    expect(exists(`/media/os/${id}.jpg`), `/media/os/${id}.jpg is missing`).toBe(true);
+  });
+
+  it('every deck slide has both renditions', () => {
+    const missing = deck.slides.flatMap((s) =>
+      [640, 1600]
+        .map((w) => `/media/deck/${s.id}-${w}.webp`)
+        .filter((p) => !exists(p)),
+    );
+    expect(missing, 'run `npm run media`').toEqual([]);
+  });
+
+  it('every appearance image is built', () => {
+    const missing = appearances.items
+      .map((i) => i.media)
+      .filter((m): m is string => Boolean(m))
+      .filter((m) => !exists(m));
+    expect(missing, 'run `npm run media`').toEqual([]);
+  });
+
+  it('every deck slide names a real deck', () => {
+    const ids = new Set(deck.decks.map((d) => d.id));
+    for (const slide of deck.slides) {
+      expect(ids, `${slide.id} points at an unknown deck`).toContain(slide.deck);
+    }
+  });
+});
+
+describe('spelling is consistent', () => {
+  // US throughout, decided 12 August 2026. The spine sentence moved with it and
+  // LinkedIn has to match. See project-documentation/POSITIONING.md.
+  it.each(['commercialis', 'organis', 'defence', 'optimis', 'recognis'])(
+    'no content uses the British form "%s"',
+    (stem) => {
+      const hits = prose.filter((s) => new RegExp(stem, 'i').test(s.value)).map((s) => s.path);
+      expect(hits).toEqual([]);
+    },
+  );
 });
 
 describe('the generated artifacts are in sync with src/content/', () => {

@@ -29,7 +29,7 @@ const BusinessCard = ({ business, isMobile }: { business: PortfolioItem; isMobil
           <div className={isMobile
             ? "w-12 h-12 flex-shrink-0 flex items-center justify-center"
             : "h-20 flex items-end justify-center mb-3"}>
-            <div className="rounded-lg p-1.5 bg-white/0 dark:bg-white/10 backdrop-blur-[2px] transition-colors duration-300">
+            <div className={`rounded-lg p-1.5 backdrop-blur-[2px] transition-colors duration-300 ${business.plateOnDark ? "bg-white/0 dark:bg-white dark:px-2" : "bg-white/0 dark:bg-white/10"}`}>
               <img
                 src={asset(business.asset)}
                 alt={`${business.name} icon`}

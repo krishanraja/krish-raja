@@ -13,8 +13,12 @@ LinkedIn and themindmaker.ai in the same pass.
 
 This exact sentence also appears on his LinkedIn and must not drift:
 
-> Sixteen years commercialising content, media and IP businesses. Now I build the AI
+> Sixteen years commercializing content, media and IP businesses. Now I build the AI
 > systems that run them.
+
+**Spelling is US throughout, decided 12 August 2026.** That includes this sentence, which
+changed from `commercialising`. **LinkedIn must carry the US spelling too**, or the one
+string that is supposed to be identical across surfaces is not.
 
 Defined once, in `src/content/site.ts` as `spine`. The hero H1 is this sentence.
 
@@ -74,7 +78,7 @@ Krish Raja: commercial leader for content, media and IP businesses
 **Description**
 
 ```
-Sixteen years commercialising content, media and IP businesses. $9M to $61M at Nine, $0
+Sixteen years commercializing content, media and IP businesses. $9M to $61M at Nine, $0
 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmaker OS, a 14-agent AI
 operating system in production.
 ```
@@ -97,6 +101,7 @@ Commercial leader and founder of Mindmaker
 | **Techonomic** (as a standalone channel) | Folded into Mindmaker Live. techonomic.co no longer resolves. |
 | **The Builder Economy** (as a standalone channel) | Folded into Mindmaker Live. thebuildereconomy.com returns 404. |
 | **"Operator-advisor"** (as the primary self-description) | Superseded by the spine sentence. |
+| **"Operator, not advisor"** (as a slide in the deck) | The agentic org chart deck opens with it. That slide is excluded from `deck.ts` for the same reason the phrase is retired. |
 | **"Teardown"** (as an episode format name) | Collides with The Teardown, a live paid Mindmaker engagement. One word cannot mean both a free episode and a purchase on one brand. |
 
 `npm test` fails if any of these appear in the content layer.

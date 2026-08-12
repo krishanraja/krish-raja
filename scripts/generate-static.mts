@@ -27,11 +27,14 @@ const check = process.argv.includes('--check');
 const INDEX = resolve(root, 'index.html');
 const LLMS = resolve(root, 'public/llms.txt');
 const SITEMAP = resolve(root, 'public/sitemap.xml');
+const MANIFEST = resolve(root, 'public/site.webmanifest');
 
 /* ------------------------------------------------------------------ meta */
 
 const metaBlock = (): string =>
   [
+    `    <meta name="theme-color" content="${site.themeColor}" />`,
+    `    <meta name="msapplication-TileColor" content="${site.themeColor}" />`,
     `    <title>${site.title}</title>`,
     `    <meta name="title" content="${site.title}" />`,
     `    <meta name="description" content="${site.description}" />`,
@@ -176,6 +179,31 @@ const llmsTxt = (): string => {
   ].join('\n');
 };
 
+/* ------------------------------------------------------- site.webmanifest */
+
+// Was hand-kept and had drifted: it named the site "Builder of AI Products"
+// and carried a theme colour nothing else used.
+const webmanifest = (): string =>
+  JSON.stringify(
+    {
+      name: site.title,
+      short_name: site.name,
+      description: site.description,
+      icons: [
+        { src: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+        { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+        { src: '/favicon.png', sizes: '512x512', type: 'image/png' },
+      ],
+      theme_color: site.themeColor,
+      background_color: '#ffffff',
+      display: 'standalone',
+      start_url: '/',
+      scope: '/',
+    },
+    null,
+    2,
+  ) + '\n';
+
 /* ----------------------------------------------------------- sitemap.xml */
 
 const sitemapXml = (): string =>
@@ -242,6 +270,7 @@ export const artifacts = (): Artifact[] => {
     },
     { path: LLMS, label: 'public/llms.txt', expected: llmsTxt(), actual: readOrNull(LLMS) },
     { path: SITEMAP, label: 'public/sitemap.xml', expected: sitemapXml(), actual: readOrNull(SITEMAP) },
+    { path: MANIFEST, label: 'public/site.webmanifest', expected: webmanifest(), actual: readOrNull(MANIFEST) },
   ];
 };
 
