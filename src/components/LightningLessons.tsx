@@ -5,6 +5,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { lessons as lessonsContent } from '@/content';
 import { type Lesson } from '@/content/types';
 import { asset } from '@/lib/asset-map';
+import AttendeeStrip from '@/components/AttendeeStrip';
 
 const LightningLessons = () => {
   const isMobile = useIsMobile();
@@ -62,6 +63,8 @@ const LightningLessons = () => {
             {lessonsContent.lessons.map((lesson, index) => renderCard(lesson, index))}
           </div>
         )}
+
+        <AttendeeStrip />
       </div>
     </section>
   );

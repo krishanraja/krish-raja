@@ -38,6 +38,7 @@ import sharp from 'sharp';
 import { os } from '../src/content/os.js';
 import { deck } from '../src/content/deck.js';
 import { appearances } from '../src/content/appearances.js';
+import { lessons } from '../src/content/lessons.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const argv = process.argv.slice(2);
@@ -160,6 +161,61 @@ for (const slide of deck.slides) {
       built.push(`deck/${slide.id}-${width}.webp`);
     }
   }
+}
+
+/* -------------------------------------------------- attendee brand logos */
+
+/**
+ * Twenty-eight employer marks for the Lightning Lessons strip, sized by area
+ * rather than by height and composited onto one canvas.
+ *
+ * Masters come from Brandfetch, by domain, and live in public/files/brand
+ * logos/. They arrive with wildly different amounts of padding baked in, so
+ * they are trimmed to their ink first; untrimmed, the padding is what the
+ * height would be sizing.
+ *
+ * Then the part that matters.
+ *
+ * A row of logos set to a common height is not a row of logos at a common
+ * size. FedEx is a 4:1 wordmark and the BMW roundel is 1:1, so at a shared
+ * 28px height the roundel carries a seventh of the ink and reads as an
+ * afterthought next to its neighbours. Scaling each mark to a constant *area*
+ * inside a fixed box is what makes a mixed set of wordmarks and roundels look
+ * like one row, and it is the reason this is done here rather than in CSS: the
+ * component cannot know an aspect ratio, and the content layer must not.
+ */
+const BRAND_BOX = { width: 200, height: 72 };
+const BRAND_INK = 0.5; // fraction of the box each mark should occupy
+
+for (const brand of lessons.attendees) {
+  const src = resolve(FILES, 'brand logos', `${brand.slug}.png`);
+  const out = resolve(MEDIA, `brands/${brand.slug}.webp`);
+  if (!need(src, out, `brands/${brand.slug}.webp`)) continue;
+
+  const trimmed = await sharp(src).trim({ threshold: 8 }).toBuffer();
+  const { width = 1, height = 1 } = await sharp(trimmed).metadata();
+
+  const targetArea = BRAND_BOX.width * BRAND_BOX.height * BRAND_INK;
+  let h = Math.round(Math.sqrt((targetArea * height) / width));
+  let w = Math.round((h * width) / height);
+  // Never let a wide wordmark run out of the box.
+  const fit = Math.min(BRAND_BOX.width / w, BRAND_BOX.height / h, 1);
+  w = Math.max(1, Math.round(w * fit));
+  h = Math.max(1, Math.round(h * fit));
+
+  const mark = await sharp(trimmed).resize({ width: w, height: h, fit: 'fill' }).toBuffer();
+  await sharp({
+    create: {
+      width: BRAND_BOX.width,
+      height: BRAND_BOX.height,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    },
+  })
+    .composite([{ input: mark, gravity: 'centre' }])
+    .webp({ quality: 88, effort: 6 })
+    .toFile(out);
+  built.push(`brands/${brand.slug}.webp`);
 }
 
 /* ------------------------------------------------------------ appearances */

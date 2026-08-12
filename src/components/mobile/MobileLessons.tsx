@@ -2,6 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { lessons as lessonsContent } from '@/content';
 import { asset } from '@/lib/asset-map';
+import AttendeeStrip from '@/components/AttendeeStrip';
 
 const MobileLessons = () => (
   <MobileSection
@@ -42,6 +43,8 @@ const MobileLessons = () => (
         );
       })}
     </ul>
+
+    <AttendeeStrip />
   </MobileSection>
 );
 

@@ -254,11 +254,27 @@ export interface Lesson {
 }
 
 /**
+ * One employer that has sent someone to a Lightning Lesson.
+ *
+ * `domain` is the brand's own domain, which is both how the mark was sourced
+ * and the record of which company is meant. It is not always the domain the
+ * attendee's email came from: BMW registered on bmwna.com, American Express on
+ * aexp.com, Goldman Sachs on gs.com, LEGO on consultant.lego.com. See FACTS.md.
+ */
+export interface AttendeeBrand {
+  readonly slug: string;
+  readonly name: string;
+  readonly domain: string;
+}
+
+/**
  * No badge field. Every card carried a "Free" chip, which is a price, and
  * pricing lives on themindmaker.ai only. Removed 12 Aug 2026.
  */
 export interface LessonsContent extends SectionHeader {
   readonly lessons: readonly Lesson[];
+  readonly attendeesLabel: string;
+  readonly attendees: readonly AttendeeBrand[];
 }
 
 /**

@@ -9,6 +9,7 @@
  * project-documentation/POSITIONING.md. If a test here fails, the fix is
  * usually the copy, not the test.
  */
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -421,6 +422,36 @@ describe('every referenced media file exists', () => {
         ).toBeGreaterThan(32);
       }
     }
+  });
+
+  it('every attendee logo is built, and none is a placeholder', () => {
+    const missing = lessons.attendees
+      .map((b) => `/media/brands/${b.slug}.webp`)
+      .filter((p) => !exists(p));
+    expect(missing, 'run `npm run media`').toEqual([]);
+
+    // Seven of these brands have no dark-ink asset on Brandfetch and the CDN
+    // answered the first request with a blank white placeholder, byte-identical
+    // across all seven. It looked like a successful download every time. If two
+    // marks are ever the same bytes again, at least one of them is wrong.
+    const seen = new Map<string, string>();
+    for (const b of lessons.attendees) {
+      const hash = createHash('sha1')
+        .update(readFileSync(resolve(root, 'public/media/brands', `${b.slug}.webp`)))
+        .digest('hex');
+      expect(seen.has(hash), `${b.slug} is byte-identical to ${seen.get(hash)}`).toBe(false);
+      seen.set(hash, b.slug);
+    }
+  });
+
+  it('the attendee strip claims no more than attendance', () => {
+    // Most of these companies sent one person to a free session. See FACTS.md.
+    // The label may say people from them attended. It may not imply a client,
+    // a customer, a partnership or any commercial relationship.
+    expect(lessons.attendeesLabel).toMatch(/attendee|attend/i);
+    expect(lessons.attendeesLabel, 'the attendee label overclaims').not.toMatch(
+      /\b(clients?|customers?|partners?|trusted by|works? with|worked with|hired)\b/i,
+    );
   });
 
   it('every deck slide has both renditions', () => {

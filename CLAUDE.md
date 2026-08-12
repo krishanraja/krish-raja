@@ -200,6 +200,8 @@ The work list comes from the content layer, so:
 - a recording: drop it in `public/files/os screenshots/`, add an entry to `os.ts`
 - a slide: add an entry to `deck.ts` naming a file in `public/files/slides/`
 - an appearance: add an entry to `appearances.ts` with its `appearanceId`
+- an attendee logo: put `<slug>.png` in `public/files/brand logos/`, add an entry to
+  `lessons.attendees`
 
 then `npm run media`. No component edits, ever.
 
@@ -289,6 +291,12 @@ These are not oversights. Each was removed on purpose and must not come back.
 - **The trust-strip marquee on mobile.** An infinite scroll needs more content than the
   viewport. Four logos fit across a phone with room to spare, so the animation was
   duplicating them and sliding them past a reader who could already see all four.
+  The attendee strip under the Lightning Lessons holds twenty-eight and does rotate,
+  which is the same rule pointing the other way.
+- **Any upgrade of the attendee-strip wording.** The line is
+  `Attendees from household name businesses learn with me`. Most of those companies sent
+  one person to a free Maven session. Not clients, not customers, not partners, not
+  "trusted by". The test suite fails on all of those words. See FACTS.md.
 
 ## Further reading
 

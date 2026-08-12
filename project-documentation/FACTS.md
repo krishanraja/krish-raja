@@ -72,6 +72,35 @@ section is the strongest external evidence this repo has, and it cuts both ways.
 - **The Built podcast: no verified Krish Raja result.** A different person appears in
   search. Do not create content from it.
 
+## Lightning Lessons attendee employers
+
+Twenty-eight companies, from the Maven attendee export Krish supplied on 12 August 2026.
+Rendered as a rotating strip under the Lightning Lessons.
+
+Attendee counts in that export: **Visa 3, PwC 3, CIBC 3, and one each for the other 25.**
+Those counts are recorded here and are **not published**. The strip carries logos and one
+line, `Attendees from household name businesses learn with me`, which is exactly what one
+attendee supports. Do not upgrade the wording to clients, customers, partners, teams
+trained, companies worked with, or anything implying a commercial relationship. None of
+these is a client of Mindmaker.
+
+Four of the observed email domains are not the brand's primary domain, and the marks are
+sourced from the primary: BMW registered on `bmwna.com`, American Express on `aexp.com`,
+Goldman Sachs on `gs.com`, LEGO on `consultant.lego.com`.
+
+**Two things to check before this goes further.** Krish's brief said "Primary logo list:
+50" above a table of 28 rows, so 22 may be missing; the site carries the 28 that were
+given. And several of these companies restrict third-party use of their marks in
+promotional contexts regardless of accuracy. Displaying twenty-eight corporate logos reads
+as institutional endorsement to most visitors even when the caption is careful. That is
+Krish's call to make, not this repo's, but it is not a call that has been made explicitly.
+
+Marks come from Brandfetch by domain, masters in `public/files/brand logos/`. The
+`theme/light` variant is the *light-coloured* asset for dark backgrounds, which is the
+opposite of the CSS convention: seven brands have no dark-ink variant at all and returned
+a blank placeholder the first time, so the fetch picks the darkest usable asset by
+measuring ink luminance. The test suite fails if any two derivatives are identical.
+
 ## Rules attached to specific facts
 
 **The $254K client is never named.** Hearst, Arena Group and The Weather Company are named

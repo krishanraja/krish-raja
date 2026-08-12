@@ -17,6 +17,49 @@ export const lessons: LessonsContent = {
   title: 'See me in action.',
   sub: 'Here are some of the live sessions I lead to help leaders paint a better picture of the future of AI businesses.',
 
+  /**
+   * Employers that have sent someone to a Lightning Lesson, from the Maven
+   * attendee export. Twenty-eight of them, in the order Krish supplied.
+   *
+   * Every mark is the brand's own, pulled from Brandfetch by domain and
+   * committed under public/files/brand logos/. `npm run media` renders them.
+   * Nothing here is a client, a customer or an endorsement, and the label says
+   * exactly what the data supports: people from these companies attended.
+   * Per-company attendee counts are in FACTS.md and are not published, because
+   * most of them are one.
+   */
+  attendeesLabel: 'Attendees from household name businesses learn with me',
+  attendees: [
+    { slug: 'walmart', name: 'Walmart', domain: 'walmart.com' },
+    { slug: 'pepsico', name: 'PepsiCo', domain: 'pepsico.com' },
+    { slug: 'pg', name: 'P&G', domain: 'pg.com' },
+    { slug: 'bmw', name: 'BMW', domain: 'bmw.com' },
+    { slug: 'toyota', name: 'Toyota', domain: 'toyota.com' },
+    { slug: 'ford', name: 'Ford', domain: 'ford.com' },
+    { slug: 'boeing', name: 'Boeing', domain: 'boeing.com' },
+    { slug: 'pfizer', name: 'Pfizer', domain: 'pfizer.com' },
+    { slug: 'roche', name: 'Roche', domain: 'roche.com' },
+    { slug: 'bayer', name: 'Bayer', domain: 'bayer.com' },
+    { slug: 'fedex', name: 'FedEx', domain: 'fedex.com' },
+    { slug: 'visa', name: 'Visa', domain: 'visa.com' },
+    { slug: 'mastercard', name: 'Mastercard', domain: 'mastercard.com' },
+    { slug: 'american-express', name: 'American Express', domain: 'americanexpress.com' },
+    { slug: 'goldman-sachs', name: 'Goldman Sachs', domain: 'goldmansachs.com' },
+    { slug: 'deloitte', name: 'Deloitte', domain: 'deloitte.com' },
+    { slug: 'pwc', name: 'PwC', domain: 'pwc.com' },
+    { slug: 'accenture', name: 'Accenture', domain: 'accenture.com' },
+    { slug: 'loreal', name: "L'Oreal", domain: 'loreal.com' },
+    { slug: 'adidas', name: 'Adidas', domain: 'adidas.com' },
+    { slug: 'lego', name: 'LEGO', domain: 'lego.com' },
+    { slug: 'tesco', name: 'Tesco', domain: 'tesco.com' },
+    { slug: 'cargill', name: 'Cargill', domain: 'cargill.com' },
+    { slug: 'wells-fargo', name: 'Wells Fargo', domain: 'wellsfargo.com' },
+    { slug: 'rbc', name: 'RBC', domain: 'rbc.com' },
+    { slug: 'capital-one', name: 'Capital One', domain: 'capitalone.com' },
+    { slug: 'cibc', name: 'CIBC', domain: 'cibc.com' },
+    { slug: 'us-bank', name: 'US Bank', domain: 'usbank.com' },
+  ],
+
   lessons: [
     {
       title: "Build Your AI's Permanent Identity",
