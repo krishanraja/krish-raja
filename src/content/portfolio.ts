@@ -21,8 +21,8 @@ import type { PortfolioContent } from './types';
 export const portfolio: PortfolioContent = {
   id: 'portfolio',
   eyebrow: 'Portfolio',
-  title: 'The portfolio',
-  sub: 'What I run, what I am still building, and where I write. Some of the Beta ones become products, most are how I learn the stack.',
+  title: 'My focus areas',
+  sub: 'Advisory, product and content are my three pillars, all focused on helping leaders lead with AI.',
   betaBadge: 'Beta',
 
   items: [
@@ -31,14 +31,14 @@ export const portfolio: PortfolioContent = {
       description: 'Helping leaders find their own way of working alongside AI.',
       asset: 'mindmaker',
       url: 'https://themindmaker.ai',
-      role: 'Founder, capped practice',
+      role: 'Advisory, capped practice',
     },
     {
       name: 'Fractionl Pulse',
       description: 'Live market intelligence on fractional supply and demand.',
       asset: 'fractionl',
       url: 'https://fractionl.ai',
-      role: 'Full-Stack Founder',
+      role: 'Product',
       isBeta: true,
     },
     {
@@ -46,7 +46,7 @@ export const portfolio: PortfolioContent = {
       description: 'A portable, private memory web so your AI keeps hold of your judgment.',
       asset: 'ctrl',
       url: 'https://ctrl.themindmaker.ai',
-      role: 'Full-Stack Founder',
+      role: 'Product',
       isBeta: true,
     },
     {
@@ -54,7 +54,7 @@ export const portfolio: PortfolioContent = {
       description: 'Where I write. Why people built what they built, and who is paying for it.',
       asset: 'mindmaker-live',
       url: 'https://live.themindmaker.ai',
-      role: 'Writer and host',
+      role: 'Media Channel',
       plateOnDark: true,
     },
     {
@@ -62,7 +62,7 @@ export const portfolio: PortfolioContent = {
       description: 'Conversations with media operators on how AI is reshaping the industry.',
       asset: 'signal-and-noise',
       url: 'https://www.mediaradar.com/signal-and-noise',
-      role: 'AI Host',
+      role: 'Media Channel',
       invertOnDark: true,
     },
   ],

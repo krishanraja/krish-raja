@@ -18,8 +18,8 @@ import type { ReceiptsContent } from './types';
 export const receipts: ReceiptsContent = {
   id: 'proof-points',
   eyebrow: 'Receipts',
-  title: 'Sixteen years of receipts',
-  sub: 'The track record the advice comes out of.',
+  title: 'Success across UK, AU and USA.',
+  sub: 'I\'ve launched markets, built revenue streams and pivoted businesses with receipts, which lays the foundation for my work.',
 
   tabs: {
     receipts: 'Receipts',
@@ -45,7 +45,7 @@ export const receipts: ReceiptsContent = {
       metric: '$0 → $12M ARR',
       context: 'Built one region, scaled another',
       description:
-        'Launched an APAC programmatic business from scratch as first hire: team, product, pipeline. Then took a platform business from $4M to $38M across twelve markets through two technology M&As.',
+        'Launched an APAC data business from scratch as first hire: team, product, pipeline. Then took a platform business from $4M to $38M across twelve markets through 2 technology M&As.',
     },
     {
       icon: 'users',
@@ -53,7 +53,7 @@ export const receipts: ReceiptsContent = {
       metric: '18 People → 14 Agents',
       context: 'From human team to autonomous OS',
       description:
-        'Led an 18-person org across three continents. Now I run a 14-agent fleet across the ventures. Built the org chart, then built the agent chart.',
+        'Led an 18-person org across three continents. Now I run a 14-agent fleet across the ventures, and help leaders envisage the path to theirs. ',
     },
     {
       icon: 'target',
@@ -70,9 +70,9 @@ export const receipts: ReceiptsContent = {
   engagements: [
     {
       name: 'Executive advisory',
-      role: 'Media, telco and entertainment',
+      role: 'Media, content IP telco and entertainment businesses',
       description:
-        'First-party data infrastructure, IP, content and AI. The work is usually repositioning what a business sells, then rebuilding the pipeline behind it. Clients stay unnamed.',
+        'I have been working with some of the largest media busineFirst-party data infrastructure, IP, content and AI. The work is usually repositioning what a business sells, then rebuilding the pipeline behind it. Clients stay unnamed.',
     },
   ],
 
