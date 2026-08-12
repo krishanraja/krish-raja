@@ -20,7 +20,6 @@ import type { OsContent } from './types';
  */
 export const os: OsContent = {
   id: 'operating-system',
-  eyebrow: 'The OS',
   title: 'The OS in action.',
   sub: 'I point my mobile OS at the things I need or like doing while on the go. The desktop dash is a full living, breathing deep-work control center.',
 

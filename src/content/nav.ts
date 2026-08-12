@@ -36,16 +36,21 @@ export const nav: NavContent = {
   linkedInAria: 'LinkedIn profile',
 
   dockAria: 'Section navigation and primary actions',
+  /**
+   * Four, plus the contact slot the dock adds itself. Five is the whole row.
+   *
+   * This was nine chips in a horizontally scrolling rail with a full-width
+   * button underneath, so the dock was two rows deep, four of its nine
+   * destinations were off-screen at any moment, and it ate 110px of every
+   * screen to duplicate headings the page already shows. A phone tab bar is
+   * orientation, not a sitemap. Krish's own OS app runs five fixed slots in one
+   * row, which is the pattern this now follows.
+   */
   dockItems: [
     { id: 'hero', label: 'Home', icon: 'home' },
-    { id: 'how-i-operate', label: 'Operate', icon: 'compass' },
     { id: 'operating-system', label: 'The OS', icon: 'monitor' },
-    { id: 'the-thinking', label: 'Thinking', icon: 'layers' },
     { id: 'portfolio', label: 'Portfolio', icon: 'briefcase' },
     { id: 'proof-points', label: 'Receipts', icon: 'award' },
-    { id: 'selected-work', label: 'Work', icon: 'book-open' },
-    { id: 'lightning-lessons', label: 'Lessons', icon: 'mic' },
-    { id: 'contact', label: 'Contact', icon: 'mail' },
   ],
   contactAria: 'Contact options',
 

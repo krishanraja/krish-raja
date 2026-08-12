@@ -37,6 +37,29 @@ to 980px. On a real handset the clamp is wider than the screen and does nothing.
 
 **Test any layout change at 980px with touch emulation, not just at 390px.**
 
+## Look at the phone. `npm test` cannot.
+
+```bash
+npm run build && (cd dist && python3 -m http.server 4173 --bind 127.0.0.1 &)
+npm run mobile:check
+```
+
+`scripts/mobile-check.mjs` drives Chromium at Pixel 7, iPhone 13, iPhone SE and an Android
+in forced-desktop mode, and asserts on what actually rendered: the mobile tree is the one
+serving, nothing overflows sideways, every tap target clears 40px, no section outruns a
+950px budget, the dock is one row of five with no sideways scroll, every rail has
+something to swipe to, the contact sheet opens, and no retired mobile-only string is on
+the page.
+
+It exists because on 12 August 2026 the build was green, the unit suite was green, and the
+phone was serving the desktop tree at 40% scale under a marquee animating four logos that
+already fit on screen. None of that is expressible as an assertion about the content
+layer. All of it is obvious to anything that opens the page at phone size and looks.
+
+The rule that follows: **a change to either tree is not verified until something rendered
+it at phone size.** Height measurements are not enough; the last three rounds of mobile
+defects were all visual, and all in sections that measured fine.
+
 ## How to run
 
 ```bash
@@ -45,6 +68,7 @@ npm run dev        # http://localhost:8080
 npm run build      # runs `generate` first, then vite build
 npm run lint
 npm test           # vitest, includes the positioning consistency suite
+npm run mobile:check   # drives a real browser at four phone sizes, needs a server on :4173
 npm run generate   # regenerate index.html meta, llms.txt, sitemap.xml, webmanifest
 npm run media      # transcode public/files/ masters into public/media/ (slow, run by hand)
 ```
@@ -75,9 +99,24 @@ Two rules keep the layer honest:
    Icons and images are named by string key and resolved in `src/lib/icon-map.ts` and
    `src/lib/asset-map.ts`.
 
-Where the desktop and mobile trees still disagree on wording, the `Copy` type carries the
-variants (`{ desktop, mobile, sheet? }`) and components read through `pick()`. Plain
-`string` is the goal. Use the variant form only to record drift that already exists.
+### One section, one set of words
+
+There is no `Copy` type, no `pick()`, and no `eyebrow`. `SectionHeader` is `{ id, title,
+sub }`, all plain strings, rendered by both trees.
+
+`Copy` existed to record drift the extraction refactor inherited, which was the right
+first move. Keeping the capability was not. A field that can hold a different string per
+surface is a field that invites one, and by 12 August 2026 the mobile tree carried
+headings Krish had never written: "The operating stack", "60-minute Maven sessions",
+"Taken by more than 4,000 people". The eyebrows were worse, because no desktop copy
+existed to fill that slot at all, so all eight were invented outright: "How I operate",
+"The OS", "The thinking", "Portfolio", "Receipts", "Selected work", "Lightning Lessons",
+"Contact".
+
+None of it was a copy decision. It was a layout pattern, eyebrow above title, filled in
+because the slot existed. **Deleting the slot is what stops that recurring. A rule in this
+document would not have.** If a section seems to need a word above its title, it needs a
+better title.
 
 ## Hard rules for copy
 
@@ -164,15 +203,32 @@ The work list comes from the content layer, so:
 
 then `npm run media`. No component edits, ever.
 
-Two things about uploading a master:
+Three things about uploading a master:
 
 1. **Do not use the GitHub web UI for video.** A 31MB replacement of
    `os-content-final-lite.mp4` arrived on 12 August 2026 as a two-byte file containing a
    CRLF. Push it with git, or drag it into the repo locally. `ffprobe` the file after it
    lands: a master that will not probe cannot be transcoded.
 2. **Name it for the entry, not for the day.** The masters are `os-<id>-final.mp4`, so a
-   file called `new os content vid.mp4` gets renamed to `os-content-final.mp4` before its
-   `source` goes into `os.ts`. Four masters, four entries, one naming rule.
+   file called `new os content vid.mp4` gets renamed before its `source` goes into `os.ts`.
+   Four masters, four entries, one naming rule.
+3. **Watch a frame before you believe the filename.** Also on 12 August 2026, a master
+   named `new os content vid.mp4` was renamed to `os-content-final.mp4` on the strength of
+   that name and transcoded. It was a recording of the Org screen, so the site shipped the
+   same agent roster labelled both "Content" and "The org". Every check passed: ffprobe
+   parsed it, the file shrank 20x, the page rendered, the suite was green. The only way to
+   catch it was to look.
+
+   ```bash
+   ffmpeg -i "public/files/os screenshots/os-<id>-final.mp4" -ss 3 -frames:v 1 /tmp/f.png
+   ```
+
+   `npm run media` now writes a 16x16 average hash of every poster to
+   `public/media/os/fingerprints.json`, and the test suite fails if two entries are within
+   32 bits of each other. Genuinely different captures of this app run 69 to 128 bits
+   apart. Nothing in code can know whether a video is *about* content; it can know that
+   two entries claiming to be different recordings are the same picture, which is the half
+   that actually shipped broken.
 
 ## The content index is authoritative
 
@@ -224,6 +280,15 @@ These are not oversights. Each was removed on purpose and must not come back.
   URL as Fractionl Pulse.
 - **A count chip on any "How I operate" card.** The Operating System card carried one and
   its three neighbours did not, so one of four read as a different component.
+- **Section eyebrows, and any mobile-only heading.** See "One section, one set of words".
+  The types no longer allow either.
+- **A dock taller than one row, or wider than five slots.** It was nine chips scrolling
+  sideways above a full-width button: two rows, 110px of permanent screen, five
+  destinations off-screen at any moment, all of it restating headings the page already
+  shows. `npm run mobile:check` fails if it grows back.
+- **The trust-strip marquee on mobile.** An infinite scroll needs more content than the
+  viewport. Four logos fit across a phone with room to spare, so the animation was
+  duplicating them and sliding them past a reader who could already see all four.
 
 ## Further reading
 

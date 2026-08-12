@@ -17,7 +17,6 @@ import type { ReceiptsContent } from './types';
  */
 export const receipts: ReceiptsContent = {
   id: 'proof-points',
-  eyebrow: 'Receipts',
   title: 'Success across UK, AU and USA.',
   sub: 'I\'ve launched markets, built revenue streams and pivoted businesses with receipts, which lays the foundation for my work.',
 

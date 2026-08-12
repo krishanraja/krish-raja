@@ -2,7 +2,7 @@ import { ExternalLink } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { Badge } from '@/components/ui/badge';
 import { portfolio } from '@/content';
-import { pick, type PortfolioItem } from '@/content/types';
+import { type PortfolioItem } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
 const BusinessRow = ({ business }: { business: PortfolioItem }) => (
@@ -45,7 +45,13 @@ const BusinessRow = ({ business }: { business: PortfolioItem }) => (
           <ExternalLink className="w-3 h-3 text-muted-foreground ml-auto flex-shrink-0" />
         </div>
         <p className="text-[11px] font-medium text-primary/80 mb-1">{business.role}</p>
-        <p className="text-[12.5px] leading-snug text-muted-foreground">{business.description}</p>
+        {/* Clamped. Five rows of three-line descriptions ran this section past
+            880px on an SE, which is the one section that failed the live
+            height budget. Two lines carries the sentence; the site is the
+            destination for the rest. */}
+        <p className="line-clamp-2 text-[12.5px] leading-snug text-muted-foreground">
+          {business.description}
+        </p>
       </div>
     </div>
   </a>
@@ -59,9 +65,8 @@ const BusinessRow = ({ business }: { business: PortfolioItem }) => (
 const MobilePortfolio = () => (
   <MobileSection
     id={portfolio.id}
-    eyebrow={portfolio.eyebrow}
-    title={pick(portfolio.title, 'mobile')}
-    intro={pick(portfolio.sub, 'mobile')}
+    title={portfolio.title}
+    intro={portfolio.sub}
   >
     <ul className="space-y-2.5">
       {portfolio.items.map((b) => (

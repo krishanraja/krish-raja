@@ -1,15 +1,13 @@
 import { ArrowUpRight } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { contact } from '@/content';
-import { pick } from '@/content/types';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const MobileContact = () => (
   <MobileSection
     id={contact.id}
-    eyebrow={contact.eyebrow}
-    title={pick(contact.title, 'mobile')}
-    intro={pick(contact.sub, 'mobile')}
+    title={contact.title}
+    intro={contact.sub}
   >
     <ul className="space-y-2">
       {contact.links.map((l) => {

@@ -27,13 +27,20 @@ const Hero = () => {
               short lines under a two-line headline. text-pretty rather than
               text-balance: balancing evens the line lengths, which means the
               paragraph refuses to use the extra width it was just given. */}
-          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-3 md:mb-4 max-w-3xl lg:max-w-4xl mx-auto text-pretty">
-            {hero.sub}{' '}
+          <p className="text-sm md:body-lg md:text-lg text-muted-foreground mb-2 md:mb-3 max-w-3xl lg:max-w-4xl mx-auto text-pretty">
+            {hero.sub}
+          </p>
+
+          {/* Its own line. Inside the paragraph, the link pulled the last words
+              of the prose down with it, so a wrap could leave "AI." stranded
+              ahead of it. A link is not a clause. The mobile tree already set
+              it on its own row; this is the desktop catching up. */}
+          <p className="mb-4 md:mb-6">
             <a
               href={hero.channel.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary font-medium link-underline whitespace-nowrap"
+              className="text-primary font-medium link-underline whitespace-nowrap text-sm md:text-base"
             >
               {hero.channel.label} →
             </a>

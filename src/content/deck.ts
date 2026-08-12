@@ -22,7 +22,6 @@ import type { DeckContent } from './types';
  */
 export const deck: DeckContent = {
   id: 'the-thinking',
-  eyebrow: 'The thinking',
   title: 'I\'ve run sessions with 4000+ leaders.',
   sub: 'Here\'s how I set the scene, feel free to flick through.',
   readerHint: 'Tap to read',

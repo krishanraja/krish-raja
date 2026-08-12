@@ -104,6 +104,48 @@ for (const entry of os.entries) {
   }
 }
 
+/* --------------------------------------------------- os poster fingerprints */
+
+/**
+ * A 16x16 grayscale average hash of each poster, written to
+ * public/media/os/fingerprints.json.
+ *
+ * This exists because of a real failure on 12 August 2026. A master arrived
+ * named `new os content vid.mp4`, was renamed to `os-content-final.mp4` on the
+ * strength of that name, and transcoded. It was a recording of the Org screen,
+ * so the site shipped the same agent roster under both "Content" and "The org",
+ * and every automated check passed: ffprobe parsed it, the file shrank, the
+ * page rendered, the tests were green.
+ *
+ * Nothing in code can know whether a video is about content. What code can know
+ * is that two entries claiming to be different recordings look identical, which
+ * is what the test suite asserts against these hashes. It is the cheap half of
+ * the problem, and it is the half that actually shipped.
+ */
+export const posterFingerprint = async (file: string): Promise<string> => {
+  const { data } = await sharp(file)
+    .greyscale()
+    .resize(16, 16, { fit: 'fill' })
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const mean = data.reduce((a, b) => a + b, 0) / data.length;
+  let bits = '';
+  for (const px of data) bits += px > mean ? '1' : '0';
+  return bits;
+};
+
+if (!check) {
+  const fingerprints: Record<string, string> = {};
+  for (const entry of os.entries) {
+    fingerprints[entry.id] = await posterFingerprint(resolve(MEDIA, `os/${entry.id}.jpg`));
+  }
+  writeFileSync(
+    resolve(MEDIA, 'os/fingerprints.json'),
+    `${JSON.stringify(fingerprints, null, 2)}\n`,
+    'utf8',
+  );
+}
+
 /* ----------------------------------------------------------------- slides */
 
 for (const slide of deck.slides) {

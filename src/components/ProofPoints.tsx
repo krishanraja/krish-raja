@@ -5,7 +5,6 @@ import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { receipts } from '@/content';
-import { pick } from '@/content/types';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const ProofPoints = () => {
@@ -68,9 +67,9 @@ const ProofPoints = () => {
     <section id={receipts.id} className="section-padding scroll-mt-16">
       <div className="container-width">
         <div className="text-center mb-8 md:mb-16">
-          <h2 className="headline-lg mb-4 md:mb-6">{pick(receipts.title, 'desktop')}</h2>
+          <h2 className="headline-lg mb-4 md:mb-6">{receipts.title}</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            {pick(receipts.sub, 'desktop')}
+            {receipts.sub}
           </p>
         </div>
 

@@ -20,7 +20,6 @@ import type { PortfolioContent } from './types';
  */
 export const portfolio: PortfolioContent = {
   id: 'portfolio',
-  eyebrow: 'Portfolio',
   title: 'My focus areas',
   sub: 'Advisory, product and content are my three pillars, all focused on helping leaders lead with AI.',
   betaBadge: 'Beta',

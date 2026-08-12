@@ -3,7 +3,7 @@ import { RefreshCw, ArrowRight } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { operate } from '@/content';
-import { pick, type Pillar } from '@/content/types';
+import { type Pillar } from '@/content/types';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const Philosophy = () => {
@@ -34,9 +34,9 @@ const Philosophy = () => {
     <section id={operate.id} className="section-padding bg-muted/30 scroll-mt-16">
       <div className="container-width">
         <div className="text-center mb-6 md:mb-10">
-          <h2 className="headline-lg mb-4 md:mb-6">{pick(operate.title, 'desktop')}</h2>
+          <h2 className="headline-lg mb-4 md:mb-6">{operate.title}</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            {pick(operate.sub, 'desktop')}
+            {operate.sub}
           </p>
         </div>
 

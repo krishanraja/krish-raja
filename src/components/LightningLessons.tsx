@@ -3,7 +3,7 @@ import { ExternalLink } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { lessons as lessonsContent } from '@/content';
-import { pick, type Lesson } from '@/content/types';
+import { type Lesson } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
 const LightningLessons = () => {
@@ -47,9 +47,9 @@ const LightningLessons = () => {
     <section id={lessonsContent.id} className="section-padding scroll-mt-16">
       <div className="container-width">
         <div className="text-center mb-6 md:mb-12">
-          <h2 className="headline-lg mb-4 md:mb-6">{pick(lessonsContent.title, 'desktop')}</h2>
+          <h2 className="headline-lg mb-4 md:mb-6">{lessonsContent.title}</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            {pick(lessonsContent.sub, 'desktop')}
+            {lessonsContent.sub}
           </p>
         </div>
 

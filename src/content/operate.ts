@@ -14,8 +14,9 @@ import type { OperateContent } from './types';
  */
 export const operate: OperateContent = {
   id: 'how-i-operate',
-  eyebrow: 'How I operate',
-  title: { desktop: "I've built my own AI OS.", mobile: 'The operating stack' },
+  // One title, both trees. The mobile variant said "The operating stack", which
+  // was written to sit under an eyebrow rather than because anyone said it.
+  title: "I've built my own AI OS.",
   sub: 'I use only what I\'ve tested on myself to solve customer problems.',
 
   pillars: [

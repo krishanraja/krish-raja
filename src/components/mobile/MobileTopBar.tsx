@@ -33,7 +33,11 @@ const MobileTopBar = () => {
     >
       {/* Clamped to match the shell. Inert at phone widths. */}
       <div className="mx-auto flex h-11 w-full max-w-[34rem] items-center justify-between px-5">
-        <a href="#hero" className="text-[15px] font-semibold tracking-tight" aria-label={nav.brandAria}>
+        <a
+          href="#hero"
+          className="inline-flex h-11 items-center text-[15px] font-semibold tracking-tight"
+          aria-label={nav.brandAria}
+        >
           {nav.brand}
         </a>
         <ThemeToggle />

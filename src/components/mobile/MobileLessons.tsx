@@ -1,15 +1,13 @@
 import { ArrowUpRight } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { lessons as lessonsContent } from '@/content';
-import { pick } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
 const MobileLessons = () => (
   <MobileSection
     id={lessonsContent.id}
-    eyebrow={lessonsContent.eyebrow}
-    title={pick(lessonsContent.title, 'mobile')}
-    intro={pick(lessonsContent.sub, 'mobile')}
+    title={lessonsContent.title}
+    intro={lessonsContent.sub}
   >
     <ul className="space-y-3">
       {lessonsContent.lessons.map((lesson, i) => {

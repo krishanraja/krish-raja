@@ -7,15 +7,15 @@ import type { LessonsContent } from './types';
  */
 export const lessons: LessonsContent = {
   id: 'lightning-lessons',
-  eyebrow: 'Lightning Lessons',
   // No "Free" on either surface. It was a chip on every card and the first word
-  // of the mobile heading; free is a price, and prices live on themindmaker.ai.
-  title: { desktop: 'See me in action.', mobile: '60-minute Maven sessions' },
-  sub: {
-    desktop:
-      'Here are some of the live sessions I lead to help leaders paint a better picture of the future of AI businesses.',
-    mobile: 'Taken by more than 4,000 people.',
-  },
+  // of a mobile-only heading; free is a price, and prices live on themindmaker.ai.
+  //
+  // That mobile heading is gone with it, along with the mobile-only sub "Taken
+  // by more than 4,000 people." Both were written to fill a layout slot rather
+  // than because Krish said them. The 4,000 figure is not lost: the deck section
+  // carries it on both trees, in his own words.
+  title: 'See me in action.',
+  sub: 'Here are some of the live sessions I lead to help leaders paint a better picture of the future of AI businesses.',
 
   lessons: [
     {

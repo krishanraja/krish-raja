@@ -10,28 +10,21 @@
  * src/lib/icon-map.ts and src/lib/asset-map.ts.
  */
 
-/** The three surfaces that render copy. */
-export type Surface = 'desktop' | 'mobile' | 'sheet';
-
-/**
- * A string that may still differ by surface.
+/*
+ * There is no Copy type any more, and no pick(). One section, one set of words.
  *
- * The desktop and mobile trees were written separately and drifted, so a
- * handful of strings exist in two or three variants. Modelling that here
- * keeps the divergence visible in one file instead of hidden across three
- * components, and lets the extraction refactor render byte-identically.
+ * It existed to record drift the extraction refactor inherited: the desktop and
+ * mobile trees had been written separately and a handful of headings disagreed.
+ * Recording that was the right first move. Keeping the capability was not.
+ * A field that can hold a different string per surface is a field that invites
+ * one, and by 12 August 2026 the mobile tree carried headings and eyebrows that
+ * existed nowhere else and that Krish had never written: "The operating stack",
+ * "60-minute Maven sessions", "How I operate", "The OS", "The thinking".
  *
- * Plain `string` is the goal. Reach for the variant form only to record
- * drift that already exists, never to introduce new drift.
+ * They were not a copy decision. They were a layout pattern, eyebrow above
+ * title, filled in because the slot existed. Deleting the variant form is what
+ * stops that recurring; a rule in a document would not have.
  */
-export type Copy = string | { desktop: string; mobile: string; sheet?: string };
-
-/** Resolve a Copy value for one surface. Falls back sheet -> mobile. */
-export const pick = (copy: Copy, surface: Surface): string => {
-  if (typeof copy === 'string') return copy;
-  if (surface === 'sheet') return copy.sheet ?? copy.mobile;
-  return copy[surface];
-};
 
 /** A link that leaves the site. */
 export interface ExternalLink {
@@ -40,18 +33,17 @@ export interface ExternalLink {
 }
 
 /**
- * Standard section framing.
+ * Standard section framing. Two strings, both plain, both rendered by both
+ * trees.
  *
- * `eyebrow` is rendered by the mobile tree only. `title` and `sub` are the last
- * fields allowed to differ by surface, because mobile pairs an eyebrow with a
- * different title where desktop uses a single h2, and splitting the desktop sub
- * across the two is the point. Card-level copy below must never differ.
+ * No `eyebrow`. It was a mobile-only label above the heading, and because no
+ * desktop copy existed to fill it, all eight were invented to fill the slot.
+ * A section that needs a word above its title needs a better title.
  */
 export interface SectionHeader {
   readonly id: string;
-  readonly eyebrow: string;
-  readonly title: Copy;
-  readonly sub: Copy;
+  readonly title: string;
+  readonly sub: string;
 }
 
 export interface TrustLogo {
@@ -60,7 +52,6 @@ export interface TrustLogo {
 }
 
 export interface HeroContent {
-  readonly eyebrow: string;
   readonly status: string;
   readonly h1: string;
   readonly sub: string;

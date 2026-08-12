@@ -1,15 +1,13 @@
 import { RefreshCw } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { operate } from '@/content';
-import { pick } from '@/content/types';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const MobilePhilosophy = () => (
   <MobileSection
     id={operate.id}
-    eyebrow={operate.eyebrow}
-    title={pick(operate.title, 'mobile')}
-    intro={pick(operate.sub, 'mobile')}
+    title={operate.title}
+    intro={operate.sub}
     tone="muted"
   >
     {/* A rail, not a stack. Four cards read side by side in the height of one,
@@ -33,20 +31,29 @@ const MobilePhilosophy = () => (
       })}
     </ul>
 
-    <div className="mt-5 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-4">
-      <div className="flex items-center gap-2 mb-4">
-        <span className="p-1.5 rounded-lg bg-primary/15">
-          <RefreshCw className="w-3.5 h-3.5 text-primary" />
-        </span>
+    {/* Same card as its neighbours.
+        This was a blue gradient panel with a blue rule down the left and
+        numbered blue discs hanging off it, which made one block on the page
+        speak a visual language nothing else spoke, and the rule collided with
+        the discs at every step. A flywheel is a cycle, so the steps read as a
+        wrapped run of chips with arrows between them rather than a ranked
+        list that stops at four. */}
+    <div className="mt-5 rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
+      <div className="mb-3 flex items-center gap-2">
+        <RefreshCw className="h-3.5 w-3.5 flex-shrink-0 text-primary" />
         <h3 className="mobile-h3">{operate.flywheel.title}</h3>
       </div>
-      <ol className="relative pl-5 space-y-2.5 border-l border-primary/30">
+      {/* The step number sits inside the chip. Every point is long enough to
+          take a line of its own at phone width, so connecting arrows between
+          them ended up dangling in empty space at the end of each row. */}
+      <ol className="flex flex-col items-start gap-1.5">
         {operate.flywheel.points.map((point, i) => (
-          <li key={i} className="relative">
-            <span className="absolute -left-[22px] top-0.5 flex items-center justify-center w-4 h-4 rounded-full bg-primary text-primary-foreground text-[9px] font-semibold">
-              {i + 1}
-            </span>
-            <p className="text-[13px] leading-snug text-foreground">{point}</p>
+          <li
+            key={i}
+            className="flex items-baseline gap-2 rounded-full bg-muted/70 py-1 pl-2.5 pr-3"
+          >
+            <span className="text-[11px] font-semibold tabular-nums text-primary">{i + 1}</span>
+            <span className="text-[12.5px] leading-snug text-foreground">{point}</span>
           </li>
         ))}
       </ol>

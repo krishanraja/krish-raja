@@ -8,7 +8,6 @@ import {
   DrawerDescription,
 } from '@/components/ui/drawer';
 import { contact, site } from '@/content';
-import { pick } from '@/content/types';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 interface MobileContactSheetProps {
@@ -36,9 +35,9 @@ const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => 
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
         <div className="px-5 pt-4 pb-2">
-          <DrawerTitle className="text-xl">{pick(contact.title, 'sheet')}</DrawerTitle>
+          <DrawerTitle className="text-xl">{contact.title}</DrawerTitle>
           <DrawerDescription className="mt-1">
-            {pick(contact.sub, 'sheet')}
+            {contact.sub}
           </DrawerDescription>
         </div>
         <ul

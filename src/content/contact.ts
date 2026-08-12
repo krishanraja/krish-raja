@@ -17,7 +17,6 @@ import { site } from './site';
  */
 export const contact: ContactContent = {
   id: 'contact',
-  eyebrow: 'Contact',
   title: 'Get in touch',
   sub: 'I\'d love to hear from you - get in touch.',
 

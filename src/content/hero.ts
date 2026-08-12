@@ -4,7 +4,6 @@ import { site } from './site';
 export const hero: HeroContent = {
   // The eyebrow is gone on purpose. It did no work, and "operator-advisor" is a
   // retired self-description. See project-documentation/POSITIONING.md.
-  eyebrow: '',
   status: '14 agents · 45 workflows',
   h1: site.spine,
   // The link that follows is a link, not a sentence. This used to end with

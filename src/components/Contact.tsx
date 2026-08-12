@@ -1,6 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
 import { contact } from '@/content';
-import { pick } from '@/content/types';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const Contact = () => {
@@ -9,9 +8,9 @@ const Contact = () => {
       <div className="container-width">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-6 md:mb-10">
-            <h2 className="headline-lg mb-3 md:mb-4">{pick(contact.title, 'desktop')}</h2>
+            <h2 className="headline-lg mb-3 md:mb-4">{contact.title}</h2>
             <p className="text-muted-foreground">
-              {pick(contact.sub, 'desktop')}
+              {contact.sub}
             </p>
           </div>
 

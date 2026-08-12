@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink } from 'lucide-react';
 import { portfolio } from '@/content';
-import { pick, type PortfolioItem } from '@/content/types';
+import { type PortfolioItem } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
 const BusinessCard = ({ business }: { business: PortfolioItem }) => {
@@ -61,9 +61,9 @@ const LivePortfolio = () => (
   <section id={portfolio.id} className="section-padding scroll-mt-16">
     <div className="container-width">
       <div className="text-center mb-6 md:mb-10">
-        <h2 className="headline-lg mb-3 md:mb-4">{pick(portfolio.title, 'desktop')}</h2>
+        <h2 className="headline-lg mb-3 md:mb-4">{portfolio.title}</h2>
         <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-          {pick(portfolio.sub, 'desktop')}
+          {portfolio.sub}
         </p>
       </div>
 

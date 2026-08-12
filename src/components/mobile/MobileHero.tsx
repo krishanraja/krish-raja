@@ -62,9 +62,11 @@ const MobileHero = ({ onOpenContact }: MobileHeroProps) => {
             {hero.primaryCta}
             <ArrowRight className="w-4 h-4" />
           </button>
+          {/* h-11 on both, not padding that happens to add up. A thumb needs
+              44px and the live mobile check fails anything under 40. */}
           <a
             href={hero.secondaryHref}
-            className="text-center text-sm text-muted-foreground hover:text-foreground py-2 mobile-tap-spring"
+            className="flex h-11 items-center justify-center text-center text-sm text-muted-foreground hover:text-foreground mobile-tap-spring"
           >
             {hero.secondaryCta} ↓
           </a>
@@ -74,27 +76,30 @@ const MobileHero = ({ onOpenContact }: MobileHeroProps) => {
           href={hero.channel.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-xs text-primary font-medium link-underline mb-5"
+          className="mb-3 inline-flex h-11 items-center gap-1 text-xs font-medium text-primary link-underline"
         >
           {hero.channel.label}
           <ArrowUpRight className="w-3 h-3" />
         </a>
 
+        {/* Four logos, sitting still.
+            This was an infinite marquee, which needs more content than the
+            viewport to make sense. Four logos fit across a phone with room to
+            spare, so the animation was duplicating the same four and sliding
+            them past a reader who could already see all of them. */}
         <div className="pt-5 border-t border-border/40">
           <p className="mobile-eyebrow mb-3">{hero.trustLabel}</p>
-          <div className="relative overflow-hidden -mx-5">
-            <div className="flex gap-7 animate-[scroll_22s_linear_infinite] motion-reduce:animate-none w-max px-5">
-              {[...trustLogos, ...trustLogos].map((logo, i) => (
-                <img
-                  key={i}
-                  src={logo.src}
-                  alt={logo.alt}
-                  loading="eager"
-                  decoding="async"
-                  className="h-5 w-auto object-contain grayscale opacity-60 flex-shrink-0"
-                />
-              ))}
-            </div>
+          <div className="flex items-center justify-between gap-3">
+            {trustLogos.map((logo, i) => (
+              <img
+                key={i}
+                src={logo.src}
+                alt={logo.alt}
+                loading="eager"
+                decoding="async"
+                className="h-5 w-auto max-w-[22%] object-contain grayscale opacity-60"
+              />
+            ))}
           </div>
         </div>
       </div>

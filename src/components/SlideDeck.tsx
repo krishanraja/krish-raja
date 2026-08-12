@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowUpRight, X } from 'lucide-react';
 import { deck } from '@/content';
-import { pick, type DeckSlide } from '@/content/types';
+import { type DeckSlide } from '@/content/types';
 import { usePrefersReducedMotion } from '@/components/OsGallery';
 
 const card = (id: string) => `/media/deck/${id}-640.webp`;
@@ -252,10 +252,9 @@ const SlideDeck = () => {
     <section id={deck.id} className="overflow-hidden bg-muted/30 py-12 md:py-20 scroll-mt-16">
       <div className="container-width">
         <div className="mb-5 px-5 md:mb-10 md:px-0 md:text-center">
-          <p className="mobile-eyebrow mb-2 md:hidden">{deck.eyebrow}</p>
-          <h2 className="mobile-h2 md:headline-lg md:mb-4">{pick(deck.title, 'desktop')}</h2>
+          <h2 className="mobile-h2 md:headline-lg md:mb-4">{deck.title}</h2>
           <p className="mobile-body mt-2 text-muted-foreground md:body-lg md:mx-auto md:mt-0 md:max-w-2xl">
-            {pick(deck.sub, 'desktop')}
+            {deck.sub}
           </p>
         </div>
       </div>

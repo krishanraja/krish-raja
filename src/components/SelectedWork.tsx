@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { appearances } from '@/content';
-import { pick, type Appearance, type AppearanceKind } from '@/content/types';
+import { type Appearance, type AppearanceKind } from '@/content/types';
 import { asset } from '@/lib/asset-map';
 
 type Filter = AppearanceKind | 'all';
@@ -119,10 +119,23 @@ const SelectedWork = ({ layout = 'rows' }: { layout?: Layout }) => {
   const [filter, setFilter] = useState<Filter>('all');
   const [expanded, setExpanded] = useState(false);
 
-  const matching = useMemo(
-    () => appearances.items.filter((i) => filter === 'all' || i.kind === filter),
-    [filter],
-  );
+  /**
+   * Newest first, undated last.
+   *
+   * Sorted here rather than in appearances.ts so the data file can stay grouped
+   * by what it means (the flagship set, then the rest of the index) while the
+   * page shows what a visitor wants, which is the most recent thing he did.
+   * Two entries carry no year: the Kroll podcast and the Captify hire
+   * announcement, neither of which the content index dates.
+   */
+  const matching = useMemo(() => {
+    const year = (v?: string) => (v ? Number(v) : -1);
+    return appearances.items
+      .filter((i) => filter === 'all' || i.kind === filter)
+      .slice()
+      .sort((a, b) => year(b.year) - year(a.year));
+  }, [filter]);
+
   const visible = expanded ? matching : matching.filter((i) => i.flagship);
   const hiddenCount = matching.length - matching.filter((i) => i.flagship).length;
 
@@ -143,7 +156,9 @@ const SelectedWork = ({ layout = 'rows' }: { layout?: Layout }) => {
             type="button"
             onClick={() => setFilter(f.id)}
             aria-pressed={filter === f.id}
-            className={`mobile-tap-spring flex-shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
+            className={`mobile-tap-spring flex-shrink-0 rounded-full px-3.5 text-xs font-medium transition-colors ${
+              layout === 'rail' ? 'h-11' : 'py-1.5'
+            } ${
               filter === f.id
                 ? 'bg-primary text-primary-foreground shadow-sm'
                 : 'bg-muted/50 text-muted-foreground hover:text-foreground'
@@ -176,7 +191,9 @@ const SelectedWork = ({ layout = 'rows' }: { layout?: Layout }) => {
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            className="link-underline mobile-tap-spring inline-flex items-center gap-1.5 text-sm font-medium text-primary"
+            className={`link-underline mobile-tap-spring inline-flex items-center gap-1.5 text-sm font-medium text-primary ${
+              layout === 'rail' ? 'h-11' : ''
+            }`}
           >
             {expanded ? appearances.lessLabel : `${appearances.moreLabel} (${hiddenCount} more)`}
             <ChevronDown
@@ -193,9 +210,9 @@ const SelectedWorkSection = () => (
   <section id={appearances.id} className="section-padding scroll-mt-16">
     <div className="container-width">
       <div className="mb-6 text-center md:mb-10">
-        <h2 className="headline-lg mb-3 md:mb-4">{pick(appearances.title, 'desktop')}</h2>
+        <h2 className="headline-lg mb-3 md:mb-4">{appearances.title}</h2>
         <p className="body-lg mx-auto max-w-2xl text-muted-foreground">
-          {pick(appearances.sub, 'desktop')}
+          {appearances.sub}
         </p>
       </div>
       <SelectedWork />
