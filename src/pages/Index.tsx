@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Philosophy from '@/components/Philosophy';
+import OperatingSystem from '@/components/OperatingSystem';
+import SlideDeck from '@/components/SlideDeck';
 import LivePortfolio from '@/components/LivePortfolio';
 import ProofPoints from '@/components/ProofPoints';
-import Work from '@/components/Work';
+import SelectedWork from '@/components/SelectedWork';
 import LightningLessons from '@/components/LightningLessons';
 import WorkWithMe from '@/components/WorkWithMe';
 import Contact from '@/components/Contact';
@@ -33,9 +35,11 @@ const DesktopIndex = () => {
       <main id="main">
         <Hero />
         <Philosophy />
+        <OperatingSystem />
+        <SlideDeck />
         <LivePortfolio />
         <ProofPoints />
-        <Work />
+        <SelectedWork />
         <LightningLessons />
         <WorkWithMe />
         <Contact />

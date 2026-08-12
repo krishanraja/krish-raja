@@ -1,48 +1,21 @@
-import { Users, Building2, BookOpen, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { Button } from '@/components/ui/button';
-
-const paths = [
-  {
-    icon: Users,
-    title: 'AI Decision Cohort',
-    eyebrow: 'Quarterly · $3,500 / seat',
-    body: 'Three weeks, mostly async, fifteen senior leaders. Bring a nervous AI decision; leave with a board-ready answer.',
-    cta: 'See the cohort',
-    href: 'https://themindmaker.ai/cohort',
-    primary: true,
-  },
-  {
-    icon: Building2,
-    title: 'Mindmaker enterprise',
-    eyebrow: 'Signal Session $15k · Revenue Architecture $60k+',
-    body: "If your company has AI capability but no clear commercial strategy, I help commercialize it.",
-    cta: 'See enterprise offers',
-    href: 'https://themindmaker.ai/enterprise',
-    primary: false,
-  },
-  {
-    icon: BookOpen,
-    title: 'Read before you hire',
-    eyebrow: 'Free',
-    body: "Techonomic is where I think out loud. Signal & Noise is where I interrogate peers. Start there if you're not ready for a call.",
-    cta: 'Read Techonomic',
-    href: 'https://www.techonomic.co',
-    primary: false,
-  },
-];
+import { offer } from '@/content';
+import { pick } from '@/content/types';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
 const MobileWorkWithMe = () => (
   <MobileSection
-    id="work-with-me"
-    eyebrow="Work with me"
-    title="Three ways in"
-    intro="Pick the one that fits."
+    id={offer.id}
+    eyebrow={offer.eyebrow}
+    title={pick(offer.title, 'mobile')}
+    intro={pick(offer.sub, 'mobile')}
     tone="muted"
   >
-    <ul className="space-y-3">
-      {paths.map((path, i) => {
-        const Icon = path.icon;
+    <ul className="space-y-3" role={offer.cards.length === 1 ? 'presentation' : undefined}>
+      {offer.cards.map((path, i) => {
+        const Icon = resolveIcon(path.icon);
         return (
           <li
             key={i}
@@ -58,9 +31,11 @@ const MobileWorkWithMe = () => (
               </span>
               <h3 className="mobile-h3 text-foreground">{path.title}</h3>
             </div>
-            <p className="text-[11px] uppercase tracking-wide text-primary/80 font-medium mb-1.5">
-              {path.eyebrow}
-            </p>
+            {path.eyebrow && (
+              <p className="text-[11px] uppercase tracking-wide text-primary/80 font-medium mb-1.5">
+                {path.eyebrow}
+              </p>
+            )}
             <p className="mobile-meta mb-3">{path.body}</p>
             <Button
               asChild

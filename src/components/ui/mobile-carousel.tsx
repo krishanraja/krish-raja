@@ -2,6 +2,7 @@ import React from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
   Carousel,
+  type CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
@@ -35,7 +36,7 @@ export const MobileCarousel: React.FC<MobileCarouselProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const [current, setCurrent] = React.useState(0);
-  const [carouselApi, setCarouselApi] = React.useState<any>();
+  const [carouselApi, setCarouselApi] = React.useState<CarouselApi>();
 
   React.useEffect(() => {
     if (!carouselApi) return;

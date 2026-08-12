@@ -1,38 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, Building2, BookOpen, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
-
-const paths = [
-  {
-    icon: Users,
-    title: "Join the AI Decision Cohort",
-    body: "Three weeks, mostly async, fifteen senior leaders. You bring a nervous AI decision; you leave with a board-ready answer. Quarterly, $3,500 per seat.",
-    cta: "See the cohort",
-    href: "https://themindmaker.ai/cohort"
-  },
-  {
-    icon: Building2,
-    title: "Hire Mindmaker for enterprise work",
-    body: "If your company has AI capabilities but no clear commercial strategy, I help commercialize them. The Signal Session ($15k, 1 day) for alignment. The Revenue Architecture ($60k+, 30 days) for the full build.",
-    cta: "See enterprise offers",
-    href: "https://themindmaker.ai/enterprise"
-  },
-  {
-    icon: BookOpen,
-    title: "Read before you hire",
-    body: "Techonomic is where I think out loud. Signal & Noise is where I interrogate peers. Both are free. Start there if you're not ready for a call.",
-    cta: "Read Techonomic",
-    href: "https://www.techonomic.co"
-  }
-];
+import { offer } from '@/content';
+import { pick, type OfferCard } from '@/content/types';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
 const WorkWithMe = () => {
   const isMobile = useIsMobile();
 
-  const renderCard = (path: typeof paths[0], index: number) => {
-    const Icon = path.icon;
+  const renderCard = (path: OfferCard, index: number) => {
+    const Icon = resolveIcon(path.icon);
     return (
       <Card
         key={index}
@@ -64,23 +43,29 @@ const WorkWithMe = () => {
     );
   };
 
+  const single = offer.cards.length === 1;
+
   return (
-    <section id="work-with-me" className="section-padding scroll-mt-16">
+    <section id={offer.id} className="section-padding scroll-mt-16">
       <div className="container-width">
         <div className="text-center mb-6 md:mb-12">
-          <h2 className="headline-lg mb-4 md:mb-6">Work with me</h2>
+          <h2 className="headline-lg mb-4 md:mb-6">{pick(offer.title, 'desktop')}</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            Three ways in. Pick the one that fits.
+            {pick(offer.sub, 'desktop')}
           </p>
         </div>
 
-        {isMobile ? (
+        {single ? (
+          <div className="max-w-xl mx-auto">
+            {offer.cards.map((path, index) => renderCard(path, index))}
+          </div>
+        ) : isMobile ? (
           <MobileCarousel showDots={true} uniformHeight={true} minHeight="carousel-md">
-            {paths.map((path, index) => renderCard(path, index))}
+            {offer.cards.map((path, index) => renderCard(path, index))}
           </MobileCarousel>
         ) : (
           <div className="grid md:grid-cols-3 gap-6">
-            {paths.map((path, index) => renderCard(path, index))}
+            {offer.cards.map((path, index) => renderCard(path, index))}
           </div>
         )}
       </div>

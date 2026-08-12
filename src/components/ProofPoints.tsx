@@ -1,83 +1,72 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { TrendingUp, Users, Target, Rocket, Award, MapPin } from 'lucide-react';
+import { Award, MapPin } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { receipts } from '@/content';
+import { pick } from '@/content/types';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
 const ProofPoints = () => {
   const isMobile = useIsMobile();
 
-  const achievements = [
-    {
-      icon: TrendingUp,
-      category: "Revenue Growth",
-      metric: "$9M → $61M",
-      context: "Broadcaster Digital Transformation",
-      description: "Led digital revenue 7x over 3 years. Triple-digit growth in 2 of 3 years. 70+ commercial products launched."
-    },
-    {
-      icon: Rocket,
-      category: "Market Creation",
-      metric: "$0 → $12M ARR",
-      context: "Built Region from Zero",
-      description: "Launched APAC programmatic business from scratch: team, product, pipeline. First hire to market leader."
-    },
-    {
-      icon: Users,
-      category: "Team → Agent Fleet",
-      metric: "18 People → 14 Agents",
-      context: "From human team to autonomous OS",
-      description: "Led an 18-person org across three continents. Now running a 14-agent fleet across multiple ventures. Built the org chart, then built the agent chart."
-    },
-    {
-      icon: Target,
-      category: "P&L Leadership",
-      metric: "$55M P&L",
-      context: "Data & Automation",
-      description: "Ran full P&L for data and automation division. 22% EBITDA. Guided M&A and portfolio transformation."
-    }
-  ];
+  const { achievements, credentials, journey, engagements } = receipts;
 
-  const credentials = [
-    "Founder, Mindmaker",
-    "Writer, Techonomic Newsletter",
-    "Harvard Business School (Finance, Analytics & Economics)",
-    "MA Design Strategy (Distinction)",
-    "Sydney Opera House Keynote Speaker",
-    "Published Author, Speaker & Writer",
-    "Ex-Microsoft Automation Specialist",
-    "First Global Automated Media Campaigns (2010)"
-  ];
+  const achievementCard = (achievement: (typeof achievements)[number], index: number) => {
+    const Icon = resolveIcon(achievement.icon);
+    return (
+      <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm text-center h-full">
+        <CardContent className="p-6">
+          <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
+            <Icon className="w-6 h-6 text-primary" />
+          </div>
+          <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
+            {achievement.metric}
+          </div>
+          <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
+            {achievement.category}
+          </div>
+          <div className="text-xs text-muted-foreground mb-3 break-words hyphens-auto">
+            {achievement.context}
+          </div>
+          <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
+            {achievement.description}
+          </p>
+        </CardContent>
+      </Card>
+    );
+  };
 
-  const locations = [
-    {
-      city: "London",
-      period: "2008-2013",
-      role: "From coding to customer success",
-      story: "Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up."
-    },
-    {
-      city: "Sydney",
-      period: "2013-2024",
-      role: "From Sales to Product & Corp Strategy",
-      story: "Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch."
-    },
-    {
-      city: "New York",
-      period: "2024-2026",
-      role: "From commercial career to full-stack portfolio",
-      story: "Operating an autonomous AI business and advising companies commercializing theirs."
-    }
-  ];
+  // The carousel needs h-full; the desktop stack does not. Kept distinct so
+  // the extraction does not alter either layout.
+  const journeyCard = (location: (typeof journey)[number], index: number, fill = false) => (
+    <Card key={index} className={`border-0 shadow-sm bg-muted/30${fill ? ' h-full' : ''}`}>
+      <CardContent className="p-4">
+        <div className="flex items-center gap-3 mb-2">
+          <MapPin className="w-4 h-4 text-primary" />
+          <div className="font-semibold text-sm">{location.city}</div>
+          <Badge variant="secondary" className="text-xs">
+            {location.period}
+          </Badge>
+        </div>
+        <p className="text-xs font-medium text-foreground mb-1">
+          {location.role}
+        </p>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {location.story}
+        </p>
+      </CardContent>
+    </Card>
+  );
 
   return (
-    <section id="proof-points" className="section-padding scroll-mt-16">
+    <section id={receipts.id} className="section-padding scroll-mt-16">
       <div className="container-width">
         <div className="text-center mb-8 md:mb-16">
-          <h2 className="headline-lg mb-4 md:mb-6">Sixteen years of receipts</h2>
+          <h2 className="headline-lg mb-4 md:mb-6">{pick(receipts.title, 'desktop')}</h2>
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
-            The track record that informs the advice.
+            {pick(receipts.sub, 'desktop')}
           </p>
         </div>
 
@@ -88,19 +77,19 @@ const ProofPoints = () => {
                 value="receipts"
                 className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
               >
-                Receipts
+                {receipts.tabs.receipts}
               </TabsTrigger>
               <TabsTrigger
                 value="journey"
                 className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
               >
-                Journey
+                {receipts.tabs.journey}
               </TabsTrigger>
               <TabsTrigger
                 value="credentials"
                 className="rounded-full py-2 px-3 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
               >
-                Credentials
+                {receipts.tabs.credentials}
               </TabsTrigger>
             </TabsList>
 
@@ -110,30 +99,7 @@ const ProofPoints = () => {
                 showDots={true}
                 minHeight="carousel-sm"
               >
-                {achievements.map((achievement, index) => {
-                  const Icon = achievement.icon;
-                  return (
-                    <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm text-center h-full">
-                      <CardContent className="p-6">
-                        <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
-                          {achievement.metric}
-                        </div>
-                        <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
-                          {achievement.category}
-                        </div>
-                        <div className="text-xs text-muted-foreground mb-3 break-words hyphens-auto">
-                          {achievement.context}
-                        </div>
-                        <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
-                          {achievement.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
+                {achievements.map((achievement, index) => achievementCard(achievement, index))}
               </MobileCarousel>
             </TabsContent>
 
@@ -143,25 +109,7 @@ const ProofPoints = () => {
                 showDots={true}
                 minHeight="carousel-xs"
               >
-                {locations.map((location, index) => (
-                  <Card key={index} className="border-0 shadow-sm bg-muted/30 h-full">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <div className="font-semibold text-sm">{location.city}</div>
-                        <Badge variant="secondary" className="text-xs">
-                          {location.period}
-                        </Badge>
-                      </div>
-                      <p className="text-xs font-medium text-foreground mb-1">
-                        {location.role}
-                      </p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        {location.story}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
+                {journey.map((location, index) => journeyCard(location, index, true))}
               </MobileCarousel>
             </TabsContent>
 
@@ -186,37 +134,35 @@ const ProofPoints = () => {
               <div
                 className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
               >
-                {achievements.map((achievement, index) => {
-                  const Icon = achievement.icon;
-                  return (
-                    <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm text-center h-full">
+                {achievements.map((achievement, index) => achievementCard(achievement, index))}
+              </div>
+            </div>
+
+            {engagements.length > 0 && (
+              <div className="mb-12">
+                <h3 className="headline-md mb-8">{receipts.engagementsHeading}</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {engagements.map((engagement, index) => (
+                    <Card key={index} className="border-0 shadow-sm bg-card/50 backdrop-blur-sm h-full">
                       <CardContent className="p-6">
-                        <div className="inline-flex p-3 rounded-full bg-primary/10 mb-4">
-                          <Icon className="w-6 h-6 text-primary" />
+                        <div className="flex items-baseline gap-2 mb-2 flex-wrap">
+                          <h4 className="font-semibold text-foreground">{engagement.name}</h4>
+                          <span className="text-xs text-primary/80 font-medium">{engagement.role}</span>
                         </div>
-                        <div className="text-2xl font-bold text-primary mb-1 break-words hyphens-auto">
-                          {achievement.metric}
-                        </div>
-                        <div className="text-sm font-medium text-foreground mb-2 break-words hyphens-auto">
-                          {achievement.category}
-                        </div>
-                        <div className="text-xs text-muted-foreground mb-3 break-words hyphens-auto">
-                          {achievement.context}
-                        </div>
-                        <p className="text-xs text-muted-foreground leading-relaxed break-words hyphens-auto">
-                          {achievement.description}
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          {engagement.description}
                         </p>
                       </CardContent>
                     </Card>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="grid md:grid-cols-2 gap-12">
               {/* Credentials */}
               <div>
-                <h3 className="headline-md mb-8">Recognition & Credentials</h3>
+                <h3 className="headline-md mb-8">{receipts.credentialsHeading}</h3>
                 <div className="flex flex-wrap gap-3">
                   {credentials.map((credential, index) => (
                     <Badge
@@ -233,27 +179,9 @@ const ProofPoints = () => {
 
               {/* Global Experience */}
               <div>
-                <h3 className="headline-md mb-8">Global Journey</h3>
+                <h3 className="headline-md mb-8">{receipts.journeyHeading}</h3>
                 <div className="space-y-4">
-                  {locations.map((location, index) => (
-                    <Card key={index} className="border-0 shadow-sm bg-muted/30">
-                      <CardContent className="p-4">
-                        <div className="flex items-center gap-3 mb-2">
-                          <MapPin className="w-4 h-4 text-primary" />
-                          <div className="font-semibold text-sm">{location.city}</div>
-                          <Badge variant="secondary" className="text-xs">
-                            {location.period}
-                          </Badge>
-                        </div>
-                        <p className="text-xs font-medium text-foreground mb-1">
-                          {location.role}
-                        </p>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                          {location.story}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  ))}
+                  {journey.map((location, index) => journeyCard(location, index))}
                 </div>
               </div>
             </div>

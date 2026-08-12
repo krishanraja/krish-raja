@@ -1,44 +1,23 @@
-import { Mail, Linkedin, ArrowUpRight } from 'lucide-react';
-
-const contactLinks = [
-  {
-    label: "Email",
-    value: "hello@krishraja.com",
-    href: "mailto:hello@krishraja.com",
-    icon: Mail,
-    external: false
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/krish-raja",
-    href: "https://www.linkedin.com/in/krish-raja",
-    icon: Linkedin,
-    external: true
-  },
-  {
-    label: "For work inquiries",
-    value: "Book a call through Mindmaker",
-    href: "https://themindmaker.ai",
-    icon: ArrowUpRight,
-    external: true
-  }
-];
+import { ArrowUpRight } from 'lucide-react';
+import { contact } from '@/content';
+import { pick } from '@/content/types';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-padding bg-muted/30 scroll-mt-16">
+    <section id={contact.id} className="section-padding bg-muted/30 scroll-mt-16">
       <div className="container-width">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-6 md:mb-10">
-            <h2 className="headline-lg mb-3 md:mb-4">Get in touch</h2>
+            <h2 className="headline-lg mb-3 md:mb-4">{pick(contact.title, 'desktop')}</h2>
             <p className="text-muted-foreground">
-              For speaking, writing, or a direct line.
+              {pick(contact.sub, 'desktop')}
             </p>
           </div>
 
           <div className="bg-card rounded-2xl border border-border/60 divide-y divide-border/60 overflow-hidden">
-            {contactLinks.map((link) => {
-              const Icon = link.icon;
+            {contact.links.map((link) => {
+              const Icon = resolveIcon(link.icon);
               return (
                 <a
                   key={link.label}

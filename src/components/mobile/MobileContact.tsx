@@ -1,22 +1,19 @@
-import { Mail, Linkedin, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import MobileSection from './MobileSection';
-
-const links = [
-  { label: 'Email', value: 'hello@krishraja.com', href: 'mailto:hello@krishraja.com', icon: Mail, external: false },
-  { label: 'LinkedIn', value: 'linkedin.com/in/krish-raja', href: 'https://www.linkedin.com/in/krish-raja', icon: Linkedin, external: true },
-  { label: 'For work inquiries', value: 'Book a call through Mindmaker', href: 'https://themindmaker.ai', icon: ArrowUpRight, external: true },
-];
+import { contact } from '@/content';
+import { pick } from '@/content/types';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
 const MobileContact = () => (
   <MobileSection
-    id="contact"
-    eyebrow="Contact"
-    title="Get in touch"
-    intro="For speaking, writing, or a direct line."
+    id={contact.id}
+    eyebrow={contact.eyebrow}
+    title={pick(contact.title, 'mobile')}
+    intro={pick(contact.sub, 'mobile')}
   >
     <ul className="space-y-2">
-      {links.map((l) => {
-        const Icon = l.icon;
+      {contact.links.map((l) => {
+        const Icon = resolveIcon(l.icon);
         return (
           <li key={l.label}>
             <a
