@@ -180,6 +180,12 @@ export interface PortfolioItem {
   readonly invertOnDark?: boolean;
   /** Needs a light plate behind it in dark mode, for a dark-to-light gradient mark. */
   readonly plateOnDark?: boolean;
+  /**
+   * The mirror of `plateOnDark`: a dark plate in light mode, for a mark drawn
+   * light on transparency. The CTRL wordmark fades from mint to near-white, so
+   * on the light card its last two letters are not there.
+   */
+  readonly plateOnLight?: boolean;
 }
 
 /**

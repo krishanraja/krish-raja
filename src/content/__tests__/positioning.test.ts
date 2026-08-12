@@ -225,6 +225,15 @@ describe('structured data stays honest', () => {
     const all = [...prose.map((s) => s.value), indexHtml, llmsTxt].join('\n');
     expect(all, 'a per-seat price survives').not.toMatch(/per seat|\/\s?seat/i);
     expect(all, 'a retired price survives').not.toMatch(/\$3,500|\$15k|\$60k/i);
+
+    // Free is a price. It was a chip on all five Lightning Lessons cards and
+    // the first word of the mobile heading, and it came off both on 12 Aug
+    // 2026. "feel free" is the idiom and is not what this catches.
+    const lessonsCopy = [lessons.title, lessons.sub, lessons.eyebrow]
+      .map((c) => (typeof c === 'string' ? c : Object.values(c).join(' ')))
+      .join('\n');
+    expect(lessonsCopy, 'Free is back on the lessons').not.toMatch(/\bfree\b/i);
+    expect(lessons, 'the Free chip is back').not.toHaveProperty('badge');
   });
 });
 

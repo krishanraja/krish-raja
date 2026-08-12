@@ -13,13 +13,23 @@ const BusinessRow = ({ business }: { business: PortfolioItem }) => (
     className="block bg-card border border-border/60 rounded-2xl p-4 shadow-sm active:bg-muted/50 transition-colors"
   >
     <div className="flex items-start gap-3">
-      <div className={`w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 ${business.plateOnDark ? "bg-muted/40 dark:bg-white p-1" : "bg-muted/40"}`}>
+      {/* w-14, not w-11. Two of the five marks are wordmarks, and a square tile
+          scaled them down until they were a smear. */}
+      <div
+        className={`flex h-11 w-14 flex-shrink-0 items-center justify-center rounded-lg p-1 ${
+          business.plateOnDark
+            ? 'bg-muted/40 dark:bg-white'
+            : business.plateOnLight
+              ? 'bg-foreground dark:bg-muted/40'
+              : 'bg-muted/40'
+        }`}
+      >
         <img
           src={asset(business.asset)}
           alt={`${business.name} icon`}
           loading="lazy"
           decoding="async"
-          className={`h-7 w-auto object-contain ${
+          className={`max-h-full max-w-full w-auto object-contain ${
             business.invertOnDark ? 'dark:brightness-200 dark:invert' : 'dark:brightness-110'
           }`}
         />

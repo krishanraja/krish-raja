@@ -13,8 +13,12 @@ import bbc from '@/assets/bbc_logo.png';
 import microsoft from '@/assets/microsoft_logo.png';
 
 import mindmaker from '@/assets/mindmaker-icon.png';
-import fractionl from '@/assets/fractionl-icon.png';
-import ctrl from '@/assets/ctrl-icon.png';
+// Both marks are light gradients on transparency, drawn for a dark background,
+// so both carry plateOnLight in portfolio.ts. Supplied on 12 Aug 2026 with more
+// than half the canvas empty; cropped to the content box so `h-12` sizes the
+// glyphs rather than the padding around them.
+import fractionl from '@/assets/fractionl-pulse-mark.png';
+import ctrl from '@/assets/ctrl-wordmark.png';
 import signalAndNoise from '@/assets/signal-and-noise-logo.png';
 import mindmakerLive from '@/assets/mindmaker-live-logo.png';
 

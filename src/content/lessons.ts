@@ -8,7 +8,9 @@ import type { LessonsContent } from './types';
 export const lessons: LessonsContent = {
   id: 'lightning-lessons',
   eyebrow: 'Lightning Lessons',
-  title: { desktop: 'See me in action.', mobile: 'Free, 60-minute Maven sessions' },
+  // No "Free" on either surface. It was a chip on every card and the first word
+  // of the mobile heading; free is a price, and prices live on themindmaker.ai.
+  title: { desktop: 'See me in action.', mobile: '60-minute Maven sessions' },
   sub: {
     desktop:
       'Here are some of the live sessions I lead to help leaders paint a better picture of the future of AI businesses.',

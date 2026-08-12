@@ -18,13 +18,21 @@ const BusinessCard = ({ business }: { business: PortfolioItem }) => {
         )}
 
         <div className="h-20 flex items-end justify-center mb-3">
-          <div className={`rounded-lg p-1.5 backdrop-blur-[2px] transition-colors duration-300 ${business.plateOnDark ? 'bg-white/0 dark:bg-white dark:px-2' : 'bg-white/0 dark:bg-white/10'}`}>
+          <div
+            className={`rounded-lg p-1.5 backdrop-blur-[2px] transition-colors duration-300 ${
+              business.plateOnDark
+                ? 'bg-white/0 dark:bg-white dark:px-2'
+                : business.plateOnLight
+                  ? 'bg-foreground px-2.5 dark:bg-white/10 dark:px-1.5'
+                  : 'bg-white/0 dark:bg-white/10'
+            }`}
+          >
             <img
               src={asset(business.asset)}
               alt={`${business.name} icon`}
               loading="lazy"
               decoding="async"
-              className={`h-12 w-auto object-contain ${isLargerLogo ? 'dark:brightness-200 dark:invert' : 'dark:brightness-110 dark:contrast-105'} transition-all duration-300`}
+              className={`h-12 w-auto max-w-[9rem] object-contain ${isLargerLogo ? 'dark:brightness-200 dark:invert' : 'dark:brightness-110 dark:contrast-105'} transition-all duration-300`}
             />
           </div>
         </div>

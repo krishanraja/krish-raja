@@ -40,6 +40,7 @@ export const portfolio: PortfolioContent = {
       url: 'https://fractionl.ai',
       role: 'Product',
       isBeta: true,
+      plateOnLight: true,
     },
     {
       name: 'CTRL',
@@ -48,6 +49,7 @@ export const portfolio: PortfolioContent = {
       url: 'https://ctrl.themindmaker.ai',
       role: 'Product',
       isBeta: true,
+      plateOnLight: true,
     },
     {
       name: 'Mindmaker Live',
