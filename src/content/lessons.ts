@@ -8,10 +8,10 @@ import type { LessonsContent } from './types';
 export const lessons: LessonsContent = {
   id: 'lightning-lessons',
   eyebrow: 'Lightning Lessons',
-  title: { desktop: '4000+ leaders trained.', mobile: 'Free, 60-minute Maven sessions' },
+  title: { desktop: 'See me in action.', mobile: 'Free, 60-minute Maven sessions' },
   sub: {
     desktop:
-      'Here are some of the materials I walk through, to help leaders paint a better picture of the future of AI businesses.',
+      'Here are some of the live sessions I lead to help leaders paint a better picture of the future of AI businesses.',
     mobile: 'Taken by more than 4,000 people.',
   },
   badge: 'Free',

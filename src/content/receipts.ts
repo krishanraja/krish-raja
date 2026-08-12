@@ -72,7 +72,7 @@ export const receipts: ReceiptsContent = {
       name: 'Executive advisory',
       role: 'Media, content IP telco and entertainment businesses',
       description:
-        'I have been working with some of the largest media busineFirst-party data infrastructure, IP, content and AI. The work is usually repositioning what a business sells, then rebuilding the pipeline behind it. Clients stay unnamed.',
+        'Working to help on first-party data infrastructure, IP, content and AI. This usually involves corporate strategy, product strategy and GTM strategy end-to-end.',
     },
   ],
 

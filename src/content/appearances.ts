@@ -22,7 +22,7 @@ import type { AppearancesContent } from './types';
 export const appearances: AppearancesContent = {
   id: 'selected-work',
   eyebrow: 'Selected work',
-  title: 'Selected work',
+  title: 'In public.',
   sub: 'Podcasts, stages and bylines, 2017 to now.',
 
   filters: [

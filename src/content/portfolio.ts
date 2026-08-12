@@ -28,14 +28,14 @@ export const portfolio: PortfolioContent = {
   items: [
     {
       name: 'Mindmaker',
-      description: 'Helping leaders find their own way of working alongside AI.',
+      description: 'Helping leaders amplify their expertise with AI to make the next million dollar decision.',
       asset: 'mindmaker',
       url: 'https://themindmaker.ai',
       role: 'Advisory, capped practice',
     },
     {
       name: 'Fractionl Pulse',
-      description: 'Live market intelligence on fractional supply and demand.',
+      description: 'Live verified market intelligence on fractional supply and demand.',
       asset: 'fractionl',
       url: 'https://fractionl.ai',
       role: 'Product',
@@ -51,7 +51,7 @@ export const portfolio: PortfolioContent = {
     },
     {
       name: 'Mindmaker Live',
-      description: 'Where I write. Why people built what they built, and who is paying for it.',
+      description: 'Two formats: Paid (the economics of AI) and Built (decisions made in AI)',
       asset: 'mindmaker-live',
       url: 'https://live.themindmaker.ai',
       role: 'Media Channel',
@@ -59,7 +59,7 @@ export const portfolio: PortfolioContent = {
     },
     {
       name: 'Signal & Noise',
-      description: 'Conversations with media operators on how AI is reshaping the industry.',
+      description: 'Conversations with operators on how AI is reshaping the content & media industry.',
       asset: 'signal-and-noise',
       url: 'https://www.mediaradar.com/signal-and-noise',
       role: 'Media Channel',
