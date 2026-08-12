@@ -7,6 +7,7 @@ repository: krishanraja/krish-raja
 asset_directory: public/files/content index
 public_path_prefix: /files/content%20index/
 generated_on: 2026-08-11
+google_doc_screenshot_tags: 59
 image_format: JPEG
 image_dimensions: 1280x720
 selection_unit: one image per deduplicated appearance or distinct owned surface
@@ -586,10 +587,23 @@ source_urls:
 quality_note: The video and Kroll context are visible. Preserve the caveat that the page title says “Krishna Raja” while the description identifies Krish Raja.
 ```
 
+## Completed search-gap status
+
+1. **Amobee — verified.** LiveRamp and IAB identify Krish in his Amobee product-and-platform role; Captify independently confirms the tenure. Use `liveramp-online-identity-panel`, `iab-connected-tv-handbook`, and `captify-hire-announcement`.
+2. **Nine Entertainment — verified with one claim caveat.** The keynote interview, Adobe article, Nine byline, and Mumbrella programme are verified. The $9M→$61M revenue claim is first-party only. Use `adobe-symposium-opera-house-keynote`, `adobe-digital-data-overload`, `nine-data-transaction-byline`, `mumbrella360-travel-marketing-panel`, and `ai-fluent-executive-maven`.
+3. **30 Under 30 — verified.** B&T lists Krish Raja of Nine as a 2017 Strategy winner. Use `bt-30-under-30-strategy`.
+4. **Sydney Opera House keynote — verified by combined evidence.** Marketing Mag identifies the Adobe Symposium keynote; Adobe’s release identifies the venue. Use `adobe-symposium-opera-house-keynote`.
+5. **The Built podcast — no verified Krish Raja result.** Do not create website content from the different-person result.
+6. **McCann — no verified employment, byline, or case-study result.** Do not infer a McCann role from unrelated shortlist results.
+7. **BBC or Singtel — partial.** Singtel/Amobee is independently supported; BBC appears only on Krish-controlled Maven material. Use `balancing-the-grind-interview` or `make-ai-your-cofounder` with the BBC caveat retained.
+8. **Fractionl, Plinth, or Full Time — no verified public pages.** Do not publish a product association without new evidence.
+9. **Kroll — verified appearances with one naming caveat.** The threat-modeling episode is verified; the Cyber Resilience mirror says “Krishna Raja” in its title. Use `kroll-threat-modeling-podcast` or `kroll-cyber-resilience` and retain the relevant caveat.
+
 ## Coverage summary
 
 ```yaml
 appearance_records: 33
+source_link_instances_tagged_in_google_doc: 59
 approved_images: 31
 rejected_images: 1
 unavailable_images: 1
