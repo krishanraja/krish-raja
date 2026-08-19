@@ -103,8 +103,8 @@ content_type: event_compilation
 verification: verified
 screenshot_status: approved
 quality_score: 5
-screenshot_filename: content-index-cannes-lions-2026-day-4.jpg
-screenshot_public_path: /files/content%20index/content-index-cannes-lions-2026-day-4.jpg
+screenshot_filename: content-index-cannes-lions-2026-day-4.webp
+screenshot_public_path: /files/content%20index/content-index-cannes-lions-2026-day-4.webp
 capture_source: https://www.youtube.com/watch?v=6ebe_DRwjsc
 source_urls:
   - https://www.youtube.com/watch?v=6ebe_DRwjsc
@@ -112,7 +112,9 @@ source_urls:
   - https://open.spotify.com/episode/3jTK4uiKuOjmR1oZf0J1vL
   - https://zeno.fm/podcast/signal-noise/episodes/cannes-lions-2026-day-4-with-rio-longacre-krish-raja-brett-house/
   - https://www.listennotes.com/podcasts/signal-amp-noise/signal-noise-at-cannes-lions-sZgjpKomqQ6/
-quality_note: Active panel frame with relevant participants and the Signal & Noise context visible.
+quality_note: Replaced 19 Aug 2026 with a still from the recording itself, showing the
+  Hearst and Signal & Noise panel set. Cleaner than the previous browser capture, which
+  carried player chrome.
 ```
 
 ### 6. Cannes Lions 2026 — Day 3 compilation
@@ -177,15 +179,16 @@ content_type: podcast_video
 verification: verified
 screenshot_status: approved
 quality_score: 5
-screenshot_filename: content-index-ai-edge-podcast-episode-1.jpg
-screenshot_public_path: /files/content%20index/content-index-ai-edge-podcast-episode-1.jpg
+screenshot_filename: content-index-ai-edge-podcast-episode-1.webp
+screenshot_public_path: /files/content%20index/content-index-ai-edge-podcast-episode-1.webp
 capture_source: https://www.youtube.com/watch?v=Jvu7DSN9SnU
 source_urls:
   - https://www.youtube.com/watch?v=Jvu7DSN9SnU
   - https://open.spotify.com/episode/2c5xrFDlPC1Oqw9kcFKDay
   - https://podcasts.apple.com/us/podcast/1-ai-edge-where-ai-meets-pop-culture-featuring-guest/id1812993900?i=1000736144233
   - https://www.iheart.com/podcast/1323-the-ai-edge-podcast-274351107/episode/ep-1-ai-edge-where-ai-306095595/
-quality_note: Krish is clearly visible in a live discussion frame; video was preferred to audio-only platforms.
+quality_note: Replaced 19 Aug 2026 with a still from the recording itself, all three
+  participants and the AI Edge watermark visible. Cleaner than the previous browser capture.
 ```
 
 ### 10. Give It A Nudge: scaling Captify Australia
