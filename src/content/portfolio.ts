@@ -17,8 +17,8 @@ import { site } from './site';
  */
 export const portfolio: PortfolioContent = {
   id: 'portfolio',
-  title: 'My focus areas',
-  sub: 'Everything runs through Mindmake. Advisory, product and content, out of one operating system.',
+  title: 'My portfolio goal is singular.',
+  sub: 'Whether it be advisory, product or content, everything runs out of one operating system to compound effects, and is geared to helping people & businesses discover how to control AI.',
   betaBadge: 'Beta',
 
   primary: {
@@ -78,7 +78,7 @@ export const portfolio: PortfolioContent = {
     },
     {
       name: 'Full Time',
-      description: 'An interactive AI football podcast.',
+      description: 'An interactive AI football podcast to explore what\'s next in media.',
       asset: 'full-time',
       url: 'https://fulltime.fm',
       role: 'Build experiment',
@@ -86,8 +86,8 @@ export const portfolio: PortfolioContent = {
       plateOnLight: true,
     },
     {
-      name: 'Fractionl Pulse',
-      description: 'Live verified market intelligence on fractional supply and demand.',
+      name: 'Fractionl: Pulse',
+      description: 'Live verified market intelligence on fractional supply and demand. An interactive AI football podcast to explore what\'s next in media.',
       asset: 'fractionl',
       url: 'https://fractionl.ai',
       role: 'Build experiment',
@@ -95,8 +95,8 @@ export const portfolio: PortfolioContent = {
       plateOnLight: true,
     },
     {
-      name: 'Fractionl Circle',
-      description: 'Surface your existing network around your next idea.',
+      name: 'Fractionl: Circle',
+      description: 'Surface your existing network around your next revenue stream.',
       asset: 'fractionl',
       // Its own product at its own address. Circle came off the page in the
       // first place because it pointed at Pulse's URL, which made it look like
