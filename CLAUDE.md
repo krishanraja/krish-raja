@@ -7,8 +7,8 @@ Guidance for Claude Code and any other agent working in this repo.
 krishraja.com, the personal site of Krish Raja. It is a **portfolio site**. Its job is proof:
 what he has built, what he is building, and what he publishes.
 
-It is not a shop. There is exactly one thing he sells (Mindmaker) and it is sold somewhere
-else, on themindmaker.ai.
+It is not a shop. There is exactly one thing he sells (Mindmake) and it is sold somewhere
+else, on themindmaker.ai until mindmake.co resolves.
 
 ## Stack
 
@@ -129,7 +129,8 @@ const DOMAINS_LIVE = false;   // flip when mindmake.co resolves, then `npm run g
 ```
 
 Everything reads from `hosts`, so the switch is one line and `npm run links:check` proves the
-side you are on actually resolves. A test fails the build if half the URLs flip.
+side you are on actually resolves. It earns that on real runs: it caught
+`mediaradar.com/signal-and-noise` returning 404. A test fails the build if half the URLs flip.
 
 **The contact address is deliberately not part of that switch.** `krish@themindmaker.ai`
 stays forever, by Krish's decision. It is in FACTS.md. Do not "fix" it to match the brand.
@@ -221,7 +222,7 @@ Three things must never differ across krishraja.com, LinkedIn and themindmaker.a
 
 1. The cluster, word for word: `content, media and IP businesses`
 2. Every number in `project-documentation/FACTS.md`
-3. What Mindmaker is: **a capped advisory practice**. Not a startup, not a lab, not a
+3. What Mindmake is: **a capped advisory practice**. Not a startup, not a lab, not a
    consultancy.
 
 Everything else varies by surface.
@@ -338,7 +339,7 @@ These are not oversights. Each was removed on purpose and must not come back.
 - **"AI Decision Cohort", "Signal Session", "Revenue Architecture".** Retired names. They
   must never reappear in this repo.
 - **"Techonomic" and "The Builder Economy" as standalone channels.** Both folded into
-  Mindmaker Live. Both domains are dead.
+  Mindmake Content. Both domains are dead.
 - **"Operator-advisor" as the primary self-description.** Superseded by the spine
   sentence.
 - **Any client name or dollar figure against the advisory work.** AdFixus, Meliora, the

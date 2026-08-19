@@ -117,22 +117,22 @@ const LivePortfolio = () => (
       {/* The primary block. One brand, three arms inside its border, so the
           hierarchy is the layout rather than something the copy has to claim. */}
       <div className="rounded-2xl border border-border/60 bg-card/50 p-6 shadow-sm backdrop-blur-sm md:p-8">
-        <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <div className={`rounded-lg p-1.5 ${plate(portfolio.primary as never)}`}>
+        {/* The wordmark is the name, so there is no heading under it repeating
+            it in type. A 5.9:1 mark also cannot live in the small square tile
+            the other logos use; at max-w-[9rem] it came out 144x24. */}
+        <div className="mb-6 flex flex-col items-center gap-4 text-center">
+          <div className={`rounded-lg px-3 py-2 ${plate(portfolio.primary)}`}>
             <img
               src={asset(portfolio.primary.asset)}
-              alt={`${portfolio.primary.name} logo`}
+              alt={portfolio.primary.name}
               loading="lazy"
               decoding="async"
-              className="h-12 w-auto max-w-[9rem] object-contain dark:brightness-110"
+              className="h-9 w-auto max-w-[17rem] object-contain"
             />
           </div>
-          <div>
-            <h3 className="headline-md text-2xl font-semibold">{portfolio.primary.name}</h3>
-            <p className="mx-auto mt-1 max-w-xl text-sm text-muted-foreground">
-              {portfolio.primary.description}
-            </p>
-          </div>
+          <p className="mx-auto max-w-xl text-sm text-muted-foreground">
+            {portfolio.primary.description}
+          </p>
         </div>
 
         <div className="grid gap-3 md:grid-cols-3">

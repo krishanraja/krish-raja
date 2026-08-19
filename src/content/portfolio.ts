@@ -19,12 +19,6 @@ import { site } from './site';
  * URL and one line of its own before it can ship. Its mark is solved, because
  * it shares the Fractionl one already here. Uncomment and fill the two fields.
  *
- * TODO(krish): Full Time has its mark and no public page yet, so it renders
- * unlinked. Send a URL and it becomes a link with no other change.
- *
- * TODO(krish): the Mindmake mark itself is still the old Mindmaker icon. It is
- * the one place the retired brand is still visible, and it is deliberate rather
- * than missed. Drop a new mark in src/assets/ and point `asset` at it.
  */
 export const portfolio: PortfolioContent = {
   id: 'portfolio',
@@ -36,7 +30,10 @@ export const portfolio: PortfolioContent = {
     name: 'Mindmake',
     description:
       'Helping leaders amplify their expertise with AI to make the next million dollar decision.',
-    asset: 'mindmaker',
+    asset: 'mindmake',
+    // The wordmark runs near-black to mint, so the first four letters vanish on
+    // a dark card. Same flag, same reason, as the other gradient marks here.
+    plateOnDark: true,
     url: site.links.mindmake,
     branches: [
       {
@@ -89,6 +86,7 @@ export const portfolio: PortfolioContent = {
       name: 'Full Time',
       description: 'An interactive AI football podcast.',
       asset: 'full-time',
+      url: 'https://fulltime.fm',
       role: 'Build experiment',
       isBeta: true,
       plateOnLight: true,

@@ -3,7 +3,7 @@
 The personal site of Krish Raja. A portfolio site: what he has built, what he is building,
 and what he publishes.
 
-There is exactly one thing sold here, Mindmaker, and it is sold on
+There is exactly one thing sold here, Mindmake, and it is sold on
 [themindmaker.ai](https://themindmaker.ai) rather than on this site. No prices appear in
 this repo.
 
@@ -37,7 +37,9 @@ npm run build      # regenerates static artifacts, then builds to dist/
 npm run preview    # serve the production build
 npm run lint
 npm test           # includes the positioning consistency suite
+npm run typecheck  # tsc -b. Plain `tsc --noEmit` checks nothing here
 npm run mobile:check   # drives a real browser at four phone sizes, needs a server on :4173
+npm run links:check    # requests every external URL in the content layer
 npm run generate   # regenerate meta, JSON-LD, llms.txt, sitemap.xml, webmanifest
 npm run media      # rebuild public/media/ from the masters in public/files/ (slow)
 ```
@@ -51,13 +53,13 @@ npm run media      # rebuild public/media/ from the masters in public/files/ (sl
 | `site.ts` | Name, spine sentence, meta, canonical URL, email, socials |
 | `hero.ts` | H1, sub, CTAs, trust logos |
 | `operate.ts` | "How I operate": sub and the four cards |
-| `os.ts` | The four Mindmaker OS recordings |
+| `os.ts` | The four Mindmake OS recordings |
 | `deck.ts` | The slide deck: which slides, and which talk each came from |
 | `appearances.ts` | Selected work, tied to the content-index manifest |
-| `portfolio.ts` | Every portfolio item, one flat list |
+| `portfolio.ts` | The Mindmake block, its three branches, and the secondary shelf |
 | `receipts.ts` | Stat cards, the anonymized advisory entry, credentials, journey |
 | `lessons.ts` | Maven lightning lessons |
-| `contact.ts` | The four ways in, including the Mindmaker link the old offer card held |
+| `contact.ts` | The four ways in, including the Mindmake link the old offer card held |
 | `nav.ts` | Navigation and footer labels |
 
 Every module is annotated with its type from `src/content/types.ts`, so a missing field is

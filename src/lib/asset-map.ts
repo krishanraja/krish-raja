@@ -12,16 +12,16 @@ import singtel from '@/assets/singtel_logo.png';
 import bbc from '@/assets/bbc_logo.png';
 import microsoft from '@/assets/microsoft_logo.png';
 
-import mindmaker from '@/assets/mindmaker-icon.png';
-// Both marks are light gradients on transparency, drawn for a dark background,
-// so both carry plateOnLight in portfolio.ts. Supplied on 12 Aug 2026 with more
-// than half the canvas empty; cropped to the content box so `h-12` sizes the
-// glyphs rather than the padding around them.
+import mindmake from '@/assets/mindmake-wordmark.png';
+// Every mark below is a gradient on transparency, so each carries a plate flag
+// in portfolio.ts saying which mode it disappears in: plateOnLight for the ones
+// drawn light, plateOnDark for the Mindmake wordmark, which runs the other way.
+// All were supplied with padding baked into the canvas and are cropped to their
+// content box, so a height class sizes the glyphs rather than the empty space.
 import fractionl from '@/assets/fractionl-pulse-mark.png';
 import ctrl from '@/assets/ctrl-wordmark.png';
 import fullTime from '@/assets/full-time-mark.png';
 import signalAndNoise from '@/assets/signal-and-noise-logo.png';
-import mindmakerLive from '@/assets/mindmaker-live-logo.png';
 
 
 // podcast-tile and give-it-a-nudge came out on 12 Aug 2026. Both had been
@@ -46,12 +46,11 @@ const assets: Record<string, string> = {
   bbc,
   microsoft,
 
-  mindmaker,
+  mindmake,
   fractionl,
   ctrl,
   'full-time': fullTime,
   'signal-and-noise': signalAndNoise,
-  'mindmaker-live': mindmakerLive,
 
   'masters-thesis': mastersThesis,
 

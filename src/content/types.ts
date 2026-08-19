@@ -229,8 +229,11 @@ export interface PortfolioContent extends SectionHeader {
   readonly primary: {
     readonly name: string;
     readonly description: string;
+    /** A wordmark, not an icon, so both trees give it a line of its own. */
     readonly asset: string;
     readonly url: string;
+    readonly plateOnDark?: boolean;
+    readonly plateOnLight?: boolean;
     readonly branches: readonly PortfolioBranch[];
   };
   readonly secondaryHeading: string;

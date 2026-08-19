@@ -104,22 +104,22 @@ const SecondaryTile = ({ business }: { business: PortfolioItem }) => {
 const MobilePortfolio = () => (
   <MobileSection id={portfolio.id} title={portfolio.title} intro={portfolio.sub}>
     <div className="rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
-      <div className="mb-3 flex items-center gap-3">
-        <div className={`flex h-11 w-14 flex-shrink-0 items-center justify-center rounded-lg p-1 ${plate(portfolio.primary as never)}`}>
+      {/* A row of its own. In the 56px tile the other logos use, a 5.9:1
+          wordmark renders about nine pixels tall. The wordmark is the name, so
+          nothing repeats it in type underneath. */}
+      <div className="mb-3">
+        <span className={`mb-2 inline-block rounded-lg px-2 py-1.5 ${plate(portfolio.primary)}`}>
           <img
             src={asset(portfolio.primary.asset)}
-            alt={`${portfolio.primary.name} logo`}
+            alt={portfolio.primary.name}
             loading="lazy"
             decoding="async"
-            className="max-h-full max-w-full w-auto object-contain dark:brightness-110"
+            className="h-6 w-auto object-contain"
           />
-        </div>
-        <div className="min-w-0">
-          <h3 className="mobile-h3 text-foreground">{portfolio.primary.name}</h3>
-          <p className="text-[12px] leading-snug text-muted-foreground">
-            {portfolio.primary.description}
-          </p>
-        </div>
+        </span>
+        <p className="text-[12.5px] leading-snug text-muted-foreground">
+          {portfolio.primary.description}
+        </p>
       </div>
 
       <ul className="space-y-2">

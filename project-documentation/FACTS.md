@@ -24,7 +24,7 @@ them disagrees across surfaces.
 | Maven students | 4,000+ | Krish, 12 Aug 2026. An earlier source said 100+; that figure is retired. |
 | B&T 30 Under 30 | Strategy, 2017 | Verified independently by B&T, per the content index. The Marketing and Media reading is retired. |
 | Microsoft UK | automated media campaigns deployed in 2010 | Same |
-| Mindmaker OS | 14 agents, 45 workflows, in production, licensed to three businesses | Same |
+| Mindmake OS | 14 agents, 45 workflows, in production, licensed to three businesses | Same |
 | AdFixus POC | $254K, contracted with a major US publisher | Same. **The client is never named.** See below. |
 
 ## Named engagements
@@ -82,7 +82,7 @@ Those counts are recorded here and are **not published**. The strip carries logo
 line, `Attendees from household name businesses learn with me`, which is exactly what one
 attendee supports. Do not upgrade the wording to clients, customers, partners, teams
 trained, companies worked with, or anything implying a commercial relationship. None of
-these is a client of Mindmaker.
+these is a client of Mindmake.
 
 Four of the observed email domains are not the brand's primary domain, and the marks are
 sourced from the primary: BMW registered on `bmwna.com`, American Express on `aexp.com`,
@@ -125,12 +125,12 @@ the secondary shelf rather than beside the Mindmake pillars.
 
 Still outstanding, and not invented in the meantime:
 
-- Marks for **Mindmake** itself, **The Money of AI** and **Building with AI**. The primary
-  card still shows the old Mindmaker icon; that is the one place the retired brand is
-  visible on purpose.
-- A URL and one line for **Full Time**, which currently renders unlinked, and the same for
-  **Fractionl Circle**, which is written and commented out in `portfolio.ts`. Circle shares
-  the Fractionl mark, so only its copy is missing.
+- Marks for **The Money of AI** and **Building with AI**, the two Content formats. The
+  Mindmake wordmark arrived 19 August 2026 and is in; the old Mindmaker icon and the
+  Mindmaker Live logo are deleted, so no retired brand asset ships any more.
+- A URL and one line for **Fractionl Circle**, which is written and commented out in
+  `portfolio.ts`. Circle shares the Fractionl mark, so only its copy is missing.
+- **Full Time** is resolved: `fulltime.fm`, verified 200 on 19 August 2026.
 
 ## Rules attached to specific facts
 
