@@ -356,8 +356,11 @@ These are not oversights. Each was removed on purpose and must not come back.
   suite fails if any of those strings returns.
 - **A "Work with me" section, and a nav or hero CTA by that name.** Folded into Contact.
 - **Portfolio tabs.** Advise, Build work and Write were three tabs of three cards. One
-  flat grid now. Fractionl Circle came off with them: same brand, same logo and the same
-  URL as Fractionl Pulse.
+  flat grid now. Fractionl Circle came off with them, because it pointed at Pulse's URL
+  and so read as one product listed twice. It went back on 19 August 2026 with an address
+  of its own, `circle.fractionl.ai`, which is what that objection was actually about. The
+  two still share the Fractionl mark, so the shelf orders them next to each other: split
+  apart, one mark on two cards reads as a rendering fault rather than a brand family.
 - **A count chip on any "How I operate" card.** The Operating System card carried one and
   its three neighbours did not, so one of four read as a different component.
 - **Section eyebrows, and any mobile-only heading.** See "One section, one set of words".

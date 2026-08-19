@@ -182,7 +182,7 @@ const LivePortfolio = () => (
         <p className="mb-3 text-center text-xs uppercase tracking-widest text-muted-foreground">
           {portfolio.secondaryHeading}
         </p>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {portfolio.secondary.map((b) => (
             <SecondaryCard key={b.name} business={b} />
           ))}

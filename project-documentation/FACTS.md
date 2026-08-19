@@ -146,11 +146,17 @@ Two things about the format wordmarks, because both are easy to get wrong again:
   inverting would change the brand colors. The plate is 90% white rather than white, which
   is the difference between a chip and a spotlight on a dark card.
 
-Still outstanding, and not invented in the meantime:
+Both secondary URLs are resolved, verified 200 on 19 August 2026:
 
-- A URL and one line for **Fractionl Circle**, which is written and commented out in
-  `portfolio.ts`. Circle shares the Fractionl mark, so only its copy is missing.
-- **Full Time** is resolved: `fulltime.fm`, verified 200 on 19 August 2026.
+- **Full Time**, `fulltime.fm`.
+- **Fractionl Circle**, `circle.fractionl.ai`, with the line
+  `Surface your existing network around your next idea.` Krish, 19 August 2026. It is a
+  separate product from Fractionl Pulse and serves a separate page: Pulse is market
+  intelligence on fractional supply and demand, Circle is network recall. They share the
+  Fractionl mark and nothing else, which is why the shelf puts them side by side.
+
+Nothing on the portfolio is outstanding. The only open item in this file is the agent
+count in the OS recording, below.
 
 ## Rules attached to specific facts
 

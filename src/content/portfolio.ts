@@ -8,17 +8,12 @@ import { site } from './site';
  * CTRL, Mindmaker Live and Signal & Noise, all the same size on one row. Five
  * peers is a statement that the five things carry equal weight, which is the
  * opposite of the consolidation Krish is doing. Mindmake is the focus; CTRL and
- * Content are arms of it, so they sit inside it. Fractionl Pulse, Full Time and
- * Signal & Noise are real work and stay on the page one tier down, because this
- * is the only place on the site they appear at all.
+ * Content are arms of it, so they sit inside it. Signal & Noise, the two
+ * Fractionl products and Full Time are real work and stay on the page one tier
+ * down, because this is the only place on the site they appear at all.
  *
  * Meliora and AdFixus are still off entirely. The advisory engagements are not
  * named on this site; the receipts section carries the same work anonymized.
- *
- * TODO(krish): Fractionl Circle is written below and commented out. It needs a
- * URL and one line of its own before it can ship. Its mark is solved, because
- * it shares the Fractionl one already here. Uncomment and fill the two fields.
- *
  */
 export const portfolio: PortfolioContent = {
   id: 'portfolio',
@@ -65,6 +60,11 @@ export const portfolio: PortfolioContent = {
     ],
   },
 
+  /**
+   * Order matters here, and only for one reason: Pulse and Circle are the same
+   * brand and share the Fractionl mark, so they sit next to each other. Split
+   * apart they read as one card rendered twice rather than two products.
+   */
   secondaryHeading: 'Also building',
   secondary: [
     {
@@ -77,6 +77,15 @@ export const portfolio: PortfolioContent = {
       invertOnDark: true,
     },
     {
+      name: 'Full Time',
+      description: 'An interactive AI football podcast.',
+      asset: 'full-time',
+      url: 'https://fulltime.fm',
+      role: 'Build experiment',
+      isBeta: true,
+      plateOnLight: true,
+    },
+    {
       name: 'Fractionl Pulse',
       description: 'Live verified market intelligence on fractional supply and demand.',
       asset: 'fractionl',
@@ -86,22 +95,17 @@ export const portfolio: PortfolioContent = {
       plateOnLight: true,
     },
     {
-      name: 'Full Time',
-      description: 'An interactive AI football podcast.',
-      asset: 'full-time',
-      url: 'https://fulltime.fm',
+      name: 'Fractionl Circle',
+      description: 'Surface your existing network around your next idea.',
+      asset: 'fractionl',
+      // Its own product at its own address. Circle came off the page in the
+      // first place because it pointed at Pulse's URL, which made it look like
+      // one thing listed twice. It is not: Pulse is market intelligence, Circle
+      // is a network recall tool, and they share only the Fractionl mark.
+      url: 'https://circle.fractionl.ai',
       role: 'Build experiment',
       isBeta: true,
       plateOnLight: true,
     },
-    // {
-    //   name: 'Fractionl Circle',
-    //   description: 'TODO(krish): one line.',
-    //   asset: 'fractionl',
-    //   url: 'TODO(krish): a URL of its own, not Pulse\'s.',
-    //   role: 'Build experiment',
-    //   isBeta: true,
-    //   plateOnLight: true,
-    // },
   ],
 };
