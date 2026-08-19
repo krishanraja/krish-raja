@@ -139,6 +139,13 @@ The site is one primary block and a secondary shelf, not five peers. Mindmake br
 Advisory, CTRL and Content; Content has two formats, **The Money of AI** and **Building with
 AI**. Signal & Noise, Fractionl Pulse and Full Time sit one tier down under "Also building".
 
+The three branches share **one** mark, `mindmake-mark`, and differ only by `PortfolioBranch.mark`
+(`square` / `soft` / `round`), which is a CSS bottom-corner radius rather than three files.
+The mark's two bottom squares reach the edges of its own content box, so the radius clips
+exactly those and leaves the transparent top corners alone. Round all four and it eats the
+tall peak and the mark stops being the mark, which is the one thing not allowed to happen.
+They were three lucide glyphs until 19 Aug 2026; three arms of one brand now look like it.
+
 ## THE RULE: all copy lives in `src/content/`
 
 Every user-facing string is defined in `src/content/` exactly once, and referenced

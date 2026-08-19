@@ -3,7 +3,6 @@ import MobileSection from './MobileSection';
 import { portfolio } from '@/content';
 import { type PortfolioBranch, type PortfolioItem } from '@/content/types';
 import { asset } from '@/lib/asset-map';
-import { icon as resolveIcon } from '@/lib/icon-map';
 
 const plate = (b: { plateOnDark?: boolean; plateOnLight?: boolean }) =>
   b.plateOnDark
@@ -13,13 +12,30 @@ const plate = (b: { plateOnDark?: boolean; plateOnLight?: boolean }) =>
       : 'bg-muted/40';
 
 /**
+ * The three arms share one mark and differ only in how far its corners are cut.
+ *
+ * Not three files: the mark's two bottom squares reach the edges of its own
+ * content box, so a CSS radius clips exactly those and leaves the transparent
+ * top corners alone. Adjusting the family is a number here, not a re-export.
+ *
+ * Bottom corners only. The two squares are what reach the edges of the box, so
+ * that is where a radius does anything; rounding all four cut into the tall
+ * peak on the right and started turning the mark into a blob, which is the one
+ * thing that was not allowed to happen to it.
+ */
+const markRadius = {
+  square: 'rounded-none',
+  soft: 'rounded-b-[16%]',
+  round: 'rounded-b-[34%]',
+} as const;
+
+/**
  * One arm of Mindmake, as a tap row.
  *
  * A list, not a rail. Three destinations do not need a swipe, and nesting a
  * horizontal scroller inside a card is a good way to make neither gesture work.
  */
 const BranchRow = ({ branch }: { branch: PortfolioBranch }) => {
-  const Icon = resolveIcon(branch.icon);
   const Wrapper = branch.url ? 'a' : 'div';
 
   return (
@@ -27,9 +43,13 @@ const BranchRow = ({ branch }: { branch: PortfolioBranch }) => {
       {...(branch.url ? { href: branch.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
       className="mobile-tap-spring flex items-start gap-3 rounded-xl border border-border/60 bg-background/60 p-3"
     >
-      <span className="mt-0.5 flex-shrink-0 rounded-lg bg-primary/10 p-1.5">
-        <Icon className="h-4 w-4 text-primary" />
-      </span>
+      <img
+        src={asset('mindmake-mark')}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className={`mt-0.5 h-6 w-auto flex-shrink-0 ${markRadius[branch.mark]}`}
+      />
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <h4 className="text-[13.5px] font-semibold text-foreground">{branch.name}</h4>
@@ -69,7 +89,7 @@ const SecondaryTile = ({ business }: { business: PortfolioItem }) => {
       {...(business.url
         ? { href: business.url, target: '_blank', rel: 'noopener noreferrer' }
         : {})}
-      className="mobile-tap-spring flex min-h-[3.5rem] items-center gap-2.5 rounded-xl border border-border/60 bg-card p-2.5 shadow-sm"
+      className="mobile-tap-spring flex h-full min-h-[3.5rem] items-start gap-2.5 rounded-xl border border-border/60 bg-card p-2.5 shadow-sm"
     >
       <div className={`flex h-9 w-11 flex-shrink-0 items-center justify-center rounded-lg p-1 ${plate(business)}`}>
         <img
@@ -86,8 +106,8 @@ const SecondaryTile = ({ business }: { business: PortfolioItem }) => {
           to truncate "Fractionl Pulse" to "Fractionl P...", and the role line
           underneath already says Build experiment. */}
       <div className="min-w-0 flex-1">
-        <h4 className="truncate text-[12.5px] font-semibold text-foreground">{business.name}</h4>
-        <p className="truncate text-[10.5px] text-muted-foreground">{business.role}</p>
+        <h4 className="text-[12.5px] font-semibold leading-snug text-foreground">{business.name}</h4>
+        <p className="text-[10.5px] leading-snug text-muted-foreground">{business.role}</p>
       </div>
     </Wrapper>
   );

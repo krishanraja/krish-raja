@@ -13,6 +13,7 @@ import bbc from '@/assets/bbc_logo.png';
 import microsoft from '@/assets/microsoft_logo.png';
 
 import mindmake from '@/assets/mindmake-wordmark.png';
+import mindmakeMark from '@/assets/mindmake-mark.png';
 // Every mark below is a gradient on transparency, so each carries a plate flag
 // in portfolio.ts saying which mode it disappears in: plateOnLight for the ones
 // drawn light, plateOnDark for the Mindmake wordmark, which runs the other way.
@@ -47,6 +48,7 @@ const assets: Record<string, string> = {
   microsoft,
 
   mindmake,
+  'mindmake-mark': mindmakeMark,
   fractionl,
   ctrl,
   'full-time': fullTime,

@@ -5,7 +5,6 @@
  * plain Node, so it names icons by string rather than importing them.
  */
 import {
-  Brain,
   ArrowUpRight,
   Award,
   Bot,
@@ -39,7 +38,6 @@ const icons: Record<string, LucideIcon> = {
   'book-open': BookOpen,
   briefcase: Briefcase,
   'building-2': Building2,
-  brain: Brain,
   calendar: Calendar,
   compass: Compass,
   'file-text': FileText,

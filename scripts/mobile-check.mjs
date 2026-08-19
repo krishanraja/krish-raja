@@ -23,6 +23,34 @@ const check = (ok, label, detail = '') => {
   (ok ? passes : failures).push(detail ? `${label} (${detail})` : label);
 };
 
+/**
+ * Nothing in the portfolio may be clipped, on either tree.
+ *
+ * The Also Building cards used `truncate` and `line-clamp-1`, so a real
+ * sentence became "Conversations with operators on how AI is..." for every
+ * reader. The clamps are gone; this is what stops them coming back, and it
+ * catches the other direction too, a name overflowing a box that got narrower.
+ *
+ * Both trees, deliberately. The first version of this ran only on the phone
+ * profiles, which never render LivePortfolio, so it passed while the desktop
+ * card was still truncating: a guard that cannot fail is not a guard.
+ */
+const clippedText = (page) =>
+  page.evaluate(() => {
+    const bad = [];
+    const section = document.querySelector('section#portfolio');
+    if (!section) return ['no portfolio section'];
+    for (const el of section.querySelectorAll('h3, h4, p, span')) {
+      if (el.children.length > 0) continue;
+      const text = (el.textContent ?? '').trim();
+      if (!text) continue;
+      if (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1) {
+        bad.push(`${el.tagName.toLowerCase()} "${text.slice(0, 30)}"`);
+      }
+    }
+    return bad;
+  });
+
 const browser = await chromium.launch({ executablePath: EXECUTABLE });
 
 /** Every profile that must land on the mobile tree. */
@@ -136,6 +164,13 @@ for (const [name, profile] of phones) {
   });
   check(tall.length === 0, `${name}: no section outruns its height budget`, tall.join('; '));
 
+  const clipped = await clippedText(page);
+  check(
+    clipped.length === 0,
+    `${name}: no clipped text in the portfolio`,
+    clipped.slice(0, 3).join('; '),
+  );
+
   // The dock is orientation, not a page. One row, nothing scrolling sideways.
   const dock = await page.evaluate(() => {
     const el = document.querySelector('[role="navigation"][aria-label]');
@@ -205,6 +240,14 @@ await laptopPage.waitForTimeout(600);
 check(
   await laptopPage.evaluate(() => document.body.dataset.mobileSnap !== 'true'),
   'Desktop 1440: keeps the desktop tree',
+);
+await laptopPage.evaluate(() => document.querySelector('section#portfolio')?.scrollIntoView());
+await laptopPage.waitForTimeout(400);
+const laptopClipped = await clippedText(laptopPage);
+check(
+  laptopClipped.length === 0,
+  'Desktop 1440: no clipped text in the portfolio',
+  laptopClipped.slice(0, 3).join('; '),
 );
 await laptop.close();
 

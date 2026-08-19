@@ -3,7 +3,6 @@ import { ExternalLink } from 'lucide-react';
 import { portfolio } from '@/content';
 import { type PortfolioBranch, type PortfolioItem } from '@/content/types';
 import { asset } from '@/lib/asset-map';
-import { icon as resolveIcon } from '@/lib/icon-map';
 
 /**
  * The plate behind a mark.
@@ -19,9 +18,26 @@ const plate = (business: { plateOnDark?: boolean; plateOnLight?: boolean }) =>
       ? 'bg-foreground px-2.5 dark:bg-white/10 dark:px-1.5'
       : 'bg-white/0 dark:bg-white/10';
 
+/**
+ * The three arms share one mark and differ only in how far its corners are cut.
+ *
+ * Not three files: the mark's two bottom squares reach the edges of its own
+ * content box, so a CSS radius clips exactly those and leaves the transparent
+ * top corners alone. Adjusting the family is a number here, not a re-export.
+ *
+ * Bottom corners only. The two squares are what reach the edges of the box, so
+ * that is where a radius does anything; rounding all four cut into the tall
+ * peak on the right and started turning the mark into a blob, which is the one
+ * thing that was not allowed to happen to it.
+ */
+const markRadius = {
+  square: 'rounded-none',
+  soft: 'rounded-b-[16%]',
+  round: 'rounded-b-[34%]',
+} as const;
+
 /** One arm of Mindmake, inside the primary card. */
 const Branch = ({ branch }: { branch: PortfolioBranch }) => {
-  const Icon = resolveIcon(branch.icon);
   const Wrapper = branch.url ? 'a' : 'div';
 
   return (
@@ -32,9 +48,15 @@ const Branch = ({ branch }: { branch: PortfolioBranch }) => {
       }`}
     >
       <div className="mb-2 flex items-center gap-2">
-        <span className="rounded-lg bg-primary/10 p-1.5">
-          <Icon className="h-4 w-4 text-primary" />
-        </span>
+        {/* No plate. The mark carries its own colour, and a mint gradient on
+            the blue tile the lucide glyphs used clashed with it. */}
+        <img
+          src={asset('mindmake-mark')}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={`h-7 w-auto flex-shrink-0 ${markRadius[branch.mark]}`}
+        />
         <h4 className="text-sm font-semibold text-foreground">{branch.name}</h4>
         {branch.url && (
           <ExternalLink className="ml-auto h-3 w-3 flex-shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
@@ -66,7 +88,9 @@ const SecondaryCard = ({ business }: { business: PortfolioItem }) => {
       {...(business.url
         ? { href: business.url, target: '_blank', rel: 'noopener noreferrer' }
         : {})}
-      className={`group flex items-center gap-3 rounded-xl border border-border/50 bg-card/50 p-3 transition-all duration-200 ${
+      // items-start and h-full: the name and description wrap now rather than
+      // truncating, so the mark must stay put and short cards must not float.
+      className={`group flex h-full items-start gap-3 rounded-xl border border-border/50 bg-card/50 p-3 transition-all duration-200 ${
         business.url ? 'hover:border-primary/40 hover:shadow-md' : ''
       }`}
     >
@@ -82,8 +106,8 @@ const SecondaryCard = ({ business }: { business: PortfolioItem }) => {
         />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-1.5">
-          <h4 className="truncate text-sm font-semibold text-foreground">{business.name}</h4>
+        <div className="flex flex-wrap items-center gap-x-1.5">
+          <h4 className="text-sm font-semibold text-foreground">{business.name}</h4>
           {business.isBeta && (
             <Badge className="border-amber-500/30 bg-amber-500/20 px-1.5 py-0 text-[9px] leading-4 text-amber-600 dark:text-amber-400">
               {portfolio.betaBadge}
@@ -94,7 +118,7 @@ const SecondaryCard = ({ business }: { business: PortfolioItem }) => {
           )}
         </div>
         <p className="text-[11px] font-medium text-primary/80">{business.role}</p>
-        <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">{business.description}</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">{business.description}</p>
       </div>
     </Wrapper>
   );

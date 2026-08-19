@@ -203,12 +203,20 @@ export interface PortfolioItem {
   readonly plateOnLight?: boolean;
 }
 
-/** One arm of Mindmake. Advisory, the product, the channel. */
+/**
+ * One arm of Mindmake. Advisory, the product, the channel.
+ *
+ * `mark` is a corner-radius variant of the one Mindmake mark, not three
+ * separate files: the mark's two bottom squares reach the edges of its own
+ * content box, so a CSS radius clips exactly those corners and the transparent
+ * top corners are unaffected. Three arms of one brand should look like three
+ * arms of one brand, which is why they are not three different glyphs.
+ */
 export interface PortfolioBranch {
   readonly name: string;
   readonly role: string;
   readonly description: string;
-  readonly icon: string;
+  readonly mark: 'square' | 'soft' | 'round';
   readonly url?: string;
   /** Named formats, for the Content branch. Rendered as chips. */
   readonly formats?: readonly string[];

@@ -42,10 +42,13 @@ const results = await Promise.all(
       if (res.status === 405 || res.status === 403) {
         res = await fetch(url, { method: 'GET', redirect: 'follow', signal: AbortSignal.timeout(20000) });
       }
-      // LinkedIn answers bots with 999 and some publishers with 403. Neither
-      // is a dead link, and failing on them would train everyone to ignore
-      // this script, which is how a real 404 gets through.
-      const blocked = res.status === 999 || res.status === 403 || res.status === 429;
+      // LinkedIn answers bots with 999 and some publishers with 403, 429 or,
+      // under load, 503. None is a dead link: marketingmag.com.au returns 403
+      // to a full Chrome user agent on every attempt, so its occasional 503 is
+      // the same WAF, not an outage. Failing on these would train everyone to
+      // ignore this script, which is how a real 404 gets through. They are
+      // still printed, on their own line, so a host that truly dies is visible.
+      const blocked = [999, 403, 429, 503].includes(res.status);
       return { url, where, status: res.status, ok: res.ok || blocked, blocked };
     } catch (err) {
       return { url, where, status: err.name === 'TimeoutError' ? 'timeout' : 'unreachable', ok: false };
@@ -55,7 +58,7 @@ const results = await Promise.all(
 
 const bad = results.filter((r) => !r.ok);
 for (const r of results.filter((r) => r.ok && !r.blocked)) console.log(`  ok    ${r.status}  ${r.url}`);
-for (const r of results.filter((r) => r.blocked)) console.log(`  bot   ${r.status}  ${r.url}  (blocked, not dead)`);
+for (const r of results.filter((r) => r.blocked)) console.log(`  bot   ${r.status}  ${r.url}  (blocked, not confirmed dead)`);
 for (const r of bad) console.error(`  FAIL  ${r.status}  ${r.url}\n          referenced by ${r.where.join(', ')}`);
 
 const blockedCount = results.filter((r) => r.blocked).length;
