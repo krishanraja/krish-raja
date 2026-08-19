@@ -85,6 +85,13 @@ painted pixels, which the root zoom inflates by 2.45; the offsets are layout pix
 is the unit a thumb actually experiences. Two budget checks silently passed against the
 wrong unit before this was noticed.
 
+It also prints a `near` line for any section within 5% of the height budget. The portfolio
+went from comfortable to 962px on an iPhone SE the moment a section intro grew by one
+sentence, and the run before that gave no hint it was close. A guard that only speaks at
+the moment of breach makes every breach a surprise. The SE is where this shows up first:
+it lays out at **320px**, so the same section that measures 777px on a Pixel 7 measures
+940px there, entirely in wrapping.
+
 It exists because on 12 August 2026 the build was green, the unit suite was green, and the
 phone was serving the desktop tree at 40% scale under a marquee animating four logos that
 already fit on screen. None of that is expressible as an assertion about the content
@@ -361,6 +368,9 @@ These are not oversights. Each was removed on purpose and must not come back.
   of its own, `circle.fractionl.ai`, which is what that objection was actually about. The
   two still share the Fractionl mark, so the shelf orders them next to each other: split
   apart, one mark on two cards reads as a rendering fault rather than a brand family.
+  **Each card links to its own product, not to `fractionl.ai`.** That is the parent site
+  and mentions neither by name, so a reader who tapped Pulse used to land somewhere that
+  did not have Pulse on it. `pulse.fractionl.ai` and `circle.fractionl.ai`, both verified.
 - **A count chip on any "How I operate" card.** The Operating System card carried one and
   its three neighbours did not, so one of four read as a different component.
 - **Section eyebrows, and any mobile-only heading.** See "One section, one set of words".

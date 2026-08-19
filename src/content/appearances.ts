@@ -135,6 +135,15 @@ export const appearances: AppearancesContent = {
       media: '/media/appearances/cannes-lions-2026-day-3.webp',
     },
     {
+      appearanceId: 'alanna-laforet-hacker-mentality',
+      title: 'Developing a hacker mentality with Alanna Laforet',
+      outlet: 'Signal & Noise',
+      kind: 'podcast',
+      year: '2026',
+      href: 'https://www.signalandnoise.ai/post/alanna-laforet-developing-a-hacker-mentality-to-take-control-of-your-career-journey',
+      media: '/media/appearances/alanna-laforet-hacker-mentality.webp',
+    },
+    {
       appearanceId: 'cannes-live-justin-kramm',
       title: 'Cannes Live with Justin Kramm',
       outlet: 'Signal & Noise',

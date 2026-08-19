@@ -51,6 +51,13 @@ section is the strongest external evidence this repo has, and it cuts both ways.
   Adobe Symposium keynote, Adobe's own release identifies the venue.
 
 
+**Signal & Noise episodes are an owned surface, and the index records them as one.**
+Krish hosts the show, so a record like `alanna-laforet-hacker-mentality` is evidence that
+the episode exists and that he made it. It is not third-party validation of anything about
+him, and a growing list of them is not growing external evidence. The same is true of the
+Cannes compilations. They are on the site because the work is real and this is the only
+place it appears, not because anyone else vouched for it.
+
 **It does not verify, and these are load-bearing:**
 
 - **UNVERIFIED EXTERNALLY: the $9M to $61M figure is first-party only.** Every other
@@ -146,9 +153,11 @@ Two things about the format wordmarks, because both are easy to get wrong again:
   inverting would change the brand colors. The plate is 90% white rather than white, which
   is the difference between a chip and a spotlight on a dark card.
 
-Both secondary URLs are resolved, verified 200 on 19 August 2026:
+Every secondary URL is resolved, verified 200 on 19 August 2026:
 
 - **Full Time**, `fulltime.fm`.
+- **Fractionl Pulse**, `pulse.fractionl.ai`. It pointed at `fractionl.ai` until 19 August
+  2026, which is the parent site and does not mention Pulse; Krish moved it to the product.
 - **Fractionl Circle**, `circle.fractionl.ai`, with the line
   `Surface your existing network around your next idea.` Krish, 19 August 2026. It is a
   separate product from Fractionl Pulse and serves a separate page: Pulse is market

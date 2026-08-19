@@ -125,8 +125,8 @@ const SelectedWork = ({ layout = 'rows' }: { layout?: Layout }) => {
    * Sorted here rather than in appearances.ts so the data file can stay grouped
    * by what it means (the flagship set, then the rest of the index) while the
    * page shows what a visitor wants, which is the most recent thing he did.
-   * Two entries carry no year: the Kroll podcast and the Captify hire
-   * announcement, neither of which the content index dates.
+   * One entry carries no year, the Captify hire announcement, which the content
+   * index does not date. It sorts last.
    */
   const matching = useMemo(() => {
     const year = (v?: string) => (v ? Number(v) : -1);

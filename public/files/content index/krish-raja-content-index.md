@@ -573,6 +573,26 @@ source_urls:
 quality_note: The video and Kroll context are visible. Preserve the caveat that the page title says “Krishna Raja” while the description identifies Krish Raja.
 ```
 
+### 34. Signal & Noise: Alanna Laforet
+
+```yaml
+appearance_id: alanna-laforet-hacker-mentality
+year: 2026
+content_type: owned_podcast_episode
+verification: verified_owned_surface
+screenshot_status: approved
+quality_score: 5
+screenshot_filename: content-index-alanna-laforet-hacker-mentality.png
+screenshot_public_path: /files/content%20index/content-index-alanna-laforet-hacker-mentality.png
+capture_source: https://www.signalandnoise.ai/post/alanna-laforet-developing-a-hacker-mentality-to-take-control-of-your-career-journey
+source_urls:
+  - https://www.signalandnoise.ai/post/alanna-laforet-developing-a-hacker-mentality-to-take-control-of-your-career-journey
+quality_note: The episode artwork from the post itself, supplied by Krish on 19 Aug 2026 and
+  confirmed identical to the page's own og:image, so the capture and the evidence are the
+  same file. Square rather than the 1280x720 the other records use. The post carries
+  datePublished 2026-07-22, which is where the year comes from.
+```
+
 ## Completed search-gap status
 
 1. **Amobee — verified.** LiveRamp and IAB identify Krish in his Amobee product-and-platform role; Captify independently confirms the tenure. Use `liveramp-online-identity-panel`, `iab-connected-tv-handbook`, and `captify-hire-announcement`.

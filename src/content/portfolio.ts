@@ -89,7 +89,10 @@ export const portfolio: PortfolioContent = {
       name: 'Fractionl: Pulse',
       description: 'Live verified market intelligence on fractional supply and demand.',
       asset: 'fractionl',
-      url: 'https://fractionl.ai',
+      // The product, not the parent company. This pointed at fractionl.ai, which
+      // is the Fractionl umbrella site: a reader who clicked the Pulse card
+      // landed somewhere that does not mention Pulse.
+      url: 'https://pulse.fractionl.ai',
       role: 'Build experiment',
       isBeta: true,
       plateOnLight: true,

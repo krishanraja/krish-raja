@@ -41,7 +41,7 @@ const BranchRow = ({ branch }: { branch: PortfolioBranch }) => {
   return (
     <Wrapper
       {...(branch.url ? { href: branch.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
-      className="mobile-tap-spring flex items-start gap-3 rounded-xl border border-border/60 bg-background/60 p-3"
+      className="mobile-tap-spring flex items-start gap-3 rounded-xl border border-border/60 bg-background/60 p-2.5"
     >
       <img
         src={asset('mindmake-mark')}
@@ -98,9 +98,9 @@ const SecondaryTile = ({ business }: { business: PortfolioItem }) => {
       {...(business.url
         ? { href: business.url, target: '_blank', rel: 'noopener noreferrer' }
         : {})}
-      className="mobile-tap-spring flex h-full min-h-[3.5rem] items-start gap-2.5 rounded-xl border border-border/60 bg-card p-2.5 shadow-sm"
+      className="mobile-tap-spring flex h-full min-h-[3rem] items-start gap-2 rounded-xl border border-border/60 bg-card p-2.5 shadow-sm"
     >
-      <div className={`flex h-9 w-11 flex-shrink-0 items-center justify-center rounded-lg p-1 ${plate(business)}`}>
+      <div className={`flex h-8 w-10 flex-shrink-0 items-center justify-center rounded-lg p-1 ${plate(business)}`}>
         <img
           src={asset(business.asset)}
           alt={`${business.name} logo`}
@@ -151,7 +151,7 @@ const MobilePortfolio = () => (
         </p>
       </div>
 
-      <ul className="space-y-2">
+      <ul className="space-y-1.5">
         {portfolio.primary.branches.map((b) => (
           <li key={b.name}>
             <BranchRow branch={b} />
@@ -160,7 +160,7 @@ const MobilePortfolio = () => (
       </ul>
     </div>
 
-    <p className="mb-2.5 mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+    <p className="mb-2 mt-4 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
       {portfolio.secondaryHeading}
     </p>
     <ul className="grid grid-cols-2 gap-2">

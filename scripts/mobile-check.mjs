@@ -19,6 +19,7 @@ const EXECUTABLE = process.env.CHROMIUM_PATH ?? '/opt/pw-browsers/chromium';
 
 const failures = [];
 const passes = [];
+const warnings = [];
 const check = (ok, label, detail = '') => {
   (ok ? passes : failures).push(detail ? `${label} (${detail})` : label);
 };
@@ -155,14 +156,27 @@ for (const [name, profile] of phones) {
   // is the same on an SE and a Pixel and only the wrapping differs. 950px is
   // roughly a screen and a bit on any phone: enough for a heading, an intro
   // and a list, and short of the multi-screen slog this is here to prevent.
-  const tall = await page.evaluate(() => {
+  const heights = await page.evaluate(() => {
     const BUDGET = 950;
-    return [...document.querySelectorAll('section[id]')]
-      .map((s) => ({ id: s.id, h: s.offsetHeight }))
-      .filter((s) => s.h > BUDGET)
-      .map((s) => `${s.id} ${s.h}px`);
+    const all = [...document.querySelectorAll('section[id]')].map((s) => ({
+      id: s.id,
+      h: s.offsetHeight,
+    }));
+    return {
+      over: all.filter((s) => s.h > BUDGET).map((s) => `${s.id} ${s.h}px of ${BUDGET}`),
+      near: all.filter((s) => s.h <= BUDGET && s.h > BUDGET * 0.95).map((s) => `${s.id} ${s.h}px`),
+    };
   });
-  check(tall.length === 0, `${name}: no section outruns its height budget`, tall.join('; '));
+  check(
+    heights.over.length === 0,
+    `${name}: no section outruns its height budget`,
+    heights.over.join('; '),
+  );
+  // Not a failure, a heads-up. The portfolio came within 10px of the budget on
+  // an SE the moment a section intro grew by a sentence, and the run before
+  // that gave no sign it was close. A guard that only speaks at the moment of
+  // breach makes every breach a surprise.
+  for (const n of heights.near) warnings.push(`${name}: ${n} is within 5% of the 950px budget`);
 
   const clipped = await clippedText(page);
   check(
@@ -254,6 +268,10 @@ await laptop.close();
 await browser.close();
 
 for (const p of passes) console.log(`  ok    ${p}`);
+for (const w of warnings) console.warn(`  near  ${w}`);
 for (const f of failures) console.error(`  FAIL  ${f}`);
-console.log(`\nmobile: ${passes.length} passed, ${failures.length} failed`);
+console.log(
+  `\nmobile: ${passes.length} passed, ${failures.length} failed` +
+    (warnings.length ? `, ${warnings.length} near the budget` : ''),
+);
 process.exit(failures.length ? 1 : 0);
