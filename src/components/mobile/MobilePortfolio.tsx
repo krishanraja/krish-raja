@@ -65,12 +65,21 @@ const BranchRow = ({ branch }: { branch: PortfolioBranch }) => {
         </p>
         {branch.formats && (
           <div className="mt-2 flex flex-wrap gap-1.5">
-            {branch.formats.map((f) => (
+          {branch.formats.map((f) => (
               <span
-                key={f}
-                className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-foreground"
+                key={f.name}
+                // A plate, because each wordmark runs dark at one end and mint at
+                // the other, so on the dark card half of each one is not there.
+                // Small on purpose: these name the formats, they do not headline.
+                className="inline-flex items-center rounded-full bg-muted px-2.5 py-1 dark:bg-white/90"
               >
-                {f}
+                <img
+                  src={asset(f.asset)}
+                  alt={f.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-4 w-auto"
+                />
               </span>
             ))}
           </div>

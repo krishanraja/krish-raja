@@ -57,7 +57,10 @@ export const portfolio: PortfolioContent = {
         description: 'What I publish, in two formats.',
         mark: 'round',
         url: site.links.content,
-        formats: ['The Money of AI', 'Building with AI'],
+        formats: [
+          { name: 'The Money of AI', asset: 'format-the-money-of-ai' },
+          { name: 'Building with AI', asset: 'format-building-with-ai' },
+        ],
       },
     ],
   },

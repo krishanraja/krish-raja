@@ -14,6 +14,10 @@ import microsoft from '@/assets/microsoft_logo.png';
 
 import mindmake from '@/assets/mindmake-wordmark.png';
 import mindmakeMark from '@/assets/mindmake-mark.png';
+// The two Content formats. Each runs dark at one end and mint at the other, so
+// each loses half its letters on a dark card and both sit on a plate.
+import formatMoney from '@/assets/format-the-money-of-ai.png';
+import formatBuilding from '@/assets/format-building-with-ai.png';
 // Every mark below is a gradient on transparency, so each carries a plate flag
 // in portfolio.ts saying which mode it disappears in: plateOnLight for the ones
 // drawn light, plateOnDark for the Mindmake wordmark, which runs the other way.
@@ -49,6 +53,8 @@ const assets: Record<string, string> = {
 
   mindmake,
   'mindmake-mark': mindmakeMark,
+  'format-the-money-of-ai': formatMoney,
+  'format-building-with-ai': formatBuilding,
   fractionl,
   ctrl,
   'full-time': fullTime,

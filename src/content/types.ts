@@ -218,8 +218,14 @@ export interface PortfolioBranch {
   readonly description: string;
   readonly mark: 'square' | 'soft' | 'round';
   readonly url?: string;
-  /** Named formats, for the Content branch. Rendered as chips. */
-  readonly formats?: readonly string[];
+  /**
+   * Named formats, for the Content branch. Rendered as wordmark chips.
+   *
+   * `name` is not decoration: it is the alt text, and it is what the consistency
+   * suite reads when it walks the content layer for prose. A chip that is only
+   * an image is a chip a screen reader and a grep both miss.
+   */
+  readonly formats?: readonly { readonly name: string; readonly asset: string }[];
 }
 
 /**

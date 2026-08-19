@@ -131,11 +131,23 @@ the secondary shelf rather than beside the Mindmake pillars.
 
 **Plinth is dead.** Retired forever, on the banned list, do not reintroduce.
 
+**The brand assets are complete.** The Mindmake wordmark, the mark the three arms share,
+and the two Content format wordmarks all arrived 19 August 2026. The old Mindmaker icon and
+the Mindmaker Live logo are deleted, so no retired brand asset ships any more.
+
+Two things about the format wordmarks, because both are easy to get wrong again:
+
+- **They arrived as 1200x630 canvases with about 567x136 of ink**, roughly 90% padding.
+  Sized by a CSS height, that padding is what gets sized and the letters come out a third
+  of the intended size. Both are cropped to their content box in `src/assets/`, which is
+  the same rule every other supplied mark in this repo follows.
+- **Each runs dark navy at one end and mint at the other**, so on the dark card the first
+  two or three words are not there. Both sit on a light plate rather than being inverted:
+  inverting would change the brand colors. The plate is 90% white rather than white, which
+  is the difference between a chip and a spotlight on a dark card.
+
 Still outstanding, and not invented in the meantime:
 
-- Marks for **The Money of AI** and **Building with AI**, the two Content formats. The
-  Mindmake wordmark arrived 19 August 2026 and is in; the old Mindmaker icon and the
-  Mindmaker Live logo are deleted, so no retired brand asset ships any more.
 - A URL and one line for **Fractionl Circle**, which is written and commented out in
   `portfolio.ts`. Circle shares the Fractionl mark, so only its copy is missing.
 - **Full Time** is resolved: `fulltime.fm`, verified 200 on 19 August 2026.
