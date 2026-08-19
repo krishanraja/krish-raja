@@ -49,7 +49,7 @@ section is the strongest external evidence this repo has, and it cuts both ways.
 - **B&T 30 Under 30, Strategy, 2017.** This is why the award is published again.
 - **The Sydney Opera House keynote**, by combined evidence: Marketing Mag identifies the
   Adobe Symposium keynote, Adobe's own release identifies the venue.
-- **Kroll**, with a naming caveat on one mirror that titles him "Krishna Raja".
+
 
 **It does not verify, and these are load-bearing:**
 
@@ -71,6 +71,14 @@ section is the strongest external evidence this repo has, and it cuts both ways.
   add a customer, a user count or an outcome for any of them.
 - **The Built podcast: no verified Krish Raja result.** A different person appears in
   search. Do not create content from it.
+- **Neither Kroll appearance is Krish.** The content index verified
+  `kroll-threat-modeling-podcast` because his name is in the episode title, and it listed
+  `kroll-cyber-resilience` with a caveat because that one says "Krishna Raja". Krish
+  confirmed on 19 August 2026 that the threat-modeling episode is not him, which means both
+  are the same other person, a security speaker. The record and its capture are deleted;
+  the Cyber Resilience record stays marked do-not-publish so a future search does not
+  rediscover it as a new find. **This is the one place the index got identity wrong, and it
+  got it wrong by matching a name.** Verification of a name is not verification of a person.
 
 ## Lightning Lessons attendee employers
 

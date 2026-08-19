@@ -554,23 +554,6 @@ source_urls:
 quality_note: Course title, Krish portrait, instructor name, and commercial-executive positioning are visible.
 ```
 
-### 32. Kroll: Bringing Developers into Your Threat Modeling Program
-
-```yaml
-appearance_id: kroll-threat-modeling-podcast
-content_type: podcast
-verification: verified
-screenshot_status: approved
-quality_score: 4
-screenshot_filename: content-index-kroll-threat-modeling-podcast.jpg
-screenshot_public_path: /files/content%20index/content-index-kroll-threat-modeling-podcast.jpg
-capture_source: https://podcasts.apple.com/ie/podcast/krish-raja-bringing-developers-into-your-threat-modeling/id1517485135?i=1000562896317
-source_urls:
-  - https://podcasts.apple.com/ie/podcast/krish-raja-bringing-developers-into-your-threat-modeling/id1517485135?i=1000562896317
-  - https://music.amazon.com.br/podcasts/0ef7f266-453c-420f-8218-2bd59a6f542b/episodes/b6e0966f-afd0-4159-8975-296d41a71ed1/the-balancing-act-by-security-compass-krish-raja---bringing-developers-into-your-threat-modeling-program
-quality_note: Correct episode title and Krish identity are visible; the platform page is text-led and audio-only.
-```
-
 ### 33. Kroll Cyber Resilience
 
 ```yaml

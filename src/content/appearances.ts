@@ -117,15 +117,6 @@ export const appearances: AppearancesContent = {
       media: '/media/appearances/ai-leadership-dothinkdo-webinar.webp',
     },
     {
-      appearanceId: 'make-ai-your-cofounder',
-      title: 'Make AI your co-founder',
-      outlet: 'Maven',
-      kind: 'talk',
-      year: '2026',
-      href: 'https://maven.com/p/0cc82a',
-      media: '/media/appearances/make-ai-your-cofounder.webp',
-    },
-    {
       appearanceId: 'dan-pratl-expertise-as-an-asset',
       title: 'Expertise as an asset',
       outlet: 'Dan Pratl',
@@ -133,14 +124,6 @@ export const appearances: AppearancesContent = {
       year: '2026',
       href: 'https://www.youtube.com/watch?v=dcD-G00RDcE',
       media: '/media/appearances/dan-pratl-expertise-as-an-asset.webp',
-    },
-    {
-      appearanceId: 'kroll-threat-modeling-podcast',
-      title: 'Bringing developers into your threat modeling program',
-      outlet: 'The Balancing Act, Security Compass',
-      kind: 'podcast',
-      href: 'https://podcasts.apple.com/ie/podcast/krish-raja-bringing-developers-into-your-threat-modeling/id1517485135?i=1000562896317',
-      media: '/media/appearances/kroll-threat-modeling-podcast.webp',
     },
     {
       appearanceId: 'cannes-lions-2026-day-3',
