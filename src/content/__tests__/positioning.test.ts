@@ -238,6 +238,45 @@ describe('structured data stays honest', () => {
   });
 });
 
+describe('the brand is Mindmake', () => {
+  // Renamed 12 Aug 2026. A bare substring ban would false-positive against the
+  // themindmaker.ai URLs that still ship while mindmake.co has no DNS record,
+  // so this checks prose only. `isProse` already drops href, url and asset keys.
+  it('no prose still says Mindmaker', () => {
+    const stale = prose.filter((s) => /\bMindmaker\b/.test(s.value));
+    expect(stale.map((s) => `${s.path}: ${s.value.slice(0, 60)}`)).toEqual([]);
+  });
+
+  it('the generated artifacts carry the new name', () => {
+    for (const artifact of [indexHtml, llmsTxt]) {
+      expect(artifact).toContain('Mindmake');
+      // The URLs are allowed to say themindmaker.ai. The prose is not.
+      expect(artifact.replace(/https?:\/\/[^\s"'<)]+/g, '')).not.toMatch(/\bMindmaker\b/);
+    }
+  });
+
+  it('the link switch and the shipped URLs agree', () => {
+    // DOMAINS_LIVE in site.ts picks one set or the other. Shipping a mixture
+    // means one of them is a 404, so the two must never both appear.
+    const urls = [site.links.mindmake, site.links.content, site.links.ctrl];
+    const onNew = urls.filter((u) => u.includes('mindmake.co')).length;
+    expect(
+      onNew === 0 || onNew === urls.length,
+      `half-flipped: ${urls.join(', ')}`,
+    ).toBe(true);
+    const artifacts = `${indexHtml}\n${llmsTxt}\n${sitemapXml}`;
+    if (onNew === 0) {
+      expect(artifacts, 'an unresolvable mindmake.co URL shipped').not.toContain('mindmake.co/');
+    }
+  });
+
+  it('the contact address is the permanent one', () => {
+    // Krish's decision, recorded in FACTS.md: krish@themindmaker.ai forever,
+    // and deliberately not derived from the domain switch. Do not "fix" it.
+    expect(site.email).toBe('krish@themindmaker.ai');
+  });
+});
+
 describe('the advisory work stays anonymous', () => {
   // Decided 12 Aug 2026: no client name and no dollar figure anywhere near the
   // advisory engagements. FACTS.md still records all of it; the site does not

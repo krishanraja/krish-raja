@@ -1,32 +1,80 @@
 import { ExternalLink } from 'lucide-react';
 import MobileSection from './MobileSection';
-import { Badge } from '@/components/ui/badge';
 import { portfolio } from '@/content';
-import { type PortfolioItem } from '@/content/types';
+import { type PortfolioBranch, type PortfolioItem } from '@/content/types';
 import { asset } from '@/lib/asset-map';
+import { icon as resolveIcon } from '@/lib/icon-map';
 
-const BusinessRow = ({ business }: { business: PortfolioItem }) => (
-  <a
-    href={business.url}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block bg-card border border-border/60 rounded-2xl p-4 shadow-sm active:bg-muted/50 transition-colors"
-  >
-    <div className="flex items-start gap-3">
-      {/* w-14, not w-11. Two of the five marks are wordmarks, and a square tile
-          scaled them down until they were a smear. */}
-      <div
-        className={`flex h-11 w-14 flex-shrink-0 items-center justify-center rounded-lg p-1 ${
-          business.plateOnDark
-            ? 'bg-muted/40 dark:bg-white'
-            : business.plateOnLight
-              ? 'bg-foreground dark:bg-muted/40'
-              : 'bg-muted/40'
-        }`}
-      >
+const plate = (b: { plateOnDark?: boolean; plateOnLight?: boolean }) =>
+  b.plateOnDark
+    ? 'bg-muted/40 dark:bg-white'
+    : b.plateOnLight
+      ? 'bg-foreground dark:bg-muted/40'
+      : 'bg-muted/40';
+
+/**
+ * One arm of Mindmake, as a tap row.
+ *
+ * A list, not a rail. Three destinations do not need a swipe, and nesting a
+ * horizontal scroller inside a card is a good way to make neither gesture work.
+ */
+const BranchRow = ({ branch }: { branch: PortfolioBranch }) => {
+  const Icon = resolveIcon(branch.icon);
+  const Wrapper = branch.url ? 'a' : 'div';
+
+  return (
+    <Wrapper
+      {...(branch.url ? { href: branch.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className="mobile-tap-spring flex items-start gap-3 rounded-xl border border-border/60 bg-background/60 p-3"
+    >
+      <span className="mt-0.5 flex-shrink-0 rounded-lg bg-primary/10 p-1.5">
+        <Icon className="h-4 w-4 text-primary" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <h4 className="text-[13.5px] font-semibold text-foreground">{branch.name}</h4>
+          <span className="text-[10px] font-medium uppercase tracking-wide text-primary/80">
+            {branch.role}
+          </span>
+          {branch.url && (
+            <ExternalLink className="ml-auto h-3 w-3 flex-shrink-0 text-muted-foreground" />
+          )}
+        </div>
+        <p className="mt-0.5 text-[12.5px] leading-snug text-muted-foreground">
+          {branch.description}
+        </p>
+        {branch.formats && (
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {branch.formats.map((f) => (
+              <span
+                key={f}
+                className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-foreground"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </Wrapper>
+  );
+};
+
+/** A secondary pursuit. Two per row, mark and name, nothing more. */
+const SecondaryTile = ({ business }: { business: PortfolioItem }) => {
+  const Wrapper = business.url ? 'a' : 'div';
+
+  return (
+    <Wrapper
+      {...(business.url
+        ? { href: business.url, target: '_blank', rel: 'noopener noreferrer' }
+        : {})}
+      className="mobile-tap-spring flex min-h-[3.5rem] items-center gap-2.5 rounded-xl border border-border/60 bg-card p-2.5 shadow-sm"
+    >
+      <div className={`flex h-9 w-11 flex-shrink-0 items-center justify-center rounded-lg p-1 ${plate(business)}`}>
         <img
           src={asset(business.asset)}
-          alt={`${business.name} icon`}
+          alt={`${business.name} logo`}
           loading="lazy"
           decoding="async"
           className={`max-h-full max-w-full w-auto object-contain ${
@@ -34,44 +82,62 @@ const BusinessRow = ({ business }: { business: PortfolioItem }) => (
           }`}
         />
       </div>
+      {/* No Beta chip here. At two tiles across, the badge stole enough width
+          to truncate "Fractionl Pulse" to "Fractionl P...", and the role line
+          underneath already says Build experiment. */}
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-          <h3 className="text-sm font-semibold text-foreground">{business.name}</h3>
-          {business.isBeta && (
-            <Badge className="bg-amber-500/20 text-amber-700 dark:text-amber-300 border-amber-500/30 text-[9px] px-1.5 py-0 leading-4">
-              {portfolio.betaBadge}
-            </Badge>
-          )}
-          <ExternalLink className="w-3 h-3 text-muted-foreground ml-auto flex-shrink-0" />
-        </div>
-        <p className="text-[11px] font-medium text-primary/80 mb-1">{business.role}</p>
-        {/* Clamped. Five rows of three-line descriptions ran this section past
-            880px on an SE, which is the one section that failed the live
-            height budget. Two lines carries the sentence; the site is the
-            destination for the rest. */}
-        <p className="line-clamp-2 text-[12.5px] leading-snug text-muted-foreground">
-          {business.description}
-        </p>
+        <h4 className="truncate text-[12.5px] font-semibold text-foreground">{business.name}</h4>
+        <p className="truncate text-[10.5px] text-muted-foreground">{business.role}</p>
       </div>
-    </div>
-  </a>
-);
+    </Wrapper>
+  );
+};
 
 /**
- * One list, no tab strip. Matches the desktop grid: the three lanes collapsed
- * on 12 Aug 2026, and five rows is a shorter scroll than a sticky control that
- * hid two thirds of them.
+ * One primary card, three rows inside it, then a quieter shelf.
+ *
+ * Same hierarchy as the desktop tree, expressed the way a phone can carry it:
+ * the branches are rows rather than a three-across grid, and the secondary
+ * pursuits are a two-column grid of marks rather than full-width cards, which
+ * is what keeps the section inside its height budget.
  */
 const MobilePortfolio = () => (
-  <MobileSection
-    id={portfolio.id}
-    title={portfolio.title}
-    intro={portfolio.sub}
-  >
-    <ul className="space-y-2.5">
-      {portfolio.items.map((b) => (
+  <MobileSection id={portfolio.id} title={portfolio.title} intro={portfolio.sub}>
+    <div className="rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
+      <div className="mb-3 flex items-center gap-3">
+        <div className={`flex h-11 w-14 flex-shrink-0 items-center justify-center rounded-lg p-1 ${plate(portfolio.primary as never)}`}>
+          <img
+            src={asset(portfolio.primary.asset)}
+            alt={`${portfolio.primary.name} logo`}
+            loading="lazy"
+            decoding="async"
+            className="max-h-full max-w-full w-auto object-contain dark:brightness-110"
+          />
+        </div>
+        <div className="min-w-0">
+          <h3 className="mobile-h3 text-foreground">{portfolio.primary.name}</h3>
+          <p className="text-[12px] leading-snug text-muted-foreground">
+            {portfolio.primary.description}
+          </p>
+        </div>
+      </div>
+
+      <ul className="space-y-2">
+        {portfolio.primary.branches.map((b) => (
+          <li key={b.name}>
+            <BranchRow branch={b} />
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <p className="mb-2.5 mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+      {portfolio.secondaryHeading}
+    </p>
+    <ul className="grid grid-cols-2 gap-2">
+      {portfolio.secondary.map((b) => (
         <li key={b.name}>
-          <BusinessRow business={b} />
+          <SecondaryTile business={b} />
         </li>
       ))}
     </ul>

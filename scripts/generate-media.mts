@@ -76,16 +76,33 @@ const ffmpeg = (args: string[]) => {
   execFileSync(ffmpegPath, ['-y', '-loglevel', 'error', ...args], { stdio: 'inherit' });
 };
 
+/**
+ * `crop=w:h:x:y` from an entry's `crop`, or nothing.
+ *
+ * A recording captured through a browser has the status bar and address bar
+ * baked into the frame. Naming the offset in os.ts and cutting it here means a
+ * usable master does not need re-recording to ship.
+ */
+const cropFilter = (entry: (typeof os.entries)[number]) => {
+  const c = entry.crop;
+  if (!c) return null;
+  const { top = 0, bottom = 0, left = 0, right = 0 } = c;
+  if (!top && !bottom && !left && !right) return null;
+  return `crop=iw-${left + right}:ih-${top + bottom}:${left}:${top}`;
+};
+
 for (const entry of os.entries) {
   const src = resolve(FILES, 'os screenshots', entry.source);
   const mp4 = resolve(MEDIA, `os/${entry.id}.mp4`);
   const poster = resolve(MEDIA, `os/${entry.id}.jpg`);
+  const crop = cropFilter(entry);
+  const chain = (rest: string) => (crop ? `${crop},${rest}` : rest);
 
   if (need(src, mp4, `os/${entry.id}.mp4`)) {
     ffmpeg([
       '-i', src,
       // Portrait capture. Cap the long edge at 1280 and keep even dimensions.
-      '-vf', "scale='min(720,iw)':-2:flags=lanczos",
+      '-vf', chain("scale='min(720,iw)':-2:flags=lanczos"),
       '-c:v', 'libx264',
       '-profile:v', 'high',
       '-preset', 'slow',
@@ -100,7 +117,7 @@ for (const entry of os.entries) {
   }
 
   if (need(src, poster, `os/${entry.id}.jpg`)) {
-    ffmpeg(['-i', src, '-ss', '00:00:01', '-frames:v', '1', '-vf', "scale='min(720,iw)':-2", '-q:v', '5', poster]);
+    ffmpeg(['-i', src, '-ss', '00:00:01', '-frames:v', '1', '-vf', chain("scale='min(720,iw)':-2"), '-q:v', '5', poster]);
     built.push(`os/${entry.id}.jpg`);
   }
 }
@@ -135,7 +152,45 @@ export const posterFingerprint = async (file: string): Promise<string> => {
   return bits;
 };
 
+/**
+ * One labelled frame per entry, side by side, at public/media/os/contact-sheet.jpg.
+ *
+ * The fingerprint test below catches two entries being the same clip. It cannot
+ * catch one entry being the wrong clip, and that is what shipped: an Org
+ * recording labelled "Content", past ffprobe, past the size check, past the
+ * suite, past the render. The only thing that catches it is a person looking,
+ * so this makes looking cost one glance instead of four ffmpeg commands.
+ */
+const contactSheet = async () => {
+  const TILE = { w: 240, h: 420 };
+  const tiles = await Promise.all(
+    os.entries.map(async (entry, i) => ({
+      input: await sharp(resolve(MEDIA, `os/${entry.id}.jpg`))
+        .resize({ width: TILE.w, height: TILE.h - 28, fit: 'contain', background: '#111' })
+        .toBuffer(),
+      left: i * TILE.w,
+      top: 28,
+    })),
+  );
+  const labels = os.entries
+    .map(
+      (entry, i) =>
+        `<text x="${i * TILE.w + 10}" y="19" font-family="sans-serif" font-size="15" fill="#fff">` +
+        `${entry.id}  ${entry.crop ? '(cropped)' : ''}</text>`,
+    )
+    .join('');
+  const width = TILE.w * os.entries.length;
+  await sharp({ create: { width, height: TILE.h, channels: 3, background: '#111' } })
+    .composite([
+      ...tiles,
+      { input: Buffer.from(`<svg width="${width}" height="28">${labels}</svg>`), top: 0, left: 0 },
+    ])
+    .jpeg({ quality: 82 })
+    .toFile(resolve(MEDIA, 'os/contact-sheet.jpg'));
+};
+
 if (!check) {
+  await contactSheet();
   const fingerprints: Record<string, string> = {};
   for (const entry of os.entries) {
     fingerprints[entry.id] = await posterFingerprint(resolve(MEDIA, `os/${entry.id}.jpg`));

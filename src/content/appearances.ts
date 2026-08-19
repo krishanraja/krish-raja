@@ -14,7 +14,7 @@ import type { AppearancesContent } from './types';
  * 2. Every `href` must be one of that record's own `source_urls`, so a link
  *    cannot drift away from the evidence that backs it.
  *
- * Owned surfaces in the manifest (Signal & Noise, Mindmaker Live, Mindmaker,
+ * Owned surfaces in the manifest (Signal & Noise, Content, Mindmake,
  * Meliora, AdFixus, the Maven profile, both Substacks, YouTube) are left out
  * on purpose: the portfolio section already carries them, and this section is
  * for places that invited him rather than places he runs.
@@ -30,11 +30,11 @@ export const appearances: AppearancesContent = {
     { id: 'talk', label: 'Talks' },
     { id: 'press', label: 'Press' },
   ],
-  moreLabel: 'See the full index',
+  moreLabel: 'See the rest of my content',
+  previewCount: 6,
   lessLabel: 'Show fewer',
 
   items: [
-    // Flagship
     {
       appearanceId: 'adobe-symposium-opera-house-keynote',
       title: 'Why programmatic will not be a word within a few years',
@@ -43,7 +43,6 @@ export const appearances: AppearancesContent = {
       year: '2017',
       href: 'https://www.marketingmag.com.au/tech-data/nine-head-of-data-and-programmatic-why-programmatic-wont-be-a-word-within-a-few-years/',
       media: '/media/appearances/adobe-symposium-opera-house-keynote.webp',
-      flagship: true,
     },
     {
       appearanceId: 'bt-30-under-30-strategy',
@@ -53,7 +52,6 @@ export const appearances: AppearancesContent = {
       year: '2017',
       href: 'https://www.bandt.com.au/winners-revealed-bts-30-30-awards/',
       media: '/media/appearances/bt-30-under-30-strategy.webp',
-      flagship: true,
     },
     {
       appearanceId: 'ai-edge-podcast-episode-1',
@@ -63,7 +61,6 @@ export const appearances: AppearancesContent = {
       year: '2025',
       href: 'https://www.youtube.com/watch?v=Jvu7DSN9SnU',
       media: '/media/appearances/ai-edge-podcast-episode-1.webp',
-      flagship: true,
     },
     {
       appearanceId: 'cannes-lions-2026-day-4',
@@ -73,7 +70,6 @@ export const appearances: AppearancesContent = {
       year: '2026',
       href: 'https://www.youtube.com/watch?v=6ebe_DRwjsc',
       media: '/media/appearances/cannes-lions-2026-day-4.webp',
-      flagship: true,
     },
     {
       appearanceId: 'possible-2026-day-1',
@@ -83,7 +79,6 @@ export const appearances: AppearancesContent = {
       year: '2026',
       href: 'https://www.youtube.com/watch?v=6yCi20GFUN4',
       media: '/media/appearances/possible-2026-day-1.webp',
-      flagship: true,
     },
     {
       appearanceId: 'iab-connected-tv-handbook',
@@ -93,7 +88,6 @@ export const appearances: AppearancesContent = {
       year: '2020',
       href: 'https://iabaustralia.com.au/wp-content/uploads/2017/07/Connected-TV-Handbook-2020-2.pdf',
       media: '/media/appearances/iab-connected-tv-handbook.webp',
-      flagship: true,
     },
     {
       appearanceId: 'nine-data-transaction-byline',
@@ -103,7 +97,6 @@ export const appearances: AppearancesContent = {
       year: '2017',
       href: 'https://www.nineforbrands.com.au/opinion-opening-the-gateways-to-data-transaction/',
       media: '/media/appearances/nine-data-transaction-byline.webp',
-      flagship: true,
     },
     {
       appearanceId: 'give-it-a-nudge-captify',
@@ -113,7 +106,6 @@ export const appearances: AppearancesContent = {
       year: '2022',
       href: 'https://www.youtube.com/watch?v=6_bf9L1OX3s',
       media: '/media/appearances/give-it-a-nudge-captify.webp',
-      flagship: true,
     },
     {
       appearanceId: 'ai-leadership-dothinkdo-webinar',
@@ -123,7 +115,6 @@ export const appearances: AppearancesContent = {
       year: '2026',
       href: 'https://dothinkdo.com/webinars/is-ai-strengthening-your-leadership-or-quietly-undermining-it',
       media: '/media/appearances/ai-leadership-dothinkdo-webinar.webp',
-      flagship: true,
     },
     {
       appearanceId: 'make-ai-your-cofounder',
@@ -133,7 +124,6 @@ export const appearances: AppearancesContent = {
       year: '2026',
       href: 'https://maven.com/p/0cc82a',
       media: '/media/appearances/make-ai-your-cofounder.webp',
-      flagship: true,
     },
     {
       appearanceId: 'dan-pratl-expertise-as-an-asset',
@@ -143,7 +133,6 @@ export const appearances: AppearancesContent = {
       year: '2026',
       href: 'https://www.youtube.com/watch?v=dcD-G00RDcE',
       media: '/media/appearances/dan-pratl-expertise-as-an-asset.webp',
-      flagship: true,
     },
     {
       appearanceId: 'kroll-threat-modeling-podcast',
@@ -152,10 +141,7 @@ export const appearances: AppearancesContent = {
       kind: 'podcast',
       href: 'https://podcasts.apple.com/ie/podcast/krish-raja-bringing-developers-into-your-threat-modeling/id1517485135?i=1000562896317',
       media: '/media/appearances/kroll-threat-modeling-podcast.webp',
-      flagship: true,
     },
-
-    // Full index
     {
       appearanceId: 'cannes-lions-2026-day-3',
       title: 'Cannes Lions 2026, day three',

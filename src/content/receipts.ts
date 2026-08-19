@@ -76,9 +76,9 @@ export const receipts: ReceiptsContent = {
   ],
 
   credentials: [
-    'Founder, Mindmaker',
+    'Founder, Mindmake',
     'B&T 30 Under 30, Strategy',
-    'Writer, Mindmaker Live',
+    'Writer, Mindmake Content',
     'Harvard Business School (Finance, Analytics & Economics)',
     'MA Design Strategy (Distinction)',
     'Sydney Opera House Keynote Speaker',

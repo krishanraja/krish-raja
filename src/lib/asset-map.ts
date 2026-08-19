@@ -19,6 +19,7 @@ import mindmaker from '@/assets/mindmaker-icon.png';
 // glyphs rather than the padding around them.
 import fractionl from '@/assets/fractionl-pulse-mark.png';
 import ctrl from '@/assets/ctrl-wordmark.png';
+import fullTime from '@/assets/full-time-mark.png';
 import signalAndNoise from '@/assets/signal-and-noise-logo.png';
 import mindmakerLive from '@/assets/mindmaker-live-logo.png';
 
@@ -48,6 +49,7 @@ const assets: Record<string, string> = {
   mindmaker,
   fractionl,
   ctrl,
+  'full-time': fullTime,
   'signal-and-noise': signalAndNoise,
   'mindmaker-live': mindmakerLive,
 

@@ -2,6 +2,9 @@
   "comment": "Names and claims that must never appear on krishraja.com again. The consistency suite in src/content/__tests__/positioning.test.ts reads this file and fails the build if any entry turns up in the content layer or in a generated artifact. It lives here, outside src/, so that grepping src/ for a retired name returns nothing. structuredDataBans are schema.org properties that must never appear in the JSON-LD: a sister repo ships a fabricated rating, and this one must not. \"30 Under 30\" was on this list while the category was disputed; B&T independently verifies Strategy, so it is published again. Context for each entry is in POSITIONING.md and FACTS.md.",
   "names": [
     "AI Decision Cohort",
+    "Mindmaker Live",
+    "Mindmaker OS",
+    "Plinth",
     "Signal Session",
     "Revenue Architecture",
     "AI Revenue Leader",

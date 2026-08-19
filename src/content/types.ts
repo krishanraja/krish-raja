@@ -100,6 +100,20 @@ export interface OsEntry {
   readonly note: string;
   readonly source: string;
   readonly alt: string;
+  /**
+   * Pixels to cut off the master before scaling, in SOURCE pixels.
+   *
+   * Recordings captured in a browser arrive with the status bar and address bar
+   * baked into the frame. Rather than asking for a re-record, name the offset
+   * here and `npm run media` crops it. Keep the numbers even: H.264 chroma
+   * subsampling needs even offsets and dimensions.
+   */
+  readonly crop?: {
+    readonly top?: number;
+    readonly bottom?: number;
+    readonly left?: number;
+    readonly right?: number;
+  };
 }
 
 export interface OsContent extends SectionHeader {
@@ -150,14 +164,22 @@ export interface Appearance {
   /** Key into src/lib/asset-map.ts, for items with no content-index record. */
   readonly asset?: string;
   readonly note?: string;
-  /** True for the curated set shown before the full index is opened. */
-  readonly flagship?: boolean;
 }
 
 export interface AppearancesContent extends SectionHeader {
   readonly filters: readonly { readonly id: AppearanceKind | 'all'; readonly label: string }[];
   readonly moreLabel: string;
   readonly lessLabel: string;
+  /**
+   * How many to show before the disclosure. Six, which is three rows on the
+   * desktop two-column list.
+   *
+   * This replaced a per-item `flagship` flag. Once the list sorts newest-first
+   * the preview is a recency question, not a curation one, and keeping a
+   * hand-picked twelve alongside it meant two different ideas of "the good ones"
+   * that could disagree.
+   */
+  readonly previewCount: number;
   readonly items: readonly Appearance[];
 }
 
@@ -165,7 +187,8 @@ export interface PortfolioItem {
   readonly name: string;
   readonly description: string;
   readonly asset: string;
-  readonly url: string;
+  /** Omitted when there is nothing public to point at yet. Renders unlinked. */
+  readonly url?: string;
   readonly role: string;
   readonly isBeta?: boolean;
   readonly invertOnDark?: boolean;
@@ -174,22 +197,44 @@ export interface PortfolioItem {
   /**
    * The mirror of `plateOnDark`: a dark plate in light mode, for a mark drawn
    * light on transparency. The CTRL wordmark fades from mint to near-white, so
-   * on the light card its last two letters are not there.
+   * on the light card its last two letters are not there. Same for Fractionl
+   * and the Full Time green.
    */
   readonly plateOnLight?: boolean;
 }
 
+/** One arm of Mindmake. Advisory, the product, the channel. */
+export interface PortfolioBranch {
+  readonly name: string;
+  readonly role: string;
+  readonly description: string;
+  readonly icon: string;
+  readonly url?: string;
+  /** Named formats, for the Content branch. Rendered as chips. */
+  readonly formats?: readonly string[];
+}
+
 /**
- * One flat list, no tabs.
+ * One primary block and a secondary shelf, not five peers.
  *
- * Advise, Build and Write were three tabs holding three cards each, which hid
- * two thirds of the section behind a click to save no space. Collapsed
- * 12 Aug 2026. `isBeta` is what the generator reads to name the build work in
- * llms.txt, so it is load-bearing rather than decoration.
+ * Until 12 Aug 2026 this was a flat list of five: Mindmaker, Fractionl Pulse,
+ * CTRL, Mindmaker Live and Signal & Noise, all the same size. That layout said
+ * the five things were equally weighted, which is the opposite of what Krish is
+ * doing. Mindmake is the focus and CTRL and Content are arms of it, so they are
+ * nested inside it rather than standing beside it. The rest are real work and
+ * stay on the page, one tier down, which is the only place they are shown.
  */
 export interface PortfolioContent extends SectionHeader {
   readonly betaBadge: string;
-  readonly items: readonly PortfolioItem[];
+  readonly primary: {
+    readonly name: string;
+    readonly description: string;
+    readonly asset: string;
+    readonly url: string;
+    readonly branches: readonly PortfolioBranch[];
+  };
+  readonly secondaryHeading: string;
+  readonly secondary: readonly PortfolioItem[];
 }
 
 export interface Achievement {
@@ -384,8 +429,9 @@ export interface SiteContent {
   readonly alumniOf: readonly string[];
   readonly links: {
     readonly linkedin: string;
-    readonly mindmaker: string;
-    readonly mindmakerLive: string;
+    readonly mindmake: string;
+    readonly content: string;
+    readonly ctrl: string;
     readonly signalAndNoise: string;
     readonly calendly: string;
   };

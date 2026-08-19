@@ -93,7 +93,7 @@ const personLd = () => ({
   knowsAbout: [...site.knowsAbout],
   hasOccupation: { '@type': 'Occupation', name: site.jobTitle },
   alumniOf: site.alumniOf.map((name) => ({ '@type': 'Organization', name })),
-  memberOf: [{ '@type': 'Organization', name: 'Mindmaker', url: site.links.mindmaker }],
+  memberOf: [{ '@type': 'Organization', name: 'Mindmake', url: site.links.mindmake }],
 });
 
 const websiteLd = () => ({
@@ -136,7 +136,8 @@ const bullet = (w: { name: string; qualifier?: string; detail: string }) => {
 const llmsTxt = (): string => {
   // The portfolio is one flat list now, so the build work is whatever carries
   // the Beta flag rather than whatever sat in a tab called "build".
-  const buildNames = portfolio.items.filter((i) => i.isBeta).map((i) => i.name);
+  // The build experiments live on the secondary shelf now, not in a flat list.
+  const buildNames = portfolio.secondary.filter((i) => i.isBeta).map((i) => i.name);
   const buildList =
     buildNames.length > 1
       ? `${buildNames.slice(0, -1).join(', ')} and ${buildNames[buildNames.length - 1]}`

@@ -16,7 +16,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",
-    "mobile:check": "node scripts/mobile-check.mjs"
+    "mobile:check": "node scripts/mobile-check.mjs",
+    "typecheck": "tsc -b --noEmit",
+    "links:check": "tsx scripts/links-check.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",

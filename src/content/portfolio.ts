@@ -1,70 +1,106 @@
 import type { PortfolioContent } from './types';
+import { site } from './site';
 
 /**
- * One flat grid, five cards, no tabs.
+ * One primary block, three branches, a secondary shelf.
  *
- * Advise, Build and Write were three tabs of three, which hid two thirds of
- * the section behind a click and saved no vertical space. Collapsed 12 Aug 2026.
+ * This was five equal cards until 12 Aug 2026: Mindmaker, Fractionl Pulse,
+ * CTRL, Mindmaker Live and Signal & Noise, all the same size on one row. Five
+ * peers is a statement that the five things carry equal weight, which is the
+ * opposite of the consolidation Krish is doing. Mindmake is the focus; CTRL and
+ * Content are arms of it, so they sit inside it. Fractionl Pulse, Full Time and
+ * Signal & Noise are real work and stay on the page one tier down, because this
+ * is the only place on the site they appear at all.
  *
- * Three entries came off at the same time and are not oversights:
+ * Meliora and AdFixus are still off entirely. The advisory engagements are not
+ * named on this site; the receipts section carries the same work anonymized.
  *
- * 1. Meliora and AdFixus. The advisory engagements are no longer named on this
- *    site at all. The receipts section carries the same work anonymized, and
- *    the rule there is no client name and no dollar figure.
- * 2. Fractionl Circle. Same brand, same logo and the same URL as Fractionl
- *    Pulse, so the row read as a duplicate.
+ * TODO(krish): Fractionl Circle is written below and commented out. It needs a
+ * URL and one line of its own before it can ship. Its mark is solved, because
+ * it shares the Fractionl one already here. Uncomment and fill the two fields.
  *
- * Order is still advise, then build, then write. `isBeta` marks the build work
- * and the generator reads it to write the Build work line in llms.txt, so it
- * is load-bearing rather than decoration.
+ * TODO(krish): Full Time has its mark and no public page yet, so it renders
+ * unlinked. Send a URL and it becomes a link with no other change.
+ *
+ * TODO(krish): the Mindmake mark itself is still the old Mindmaker icon. It is
+ * the one place the retired brand is still visible, and it is deliberate rather
+ * than missed. Drop a new mark in src/assets/ and point `asset` at it.
  */
 export const portfolio: PortfolioContent = {
   id: 'portfolio',
   title: 'My focus areas',
-  sub: 'Advisory, product and content are my three pillars, all focused on helping leaders lead with AI.',
+  sub: 'Everything runs through Mindmake. Advisory, product and content, out of one operating system.',
   betaBadge: 'Beta',
 
-  items: [
+  primary: {
+    name: 'Mindmake',
+    description:
+      'Helping leaders amplify their expertise with AI to make the next million dollar decision.',
+    asset: 'mindmaker',
+    url: site.links.mindmake,
+    branches: [
+      {
+        name: 'Advisory',
+        role: 'Capped practice',
+        description:
+          'A small number of engagements a year, from taking one decision apart to rebuilding how a business decides.',
+        icon: 'building-2',
+        url: site.links.mindmake,
+      },
+      {
+        name: 'CTRL',
+        role: 'Product',
+        description: 'A portable, private memory web so your AI keeps hold of your judgment.',
+        icon: 'brain',
+        url: site.links.ctrl,
+      },
+      {
+        name: 'Content',
+        role: 'Editorial',
+        description: 'What I publish, in two formats.',
+        icon: 'file-text',
+        url: site.links.content,
+        formats: ['The Money of AI', 'Building with AI'],
+      },
+    ],
+  },
+
+  secondaryHeading: 'Also building',
+  secondary: [
     {
-      name: 'Mindmaker',
-      description: 'Helping leaders amplify their expertise with AI to make the next million dollar decision.',
-      asset: 'mindmaker',
-      url: 'https://themindmaker.ai',
-      role: 'Advisory, capped practice',
+      name: 'Signal & Noise',
+      description:
+        'Conversations with operators on how AI is reshaping the content and media industry.',
+      asset: 'signal-and-noise',
+      url: site.links.signalAndNoise,
+      role: 'Executive Host',
+      invertOnDark: true,
     },
     {
       name: 'Fractionl Pulse',
       description: 'Live verified market intelligence on fractional supply and demand.',
       asset: 'fractionl',
       url: 'https://fractionl.ai',
-      role: 'Product',
+      role: 'Build experiment',
       isBeta: true,
       plateOnLight: true,
     },
     {
-      name: 'CTRL',
-      description: 'A portable, private memory web so your AI keeps hold of your judgment.',
-      asset: 'ctrl',
-      url: 'https://ctrl.themindmaker.ai',
-      role: 'Product',
+      name: 'Full Time',
+      description: 'An interactive AI football podcast.',
+      asset: 'full-time',
+      role: 'Build experiment',
       isBeta: true,
       plateOnLight: true,
     },
-    {
-      name: 'Mindmaker Live',
-      description: 'Two formats: Paid (the economics of AI) and Built (decisions made in AI)',
-      asset: 'mindmaker-live',
-      url: 'https://live.themindmaker.ai',
-      role: 'Media Channel',
-      plateOnDark: true,
-    },
-    {
-      name: 'Signal & Noise',
-      description: 'Conversations with operators on how AI is reshaping the content & media industry.',
-      asset: 'signal-and-noise',
-      url: 'https://www.mediaradar.com/signal-and-noise',
-      role: 'Media Channel',
-      invertOnDark: true,
-    },
+    // {
+    //   name: 'Fractionl Circle',
+    //   description: 'TODO(krish): one line.',
+    //   asset: 'fractionl',
+    //   url: 'TODO(krish): a URL of its own, not Pulse\'s.',
+    //   role: 'Build experiment',
+    //   isBeta: true,
+    //   plateOnLight: true,
+    // },
   ],
 };

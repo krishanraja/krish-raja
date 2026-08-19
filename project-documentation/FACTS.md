@@ -101,6 +101,37 @@ opposite of the CSS convention: seven brands have no dark-ink variant at all and
 a blank placeholder the first time, so the fetch picks the darkest usable asset by
 measuring ink luminance. The test suite fails if any two derivatives are identical.
 
+## The Mindmake rename, and what is not renamed
+
+The brand became **Mindmake** on 12 August 2026. Three things are settled and one is not.
+
+**The domain is not live.** `mindmake.co`, `content.mindmake.co` and `ctrl.mindmake.co` had
+no DNS record when the rename shipped, verified 19 August 2026; `themindmaker.ai` resolves.
+So the copy renamed and the links did not. `DOMAINS_LIVE` in `src/content/site.ts` moves
+every URL at once. Do not ship a mindmake.co link until `npm run links:check` passes on it.
+
+**The contact address never changes.** `krish@themindmaker.ai`, Krish's decision, in his
+words "keep it forever". It is deliberately not derived from the domain switch, and a test
+pins it. If it ever looks like an oversight, it is not.
+
+**Signal & Noise moved.** `mediaradar.com/signal-and-noise` returned 404 on 19 August 2026,
+found by `npm run links:check`. The link is now `signalandnoise.ai/executive-voices`, the
+owned channel page, which is also the capture source the content index records. Krish's role
+is published as **Executive Host**. He describes the reality as contributing content that
+originates in Mindmake and is amplified there, plus guest hosting, which is why it sits on
+the secondary shelf rather than beside the Mindmake pillars.
+
+**Plinth is dead.** Retired forever, on the banned list, do not reintroduce.
+
+Still outstanding, and not invented in the meantime:
+
+- Marks for **Mindmake** itself, **The Money of AI** and **Building with AI**. The primary
+  card still shows the old Mindmaker icon; that is the one place the retired brand is
+  visible on purpose.
+- A URL and one line for **Full Time**, which currently renders unlinked, and the same for
+  **Fractionl Circle**, which is written and commented out in `portfolio.ts`. Circle shares
+  the Fractionl mark, so only its copy is missing.
+
 ## Rules attached to specific facts
 
 **The $254K client is never named.** Hearst, Arena Group and The Weather Company are named

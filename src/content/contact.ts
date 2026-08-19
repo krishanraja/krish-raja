@@ -1,6 +1,9 @@
 import type { ContactContent } from './types';
 import { site } from './site';
 
+/** The label under each row is the destination, so it is read off the href. */
+const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
 /**
  * The only place on the site that asks for anything.
  *
@@ -31,15 +34,15 @@ export const contact: ContactContent = {
     },
     {
       action: 'See the advisory practice',
-      detail: 'themindmaker.ai',
-      href: site.links.mindmaker,
+      detail: host(site.links.mindmake),
+      href: site.links.mindmake,
       icon: 'building-2',
       external: true,
     },
     {
-      action: 'Read Mindmaker Live',
-      detail: 'live.themindmaker.ai',
-      href: site.links.mindmakerLive,
+      action: 'Read what I publish',
+      detail: host(site.links.content),
+      href: site.links.content,
       icon: 'file-text',
       external: true,
     },

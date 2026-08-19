@@ -136,8 +136,8 @@ const SelectedWork = ({ layout = 'rows' }: { layout?: Layout }) => {
       .sort((a, b) => year(b.year) - year(a.year));
   }, [filter]);
 
-  const visible = expanded ? matching : matching.filter((i) => i.flagship);
-  const hiddenCount = matching.length - matching.filter((i) => i.flagship).length;
+  const visible = expanded ? matching : matching.slice(0, appearances.previewCount);
+  const hiddenCount = Math.max(0, matching.length - appearances.previewCount);
 
   const key = (item: Appearance) => item.appearanceId ?? item.title;
 

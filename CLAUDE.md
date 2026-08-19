@@ -102,10 +102,41 @@ npm run dev        # http://localhost:8080
 npm run build      # runs `generate` first, then vite build
 npm run lint
 npm test           # vitest, includes the positioning consistency suite
+npm run typecheck  # tsc -b. Plain `tsc --noEmit` checks NOTHING here, see below
 npm run mobile:check   # drives a real browser at four phone sizes, needs a server on :4173
+npm run links:check    # requests every external URL in the content layer
 npm run generate   # regenerate index.html meta, llms.txt, sitemap.xml, webmanifest
 npm run media      # transcode public/files/ masters into public/media/ (slow, run by hand)
 ```
+
+## `npx tsc --noEmit` checks nothing. Use `npm run typecheck`.
+
+`tsconfig.json` is a solution file: `"files": []` plus two project references. A bare
+`tsc --noEmit` therefore typechecks zero files and exits 0 no matter what is broken, which
+it did for a whole session while three components referenced a property that no longer
+existed. `npm run typecheck` runs `tsc -b`, which builds the referenced projects and
+actually reports. Vite does not typecheck either; esbuild strips types without reading them.
+
+## Mindmake, and the one line that moves the domains
+
+The brand is **Mindmake**. It was Mindmaker until 12 August 2026.
+
+`mindmake.co` has no DNS record yet, so the copy renamed and the links did not. Both sets of
+URLs live in `src/content/site.ts` behind one constant:
+
+```ts
+const DOMAINS_LIVE = false;   // flip when mindmake.co resolves, then `npm run generate`
+```
+
+Everything reads from `hosts`, so the switch is one line and `npm run links:check` proves the
+side you are on actually resolves. A test fails the build if half the URLs flip.
+
+**The contact address is deliberately not part of that switch.** `krish@themindmaker.ai`
+stays forever, by Krish's decision. It is in FACTS.md. Do not "fix" it to match the brand.
+
+The site is one primary block and a secondary shelf, not five peers. Mindmake branches into
+Advisory, CTRL and Content; Content has two formats, **The Money of AI** and **Building with
+AI**. Signal & Noise, Fractionl Pulse and Full Time sit one tier down under "Also building".
 
 ## THE RULE: all copy lives in `src/content/`
 
@@ -248,7 +279,11 @@ Three things about uploading a master:
 2. **Name it for the entry, not for the day.** The masters are `os-<id>-final.mp4`, so a
    file called `new os content vid.mp4` gets renamed before its `source` goes into `os.ts`.
    Four masters, four entries, one naming rule.
-3. **Watch a frame before you believe the filename.** Also on 12 August 2026, a master
+3. **A recording with browser chrome does not need re-recording.** `OsEntry.crop` takes
+   `{ top, bottom, left, right }` in source pixels and `npm run media` cuts it before
+   scaling. The org clip is captured through Chrome, so it carries `crop: { top: 150 }`.
+   Keep the numbers even; H.264 chroma subsampling needs even offsets.
+4. **Watch a frame before you believe the filename.** Also on 12 August 2026, a master
    named `new os content vid.mp4` was renamed to `os-content-final.mp4` on the strength of
    that name and transcoded. It was a recording of the Org screen, so the site shipped the
    same agent roster labelled both "Content" and "The org". Every check passed: ffprobe
@@ -259,9 +294,10 @@ Three things about uploading a master:
    ffmpeg -i "public/files/os screenshots/os-<id>-final.mp4" -ss 3 -frames:v 1 /tmp/f.png
    ```
 
-   `npm run media` now writes a 16x16 average hash of every poster to
-   `public/media/os/fingerprints.json`, and the test suite fails if two entries are within
-   32 bits of each other. Genuinely different captures of this app run 69 to 128 bits
+   `npm run media` writes **`public/media/os/contact-sheet.jpg`**, one labelled frame per
+   entry side by side. That is the whole answer: looking now costs one glance. It also
+   writes a 16x16 average hash of every poster to `public/media/os/fingerprints.json`, and
+   the test suite fails if two entries are within 32 bits of each other. Genuinely different captures of this app run 69 to 128 bits
    apart. Nothing in code can know whether a video is *about* content; it can know that
    two entries claiming to be different recordings are the same picture, which is the half
    that actually shipped broken.
@@ -327,6 +363,14 @@ These are not oversights. Each was removed on purpose and must not come back.
   duplicating them and sliding them past a reader who could already see all four.
   The attendee strip under the Lightning Lessons holds twenty-eight and does rotate,
   which is the same rule pointing the other way.
+- **"Mindmaker", "Mindmaker Live", "Mindmaker OS", "Plinth".** Retired 12 Aug 2026 and on
+  the banned list. The `themindmaker.ai` URLs are the one exception and stay until
+  `DOMAINS_LIVE` flips, which is why the test checks prose rather than raw substrings.
+- **"Paid" and "Built" as content format names.** They are **The Money of AI** and
+  **Building with AI**.
+- **Five equal portfolio cards.** Mindmaker, Fractionl Pulse, CTRL, Mindmaker Live and
+  Signal & Noise all the same size said the five things carried equal weight, which is the
+  opposite of consolidating. One primary block, three branches, a secondary shelf.
 - **Any upgrade of the attendee-strip wording.** The line is
   `Attendees from household name businesses learn with me`. Most of those companies sent
   one person to a free Maven session. Not clients, not customers, not partners, not

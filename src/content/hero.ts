@@ -13,7 +13,7 @@ export const hero: HeroContent = {
   channel: {
     // Arrows are affordances, not copy. Each surface renders its own.
     label: 'Read my Substack',
-    href: site.links.mindmakerLive,
+    href: site.links.content,
   },
   // One label, one destination, shared with the nav CTA. Both used to say
   // "Work with me" and point at a section of that name; that section folded
