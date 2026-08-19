@@ -87,7 +87,7 @@ export const portfolio: PortfolioContent = {
     },
     {
       name: 'Fractionl: Pulse',
-      description: 'Live verified market intelligence on fractional supply and demand. An interactive AI football podcast to explore what\'s next in media.',
+      description: 'Live verified market intelligence on fractional supply and demand.',
       asset: 'fractionl',
       url: 'https://fractionl.ai',
       role: 'Build experiment',
