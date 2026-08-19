@@ -69,7 +69,7 @@ export const receipts: ReceiptsContent = {
   engagements: [
     {
       name: 'Executive advisory',
-      role: 'Media, content IP telco and entertainment businesses',
+      role: 'Media, content IP, telco and entertainment businesses',
       description:
         'Working to help on first-party data infrastructure, IP, content and AI. This usually involves corporate strategy, product strategy and GTM strategy end-to-end.',
     },
