@@ -58,11 +58,31 @@ const stale = (src: string, out: string) => {
   return statSync(src).mtimeMs > statSync(out).mtimeMs;
 };
 
-const need = (src: string, out: string, label: string) => {
+/**
+ * What a derivative was built from, beyond its source file.
+ *
+ * mtime alone is not enough once the content layer can change the picture. A
+ * crop lives in appearances.ts or os.ts, so editing one leaves the master
+ * untouched and the derivative silently correct-looking and wrong. The recipe
+ * is recorded next to the output and compared on every run, which is what makes
+ * `npm run media -- --check` able to say a crop was edited and never applied.
+ */
+const RECIPES = resolve(MEDIA, 'recipes.json');
+const priorRecipes: Record<string, string> = existsSync(RECIPES)
+  ? JSON.parse(readFileSync(RECIPES, 'utf8'))
+  : {};
+const recipes: Record<string, string> = {};
+
+const need = (src: string, out: string, label: string, recipe: unknown = null) => {
   if (!existsSync(src)) throw new Error(`missing source: ${src}`);
-  if (!stale(src, out)) return false;
+  const fingerprint = JSON.stringify(recipe ?? null);
+  recipes[label] = fingerprint;
+  // A label with no prior recipe is not a changed one, it is one built before
+  // recipes were recorded. Only an actual difference means a crop was edited.
+  const changed = label in priorRecipes && priorRecipes[label] !== fingerprint;
+  if (!changed && !stale(src, out)) return false;
   if (check) {
-    missing.push(label);
+    missing.push(changed ? `${label} (crop edited in the content layer, never applied)` : label);
     return false;
   }
   mkdirSync(dirname(out), { recursive: true });
@@ -98,7 +118,7 @@ for (const entry of os.entries) {
   const crop = cropFilter(entry);
   const chain = (rest: string) => (crop ? `${crop},${rest}` : rest);
 
-  if (need(src, mp4, `os/${entry.id}.mp4`)) {
+  if (need(src, mp4, `os/${entry.id}.mp4`, entry.crop ?? null)) {
     ffmpeg([
       '-i', src,
       // Portrait capture. Cap the long edge at 1280 and keep even dimensions.
@@ -116,7 +136,7 @@ for (const entry of os.entries) {
     built.push(`os/${entry.id}.mp4`);
   }
 
-  if (need(src, poster, `os/${entry.id}.jpg`)) {
+  if (need(src, poster, `os/${entry.id}.jpg`, entry.crop ?? null)) {
     ffmpeg(['-i', src, '-ss', '00:00:01', '-frames:v', '1', '-vf', chain("scale='min(720,iw)':-2"), '-q:v', '5', poster]);
     built.push(`os/${entry.id}.jpg`);
   }
@@ -312,8 +332,22 @@ for (const item of appearances.items) {
 
   const src = resolve(FILES, 'content index', record.filename);
   const out = resolve(root, 'public', item.media.replace(/^\//, ''));
-  if (need(src, out, item.media)) {
-    await sharp(src).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 72, effort: 6 }).toFile(out);
+  if (need(src, out, item.media, item.crop ?? null)) {
+    // Crop first, then scale. The captures are 1280x720 pictures of a browser,
+    // so the subject is a fraction of the frame and the rest is chrome; scaling
+    // the whole thing into a 96px thumbnail is what made every card grey.
+    let pipe = sharp(src);
+    if (item.crop) {
+      const { top = 0, bottom = 0, left = 0, right = 0 } = item.crop;
+      const meta = await sharp(src).metadata();
+      pipe = pipe.extract({
+        left,
+        top,
+        width: (meta.width ?? 0) - left - right,
+        height: (meta.height ?? 0) - top - bottom,
+      });
+    }
+    await pipe.resize({ width: 800, withoutEnlargement: true }).webp({ quality: 72, effort: 6 }).toFile(out);
     built.push(item.media);
   }
 }
@@ -329,6 +363,9 @@ if (check) {
   }
   console.log('media: every derivative is present and current');
 } else {
+  // The recipes go out with the derivatives, so a crop edited without a rerun
+  // is a diff rather than a picture nobody notices is stale.
+  writeFileSync(RECIPES, `${JSON.stringify(recipes, null, 1)}\n`, 'utf8');
   writeFileSync(
     resolve(MEDIA, 'README.md'),
     [
@@ -343,6 +380,10 @@ if (check) {
       '',
       'Appearance captures are only emitted for records the content index marks',
       '`approved`. The script throws on anything else.',
+      '',
+      '`recipes.json` records what each derivative was built from beyond its',
+      'source file, which is how `--check` notices a crop that was edited in the',
+      'content layer and never applied. A master mtime cannot see that.',
       '',
     ].join('\n'),
     'utf8',

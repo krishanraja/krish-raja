@@ -51,6 +51,13 @@ section is the strongest external evidence this repo has, and it cuts both ways.
   Adobe Symposium keynote, Adobe's own release identifies the venue.
 
 
+**The Alanna Laforet artwork carries a retired brand name.** Krish's label on it reads
+`Founder & CEO, Mindmaker AI`. Mindmaker was retired on 12 August 2026 and is on the
+banned list, but this is his own artwork on his own site, and the crop he asked for is
+the bottom half, where the labels sit beside the headshots and cannot be excluded by a
+horizontal band. It ships as supplied. **Only a re-export fixes it, and that is his
+call.** The test suite reads prose, not pixels, so nothing will catch this automatically.
+
 **Signal & Noise episodes are an owned surface, and the index records them as one.**
 Krish hosts the show, so a record like `alanna-laforet-hacker-mentality` is evidence that
 the episode exists and that he made it. It is not third-party validation of anything about

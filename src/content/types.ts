@@ -108,12 +108,23 @@ export interface OsEntry {
    * here and `npm run media` crops it. Keep the numbers even: H.264 chroma
    * subsampling needs even offsets and dimensions.
    */
-  readonly crop?: {
-    readonly top?: number;
-    readonly bottom?: number;
-    readonly left?: number;
-    readonly right?: number;
-  };
+  readonly crop?: MediaCrop;
+}
+
+/**
+ * Pixels to cut off a master before scaling, in SOURCE pixels.
+ *
+ * Shared by the OS recordings and the appearance captures, because both arrive
+ * with something baked in that nobody wants on the site: a browser status bar
+ * on a screen recording, a page of navigation and a recommendation sidebar on a
+ * capture of a video page. Naming the offset here means a usable master does
+ * not have to be recaptured to ship.
+ */
+export interface MediaCrop {
+  readonly top?: number;
+  readonly bottom?: number;
+  readonly left?: number;
+  readonly right?: number;
 }
 
 export interface OsContent extends SectionHeader {
@@ -163,6 +174,21 @@ export interface Appearance {
   readonly media?: string;
   /** Key into src/lib/asset-map.ts, for items with no content-index record. */
   readonly asset?: string;
+  /**
+   * What part of the master to keep, in source pixels.
+   *
+   * The captures are 1280x720 photographs of a browser: the thing worth looking
+   * at is a fraction of the frame, and the rest is navigation, a scrollbar and
+   * YouTube's recommendation rail. Scaled whole into a 96px thumbnail, a face
+   * that fills a third of the frame lands about twenty pixels across, which is
+   * why every card used to read as grey chrome.
+   *
+   * Cropped here rather than by object-position in the card, because the
+   * captures are already 16:9: object-position has nothing to move. The crop is
+   * what changes the picture, and doing it in the pipeline means the thumbnail
+   * is a real image of that region rather than a scaled-down page.
+   */
+  readonly crop?: MediaCrop;
   readonly note?: string;
 }
 

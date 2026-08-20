@@ -279,7 +279,7 @@ The work list comes from the content layer, so:
 
 - a recording: drop it in `public/files/os screenshots/`, add an entry to `os.ts`
 - a slide: add an entry to `deck.ts` naming a file in `public/files/slides/`
-- an appearance: add an entry to `appearances.ts` with its `appearanceId`
+- an appearance: add an entry to `appearances.ts` with its `appearanceId`, and a `crop`
 - an attendee logo: put `<slug>.png` in `public/files/brand logos/`, add an entry to
   `lessons.attendees`
 
@@ -294,10 +294,32 @@ Three things about uploading a master:
 2. **Name it for the entry, not for the day.** The masters are `os-<id>-final.mp4`, so a
    file called `new os content vid.mp4` gets renamed before its `source` goes into `os.ts`.
    Four masters, four entries, one naming rule.
-3. **A recording with browser chrome does not need re-recording.** `OsEntry.crop` takes
+3. **A recording with browser chrome does not need re-recording.** `MediaCrop` takes
    `{ top, bottom, left, right }` in source pixels and `npm run media` cuts it before
    scaling. The org clip is captured through Chrome, so it carries `crop: { top: 150 }`.
    Keep the numbers even; H.264 chroma subsampling needs even offsets.
+
+   **The appearance captures take the same field, and every one of them needs it.** They
+   are 1280x720 photographs of a browser, so the subject is a fraction of the frame and
+   the rest is navigation, a scrollbar and YouTube's recommendation rail. Scaled whole
+   into the 96px desktop thumbnail, a face that fills a third of the frame lands about
+   twenty pixels across, which is why every card read as grey chrome. The crop is what
+   changes the picture: `object-position` does nothing here, because the captures are
+   already 16:9 and there is no overflow to move. All six YouTube watch pages share one
+   player rectangle, `(16, 67, 874, 493)`, which is exactly 16:9.
+
+   Aim each crop at a face, and say in a comment what it is aimed at. Six of the
+   nineteen have no face to aim at; those go to the masthead, the headline or the
+   illustration, and the comment says so.
+
+   **Do not read coordinates off a contact sheet.** Four crops were set that way and all
+   four landed on the wrong part of the page, because a tile in a composite is not the
+   image. Draw the proposed rectangle on the full master and look at it.
+
+   **A crop is not a file, so mtime cannot see it.** `public/media/recipes.json` records
+   what each derivative was built from beyond its source, and `npm run media -- --check`
+   fails with `crop edited in the content layer, never applied` when the two disagree.
+   Without it, editing a crop leaves a stale derivative that looks entirely correct.
 4. **Watch a frame before you believe the filename.** Also on 12 August 2026, a master
    named `new os content vid.mp4` was renamed to `os-content-final.mp4` on the strength of
    that name and transcoded. It was a recording of the Org screen, so the site shipped the
