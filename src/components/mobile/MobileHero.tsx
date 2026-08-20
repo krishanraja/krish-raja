@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { hero, nav } from '@/content';
 import { asset } from '@/lib/asset-map';
+import { useMobileViewportHeight } from '@/hooks/use-mobile';
 
 interface MobileHeroProps {
   onOpenContact: () => void;
@@ -12,35 +13,58 @@ const MobileHero = ({ onOpenContact }: MobileHeroProps) => {
     alt: logo.alt,
   }));
 
+  /**
+   * One screen, with the logos seated at the foot of it.
+   *
+   * The hero used to end wherever its content ended, which on a tall handset
+   * left the trust strip floating with a stretch of dead background between it
+   * and the dock, so the page read as having stopped rather than continued.
+   *
+   * Filling the screen moves that slack rather than removing it, so it is split
+   * between two `mt-auto` margins, above the headshot and above the divider,
+   * because flexbox divides free space equally among the auto margins in its
+   * main axis. Pinned at one point only, the whole 115px on a Pixel 7 opened
+   * into a single hole under the Substack link and read as a rendering fault.
+   * Halved, each gap reads as spacing and the block sits optically centered
+   * with the logos seated at the foot.
+   *
+   * The height comes from a hook rather than `100svh` because a viewport unit
+   * is measured against the viewport, which the root zoom does not change: in
+   * desktop-site mode `100svh` is 1750 layout pixels inside a 714 pixel screen.
+   * See useMobileViewportHeight.
+   *
+   * Capped short of the 950px per-section budget the live mobile check
+   * enforces, so an unusually tall viewport cannot turn the hero into a screen
+   * and a half of white space.
+   */
+  const screen = useMobileViewportHeight();
+  const fillScreen =
+    screen > 0
+      ? { minHeight: `min(calc(${screen}px - var(--mobile-dock-h, 63px)), 940px)` }
+      : undefined;
+
   return (
-    <section id="hero" className="relative pt-14 pb-8 px-5 mobile-section">
-      <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-5">
-          <button
-            type="button"
-            onClick={onOpenContact}
-            className="flex-shrink-0 mobile-tap-spring rounded-full"
-            aria-label={nav.contactAria}
-          >
-            <img
-              src={asset('krish-bitmoji')}
-              alt={nav.brand}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20 shadow-sm"
-            />
-          </button>
-          <div className="min-w-0">
-            <p className="text-[12.5px] text-muted-foreground flex items-center gap-1.5 flex-wrap">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 motion-reduce:animate-none"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              <span>{hero.status}</span>
-            </p>
-          </div>
-        </div>
+    <section id="hero" className="relative flex flex-col pt-14 pb-8 px-5 mobile-section" style={fillScreen}>
+      <div className="relative z-10 flex flex-1 flex-col">
+        {/* The headshot is the whole row. It shared it with a "14 agents, 45
+            workflows" status line until 20 Aug 2026; the counts are still on
+            the page, in the operating system section that can show them
+            running. */}
+        <button
+          type="button"
+          onClick={onOpenContact}
+          className="mt-auto flex-shrink-0 self-start mobile-tap-spring rounded-full mb-5"
+          aria-label={nav.contactAria}
+        >
+          <img
+            src={asset('krish-bitmoji')}
+            alt={nav.brand}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            className="w-28 h-28 rounded-full object-cover ring-2 ring-primary/20 shadow-sm"
+          />
+        </button>
 
         <h1 className="mobile-h1 text-balance mb-3">
           {hero.h1}
@@ -87,7 +111,7 @@ const MobileHero = ({ onOpenContact }: MobileHeroProps) => {
             viewport to make sense. Four logos fit across a phone with room to
             spare, so the animation was duplicating the same four and sliding
             them past a reader who could already see all of them. */}
-        <div className="pt-5 border-t border-border/40">
+        <div data-trust-strip className="mt-auto pt-5 border-t border-border/40">
           <p className="mobile-eyebrow mb-3">{hero.trustLabel}</p>
           <div className="flex items-center justify-between gap-3">
             {trustLogos.map((logo, i) => (

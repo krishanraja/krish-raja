@@ -3,8 +3,10 @@ import { site } from './site';
 
 export const hero: HeroContent = {
   // The eyebrow is gone on purpose. It did no work, and "operator-advisor" is a
-  // retired self-description. See project-documentation/POSITIONING.md.
-  status: '14 agents · 45 workflows',
+  // retired self-description. See project-documentation/POSITIONING.md. The
+  // "14 agents · 45 workflows" status line went the same way on 20 Aug 2026:
+  // only the mobile tree ever rendered it, and the counts read better in the OS
+  // section, which shows them running.
   h1: site.spine,
   // The link that follows is a link, not a sentence. This used to end with
   // "Read my Substack →" in the prose as well, so the words rendered twice, once

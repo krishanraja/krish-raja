@@ -51,7 +51,7 @@ The fix is `zoom` on the root element: lay out at 400px, paint at `innerWidth / 
 Chrome's fit-to-width puts it back at 1:1. `zoom` and not a transform, because a transform
 would make the fixed dock's containing block the page instead of the screen.
 
-### The consequence: the mobile tree may not use breakpoints
+### The consequence: the mobile tree may not use breakpoints, or viewport units
 
 `zoom` changes the used value of a length. It does **not** change the viewport a media
 query measures, so `md:` still fires at 980 inside a 400px document. Any `sm:`/`md:`/`lg:`
@@ -62,6 +62,19 @@ The mobile tree itself has none. The three components shared with the desktop tr
 `SlideDeck`, `AttendeeStrip` and `SelectedWork`, take their layout from a **prop** rather
 than a breakpoint, and `MobileIndex` passes it. `npm run mobile:check` fails if a
 breakpoint class appears anywhere under `main#main`, the top bar or the dock.
+
+**`svh`, `dvh` and `vh` fail for the same reason, and they fail silently.** A viewport
+unit resolves against the viewport, which zoom does not divide, so it comes back in
+viewport pixels and is then multiplied by the zoom like any other length. Measured on
+20 August 2026 in desktop-site mode: an element asking for `100svh` laid out at **1750**
+inside a document **714** layout pixels tall, and painted at 4288. That is not a rounding
+error, it is a six-screen element, and unlike a breakpoint it produces no visual clue on
+the 390px profiles where it behaves perfectly.
+
+`useMobileViewportHeight()` is the corrected unit. It is `innerHeight` divided by the same
+zoom the width already uses, resampled on width changes only, so a URL bar sliding away
+mid-scroll does not reflow the page under a moving thumb. The mobile hero sizes its one
+screen from it. **Anything else that wants "one screen" wants that hook, not a CSS unit.**
 
 **Test any layout change at 980px with touch emulation, not just at 390px.**
 
@@ -76,14 +89,20 @@ npm run mobile:check
 in forced-desktop mode, and asserts on what actually rendered: the mobile tree is the one
 serving, **the document lays out between 320 and 460px whatever the viewport claims**,
 nothing overflows sideways, no breakpoint class is reachable from the mobile tree, every
-tap target clears 40px, no section outruns a 950px budget, the dock is one row of five
-with no sideways scroll, every rail has something to swipe to, the contact sheet opens,
-and no retired mobile-only string is on the page.
+tap target clears 40px, no section outruns a 950px budget, the hero's trust logos are
+seated at the foot of the first screen rather than floating above dead background, the
+dock is one row of five with no sideways scroll, every rail has something to swipe to,
+the contact sheet opens, and no retired mobile-only string is on the page.
 
-Measure in `offsetWidth`/`offsetHeight`, never `getBoundingClientRect()`. The rect returns
-painted pixels, which the root zoom inflates by 2.45; the offsets are layout pixels, which
-is the unit a thumb actually experiences. Two budget checks silently passed against the
-wrong unit before this was noticed.
+Measure **sizes** in `offsetWidth`/`offsetHeight`, never `getBoundingClientRect()`. The
+rect returns painted pixels, which the root zoom inflates by 2.45; the offsets are layout
+pixels, which is the unit a thumb actually experiences. Two budget checks silently passed
+against the wrong unit before this was noticed.
+
+**Positions** are the exception, and the seating check is the one that needs them: the
+dock is `fixed`, so it shares no offset parent with anything in the hero and `offsetTop`
+cannot measure the distance between them. Take both rects and divide by the zoom, which
+lands back in layout pixels. Dividing is not optional.
 
 It also prints a `near` line for any section within 5% of the height budget. The portfolio
 went from comfortable to 962px on an iPhone SE the moment a section intro grew by one
@@ -397,6 +416,12 @@ These are not oversights. Each was removed on purpose and must not come back.
   its three neighbours did not, so one of four read as a different component.
 - **Section eyebrows, and any mobile-only heading.** See "One section, one set of words".
   The types no longer allow either.
+- **A live-status line in the hero.** "14 agents · 45 workflows" sat beside the mobile
+  headshot with a pinging dot and had no desktop counterpart, which made it the last
+  mobile-only string on the site. It came off on 20 August 2026 and `HeroContent.status`
+  went with it, because a slot only one tree can fill is how the invented mobile headings
+  arrived in the first place. The counts are not lost: they are in the operating system
+  section, which can show them running, and in the meta and `llms.txt` prose.
 - **A dock taller than one row, or wider than five slots.** It was nine chips scrolling
   sideways above a full-width button: two rows, 110px of permanent screen, five
   destinations off-screen at any moment, all of it restating headings the page already

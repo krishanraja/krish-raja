@@ -85,6 +85,14 @@ export function useIsMobileResolved() {
 /** The width the mobile tree is designed to lay out at. */
 const PHONE_WIDTH = 400
 
+/** The scale itself, so the height hook can divide by the same number. */
+const forcedZoom = (): number => {
+  if (typeof window === "undefined") return 1
+  const forced =
+    window.matchMedia(TOUCH_PRIMARY).matches && window.innerWidth >= MOBILE_BREAKPOINT
+  return forced ? window.innerWidth / PHONE_WIDTH : 1
+}
+
 /**
  * How much to scale the page up when a phone is in desktop-site mode.
  * Returns 1 when there is nothing to correct.
@@ -108,14 +116,47 @@ export function useForcedDesktopZoom() {
   const [zoom, setZoom] = React.useState(1)
 
   React.useEffect(() => {
-    const onChange = () => {
-      const forced =
-        window.matchMedia(TOUCH_PRIMARY).matches && window.innerWidth >= MOBILE_BREAKPOINT
-      setZoom(forced ? window.innerWidth / PHONE_WIDTH : 1)
-    }
+    const onChange = () => setZoom(forcedZoom())
     onChange()
     return subscribe(onChange)
   }, [])
 
   return zoom
+}
+
+/**
+ * The height of the visible screen, in the layout pixels the mobile tree is
+ * laid out in. Zero until a window exists.
+ *
+ * `svh`, `dvh` and `vh` are as unusable in this tree as `md:` is, and for the
+ * same reason: zoom changes the used value of a length but not the viewport a
+ * viewport unit resolves against. Measured in desktop-site mode, an element
+ * asking for `100svh` came back 1750 layout pixels tall inside a document 714
+ * layout pixels tall, and painted at 4288. Anything sized that way is a hero
+ * six screens deep.
+ *
+ * So height gets the same correction width already gets: divide by the zoom.
+ */
+export function useMobileViewportHeight() {
+  const measure = () =>
+    typeof window === "undefined" ? 0 : window.innerHeight / forcedZoom()
+
+  const [height, setHeight] = React.useState(measure)
+
+  React.useEffect(() => {
+    let lastWidth = window.innerWidth
+    const onChange = () => {
+      // A height-only resize is the URL bar sliding away under a moving thumb,
+      // or a keyboard opening. Resampling then would reflow the hero mid-scroll,
+      // which is the shift `svh` exists to avoid, so only a width change (a
+      // rotation, or the forced-desktop zoom recalculating) resamples.
+      if (window.innerWidth === lastWidth) return
+      lastWidth = window.innerWidth
+      setHeight(measure())
+    }
+    setHeight(measure())
+    return subscribe(onChange)
+  }, [])
+
+  return height
 }

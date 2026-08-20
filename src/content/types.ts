@@ -52,7 +52,12 @@ export interface TrustLogo {
 }
 
 export interface HeroContent {
-  readonly status: string;
+  // No status field. The mobile hero carried a "14 agents, 45 workflows" line
+  // beside the headshot and the desktop hero never had one, so it was the last
+  // mobile-only string on the site. It came off on 20 Aug 2026 and the field
+  // went with it: a slot only one tree can fill is how the invented mobile
+  // headings got there. The counts are still on the page, in the operating
+  // system section, and in the meta and llms.txt prose.
   readonly h1: string;
   readonly sub: string;
   readonly channel: ExternalLink;
@@ -69,7 +74,7 @@ export interface HeroContent {
  *
  * No badge field. The Operating System card used to carry a count chip that
  * no other card had, which made one of four look like a different component.
- * The counts live in the hero status line and the OS section instead.
+ * The counts live in the OS section, which can show them running.
  */
 export interface Pillar {
   readonly icon: string;

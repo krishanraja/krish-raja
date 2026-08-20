@@ -152,6 +152,52 @@ for (const [name, profile] of phones) {
   });
   check(small.length === 0, `${name}: every tap target clears 40px`, small.slice(0, 4).join('; '));
 
+  /**
+   * The hero ends where the screen ends, with the logos seated on it.
+   *
+   * A phone shows the hero and nothing else before the first swipe, so the
+   * trust strip is the last thing in that frame. It used to stop wherever the
+   * content stopped and leave a band of dead background between the logos and
+   * the dock, which reads as the page having ended rather than continued.
+   *
+   * Positions, unlike sizes, cannot be had from `offsetHeight`: the dock is
+   * fixed, so its offset parent is not the hero's. Rects are painted pixels,
+   * so both sides are divided by the zoom to land back in layout pixels, the
+   * unit a thumb experiences.
+   *
+   * Not asserted the other way on a short screen. An iPhone SE lays out at
+   * 320px and the hero's own content is taller than 505px there whatever the
+   * spacing, so the strip is legitimately below the fold and the honest report
+   * is the measured overhang, not a failure.
+   */
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(200);
+  const seat = await page.evaluate(() => {
+    const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+    const strip = document.querySelector('#hero [data-trust-strip]');
+    const dock = document.querySelector('[role="navigation"][aria-label]');
+    if (!strip || !dock) return null;
+    return {
+      screen: Math.round(window.innerHeight / zoom),
+      // Positive: the logos sit this far above the dock. Negative: this much of
+      // the hero is below the fold.
+      gap: Math.round((dock.getBoundingClientRect().top - strip.getBoundingClientRect().bottom) / zoom),
+    };
+  });
+  check(seat !== null, `${name}: the hero trust strip and the dock are both present`);
+  if (seat) {
+    check(
+      seat.gap <= 40,
+      `${name}: the trust logos are seated at the foot of the first screen`,
+      `${seat.gap}px of slack under them`,
+    );
+    if (seat.gap < 0) {
+      warnings.push(
+        `${name}: the hero runs ${-seat.gap}px past a ${seat.screen}px screen, so the logos are below the fold`,
+      );
+    }
+  }
+
   // A fixed pixel budget, not a multiple of the viewport, because the content
   // is the same on an SE and a Pixel and only the wrapping differs. 950px is
   // roughly a screen and a bit on any phone: enough for a heading, an intro

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { nav } from '@/content';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
@@ -19,6 +19,31 @@ interface MobileActionDockProps {
  */
 const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
   const [activeId, setActiveId] = useState<string>(sections[0].id);
+  const barRef = useRef<HTMLDivElement>(null);
+
+  /**
+   * Publish the dock's own height so the hero can seat its last row directly
+   * above it.
+   *
+   * Measured rather than written down, because the height is not a constant a
+   * stylesheet knows: `env(safe-area-inset-bottom)` adds a home indicator's
+   * worth on the phones that have one, and a hard-coded reserve would hide the
+   * trust logos behind the dock on exactly those devices. `offsetHeight` is
+   * layout pixels, the same unit the hero's minimum height is written in.
+   */
+  useEffect(() => {
+    const el = barRef.current;
+    if (!el) return;
+    const root = document.documentElement;
+    const publish = () => root.style.setProperty('--mobile-dock-h', `${el.offsetHeight}px`);
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty('--mobile-dock-h');
+    };
+  }, []);
 
   useEffect(() => {
     const targets = sections
@@ -44,6 +69,7 @@ const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
 
   return (
     <div
+      ref={barRef}
       className="mobile-dock-blur fixed bottom-0 inset-x-0 z-40 border-t border-border/60"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       role="navigation"

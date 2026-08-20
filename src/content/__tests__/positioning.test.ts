@@ -121,10 +121,14 @@ describe('the canonical numbers do not drift', () => {
   });
 
   it('the agent and workflow counts agree everywhere they appear', () => {
-    const counted = prose.filter((s) => /\d+ agents/.test(s.value));
+    // Both forms. This read `/\d+ agents/` while the hero status line was the
+    // only prose that matched it, so removing that line on 20 Aug 2026 would
+    // have left the test passing on nothing. "14-agent fleet" appears four
+    // times across operate, receipts and site and was never covered.
+    const counted = prose.filter((s) => /\d+[- ]agents?\b/.test(s.value));
     expect(counted.length).toBeGreaterThan(0);
     for (const s of counted) {
-      expect(s.value, `${s.path} disagrees on the agent count`).toMatch(/14 agents/);
+      expect(s.value, `${s.path} disagrees on the agent count`).toMatch(/14[- ]agents?\b/);
     }
     expect(llmsTxt).toContain('14-agent, 45-workflow');
   });
