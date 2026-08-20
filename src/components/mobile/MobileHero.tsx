@@ -77,7 +77,14 @@ const MobileHero = ({ onOpenContact }: MobileHeroProps) => {
         <div className="flex flex-col gap-2 mb-5">
           {/* Opens the contact sheet. It used to open a work sheet holding one
               card that linked to themindmaker.ai; that sheet went with the
-              "Work with me" section on 12 Aug 2026. */}
+              "Work with me" section on 12 Aug 2026.
+
+              The label stays centered, and that is not an oversight. A filled
+              full-width button aligns by its box, and this one already sits on
+              the hero's axis at both edges, 20 and 392. Its label cannot join
+              that axis, because the pill needs its own padding: left-aligning
+              the text lands it at 44, near the line without being on it, which
+              reads as a mistake rather than a decision. */}
           <button
             type="button"
             onClick={onOpenContact}
@@ -87,20 +94,33 @@ const MobileHero = ({ onOpenContact }: MobileHeroProps) => {
             <ArrowRight className="w-4 h-4" />
           </button>
           {/* h-11 on both, not padding that happens to add up. A thumb needs
-              44px and the live mobile check fails anything under 40. */}
+              44px and the live mobile check fails anything under 40.
+
+              Left-aligned, and hugging its own text rather than stretching the
+              row. Everything else in the hero starts at x=20: the headshot, the
+              headline, the paragraph, the Substack link below, the eyebrow and
+              the first logo. This sat at 152, centered directly above a link at
+              20, which is what made the three calls to action read as
+              unaligned. Hugging matters too: stretched, it put a full-width
+              invisible hit area 8px under the primary button, so a low thumb
+              aimed at "Get in touch" caught this instead. */}
           <a
             href={hero.secondaryHref}
-            className="flex h-11 items-center justify-center text-center text-sm text-muted-foreground hover:text-foreground mobile-tap-spring"
+            className="self-start inline-flex h-11 items-center text-sm text-muted-foreground hover:text-foreground mobile-tap-spring"
           >
             {hero.secondaryCta} ↓
           </a>
         </div>
 
+        {/* self-start for the same reason as the link above: `inline-flex` does
+            not stop a flex column stretching this to the full row, so the box
+            ran 20 to 392 while the words ended at 142. Tapping the empty half
+            opened Substack in a new tab. */}
         <a
           href={hero.channel.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="mb-3 inline-flex h-11 items-center gap-1 text-xs font-medium text-primary link-underline"
+          className="mb-3 self-start inline-flex h-11 items-center gap-1 text-xs font-medium text-primary link-underline"
         >
           {hero.channel.label}
           <ArrowUpRight className="w-3 h-3" />
