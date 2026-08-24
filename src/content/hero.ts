@@ -11,7 +11,7 @@ export const hero: HeroContent = {
   // The link that follows is a link, not a sentence. This used to end with
   // "Read my Substack →" in the prose as well, so the words rendered twice, once
   // as dead text and once as the anchor beside it. The anchor keeps the words.
-  sub: '16 years commercializing data and tech for content and media businesses, and now making myself the blueprint for the AI-era and helping commercial leaders who want to do the same.',
+  sub: 'From writing automations at Microsoft 16 years ago, to launching and running entire businesses commercializing data and tech, I have made myself the blueprint for becoming a true AI-era leader, and my mission is to help others chart that path too.',
   channel: {
     // Arrows are affordances, not copy. Each surface renders its own.
     label: 'Read my Substack',

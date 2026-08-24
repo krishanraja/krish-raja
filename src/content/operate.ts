@@ -16,24 +16,24 @@ export const operate: OperateContent = {
   id: 'how-i-operate',
   // One title, both trees. The mobile variant said "The operating stack", which
   // was written to sit under an eyebrow rather than because anyone said it.
-  title: "I've built my own AI OS.",
-  sub: 'Full stack, built myself with all the hard lessons learned so I can solve customer problems with real world AI experience.',
+  title: "I've built my own AI brain & OS.",
+  sub: 'Full stack, built myself with over 500hrs of work, licensed to many businesses and loaded with all the hard lessons learned so others can follow suit.',
 
   pillars: [
     {
       icon: 'target',
       title: 'The Revenue Engine',
-      body: 'I don\'t take care of research, cold email, nurture or CRM any more. My goal is to begin my day with decisions and selections, not questions and admin.',
+      body: 'I don\'t do research, cold email, nurture or CRM any more, the system does. I begin my day with decisions and trade offs, not admin.',
     },
     {
       icon: 'bot',
       title: 'The Operating System',
-      body: 'My 14-agent fleet does what a 15-person team used to as they work: hand offs, audits and health checks, so the system is the IT team.',
+      body: 'My 14-agent fleet does what a 15-person team used to as they work: hand offs, audits and health checks. The IT team is the system itself.',
     },
     {
       icon: 'file-text',
-      title: 'The Content Engine',
-      body: 'I have very specific writing standards, so I constantly work to encode my taste, standards & judgement, building my AI brain.',
+      title: 'The Taste & Judgement Engine',
+      body: 'I have specific standards for what goes out in my name, so I encode my taste, standards & judgement - codifying my AI brain privately.',
     },
     {
       icon: 'wrench',
