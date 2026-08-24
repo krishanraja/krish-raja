@@ -41,7 +41,7 @@ export const site: SiteContent = {
 
   // The spine sentence. Also on his LinkedIn. Must not drift.
   spine:
-    'Commercial AI leader for content, media and IP businesses.',
+    'The AI-native commercial strategy operator.',
   cluster: 'content, media and IP businesses',
 
   title: 'Krish Raja: commercial leader for content, media and IP businesses',

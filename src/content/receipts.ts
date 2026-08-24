@@ -76,15 +76,14 @@ export const receipts: ReceiptsContent = {
   ],
 
   credentials: [
-    'Founder, Mindmake',
-    'B&T 30 Under 30, Strategy',
-    'Writer, Mindmake Content',
-    'Harvard Business School (Finance, Analytics & Economics)',
-    'MA Design Strategy (Distinction)',
-    'Sydney Opera House Keynote Speaker',
+    'Founder, mind/make OS',
+    ' 30 Under 30, Strategy',
+    'Content creator (9k subscribers)',
+    'Harvard Business School (Finance)',
+    'Masters (Interaction Design)',
+    'Qualified in teaching, linguistics, music, psychology, computing',
+    'Public Speaker (Sydney Opera House)',
     'Published Author, Speaker & Writer',
-    'Ex-Microsoft Automation Specialist',
-    'First Global Automated Media Campaigns (2010)',
   ],
 
   journey: [

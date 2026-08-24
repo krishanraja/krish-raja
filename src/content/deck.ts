@@ -23,7 +23,7 @@ import type { DeckContent } from './types';
 export const deck: DeckContent = {
   id: 'the-thinking',
   title: 'I\'ve run sessions with 4000+ leaders.',
-  sub: 'I build entire session decks myself and make the complex feel simple, flick through for yourself to get a feel for how I teach.',
+  sub: 'I capture the shifts behind AI builds and monetization every week and distill them to make the complex feel simple. Flick through for yourself to get a feel for how I teach.',
   readerHint: 'Tap to read',
   sessionLabel: 'See the session',
 
