@@ -81,7 +81,7 @@ export const receipts: ReceiptsContent = {
     'Content creator (9k subscribers)',
     'Harvard Business School (Finance)',
     'Masters (Interaction Design)',
-    'Qualified in teaching, linguistics, music, psychology, computing',
+    'Qualified in Teaching, Linguistics, Music, Psychology, Computing',
     'Public Speaker (Sydney Opera House)',
     'Published Author, Speaker & Writer',
   ],

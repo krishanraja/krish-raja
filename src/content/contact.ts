@@ -21,7 +21,7 @@ const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 export const contact: ContactContent = {
   id: 'contact',
   title: 'Get in touch',
-  sub: 'I\'d love to hear from you - get in touch.',
+  sub: 'Companies dominating the AI era will need operators who can scale commercial businesses to nine figures AND ship AI systems into production. I have done both.',
 
   links: [
     {
