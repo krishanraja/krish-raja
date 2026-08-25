@@ -77,7 +77,7 @@ export const receipts: ReceiptsContent = {
 
   credentials: [
     'Founder, mind/make OS',
-    ' 30 Under 30, Strategy',
+    'Media 30 Under 30, Strategy',
     'Content creator (9k subscribers)',
     'Harvard Business School (Finance)',
     'Masters (Interaction Design)',
