@@ -68,7 +68,7 @@ export const receipts: ReceiptsContent = {
   // here needs a permission it does not have. See the note at the top.
   engagements: [
     {
-      name: 'Executive advisory',
+      name: 'Executive advisory: Gen AI & 1st party data',
       role: 'Media, content IP, telco and entertainment businesses',
       description:
         'Working to help on first-party data infrastructure, IP, content and AI. This usually involves corporate strategy, product strategy and GTM strategy end-to-end.',
@@ -77,7 +77,7 @@ export const receipts: ReceiptsContent = {
 
   credentials: [
     'Founder, mind/make OS',
-    ' 30 Under 30, Strategy',
+    'Media 30 Under 30, Strategy',
     'Content creator (9k subscribers)',
     'Harvard Business School (Finance)',
     'Masters (Interaction Design)',
@@ -92,21 +92,21 @@ export const receipts: ReceiptsContent = {
       period: '2008-2013',
       role: 'From coding to customer success',
       story:
-        'Started at Microsoft, learning what it takes to ship at enterprise scale. Coded the first global automated media campaigns years before the industry caught up.',
+        'Started at Microsoft, learning what it takes to ship at enterprise scale. Coded automations pre-platform which would handle weeks of human data entry in hours, which got rolled out across EU.',
     },
     {
       city: 'Sydney',
       period: '2013-2024',
-      role: 'From Sales to Product & Corp Strategy',
+      role: 'From Sales to Product Marketing & Corp Strategy',
       story:
-        'Hired repeatedly to modernize legacy businesses and launch new revenue streams. Built regions, teams, and commercial systems from scratch.',
+        'Repeatedly hired to launch teams, revenue lines, products, datasets, marketplaces and markets from scratch.',
     },
     {
       city: 'New York',
       period: '2024-2026',
       role: 'From commercial career to full-stack portfolio',
       story:
-        'Operating an autonomous AI business and advising companies commercializing theirs.',
+        'Learning what it takes to 10X my own output at industrial scale with AI, helping leaders to help their businesses evolve towards the same.',
     },
   ],
 
