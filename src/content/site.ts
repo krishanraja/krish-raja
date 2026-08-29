@@ -40,14 +40,13 @@ export const site: SiteContent = {
   username: 'krishraja',
 
   // The spine sentence. Also on his LinkedIn. Must not drift.
-  spine:
-    'The AI-native commercial strategy operator.',
+  spine: 'AI-Native Commercial Strategy Leader',
   cluster: 'content, media and IP businesses',
 
-  title: 'Krish Raja: commercial leader for content, media and IP businesses',
+  title: 'Krish Raja: AI-Native Commercial Strategy Leader',
   description:
-    'Sixteen years commercializing content, media and IP businesses. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmake OS, a 14-agent AI operating system in production.',
-  jobTitle: 'Commercial leader and founder of Mindmake',
+    'Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel and Captify. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmake OS, a 14-agent AI operating system in production.',
+  jobTitle: 'AI-Native Commercial Strategy Leader, founder of Mindmake',
 
   url: 'https://www.krishraja.com',
   canonical: 'https://www.krishraja.com/',
@@ -56,18 +55,18 @@ export const site: SiteContent = {
   // in one inbox rather than two.
   email: 'krish@themindmaker.ai',
   ogImage: 'https://www.krishraja.com/og-image.png',
-  ogImageAlt: 'Krish Raja, commercial leader for content, media and IP businesses',
+  ogImageAlt: 'Krish Raja, AI-native commercial strategy leader',
   twitterHandle: '@krishraja',
   locale: 'en_US',
   language: 'en-US',
   websiteDescription:
-    'Personal website of Krish Raja, commercial leader for content, media and IP businesses and founder of Mindmake',
-  updated: '2026-08-12',
+    'Personal website of Krish Raja, AI-native commercial strategy leader and founder of Mindmake',
+  updated: '2026-08-29',
   themeColor: '#0055DD',
 
   // Prose below is rendered into public/llms.txt by scripts/generate-static.mts.
   // It lives here, next to the meta it has to agree with, so the two cannot drift.
-  bio: 'Krish Raja is a commercial leader for content, media and IP businesses, and the founder of Mindmake. Sixteen years commercializing media, data and technology businesses across London, Sydney and New York. He now builds the AI systems that run commercial engines in that same sector.',
+  bio: 'Krish Raja is an AI-native commercial strategy leader and the founder of Mindmake. Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel and Captify. He now builds the AI systems that run commercial engines in content, media and IP businesses.',
 
   nowHeading: 'What he does now',
   now: [

@@ -1,6 +1,6 @@
 # Positioning
 
-Settled 10 and 11 August 2026. This is the spine. Changing anything here means changing
+Settled 10 and 11 August 2026. Spine and meta revised 29 August 2026. This is the spine. Changing anything here means changing
 LinkedIn and themindmaker.ai in the same pass.
 
 ## The market
@@ -9,18 +9,29 @@ LinkedIn and themindmaker.ai in the same pass.
 > underneath them. Media, entertainment, creator economy, publishing, adtech, telco data,
 > search data.
 
-## The spine sentence
+## The spine
 
-This exact sentence also appears on his LinkedIn and must not drift:
+Settled 29 August 2026. The spine is now the LinkedIn headline itself, byte for byte,
+title case and no trailing period:
 
-> Sixteen years commercializing content, media and IP businesses. Now I build the AI
-> systems that run them.
+> AI-Native Commercial Strategy Leader
 
-**Spelling is US throughout, decided 12 August 2026.** That includes this sentence, which
-changed from `commercialising`. **LinkedIn must carry the US spelling too**, or the one
-string that is supposed to be identical across surfaces is not.
+**LinkedIn is the source of truth for this string.** When the headline moves, this moves,
+and not the other way round. Defined once, in `src/content/site.ts` as `spine`. The hero
+H1 is this line.
 
-Defined once, in `src/content/site.ts` as `spine`. The hero H1 is this sentence.
+**Spelling is US throughout, decided 12 August 2026.** The rule survives the change of
+spine and still governs every other string in the content layer.
+
+### The two retired spines. Neither returns as the primary headline.
+
+| Retired spine | Retired | Why |
+|---|---|---|
+| `Sixteen years commercializing content, media and IP businesses. Now I build the AI systems that run them.` | 29 August 2026 | A sentence, not a headline. It described the past first and the AI work second, which is the wrong order for the position Krish now runs. The sixteen years and the cluster both survive, in the meta description and the bio. |
+| `The AI-native commercial strategy operator.` | 29 August 2026 | Shorter-lived. It never matched the LinkedIn headline, which is the whole point of having a spine, and "operator" reads junior to the role. |
+
+Neither may be reused as the primary headline. Both are still accurate prose and may
+appear in body copy or the bio if Krish wants them there.
 
 ## The coherence rule
 
@@ -46,8 +57,8 @@ Everything else varies by surface:
 
 | Surface | What it runs |
 |---|---|
-| krishraja.com | The full spine sentence as the H1 |
-| LinkedIn | A compressed variant, because the headline is 220 characters |
+| krishraja.com | The spine as the H1, identical to the LinkedIn headline |
+| LinkedIn | The headline, which is the source of the spine |
 | themindmaker.ai | Barely describes Krish at all. It sells the practice, not the person. |
 
 ## What he sells
@@ -69,27 +80,50 @@ Applied identically to `<title>`, `meta[name=title]`, `meta[name=description]`,
 `og:title`, `og:description`, `twitter:title`, `twitter:description`. Generated from
 `src/content/site.ts`, never hand-edited.
 
+Updated 29 August 2026 with the spine.
+
 **Title**
 
 ```
-Krish Raja: commercial leader for content, media and IP businesses
+Krish Raja: AI-Native Commercial Strategy Leader
 ```
 
 **Description**
 
 ```
-Sixteen years commercializing content, media and IP businesses. $9M to $61M at Nine, $0
-to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmaker OS, a 14-agent AI
-operating system in production.
+Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel
+and Captify. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now
+running Mindmake OS, a 14-agent AI operating system in production.
 ```
 
 **JSON-LD `jobTitle`**
 
 ```
-Commercial leader and founder of Mindmaker
+AI-Native Commercial Strategy Leader, founder of Mindmake
 ```
 
 **JSON-LD `description`:** the meta description above, verbatim.
+
+**`ogImageAlt`**
+
+```
+Krish Raja, AI-native commercial strategy leader
+```
+
+**`websiteDescription`**
+
+```
+Personal website of Krish Raja, AI-native commercial strategy leader and founder of Mindmake
+```
+
+**`bio`**, which opens `public/llms.txt`
+
+```
+Krish Raja is an AI-native commercial strategy leader and the founder of Mindmake. Sixteen
+years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel and
+Captify. He now builds the AI systems that run commercial engines in content, media and IP
+businesses.
+```
 
 ## Retired names. These must never return.
 
@@ -100,7 +134,9 @@ Commercial leader and founder of Mindmaker
 | **Revenue Architecture** | Offer retired, same reason. |
 | **Techonomic** (as a standalone channel) | Folded into Mindmaker Live. techonomic.co no longer resolves. |
 | **The Builder Economy** (as a standalone channel) | Folded into Mindmaker Live. thebuildereconomy.com returns 404. |
-| **"Operator-advisor"** (as the primary self-description) | Superseded by the spine sentence. |
+| **"Operator-advisor"** (as the primary self-description) | Superseded by the spine. |
+| **"Sixteen years commercializing content, media and IP businesses. Now I build the AI systems that run them."** (as the primary headline) | Retired 29 Aug 2026. See The spine. |
+| **"The AI-native commercial strategy operator."** (as the primary headline) | Retired 29 Aug 2026. See The spine. |
 | **"Operator, not advisor"** (as a slide in the deck) | The agentic org chart deck opens with it. That slide is excluded from `deck.ts` for the same reason the phrase is retired. |
 | **"Teardown"** (as an episode format name) | Collides with The Teardown, a live paid Mindmaker engagement. One word cannot mean both a free episode and a purchase on one brand. |
 

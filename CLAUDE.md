@@ -183,7 +183,7 @@ which runs automatically before every build. Do not hand-edit them. Edit
 `src/content/site.ts` and run `npm run generate`.
 
 `npm test` fails if a generated file has drifted from the content layer, or if the
-spine sentence or any headline number disagrees across surfaces.
+spine or any headline number disagrees across surfaces.
 
 Before adding a string to a component, ask which content module it belongs in.
 `grep -rn "61M" src/components/` must always return nothing.
@@ -221,7 +221,7 @@ better title.
 
 1. **No em dashes. Anywhere. Including code and commit messages.** Use commas, periods
    or parentheses.
-2. **US spelling throughout**, including the spine sentence. Decided 12 August 2026. The
+2. **US spelling throughout**, including the spine. Decided 12 August 2026. The
    test suite fails on `commercialis`, `organis`, `defence`, `optimis` and `recognis`.
 3. **Never invent a number, client name, date or outcome.** Every approved figure is in
    `project-documentation/FACTS.md`. If a figure is not there, it does not go on the site.
@@ -246,10 +246,15 @@ better title.
 > underneath them. Media, entertainment, creator economy, publishing, adtech, telco data,
 > search data.
 
-The spine sentence, which also appears on his LinkedIn and must not drift:
+The spine, revised 29 August 2026 to the live LinkedIn headline, byte for byte, title
+case and no trailing period. LinkedIn is the source of truth and this follows it:
 
-> Sixteen years commercializing content, media and IP businesses. Now I build the AI
-> systems that run them.
+> AI-Native Commercial Strategy Leader
+
+It replaced two earlier spines on the same day, and neither returns as the primary
+headline: `Sixteen years commercializing content, media and IP businesses. Now I build the
+AI systems that run them.` and `The AI-native commercial strategy operator.` See
+`project-documentation/POSITIONING.md`.
 
 Three things must never differ across krishraja.com, LinkedIn and themindmaker.ai:
 
@@ -395,8 +400,10 @@ These are not oversights. Each was removed on purpose and must not come back.
   must never reappear in this repo.
 - **"Techonomic" and "The Builder Economy" as standalone channels.** Both folded into
   Mindmake Content. Both domains are dead.
-- **"Operator-advisor" as the primary self-description.** Superseded by the spine
-  sentence.
+- **"Operator-advisor" as the primary self-description.** Superseded by the spine.
+- **The two retired spines as a primary headline.** `Sixteen years commercializing
+  content, media and IP businesses. Now I build the AI systems that run them.` and
+  `The AI-native commercial strategy operator.`, both retired 29 August 2026.
 - **Any client name or dollar figure against the advisory work.** AdFixus, Meliora, the
   $254K POC, Hearst, Arena Group and The Weather Company are all off the site as of
   12 August 2026. The receipts section carries one anonymized `Executive advisory` entry
@@ -446,5 +453,5 @@ These are not oversights. Each was removed on purpose and must not come back.
 
 ## Further reading
 
-- `project-documentation/POSITIONING.md`: the spine sentence, approved meta, retired names
+- `project-documentation/POSITIONING.md`: the spine, approved meta, retired names and spines
 - `project-documentation/FACTS.md`: every number with its source, and the unresolved conflicts
