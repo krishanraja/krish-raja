@@ -143,9 +143,11 @@ export const site: SiteContent = {
     // `npm run links:check`. This is the owned channel page, and it is the
     // capture source the content index already records for this appearance.
     signalAndNoise: 'https://www.signalandnoise.ai/executive-voices',
-    // The account root rather than one event type, so retiring or renaming an
-    // event type cannot leave a 404 on the contact section. Swap it for
-    // /krish-raja (30 min, first-time intros) if you want to pin the length.
-    calendly: 'https://calendly.com/krish-raja',
+    // Pinned to the event type on Krish's instruction, 2026-08-29, so a booking
+    // lands on the intro call rather than a profile page the visitor still has
+    // to choose from. Verified 200 on the day it was set. The trade-off the
+    // account root avoided is real: renaming or retiring this event type WILL
+    // 404 the contact section, so re-verify it if the event is ever changed.
+    calendly: 'https://calendly.com/krish-raja/krish-raja',
   },
 };
