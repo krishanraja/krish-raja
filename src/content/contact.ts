@@ -48,7 +48,7 @@ export const contact: ContactContent = {
     },
     {
       action: 'Book a call with me',
-      detail: 'calendly.com/krish-raja',
+      detail: 'calendly.com/krish-raja/krish-raja',
       href: site.links.calendly,
       icon: 'calendar',
       external: true,
