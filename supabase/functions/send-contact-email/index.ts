@@ -92,12 +92,13 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send notification email to admin.
     // The `from` addresses in this file still use krishraja.com because that is
-    // the domain verified in Resend. Only the destination moved to
-    // krish@themindmaker.ai, which is where all public mail lands as of
-    // 12 Aug 2026. Verify themindmaker.ai in Resend before changing `from`.
+    // the domain verified in Resend. Only the destination moved, to
+    // krish@mindmake.co (Krish, 2026-10-03), the published contact address.
+    // krish@themindmaker.ai still redirects there. The `from` stays on the
+    // verified krishraja.com domain; verify a new domain in Resend before changing it.
     const notificationEmail = await resend.emails.send({
       from: "Contact Form <hello@krishraja.com>",
-      to: ["krish@themindmaker.ai"],
+      to: ["krish@mindmake.co"],
       subject: `New Contact: ${serviceType} inquiry from ${name}`,
       html: generateNotificationEmail(name, email, serviceType, message, bookingData.id),
     });
@@ -187,7 +188,7 @@ function generateConfirmationEmail(name: string, serviceType: string): string {
             Best regards,<br>
             <strong>Krish Raja</strong><br>
             AI Strategy & Transformation Advisor<br>
-            <a href="mailto:krish@themindmaker.ai" style="color: #2563eb;">krish@themindmaker.ai</a>
+            <a href="mailto:krish@mindmake.co" style="color: #2563eb;">krish@mindmake.co</a>
           </p>
         </div>
       </div>

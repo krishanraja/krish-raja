@@ -10,7 +10,8 @@ import type { SiteContent } from './types';
  * the new ones resolve before you do.
  *
  * The contact address is deliberately NOT derived from this. See FACTS.md:
- * krish@themindmaker.ai stays forever, by Krish's decision.
+ * krish@mindmake.co is the published contact address (Krish, 2026-10-03). It
+ * replaced krish@themindmaker.ai, which still redirects to it.
  */
 const DOMAINS_LIVE = false;
 
@@ -50,10 +51,9 @@ export const site: SiteContent = {
 
   url: 'https://www.krishraja.com',
   canonical: 'https://www.krishraja.com/',
-  // Every public address on this site points here, decided 12 Aug 2026. It is
-  // the same address the Calendly account bills to, so booking and email land
-  // in one inbox rather than two.
-  email: 'krish@themindmaker.ai',
+  // The single published contact address for the whole site (Krish, 2026-10-03).
+  // krish@themindmaker.ai still redirects here, so older links keep working.
+  email: 'krish@mindmake.co',
   ogImage: 'https://www.krishraja.com/og-image.png',
   ogImageAlt: 'Krish Raja, AI-native commercial strategy leader',
   twitterHandle: '@krishraja',

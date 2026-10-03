@@ -158,8 +158,10 @@ Everything reads from `hosts`, so the switch is one line and `npm run links:chec
 side you are on actually resolves. It earns that on real runs: it caught
 `mediaradar.com/signal-and-noise` returning 404. A test fails the build if half the URLs flip.
 
-**The contact address is deliberately not part of that switch.** `krish@themindmaker.ai`
-stays forever, by Krish's decision. It is in FACTS.md. Do not "fix" it to match the brand.
+**The contact address is deliberately not part of that switch.** The published address is
+`krish@mindmake.co` (Krish, 2026-10-03), which replaced `krish@themindmaker.ai`; the old
+one still redirects to it so older links keep working. It moved on its own decision, not via
+`DOMAINS_LIVE` (that governs website URLs, not the mailbox). It is in FACTS.md and a test pins it.
 
 The site is one primary block and a secondary shelf, not five peers. Mindmake branches into
 Advisory, CTRL and Content; Content has two formats, **The Money of AI** and **Building with

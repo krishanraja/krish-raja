@@ -274,10 +274,11 @@ describe('the brand is Mindmake', () => {
     }
   });
 
-  it('the contact address is the permanent one', () => {
-    // Krish's decision, recorded in FACTS.md: krish@themindmaker.ai forever,
-    // and deliberately not derived from the domain switch. Do not "fix" it.
-    expect(site.email).toBe('krish@themindmaker.ai');
+  it('the contact address is the published one', () => {
+    // Krish's decision, recorded in FACTS.md: krish@mindmake.co (2026-10-03),
+    // replacing krish@themindmaker.ai, and deliberately not derived from the
+    // DOMAINS_LIVE switch, which governs website URLs rather than the mailbox.
+    expect(site.email).toBe('krish@mindmake.co');
   });
 });
 

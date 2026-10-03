@@ -132,9 +132,10 @@ no DNS record when the rename shipped, verified 19 August 2026; `themindmaker.ai
 So the copy renamed and the links did not. `DOMAINS_LIVE` in `src/content/site.ts` moves
 every URL at once. Do not ship a mindmake.co link until `npm run links:check` passes on it.
 
-**The contact address never changes.** `krish@themindmaker.ai`, Krish's decision, in his
-words "keep it forever". It is deliberately not derived from the domain switch, and a test
-pins it. If it ever looks like an oversight, it is not.
+**The contact address is `krish@mindmake.co`.** Krish moved it there on 2026-10-03,
+replacing `krish@themindmaker.ai`, which still redirects to it so older links keep working.
+It is deliberately not derived from the `DOMAINS_LIVE` switch (that governs website URLs,
+not the mailbox), and a test pins it.
 
 **Signal & Noise moved.** `mediaradar.com/signal-and-noise` returned 404 on 19 August 2026,
 found by `npm run links:check`. The link is now `signalandnoise.ai/executive-voices`, the
