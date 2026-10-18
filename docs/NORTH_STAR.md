@@ -4,7 +4,7 @@ Status: Current
 Owner: Krish Raja
 Last verified: 2026-10-18
 
-> Within a year, by October 2027, krishraja.com is the reason event organisers book Krish: they find the talks, the rooms that changed their minds, and one way to ask.
+> By February 2027, krishraja.com is the reason event organisers book Krish: they find the talks, the rooms that changed their minds, and one way to ask.
 
 Set by Krish on 18 October 2026. It is not reached yet. It is what every session in this repository works toward.
 
