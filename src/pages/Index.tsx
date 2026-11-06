@@ -12,6 +12,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import MobileIndex from '@/components/mobile/MobileIndex';
 import { useIsMobileResolved } from '@/hooks/use-mobile';
+import { useLandOnSection } from '@/hooks/use-land-on-section';
 
 const DesktopIndex = () => {
   useEffect(() => {
@@ -50,6 +51,7 @@ const DesktopIndex = () => {
 
 const Index = () => {
   const isMobile = useIsMobileResolved();
+  useLandOnSection(isMobile !== undefined);
   if (isMobile === undefined) return <div className="min-h-screen bg-background" />;
   return isMobile ? <MobileIndex /> : <DesktopIndex />;
 };

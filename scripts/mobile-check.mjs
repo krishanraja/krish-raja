@@ -311,6 +311,30 @@ check(
 );
 await laptop.close();
 
+/**
+ * Short section addresses land on their section, on both trees.
+ *
+ * krishraja.com/thinking is the link an organiser gets sent. The browser's own
+ * hash jump cannot do this on a single page app (it fires before React renders
+ * the target), so use-land-on-section does it, and this is what proves it ran
+ * at real phone scale. Measured in layout pixels: the rect divided by the zoom.
+ */
+const landingProfiles = [['Desktop 1440', { viewport: { width: 1440, height: 900 } }], ...phones];
+for (const [name, profile] of landingProfiles) {
+  const ctx = await browser.newContext(profile);
+  const page = await ctx.newPage();
+  await page.goto(new globalThis.URL('thinking', URL).href, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(2300);
+  const top = await page.evaluate(() => {
+    const el = document.getElementById('the-thinking');
+    if (!el) return null;
+    const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+    return Math.round(el.getBoundingClientRect().top / zoom);
+  });
+  check(top !== null && top >= 0 && top <= 140, `${name}: /thinking lands on the slides`, `top ${top}px`);
+  await ctx.close();
+}
+
 await browser.close();
 
 for (const p of passes) console.log(`  ok    ${p}`);

@@ -1,7 +1,8 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { rm } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { sectionPages } from "./scripts/section-pages";
 import { componentTagger } from "lovable-tagger";
 
 /**
@@ -28,6 +29,25 @@ const keepMastersOutOfTheBuild = (): Plugin => ({
   },
 });
 
+/**
+ * Writes dist/<path>/index.html for every short section address in
+ * src/content/links.ts, so krishraja.com/thinking is a real file on Vercel and
+ * its link preview names the section. A plugin rather than a postbuild script,
+ * so it runs however the host invokes the build.
+ */
+const sectionAddresses = (): Plugin => ({
+  name: 'section-addresses',
+  apply: 'build',
+  closeBundle: async () => {
+    const dist = path.resolve(__dirname, 'dist');
+    const indexHtml = await readFile(path.join(dist, 'index.html'), 'utf8');
+    for (const [file, html] of sectionPages(indexHtml)) {
+      await mkdir(path.dirname(path.join(dist, file)), { recursive: true });
+      await writeFile(path.join(dist, file), html, 'utf8');
+    }
+  },
+});
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
@@ -40,6 +60,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' &&
     componentTagger(),
     keepMastersOutOfTheBuild(),
+    sectionAddresses(),
   ].filter(Boolean),
   resolve: {
     alias: {

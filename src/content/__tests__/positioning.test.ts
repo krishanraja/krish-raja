@@ -15,6 +15,8 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { staleArtifacts } from '../../../scripts/generate-static.mjs';
+import { sectionPageHtml, sectionPages } from '../../../scripts/section-pages';
+import { sectionLinks } from '../links';
 
 import { site } from '../site';
 import { hero } from '../hero';
@@ -540,5 +542,27 @@ describe('the generated artifacts are in sync with src/content/', () => {
     // Fails if index.html, llms.txt or sitemap.xml was hand-edited, or a
     // content change was committed without running `npm run generate`.
     expect(staleArtifacts()).toEqual([]);
+  });
+});
+
+describe('short section addresses', () => {
+  const indexHtml = readFileSync(resolve(root, 'index.html'), 'utf8');
+  const sectionIds = [operate, os, deck, portfolio, receipts, appearances, lessons, contact].map((s) => s.id);
+
+  it('every section has exactly one address, and every address names a real section', () => {
+    expect(sectionLinks.map((l) => l.section.id).sort()).toEqual([...sectionIds].sort());
+    const paths = sectionLinks.map((l) => l.path);
+    expect(new Set(paths).size).toBe(paths.length);
+    for (const p of paths) expect(p).toMatch(/^[a-z]+$/);
+  });
+
+  it('each page previews its own section and keeps the homepage canonical', () => {
+    for (const link of sectionLinks) {
+      const html = sectionPageHtml(indexHtml, link);
+      expect(html).toContain(`<meta property="og:url" content="${site.url}/${link.path}" />`);
+      expect(html).toContain(`<link rel="canonical" href="${site.canonical}" />`);
+      expect(html).not.toContain(`<title>${site.title}</title>`);
+    }
+    expect(sectionPages(indexHtml)).toHaveLength(sectionLinks.length);
   });
 });

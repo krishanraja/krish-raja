@@ -10,3 +10,4 @@ export { appearances } from './appearances';
 export { lessons } from './lessons';
 export { contact } from './contact';
 export { nav } from './nav';
+export { sectionLinks } from './links';

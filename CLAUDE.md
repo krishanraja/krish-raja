@@ -299,6 +299,33 @@ card whose button linked to themindmaker.ai, which is what Contact does in a sin
 so it folded in there. The nav CTA and the hero button both say "Get in touch" and both
 land on `#contact`.
 
+## Short section addresses: `krishraja.com/thinking`
+
+Every section has a short address, defined once in `src/content/links.ts`:
+`/operate`, `/os`, `/thinking`, `/portfolio`, `/receipts`, `/work`, `/lessons`,
+`/contact`. Each opens the homepage and lands on that section. The old `#the-thinking`
+anchors work as well.
+
+Three parts, and each one matters:
+
+1. **A real file per address.** The `section-addresses` plugin in `vite.config.ts`
+   writes `dist/<path>/index.html` after every build. Vercel has no SPA rewrite here,
+   so without the file `/thinking` is a 404. Each file swaps in that section's own
+   `title` and `sub` as the link preview, because LinkedIn and Slack never run
+   JavaScript and never see a `#`. The canonical stays the homepage.
+2. **The route.** `/:section` in `src/App.tsx` renders the homepage for a known path,
+   and the 404 for anything else.
+3. **The landing.** `useLandOnSection()` scrolls to the section once a tree is chosen.
+   On a single-page app the browser's own hash jump fires before React renders the
+   target, so plain `#` links did nothing on first load before this. It re-aligns for
+   two seconds while images load, and stops as soon as the reader touches the page.
+
+To add one, add an entry to `links.ts`. `npm test` fails if a section has no address or
+two, and `npm run mobile:check` checks that `/thinking` lands on both trees.
+
+They are paths, not subdomains. A subdomain is a separate host per section, with its own
+DNS record and Vercel domain, and it would land on the same anchor anyway.
+
 ## Media: `public/files/` in, `public/media/` out
 
 `public/files/` holds the masters Krish supplies: OS screen recordings, talk slides, the

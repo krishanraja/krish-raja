@@ -484,3 +484,14 @@ export interface SiteContent {
     readonly calendly: string;
   };
 }
+
+/**
+ * A short address for one section: krishraja.com/<path> opens the homepage and
+ * lands on that section. The link preview takes the section's own title and
+ * sub, so no new copy is written for it.
+ */
+export interface SectionLink {
+  /** Lowercase, no slashes. The address is `${site.url}/${path}`. */
+  readonly path: string;
+  readonly section: SectionHeader;
+}
