@@ -30,7 +30,7 @@ export const nav: NavContent = {
   ],
 
   footerTagline:
-    'Sixteen years commercializing content, media and IP businesses. Now building the AI systems that run them.',
+    'Sixteen years commercialising content, media and IP businesses. Now building the AI systems that run them.',
   footerRights: 'All rights reserved.',
   sitemapLabel: 'Sitemap',
   linkedInAria: 'LinkedIn profile',
