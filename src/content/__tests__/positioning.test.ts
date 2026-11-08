@@ -526,10 +526,12 @@ describe('every referenced media file exists', () => {
 });
 
 describe('spelling is consistent', () => {
-  // US throughout, decided 12 August 2026. The spine sentence moved with it and
-  // LinkedIn has to match. See project-documentation/POSITIONING.md.
-  it.each(['commercialis', 'organis', 'defence', 'optimis', 'recognis'])(
-    'no content uses the British form "%s"',
+  // British throughout (Ruling, Krish, 2026-11-07), which supersedes the US
+  // spelling of 12 August 2026. The list is the US forms krish-voice's kill list
+  // names (ai-harness skills/krish-voice/references/kill-list.json). See
+  // project-documentation/POSITIONING.md.
+  it.each(['commercializ', 'organiz', 'optimiz', 'recogniz', 'monetiz', 'prioritiz', 'realiz', 'analyz', 'behavior', 'favorite', 'judgment'])(
+    'no content uses the US form "%s"',
     (stem) => {
       const hits = prose.filter((s) => new RegExp(stem, 'i').test(s.value)).map((s) => s.path);
       expect(hits).toEqual([]);

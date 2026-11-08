@@ -235,8 +235,11 @@ better title.
 
 1. **No em dashes. Anywhere. Including code and commit messages.** Use commas, periods
    or parentheses.
-2. **US spelling throughout**, including the spine. Decided 12 August 2026. The
-   test suite fails on `commercialis`, `organis`, `defence`, `optimis` and `recognis`.
+2. **British spelling throughout**, including the spine (Ruling, Krish, 2026-11-07:
+   British everywhere, which supersedes the US decision of 12 August 2026). The test
+   suite fails on `commercializ`, `organiz`, `optimiz`, `recogniz`, `monetiz`, `behavior`
+   and the rest of krish-voice's US list. Quoted historical strings (the retired spines)
+   stay verbatim.
 3. **Never invent a number, client name, date or outcome.** Every approved figure is in
    `project-documentation/FACTS.md`. If a figure is not there, it does not go on the site.
    Leave a `TODO(krish):` instead.

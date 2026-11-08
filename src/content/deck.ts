@@ -23,7 +23,7 @@ import type { DeckContent } from './types';
 export const deck: DeckContent = {
   id: 'the-thinking',
   title: 'I\'ve run sessions with 4000+ leaders.',
-  sub: 'I capture the shifts behind AI builds and monetization every week and distill them to make the complex feel simple. Flick through for yourself to get a feel for how I teach.',
+  sub: 'I capture the shifts behind AI builds and monetisation every week and distill them to make the complex feel simple. Flick through for yourself to get a feel for how I teach.',
   readerHint: 'Tap to read',
   sessionLabel: 'See the session',
 
@@ -52,21 +52,21 @@ export const deck: DeckContent = {
     { id: 'ab-17', deck: 'autonomous_business', source: 'autonomous_business_17.jpg', alt: "Slide: you're not adding a tool to your company, you're hiring a second species of worker" },
     { id: 'ab-23', deck: 'autonomous_business', source: 'autonomous_business_23.jpg', alt: 'Slide: AI is the brain, automation and data are the machine' },
     { id: 'ab-25', deck: 'autonomous_business', source: 'autonomous_business_25.jpg', alt: 'Slide: a terminal showing the fleet actually running, captioned before any theory, here it is' },
-    { id: 'ab-26', deck: 'autonomous_business', source: 'autonomous_business_26.jpg', alt: 'Slide: she does not ask permission for routine work, she asks for the judgment calls' },
+    { id: 'ab-26', deck: 'autonomous_business', source: 'autonomous_business_26.jpg', alt: 'Slide: she does not ask permission for routine work, she asks for the judgement calls' },
     { id: 'ab-29', deck: 'autonomous_business', source: 'autonomous_business_29.jpg', alt: "Slide: the teams pulling ahead aren't executing the work, they're governing it" },
     { id: 'ab-31', deck: 'autonomous_business', source: 'autonomous_business_31.jpg', alt: 'Slide: each step eliminates something you were doing yourself' },
     { id: 'ab-42', deck: 'autonomous_business', source: 'autonomous_business_42.jpg', alt: 'Slide: 120 emails of noise become 8 actions of signal' },
     { id: 'ab-46', deck: 'autonomous_business', source: 'autonomous_business_46.jpg', alt: 'Slide: the model is the brain, the harness is the body around it' },
 
     // The Agentic Org Chart
-    { id: 'aoc-05', deck: 'agentic_org_chart', source: 'agentic_org_chart_05.jpg', alt: 'Slide: 78 percent of organizations used AI in 2024, almost none of them redrew the org chart' },
+    { id: 'aoc-05', deck: 'agentic_org_chart', source: 'agentic_org_chart_05.jpg', alt: 'Slide: 78 percent of organisations used AI in 2024, almost none of them redrew the org chart' },
     { id: 'aoc-06', deck: 'agentic_org_chart', source: 'agentic_org_chart_06.jpg', alt: 'Slide: 49,135 AI-attributed job cuts in four months of 2026' },
     { id: 'aoc-11', deck: 'agentic_org_chart', source: 'agentic_org_chart_11.jpg', alt: "Slide: you're hiring a workforce, not buying a tool" },
     { id: 'aoc-15', deck: 'agentic_org_chart', source: 'agentic_org_chart_15.jpg', alt: 'Slide: this is a management problem wearing a technical costume' },
     { id: 'aoc-16', deck: 'agentic_org_chart', source: 'agentic_org_chart_16.jpg', alt: 'Slide: every org chart before 2025 had a human in every box' },
     { id: 'aoc-19', deck: 'agentic_org_chart', source: 'agentic_org_chart_19.jpg', alt: 'Slide: as the base automates, the pyramid becomes a diamond' },
     { id: 'aoc-25', deck: 'agentic_org_chart', source: 'agentic_org_chart_25.jpg', alt: 'Slide: never let a worker grade its own homework' },
-    { id: 'aoc-37', deck: 'agentic_org_chart', source: 'agentic_org_chart_37.jpg', alt: 'Slide: she asks for judgment calls, not permission' },
+    { id: 'aoc-37', deck: 'agentic_org_chart', source: 'agentic_org_chart_37.jpg', alt: 'Slide: she asks for judgement calls, not permission' },
 
     // Vibe Coding
     { id: 'vc-22', deck: 'vibe_coding', source: 'vibe_coding_22.jpg', alt: 'Slide: the whole method fits in six words, spot spec brief build verify govern' },

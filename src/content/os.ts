@@ -21,7 +21,7 @@ import type { OsContent } from './types';
 export const os: OsContent = {
   id: 'operating-system',
   title: 'Here\'s the OS in action.',
-  sub: 'I point my mobile OS at the things I need or like doing while on the go. The desktop dash is a full living, breathing deep-work control center.',
+  sub: 'I point my mobile OS at the things I need or like doing while on the go. The desktop dash is a full living, breathing deep-work control centre.',
 
   entries: [
     {
@@ -48,7 +48,7 @@ export const os: OsContent = {
     {
       id: 'org',
       title: 'The org',
-      note: 'The agents hand over, clock off and self-organize job descriptions regularly, based on what\'s actually required. A look in to the future of work.',
+      note: 'The agents hand over, clock off and self-organise job descriptions regularly, based on what\'s actually required. A look in to the future of work.',
       source: 'os-org-alt.mp4',
       // Captured through Chrome, so the top 150 source pixels are the status
       // bar and the address bar. The Recordify watermark in the bottom right
