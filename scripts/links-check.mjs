@@ -32,6 +32,13 @@ for (const [name, mod] of Object.entries({ site, portfolio, contact, appearances
   walk(mod, name);
 }
 
+// Announced but not live yet (site.comingSoon). Reported, never failed.
+const soon = new Set(site.comingSoon ?? []);
+for (const url of soon) {
+  console.log(`  soon  ${url}  (coming soon, referenced by ${urls.get(url)?.filter((w) => !w.startsWith('site.comingSoon')).join(', ') || 'nothing'})`);
+  urls.delete(url);
+}
+
 console.log(`checking ${urls.size} URLs from the content layer\n`);
 
 const results = await Promise.all(

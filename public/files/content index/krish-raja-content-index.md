@@ -593,6 +593,70 @@ quality_note: The episode artwork from the post itself, supplied by Krish on 19 
   datePublished 2026-07-22, which is where the year comes from.
 ```
 
+### 35. Signal & Noise: Austin Leonard
+
+```yaml
+appearance_id: austin-leonard-retail-media
+year: 2026
+content_type: owned_podcast_episode
+verification: verified
+screenshot_status: approved
+quality_score: 5
+screenshot_filename: content-index-austin-leonard-retail-media.jpg
+screenshot_public_path: /files/content%20index/content-index-austin-leonard-retail-media.jpg
+capture_source: https://www.youtube.com/watch?v=o2X4g-bmRWI
+source_urls:
+  - https://www.youtube.com/watch?v=o2X4g-bmRWI
+  - https://www.signalandnoise.ai/post/austin-leonard-awakening-america-s-secret-retail-media-giant-in-an-al-world
+quality_note: >-
+  The episode artwork from the video itself, Krish and Austin Leonard side by side
+  with the episode title. The Signal & Noise post names Krish as host and Austin
+  Leonard as VP and General Manager of DG Media Network; datePublished 2026-08-27.
+  Added 9 Nov 2026 on Krish's instruction.
+```
+
+### 36. POSSIBLE 2026: Day 2
+
+```yaml
+appearance_id: possible-2026-day-2
+year: 2026
+content_type: event_compilation
+verification: verified
+screenshot_status: approved
+quality_score: 5
+screenshot_filename: content-index-possible-2026-day-2.jpg
+screenshot_public_path: /files/content%20index/content-index-possible-2026-day-2.jpg
+capture_source: https://www.youtube.com/watch?v=xPTyQ9XMmiA
+source_urls:
+  - https://www.youtube.com/watch?v=xPTyQ9XMmiA
+  - https://www.signalandnoise.ai/post/possible-2026-day-2-where-ai-meets-the-real-operating-system-of-marketing
+quality_note: >-
+  The episode artwork from the video itself, with Rio Longacre, Krish and Brett House
+  and the day title. The Signal & Noise post names all three; datePublished
+  2026-05-06. Added 9 Nov 2026 on Krish's instruction.
+```
+
+### 37. POSSIBLE 2026: Day 3
+
+```yaml
+appearance_id: possible-2026-day-3
+year: 2026
+content_type: event_compilation
+verification: verified
+screenshot_status: approved
+quality_score: 5
+screenshot_filename: content-index-possible-2026-day-3.jpg
+screenshot_public_path: /files/content%20index/content-index-possible-2026-day-3.jpg
+capture_source: https://www.youtube.com/watch?v=Xiwv1L5y-2k
+source_urls:
+  - https://www.youtube.com/watch?v=Xiwv1L5y-2k
+  - https://www.signalandnoise.ai/post/possible-2026-day-3-the-ai-endgame-agentic-media-and-rebuilding-the-ad-stack
+quality_note: >-
+  The episode artwork from the video itself, with Rio Longacre, Krish and Brett House
+  and the day title. The Signal & Noise post names all three; datePublished
+  2026-05-11. Added 9 Nov 2026 on Krish's instruction.
+```
+
 ## Completed search-gap status
 
 1. **Amobee — verified.** LiveRamp and IAB identify Krish in his Amobee product-and-platform role; Captify independently confirms the tenure. Use `liveramp-online-identity-panel`, `iab-connected-tv-handbook`, and `captify-hire-announcement`.
@@ -608,12 +672,12 @@ quality_note: The episode artwork from the post itself, supplied by Krish on 19 
 ## Coverage summary
 
 ```yaml
-appearance_records: 33
+appearance_records: 36
 source_link_instances_tagged_in_google_doc: 59
-approved_images: 31
+approved_images: 34
 rejected_images: 1
 unavailable_images: 1
-stored_jpegs: 32
+stored_jpegs: 35
 known_failures:
   - appearance_id: krish-raja-linkedin
     reason: authentication challenge
