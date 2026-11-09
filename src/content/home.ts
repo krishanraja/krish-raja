@@ -1,16 +1,16 @@
 import type { HomeContent } from './types';
 import { site } from './site';
 import { portfolio } from './portfolio';
-import { lessons } from './lessons';
 
 /**
  * The homepage built on 9 Nov 2026, approved by Krish round by round in review.
  *
  * Every line here is either one he wrote in review ("Your AI Chief of Staff.",
  * "Book an immersion session", "What's coming in AI, before it's obvious.") or
- * an existing approved string reused from its own module. The two brand lines
- * are each brand's own: "Promote your AI from intern to chief of staff." is
- * mindmake.co's page title, and the channel line is makeyourmindup.ai's.
+ * an existing approved string reused from its own module. The section title and
+ * the three card titles are his wording of 9 Nov 2026 ("Your AI Chief of Staff",
+ * "Educate and inspire your team on what's next.", "Build your growth engine for
+ * an AI era.", "Keep up to date with live business learnings.").
  *
  * The three ways in share one card anatomy on purpose: label, title, one line,
  * one button. Krish rejected the first version for carrying three or four
@@ -28,13 +28,13 @@ export const home: HomeContent = {
 
   practice: {
     id: 'build',
-    title: 'Build Your AI Chief of Staff',
+    title: 'Your AI Chief of Staff',
     sub: portfolio.primary.description,
     options: [
       {
         id: 'speaking',
         label: 'Speaking & immersion sessions',
-        title: lessons.title,
+        title: "Educate and inspire your team on what's next.",
         line: 'POSSIBLE 2026 · Cannes Lions 2026 · Sydney Opera House · Maven',
         cta: 'Book an immersion session',
         image: '/media/home/stage.jpg',
@@ -43,7 +43,7 @@ export const home: HomeContent = {
       {
         id: 'mindmake',
         label: 'Build your AI brain with me',
-        title: 'Promote your AI from intern to chief of staff.',
+        title: 'Build your growth engine for an AI era.',
         line: portfolio.primary.description,
         cta: 'See the advisory practice',
         href: site.links.mindmake,
@@ -56,7 +56,7 @@ export const home: HomeContent = {
       {
         id: 'channel',
         label: 'Subscribe to the channel',
-        title: "What's coming in AI, before it's obvious.",
+        title: 'Keep up to date with live business learnings.',
         cta: 'Subscribe free',
         href: `${MYMU}/subscribe`,
         image: '/media/home/mymu-robot.webp',

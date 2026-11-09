@@ -292,7 +292,7 @@ Rebuilt 9 Nov 2026 from the mock Krish approved round by round. The new sections
 are shared by both trees through a `mobile` prop; their copy is in `src/content/home.ts`.
 
 1. Hero, with the brain (`BrainBloom`) beside it on desktop and on its own screen below it on mobile (`#how-i-operate`)
-2. Build Your AI Chief of Staff: the three ways in (`#build`)
+2. Your AI Chief of Staff: the three ways in (`#build`)
 3. The thinking (`SlideDeck.tsx`, shared by both trees)
 4. Make Your Mind Up, the live channel (`#live`, fed by `api/live.js`)
 5. In public (`#selected-work`, one designed thumbnail per appearance)
