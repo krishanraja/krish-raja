@@ -248,18 +248,6 @@ export const appearances: AppearancesContent = {
       crop: { top: 170, bottom: 280, left: 30, right: 770 },
     },
     {
-      appearanceId: 'liveramp-online-identity-panel',
-      thumb: 'liveramp-online-identity-panel',
-      title: 'Online identity in a world of cookieless browsers',
-      outlet: 'LiveRamp',
-      kind: 'talk',
-      year: '2020',
-      href: 'https://liveramp.com.au/blog/online-identity-in-a-world-of-cookieless-browsers/',
-      media: '/media/appearances/liveramp-online-identity-panel.webp',
-      // No face in this one, so the headline.
-      crop: { top: 130, bottom: 185, left: 80, right: 480 },
-    },
-    {
       appearanceId: 'adobe-digital-data-overload',
       title: 'Digital data overload? AI to the rescue',
       outlet: 'Adobe',
