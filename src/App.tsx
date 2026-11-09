@@ -18,7 +18,7 @@ const SectionAddress = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light" storageKey="krish-raja-theme">
+    <ThemeProvider defaultTheme="light" storageKey="krish-raja-light">
       <TooltipProvider>
         <Toaster />
         <Sonner />

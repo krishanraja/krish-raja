@@ -284,25 +284,37 @@ Everything else varies by surface.
 Both trees render the same order. Desktop lives in `src/pages/Index.tsx`, mobile in
 `src/components/mobile/MobileIndex.tsx`.
 
-1. Hero
-2. How I operate (`Philosophy.tsx`)
-3. The operating system, running (`OperatingSystem.tsx`)
-4. The thinking (`SlideDeck.tsx`, shared by both trees)
-5. The portfolio (`LivePortfolio.tsx`)
-6. Sixteen years of receipts (`ProofPoints.tsx`)
-7. Selected work (`SelectedWork.tsx`)
-8. Lightning Lessons (`LightningLessons.tsx`)
-9. Contact (`Contact.tsx`)
+Rebuilt 9 Nov 2026 from the mock Krish approved round by round. The new sections live in
+`src/components/home/` (`sections.tsx`, `shared.tsx`, `BrainBloom.tsx`, `home.css`) and
+are shared by both trees through a `mobile` prop; their copy is in `src/content/home.ts`.
+
+1. Hero, with the brain (`BrainBloom`) beside it on desktop and on its own screen below it on mobile (`#how-i-operate`)
+2. Build Your AI Chief of Staff: the three ways in (`#build`)
+3. The thinking (`SlideDeck.tsx`, shared by both trees)
+4. Make Your Mind Up, the live channel (`#live`, fed by `api/live.js`)
+5. In public (`#selected-work`, one designed thumbnail per appearance)
+6. See me in action: the sessions and the attendee logos (`#lightning-lessons`)
+7. Sixteen years of receipts (`ProofPoints.tsx` / `MobileReceipts.tsx`)
+8. Contact (`Contact.tsx` / `MobileContact.tsx`)
+
+The operating system recordings and the portfolio shelf came off on 9 Nov 2026 (Krish).
+
+**The homepage's own system, in `home.css`. Break one and Krish will see it before any test does:**
+one typeface (Onest); one button anatomy (label then a round badge, fixed height, never
+wraps); a small set of choices always shows every option; anything that swaps content
+reserves the space of its longest option, so clicking never moves the page; hovers
+change transform, opacity, colour or shadow only. Nothing under `.home--m` may sit in a
+media query.
 
 "Work with me" was section 9 until 12 August 2026. It was a whole section explaining one
 card whose button linked to themindmaker.ai, which is what Contact does in a single row,
-so it folded in there. The nav CTA and the hero button both say "Get in touch" and both
-land on `#contact`.
+so it folded in there. Since 9 Nov 2026 "Get in touch" opens the enquiry form, which
+writes an email to the published address in the reader's own mail app.
 
 ## Short section addresses: `krishraja.com/thinking`
 
 Every section has a short address, defined once in `src/content/links.ts`:
-`/operate`, `/os`, `/thinking`, `/portfolio`, `/receipts`, `/work`, `/lessons`,
+`/operate`, `/build`, `/thinking`, `/live`, `/work`, `/lessons`, `/receipts`,
 `/contact`. Each opens the homepage and lands on that section. The old `#the-thinking`
 anchors work as well.
 

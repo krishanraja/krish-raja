@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import Philosophy from '@/components/Philosophy';
-import OperatingSystem from '@/components/OperatingSystem';
 import SlideDeck from '@/components/SlideDeck';
-import LivePortfolio from '@/components/LivePortfolio';
 import ProofPoints from '@/components/ProofPoints';
-import SelectedWork from '@/components/SelectedWork';
-import LightningLessons from '@/components/LightningLessons';
 import Contact from '@/components/Contact';
+import { HomeHero, WaysIn, Channel, InPublic, Sessions } from '@/components/home/sections';
+import { AskProvider, PageLoader, useReveals } from '@/components/home/shared';
+import '@/components/home/home.css';
 import Footer from '@/components/Footer';
 import MobileIndex from '@/components/mobile/MobileIndex';
 import { useIsMobileResolved } from '@/hooks/use-mobile';
@@ -28,24 +25,29 @@ const DesktopIndex = () => {
     return () => observer.disconnect();
   }, []);
 
+  const [ready, setReady] = useState(false);
+  useReveals(ready);
+
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <AskProvider centered>
+      <div className="home home--d min-h-screen">
+        <PageLoader onDone={() => setReady(true)} />
+        <Navigation />
 
-      <main id="main">
-        <Hero />
-        <Philosophy />
-        <OperatingSystem />
-        <SlideDeck />
-        <LivePortfolio />
-        <ProofPoints />
-        <SelectedWork />
-        <LightningLessons />
-        <Contact />
-      </main>
+        <main id="main">
+          <HomeHero mobile={false} />
+          <WaysIn mobile={false} />
+          <SlideDeck />
+          <Channel mobile={false} />
+          <InPublic mobile={false} />
+          <Sessions mobile={false} />
+          <ProofPoints />
+          <Contact />
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </AskProvider>
   );
 };
 

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { nav } from '@/content';
+import { home, nav } from '@/content';
 
 const MobileTopBar = () => {
   const lastY = useRef(0);
@@ -34,12 +33,12 @@ const MobileTopBar = () => {
       <div className="flex h-11 w-full items-center justify-between px-5">
         <a
           href="#hero"
-          className="inline-flex h-11 items-center text-[15px] font-semibold tracking-tight"
+          className="inline-flex h-11 items-center gap-2 text-[15px] font-semibold tracking-tight"
           aria-label={nav.brandAria}
         >
+          <img src={home.bitmoji} alt="" width={32} height={32} className="h-8 w-8 rounded-full bg-white object-cover ring-1 ring-border" />
           {nav.brand}
         </a>
-        <ThemeToggle />
       </div>
     </header>
   );
