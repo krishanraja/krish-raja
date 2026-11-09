@@ -126,7 +126,7 @@ export const home: HomeContent = {
     fields: {
       name: 'Name',
       namePlaceholder: 'Your name',
-      event: 'Event or organization',
+      event: 'Event or organisation',
       eventPlaceholder: 'Event name',
       when: 'Date and city',
       whenPlaceholder: 'When and where',
