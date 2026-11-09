@@ -30,8 +30,10 @@ export const HomeHero = ({ mobile }: Tree) => {
   return (
     <section id="hero" className="h-hero">
       <div className="shell grid" style={fill}>
-        <div className="copy" style={mobile ? { flex: 1, justifyContent: 'space-between' } : undefined}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div className="copy" style={mobile ? { flex: 1 } : undefined}>
+          {/* On a tall phone the screen has more height than the copy. The slack is split
+              above and below the copy (auto margins), not left as one hole over the logos. */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBlock: mobile ? 'auto' : undefined }}>
             <h1 className="h-h1">{hero.h1}</h1>
             <div className="h-sub h-r" style={d(450)}>
               <b>{operate.title}</b>
