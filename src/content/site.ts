@@ -83,6 +83,7 @@ export const site: SiteContent = {
     },
     {
       name: 'CTRL',
+      qualifier: 'Coming soon',
       detail:
         "a portable, private memory system that keeps an operator's judgement usable across the tools they work in.",
     },
@@ -132,6 +133,9 @@ export const site: SiteContent = {
   ],
 
   alumniOf: ['Microsoft', 'University for Creative Arts', 'University of Manchester'],
+
+  // Krish, 9 Nov 2026: CTRL is coming soon. Its address does not resolve yet.
+  comingSoon: [hosts.ctrl],
 
   links: {
     linkedin: 'https://www.linkedin.com/in/krish-raja',

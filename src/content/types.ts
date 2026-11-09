@@ -483,6 +483,12 @@ export interface SiteContent {
   readonly sameAs: readonly string[];
   readonly knowsAbout: readonly string[];
   readonly alumniOf: readonly string[];
+  /**
+   * Addresses that are announced but not live yet. They still ship as links where
+   * the product is named, and links:check reports them as pending rather than dead.
+   * Take one out the day it resolves.
+   */
+  readonly comingSoon: readonly string[];
   readonly links: {
     readonly linkedin: string;
     readonly mindmake: string;

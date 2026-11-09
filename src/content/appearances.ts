@@ -83,6 +83,42 @@ export const appearances: AppearancesContent = {
       crop: { left: 110 },
     },
     {
+      appearanceId: 'austin-leonard-retail-media',
+      thumb: 'austin-leonard-retail-media',
+      title: "Awakening America's secret retail media giant in an AI world",
+      outlet: 'Signal & Noise, with Austin Leonard',
+      kind: 'podcast',
+      year: '2026',
+      href: 'https://www.youtube.com/watch?v=o2X4g-bmRWI',
+      media: '/media/appearances/austin-leonard-retail-media.webp',
+      // The square episode artwork, without the black bars either side of it.
+      crop: { left: 280, right: 280 },
+    },
+    {
+      appearanceId: 'possible-2026-day-2',
+      thumb: 'possible-2026-day-2',
+      title: 'Where AI meets the real operating system of marketing',
+      outlet: 'POSSIBLE 2026, day two',
+      kind: 'podcast',
+      year: '2026',
+      href: 'https://www.youtube.com/watch?v=xPTyQ9XMmiA',
+      media: '/media/appearances/possible-2026-day-2.webp',
+      // The square episode artwork, without the black bars either side of it.
+      crop: { left: 280, right: 280 },
+    },
+    {
+      appearanceId: 'possible-2026-day-3',
+      thumb: 'possible-2026-day-3',
+      title: 'The AI endgame: agentic media and rebuilding the ad stack',
+      outlet: 'POSSIBLE 2026, day three',
+      kind: 'podcast',
+      year: '2026',
+      href: 'https://www.youtube.com/watch?v=Xiwv1L5y-2k',
+      media: '/media/appearances/possible-2026-day-3.webp',
+      // The square episode artwork, without the black bars either side of it.
+      crop: { left: 280, right: 280 },
+    },
+    {
       appearanceId: 'possible-2026-day-1',
       thumb: 'possible-2026-day-1',
       title: 'AI, adtech and CTV, day one',
