@@ -41,6 +41,7 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
   const activeRef = useRef(0);
   activeRef.current = active;
   const labels = useRef<(HTMLButtonElement | null)[]>([]);
+  const pickRef = useRef<(i: number) => void>(() => {});
   const pillars = operate.pillars;
 
   useEffect(() => {
@@ -71,10 +72,35 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
     };
     const ro = new ResizeObserver(size); ro.observe(root); size();
 
+    // Pointer to brain space. The rect is in painted pixels and the canvas in layout pixels;
+    // on the mobile tree the root zoom makes those differ, so scale by W / r.width.
+    const toBrain = (e: PointerEvent): [number, number] => {
+      const r = root.getBoundingClientRect();
+      return [((e.clientX - r.left) * (W / r.width) - ox) / s, ((e.clientY - r.top) * (H / r.height) - oy) / s];
+    };
     let mouse: [number, number] | null = null;
-    const move = (e: PointerEvent) => { const r = root.getBoundingClientRect(); mouse = [(e.clientX - r.left - ox) / s, (e.clientY - r.top - oy) / s]; };
-    const leave = () => { mouse = null; };
-    root.addEventListener('pointermove', move); root.addEventListener('pointerleave', leave);
+    // A finger cannot hover, and the page keeps vertical drags (touch-action: pan-y) so a
+    // swipe over the brain still scrolls. A touch is a splash instead: the mass bursts away
+    // from the finger, then closes back around it, and the network lights up where it landed.
+    const TOUCH_MS = 1300;
+    let touch: { x: number; y: number; t0: number } | null = null;
+    const down = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse' || (e.target as HTMLElement).closest('button, .bottom, .who')) return;
+      const [x, y] = toBrain(e), t = performance.now();
+      touch = { x, y, t0: t };
+      for (const p of ps) {
+        const dx = p.x - x, dy = p.y - y, d = Math.hypot(dx, dy);
+        if (d < 190 && d > 0) { const k = (190 - d) * .22; p.vx += dx / d * k; p.vy += dy / d * k; }
+      }
+      const near = ANCHORS.map(([ax, ay], i) => ({ i, d: Math.hypot(ax - x, ay - y) })).sort((a, b) => a.d - b.d)[0];
+      if (near.d < 130) pickRef.current(near.i);
+    };
+    const move = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse') mouse = toBrain(e);
+      else if (touch) { [touch.x, touch.y] = toBrain(e); }
+    };
+    const leave = (e: PointerEvent) => { if (e.pointerType === 'mouse') mouse = null; };
+    root.addEventListener('pointerdown', down); root.addEventListener('pointermove', move); root.addEventListener('pointerleave', leave);
 
     let lastSwitch = 0, lastSearch = 0;
     const search = (t: number) => {
@@ -86,11 +112,16 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
     const step = (t: number) => {
       if (!pinned.current && t - lastSwitch > 3200) { lastSwitch = t; setActive((a) => (a + 1) % pillars.length); }
       if (t - lastSearch > 2600) { lastSearch = t; search(t); }
+      // The pull starts after the burst (180ms) and fades out over the rest of the splash.
+      const age = touch ? t - touch.t0 : Infinity;
+      if (touch && age > TOUCH_MS) touch = null;
+      const pull = age < 180 ? 0 : age < TOUCH_MS ? 1 - (age - 180) / (TOUCH_MS - 180) : 0;
       for (const p of ps) {
         if (p.until && t > p.until) { p.ex = p.ey = 0; p.until = 0; }
         const tx = p.hx + p.ex + Math.sin(t / 900 + p.ph) * 4, ty = p.hy + p.ey + Math.cos(t / 1100 + p.ph) * 4;
         p.vx += (tx - p.x) * .012; p.vy += (ty - p.y) * .012;
         if (mouse) { const dx = mouse[0] - p.x, dy = mouse[1] - p.y, d = Math.hypot(dx, dy); if (d < 160 && d > 0) { p.vx += dx / d * (160 - d) * .012; p.vy += dy / d * (160 - d) * .012; } }
+        if (pull > 0) { const dx = touch!.x - p.x, dy = touch!.y - p.y, d = Math.hypot(dx, dy); if (d < 200 && d > 0) { p.vx += dx / d * (200 - d) * .014 * pull; p.vy += dy / d * (200 - d) * .014 * pull; } }
         p.vx *= .86; p.vy *= .86; p.x += p.vx; p.y += p.vy;
       }
       for (const f of floats) { f.x += f.vx; f.y += f.vy; if (f.x < -40) f.x = 1040; if (f.x > 1040) f.x = -40; if (f.y < -40) f.y = 840; if (f.y > 840) f.y = -40; }
@@ -105,11 +136,19 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
       const grd = n.createRadialGradient(ax, ay, 0, ax, ay, 170);
       grd.addColorStop(0, `rgba(207,128,71,${.55 * pulse})`); grd.addColorStop(1, 'rgba(207,128,71,0)');
       n.fillStyle = grd; n.beginPath(); n.arc(ax, ay, 170, 0, 6.283); n.fill();
+      const glow = touch ? Math.max(0, 1 - (t - touch.t0) / TOUCH_MS) : 0;
+      if (glow > 0) {
+        const tg = n.createRadialGradient(touch!.x, touch!.y, 0, touch!.x, touch!.y, 150);
+        tg.addColorStop(0, `rgba(207,128,71,${.5 * glow})`); tg.addColorStop(1, 'rgba(207,128,71,0)');
+        n.fillStyle = tg; n.beginPath(); n.arc(touch!.x, touch!.y, 150, 0, 6.283); n.fill();
+      }
       n.lineWidth = 1 / s;
       for (let i = 0; i < ps.length; i++) for (let j = i + 1; j < ps.length; j++) {
         const a = ps[i], b = ps[j], dx = a.x - b.x, dy = a.y - b.y;
         if (dx * dx + dy * dy > 2600) continue;
-        n.strokeStyle = Math.hypot((a.x + b.x) / 2 - ax, (a.y + b.y) / 2 - ay) < 150 ? 'rgba(151,80,31,.75)' : 'rgba(10,10,10,.22)';
+        const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+        const hot = Math.hypot(mx - ax, my - ay) < 150 || (glow > .15 && Math.hypot(mx - touch!.x, my - touch!.y) < 150);
+        n.strokeStyle = hot ? 'rgba(151,80,31,.75)' : 'rgba(10,10,10,.22)';
         n.beginPath(); n.moveTo(a.x, a.y); n.lineTo(b.x, b.y); n.stroke();
       }
       n.strokeStyle = 'rgba(10,10,10,.38)'; n.lineWidth = 2.6; n.lineCap = 'round';
@@ -124,10 +163,11 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
     const io = new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting && !reduce; if (running && !was) raf = requestAnimationFrame(loop); });
     io.observe(root);
     if (!reduce) raf = requestAnimationFrame(loop);
-    return () => { cancelAnimationFrame(raf); running = false; io.disconnect(); ro.disconnect(); root.removeEventListener('pointermove', move); root.removeEventListener('pointerleave', leave); };
+    return () => { cancelAnimationFrame(raf); running = false; io.disconnect(); ro.disconnect(); root.removeEventListener('pointerdown', down); root.removeEventListener('pointermove', move); root.removeEventListener('pointerleave', leave); };
   }, [narrow, pillars.length]);
 
   const pick = (i: number) => { pinned.current = true; setActive(i); };
+  pickRef.current = pick;
 
   return (
     <div className="h-brain" ref={box} id={id} aria-label={home.brainAria}>
