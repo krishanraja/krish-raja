@@ -84,7 +84,7 @@ export const site: SiteContent = {
     {
       name: 'CTRL',
       detail:
-        "a portable, private memory system that keeps an operator's judgment usable across the tools they work in.",
+        "a portable, private memory system that keeps an operator's judgement usable across the tools they work in.",
     },
   ],
 
@@ -120,10 +120,10 @@ export const site: SiteContent = {
 
   knowsAbout: [
     'Agentic Systems Architecture',
-    'AI Commercialization',
+    'AI Commercialisation',
     'Multi-Agent Orchestration',
     'Memory Architecture for AI',
-    'Cost Optimization for AI Operations',
+    'Cost Optimisation for AI Operations',
     'Product Marketing for AI',
     'Go-to-Market Strategy',
     'Media and Entertainment Commercial Strategy',

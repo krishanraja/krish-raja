@@ -20,8 +20,10 @@ title case and no trailing period:
 and not the other way round. Defined once, in `src/content/site.ts` as `spine`. The hero
 H1 is this line.
 
-**Spelling is US throughout, decided 12 August 2026.** The rule survives the change of
-spine and still governs every other string in the content layer.
+**Spelling is British throughout** (Ruling, Krish, 2026-11-07: British everywhere,
+including krishraja.com; it supersedes the US spelling decided on 12 August 2026). The rule
+governs every string in the content layer and his LinkedIn. The retired spines below are
+quoted as they were written.
 
 ### The two retired spines. Neither returns as the primary headline.
 

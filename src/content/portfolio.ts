@@ -42,7 +42,7 @@ export const portfolio: PortfolioContent = {
       {
         name: 'CTRL',
         role: 'Product',
-        description: 'A portable, private memory web so your AI keeps hold of your judgment.',
+        description: 'A portable, private memory web so your AI keeps hold of your judgement.',
         mark: 'soft',
         url: site.links.ctrl,
       },
