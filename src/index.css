@@ -21,8 +21,8 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Editorial Design System: primary #0055DD, shared typography with Mindmaker */
-    --background: 0 0% 98%;
+    /* 9 Nov 2026: ink and burnt orange, one typeface (Onest). Light only. */
+    --background: 0 0% 100%;
     --foreground: 0 0% 6.7%;
 
     --card: 0 0% 100%;
@@ -31,8 +31,8 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 6.7%;
 
-    /* #0055DD: deeper, more editorial blue */
-    --primary: 219 100% 43%;
+    /* Ink */
+    --primary: 0 0% 4%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
@@ -41,8 +41,8 @@ All colors MUST be HSL.
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    /* Accent kept aligned with primary on light; mint only used on dark (see .dark) */
-    --accent: 219 100% 43%;
+    /* Burnt orange, #b15f2c */
+    --accent: 23 60% 43%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -50,13 +50,13 @@ All colors MUST be HSL.
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 219 100% 43%;
+    --ring: 23 60% 43%;
 
     --radius: 0.5rem;
 
     /* Typography tokens: Mindmaker-shared stack */
-    --font-display: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
-    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Onest', system-ui, -apple-system, sans-serif;
+    --font-body: 'Onest', system-ui, -apple-system, sans-serif;
 
     /* Spacing tokens */
     --section-padding: clamp(4rem, 8vw, 8rem);

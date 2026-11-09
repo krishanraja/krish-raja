@@ -29,6 +29,7 @@ import { os } from '../os';
 import { lessons } from '../lessons';
 import { contact } from '../contact';
 import { nav } from '../nav';
+import { home } from '../home';
 
 const root = resolve(__dirname, '../../..');
 const read = (p: string) => readFileSync(resolve(root, p), 'utf8');
@@ -549,7 +550,8 @@ describe('the generated artifacts are in sync with src/content/', () => {
 
 describe('short section addresses', () => {
   const indexHtml = readFileSync(resolve(root, 'index.html'), 'utf8');
-  const sectionIds = [operate, os, deck, portfolio, receipts, appearances, lessons, contact].map((s) => s.id);
+  // os and portfolio came off the homepage on 9 Nov 2026 (Krish); build and live came on.
+  const sectionIds = [operate, home.practice, deck, home.channel, receipts, appearances, lessons, contact].map((s) => s.id);
 
   it('every section has exactly one address, and every address names a real section', () => {
     expect(sectionLinks.map((l) => l.section.id).sort()).toEqual([...sectionIds].sort());

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { Button } from '@/components/ui/button';
-import { nav } from '@/content';
+import { home, nav } from '@/content';
+import { useAsk } from '@/components/home/shared';
 
 const Navigation = () => {
+  const ask = useAsk();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -27,9 +27,10 @@ const Navigation = () => {
           <div className="flex items-center justify-between py-4">
             <a
               href="#hero"
-              className="text-xl font-semibold tracking-tight link-underline"
+              className="inline-flex items-center gap-2.5 text-lg font-semibold tracking-tight"
               aria-label={nav.brandAria}
             >
+              <img src={home.bitmoji} alt="" width={36} height={36} className="h-9 w-9 rounded-full bg-white object-cover ring-1 ring-border" />
               {nav.brand}
             </a>
 
@@ -44,20 +45,16 @@ const Navigation = () => {
                   {item.label}
                 </a>
               ))}
-              <ThemeToggle />
-              <div className="ml-4">
-                <Button asChild>
-                  <a href={nav.ctaHref}>{nav.ctaLabel}</a>
-                </Button>
-              </div>
+              <button type="button" onClick={ask} className="ml-4 inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03]">
+                {nav.ctaLabel}
+              </button>
             </div>
 
-            {/* Mobile: theme toggle + primary CTA only. Section nav lives in the action dock. */}
-            <div className="lg:hidden flex items-center gap-2">
-              <ThemeToggle />
-              <Button asChild size="sm">
-                <a href={nav.ctaHref}>{nav.ctaLabel}</a>
-              </Button>
+            {/* Below lg: the primary CTA only. Section nav lives in the action dock. */}
+            <div className="lg:hidden flex items-center">
+              <button type="button" onClick={ask} className="inline-flex h-10 items-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground">
+                {nav.ctaLabel}
+              </button>
             </div>
           </div>
         </nav>

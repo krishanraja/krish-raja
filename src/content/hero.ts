@@ -23,8 +23,8 @@ export const hero: HeroContent = {
   // says.
   primaryCta: 'Get in touch',
   primaryHref: '#contact',
-  secondaryCta: 'How I operate',
-  secondaryHref: '#how-i-operate',
+  secondaryCta: 'See me in action',
+  secondaryHref: '#the-thinking',
   trustLabel: 'Experience across',
   // McCann is off: seven months in 2007, and the content index found no
   // verified employment record for it.

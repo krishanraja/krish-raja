@@ -10,4 +10,5 @@ export { appearances } from './appearances';
 export { lessons } from './lessons';
 export { contact } from './contact';
 export { nav } from './nav';
+export { home } from './home';
 export { sectionLinks } from './links';

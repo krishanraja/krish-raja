@@ -37,6 +37,7 @@ export const appearances: AppearancesContent = {
   items: [
     {
       appearanceId: 'adobe-symposium-opera-house-keynote',
+      thumb: 'adobe-symposium-opera-house-keynote',
       title: 'Why programmatic will not be a word within a few years',
       outlet: 'Adobe Symposium, Sydney Opera House',
       kind: 'talk',
@@ -59,6 +60,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'ai-edge-podcast-episode-1',
+      thumb: 'ai-edge-podcast-episode-1',
       title: 'Where AI meets pop culture, episode 1',
       outlet: 'The AI Edge Podcast',
       kind: 'podcast',
@@ -70,6 +72,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'cannes-lions-2026-day-4',
+      thumb: 'cannes-lions-2026-day-4',
       title: 'Cannes Lions 2026, day four',
       outlet: 'Signal & Noise',
       kind: 'podcast',
@@ -81,6 +84,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'possible-2026-day-1',
+      thumb: 'possible-2026-day-1',
       title: 'AI, adtech and CTV, day one',
       outlet: 'POSSIBLE 2026',
       kind: 'podcast',
@@ -114,6 +118,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'give-it-a-nudge-captify',
+      thumb: 'give-it-a-nudge-captify',
       title: 'Scaling Captify Australia from zero',
       outlet: 'Give It A Nudge',
       kind: 'talk',
@@ -125,6 +130,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'ai-leadership-dothinkdo-webinar',
+      thumb: 'ai-leadership-dothinkdo-webinar',
       title: 'Is AI strengthening your leadership, or quietly undermining it?',
       outlet: 'dothinkdo',
       kind: 'talk',
@@ -136,6 +142,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'dan-pratl-expertise-as-an-asset',
+      thumb: 'dan-pratl-expertise-as-an-asset',
       title: 'Expertise as an asset',
       outlet: 'Dan Pratl',
       kind: 'podcast',
@@ -147,6 +154,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'cannes-lions-2026-day-3',
+      thumb: 'cannes-lions-2026-day-3',
       title: 'Cannes Lions 2026, day three',
       outlet: 'Signal & Noise',
       kind: 'podcast',
@@ -158,6 +166,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'alanna-laforet-hacker-mentality',
+      thumb: 'alanna-laforet-hacker-mentality',
       title: 'Developing a hacker mentality with Alanna Laforet',
       outlet: 'Signal & Noise',
       kind: 'podcast',
@@ -169,6 +178,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'cannes-live-justin-kramm',
+      thumb: 'cannes-live-justin-kramm',
       title: 'Cannes Live with Justin Kramm',
       outlet: 'Signal & Noise',
       kind: 'podcast',
@@ -180,6 +190,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'justin-kramm-authentic-voice',
+      thumb: 'justin-kramm-authentic-voice',
       title: 'Finding your tribe by finding your authentic voice',
       outlet: 'Justin Kramm',
       kind: 'podcast',
@@ -202,6 +213,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'liveramp-online-identity-panel',
+      thumb: 'liveramp-online-identity-panel',
       title: 'Online identity in a world of cookieless browsers',
       outlet: 'LiveRamp',
       kind: 'talk',
@@ -224,6 +236,7 @@ export const appearances: AppearancesContent = {
     },
     {
       appearanceId: 'mumbrella360-travel-marketing-panel',
+      thumb: 'mumbrella360-travel-marketing-panel',
       title: 'Travel marketing panel',
       outlet: 'Mumbrella360',
       kind: 'talk',

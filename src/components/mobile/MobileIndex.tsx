@@ -2,22 +2,21 @@ import { useEffect, useState } from 'react';
 import MobileTopBar from './MobileTopBar';
 import MobileActionDock from './MobileActionDock';
 import MobileContactSheet from './MobileContactSheet';
-import MobileHero from './MobileHero';
-import MobilePhilosophy from './MobilePhilosophy';
-import MobileOperatingSystem from './MobileOperatingSystem';
 import SlideDeck from '@/components/SlideDeck';
-import MobilePortfolio from './MobilePortfolio';
 import MobileReceipts from './MobileReceipts';
-import MobileSelectedWork from './MobileSelectedWork';
-import MobileLessons from './MobileLessons';
 import MobileContact from './MobileContact';
+import { HomeHero, BrainSection, WaysIn, Channel, InPublic, Sessions } from '@/components/home/sections';
+import { AskProvider, PageLoader, useReveals } from '@/components/home/shared';
+import '@/components/home/home.css';
 import MobileFooter from './MobileFooter';
 import { nav } from '@/content';
 import { useForcedDesktopZoom } from '@/hooks/use-mobile';
 
 const MobileIndex = () => {
   const [contactOpen, setContactOpen] = useState(false);
+  const [ready, setReady] = useState(false);
   const zoom = useForcedDesktopZoom();
+  useReveals(ready);
 
   // Opt body into snap-proximity scrolling while the mobile tree is mounted.
   useEffect(() => {
@@ -73,24 +72,27 @@ const MobileIndex = () => {
   return (
     // No width clamp. The zoom above makes the document 400px wide whatever the
     // viewport claims, so the shell just fills it, the same on every device.
-    <div className="min-h-screen bg-background">
-      <a href="#main" className="skip-link">{nav.skipLink}</a>
-      <MobileTopBar />
-      <main id="main" className="pb-32">
-        <MobileHero onOpenContact={() => setContactOpen(true)} />
-        <MobilePhilosophy />
-        <MobileOperatingSystem />
-        <SlideDeck compact />
-        <MobilePortfolio />
-        <MobileReceipts />
-        <MobileSelectedWork />
-        <MobileLessons />
-        <MobileContact />
-      </main>
-      <MobileFooter />
-      <MobileActionDock onOpenContact={() => setContactOpen(true)} />
-      <MobileContactSheet open={contactOpen} onOpenChange={setContactOpen} />
-    </div>
+    <AskProvider centered={false}>
+      <div className="home home--m min-h-screen">
+        <PageLoader onDone={() => setReady(true)} />
+        <a href="#main" className="skip-link">{nav.skipLink}</a>
+        <MobileTopBar />
+        <main id="main" className="pb-32">
+          <HomeHero mobile />
+          <BrainSection />
+          <WaysIn mobile />
+          <SlideDeck compact />
+          <Channel mobile />
+          <InPublic mobile />
+          <Sessions mobile />
+          <MobileReceipts />
+          <MobileContact />
+        </main>
+        <MobileFooter />
+        <MobileActionDock onOpenContact={() => setContactOpen(true)} />
+        <MobileContactSheet open={contactOpen} onOpenChange={setContactOpen} />
+      </div>
+    </AskProvider>
   );
 };
 

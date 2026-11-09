@@ -1,12 +1,11 @@
 import type { SectionLink } from './types';
 import { operate } from './operate';
-import { os } from './os';
 import { deck } from './deck';
-import { portfolio } from './portfolio';
 import { receipts } from './receipts';
 import { appearances } from './appearances';
 import { lessons } from './lessons';
 import { contact } from './contact';
+import { home } from './home';
 
 /**
  * Short shareable addresses, one per section, in page order.
@@ -23,11 +22,11 @@ import { contact } from './contact';
  */
 export const sectionLinks: readonly SectionLink[] = [
   { path: 'operate', section: operate },
-  { path: 'os', section: os },
+  { path: 'build', section: home.practice },
   { path: 'thinking', section: deck },
-  { path: 'portfolio', section: portfolio },
-  { path: 'receipts', section: receipts },
+  { path: 'live', section: home.channel },
   { path: 'work', section: appearances },
   { path: 'lessons', section: lessons },
+  { path: 'receipts', section: receipts },
   { path: 'contact', section: contact },
 ];

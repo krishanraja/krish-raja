@@ -79,6 +79,8 @@ export interface HeroContent {
 export interface Pillar {
   readonly icon: string;
   readonly title: string;
+  /** The same part, named in two or three words, for the brain's buttons on a phone. */
+  readonly short: string;
   readonly body: string;
 }
 
@@ -195,6 +197,12 @@ export interface Appearance {
    */
   readonly crop?: MediaCrop;
   readonly note?: string;
+  /**
+   * A designed 16:9 card for the "In public" wall, at /media/thumbs/<thumb>.webp.
+   * Built from real photographs only (episode artwork and video frames), never
+   * generated faces. Items without one fall back to `media`.
+   */
+  readonly thumb?: string;
 }
 
 export interface AppearancesContent extends SectionHeader {
@@ -494,4 +502,98 @@ export interface SectionLink {
   /** Lowercase, no slashes. The address is `${site.url}/${path}`. */
   readonly path: string;
   readonly section: SectionHeader;
+}
+
+/* ---------------------------------------------------------------------------
+ * The homepage built on 9 Nov 2026: loader, the three ways in, the live
+ * channel and the enquiry form. Section framing stays SectionHeader.
+ * ------------------------------------------------------------------------ */
+
+/** One of the three ways in. The card anatomy is fixed: label, title, one line, one button. */
+export interface HomeOption {
+  readonly id: 'speaking' | 'mindmake' | 'channel';
+  /** Small line above the card title. A card label, not a section eyebrow. */
+  readonly label: string;
+  readonly title: string;
+  /** One line. Plain text, or the channel's three series when `series` is set. */
+  readonly line?: string;
+  readonly series?: boolean;
+  readonly cta: string;
+  /** Opens the enquiry form when absent. */
+  readonly href?: string;
+  /** Header image or poster under /media/home/. */
+  readonly image: string;
+  /** Optional looping video under /media/home/, played only while on screen. */
+  readonly video?: string;
+  /** Wordmark under /media/home/, sat in the faded top of the header. */
+  readonly wordmark?: string;
+  readonly wordmarkAlt?: string;
+  readonly tone: 'light' | 'dark';
+}
+
+export interface ChannelSeries {
+  readonly name: string;
+  readonly day: string;
+}
+
+/** One published piece from the channel. The live list comes from /api/live; this is the fallback. */
+export interface ChannelItem {
+  readonly title: string;
+  readonly link: string;
+  /** ISO date. */
+  readonly date: string;
+  readonly series?: string;
+  /** e.g. "Watch now (5 mins)". */
+  readonly format?: string;
+  readonly sub?: string;
+  /** YouTube video id, for the thumbnail. */
+  readonly video?: string;
+}
+
+export interface ChannelContent extends SectionHeader {
+  readonly wordmark: string;
+  readonly series: readonly ChannelSeries[];
+  readonly subscribe: ExternalLink;
+  readonly youtube: ExternalLink;
+  readonly feedUrl: string;
+  readonly youtubeChannelId: string;
+  readonly snapshotLabel: string;
+  readonly snapshot: readonly ChannelItem[];
+}
+
+export interface AskContent {
+  readonly title: string;
+  readonly fields: {
+    readonly name: string;
+    readonly namePlaceholder: string;
+    readonly event: string;
+    readonly eventPlaceholder: string;
+    readonly when: string;
+    readonly whenPlaceholder: string;
+    readonly message: string;
+    readonly messagePlaceholder: string;
+  };
+  readonly subjectPrefix: string;
+  readonly note: string;
+  readonly submit: string;
+  readonly sentTitle: string;
+  readonly sentBody: string;
+  readonly sentOr: string;
+  readonly sentCall: string;
+  readonly close: string;
+}
+
+export interface HomeContent {
+  readonly loader: { readonly tagline: string; readonly label: string };
+  readonly bitmoji: string;
+  readonly practice: SectionHeader & { readonly options: readonly HomeOption[] };
+  readonly channel: ChannelContent;
+  readonly ask: AskContent;
+  readonly swipeHint: string;
+  readonly brainAria: string;
+  /** Under the name on the brain card. */
+  readonly brainCaption: string;
+  readonly brainPartsAria: string;
+  /** Which appearances get the wall's filters, in order. */
+  readonly wallFilters: readonly { readonly id: AppearanceKind | 'all'; readonly label: string }[];
 }

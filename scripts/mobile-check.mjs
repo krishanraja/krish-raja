@@ -35,12 +35,16 @@ const check = (ok, label, detail = '') => {
  * Both trees, deliberately. The first version of this ran only on the phone
  * profiles, which never render LivePortfolio, so it passed while the desktop
  * card was still truncating: a guard that cannot fail is not a guard.
+ *
+ * The portfolio came off the homepage on 9 Nov 2026 (Krish). The same guard now
+ * watches the three ways in, section#build, which is where clipped text would
+ * hurt most: each card carries one line and one button, and neither may be cut.
  */
 const clippedText = (page) =>
   page.evaluate(() => {
     const bad = [];
-    const section = document.querySelector('section#portfolio');
-    if (!section) return ['no portfolio section'];
+    const section = document.querySelector('section#build');
+    if (!section) return ['no build section'];
     for (const el of section.querySelectorAll('h3, h4, p, span')) {
       if (el.children.length > 0) continue;
       const text = (el.textContent ?? '').trim();
@@ -105,7 +109,8 @@ for (const [name, profile] of phones) {
     layout: document.body.offsetWidth,
     painted: Math.round(document.body.getBoundingClientRect().width),
     bodyText: Math.round(
-      parseFloat(getComputedStyle(document.querySelector('#hero p')).fontSize),
+      // The hero drops its paragraph on a short phone, so measure the first body paragraph on the page.
+      parseFloat(getComputedStyle(document.querySelector('#hero p') ?? document.querySelector('main p')).fontSize),
     ),
   }));
   check(
@@ -227,7 +232,7 @@ for (const [name, profile] of phones) {
   const clipped = await clippedText(page);
   check(
     clipped.length === 0,
-    `${name}: no clipped text in the portfolio`,
+    `${name}: no clipped text in the three ways in`,
     clipped.slice(0, 3).join('; '),
   );
 
@@ -301,12 +306,12 @@ check(
   await laptopPage.evaluate(() => document.body.dataset.mobileSnap !== 'true'),
   'Desktop 1440: keeps the desktop tree',
 );
-await laptopPage.evaluate(() => document.querySelector('section#portfolio')?.scrollIntoView());
+await laptopPage.evaluate(() => document.querySelector('section#build')?.scrollIntoView());
 await laptopPage.waitForTimeout(400);
 const laptopClipped = await clippedText(laptopPage);
 check(
   laptopClipped.length === 0,
-  'Desktop 1440: no clipped text in the portfolio',
+  'Desktop 1440: no clipped text in the three ways in',
   laptopClipped.slice(0, 3).join('; '),
 );
 await laptop.close();

@@ -11,21 +11,20 @@ export const nav: NavContent = {
   ctaHref: '#contact',
 
   items: [
-    { label: 'How I operate', href: '#how-i-operate' },
-    { label: 'The OS', href: '#operating-system' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Receipts', href: '#proof-points' },
-    { label: 'Work', href: '#selected-work' },
+    { label: 'Mindmake', href: '#build' },
+    { label: 'The thinking', href: '#the-thinking' },
+    { label: 'Live', href: '#live' },
+    { label: 'In public', href: '#selected-work' },
     { label: 'Lessons', href: '#lightning-lessons' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Receipts', href: '#proof-points' },
   ],
 
   footerItems: [
     { label: 'How I operate', href: '#how-i-operate' },
-    { label: 'The OS', href: '#operating-system' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Receipts', href: '#proof-points' },
-    { label: 'Selected work', href: '#selected-work' },
+    { label: 'Mindmake', href: '#build' },
+    { label: 'The thinking', href: '#the-thinking' },
+    { label: 'Live', href: '#live' },
+    { label: 'In public', href: '#selected-work' },
     { label: 'Contact', href: '#contact' },
   ],
 
@@ -48,9 +47,9 @@ export const nav: NavContent = {
    */
   dockItems: [
     { id: 'hero', label: 'Home', icon: 'home' },
-    { id: 'operating-system', label: 'The OS', icon: 'monitor' },
-    { id: 'portfolio', label: 'Portfolio', icon: 'briefcase' },
-    { id: 'proof-points', label: 'Receipts', icon: 'award' },
+    { id: 'build', label: 'Mindmake', icon: 'briefcase' },
+    { id: 'the-thinking', label: 'Thinking', icon: 'monitor' },
+    { id: 'selected-work', label: 'In public', icon: 'award' },
   ],
   contactAria: 'Contact options',
 
