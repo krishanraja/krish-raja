@@ -521,9 +521,8 @@ export interface HomeOption {
   /** Small line above the card title. A card label, not a section eyebrow. */
   readonly label: string;
   readonly title: string;
-  /** One line. Plain text, or the channel's three series when `series` is set. */
+  /** One line of plain text, optional. */
   readonly line?: string;
-  readonly series?: boolean;
   readonly cta: string;
   /** Opens the enquiry form when absent. */
   readonly href?: string;

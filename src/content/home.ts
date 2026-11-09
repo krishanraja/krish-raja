@@ -57,7 +57,6 @@ export const home: HomeContent = {
         id: 'channel',
         label: 'Subscribe to the channel',
         title: "What's coming in AI, before it's obvious.",
-        series: true,
         cta: 'Subscribe free',
         href: `${MYMU}/subscribe`,
         image: '/media/home/mymu-robot.webp',

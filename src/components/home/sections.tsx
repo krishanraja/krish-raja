@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { appearances, contact, hero, home, lessons, operate, site, type ChannelItem } from '@/content';
 import { asset } from '@/lib/asset-map';
@@ -70,7 +70,6 @@ export const BrainSection = () => (
 export const WaysIn = ({ mobile }: Tree) => {
   const ask = useAsk();
   const p = home.practice;
-  const channel = home.channel;
   return (
     <section id={p.id} className="h-sec">
       <div className="shell">
@@ -88,11 +87,7 @@ export const WaysIn = ({ mobile }: Tree) => {
               <div className="body">
                 <span className="h-label">{o.label}</span>
                 <h3>{o.title}</h3>
-                {o.series ? (
-                  <div className="h-series">{channel.series.map((s) => <span key={s.name}>{s.name} &middot; {s.day}</span>)}</div>
-                ) : (
-                  <p className="line">{o.line}</p>
-                )}
+                {o.line && <p className="line">{o.line}</p>}
                 <div className="h-acts">
                   {o.href
                     ? <Btn label={o.cta} href={o.href} external tone={o.id === 'channel' ? 'mint' : 'dark'} />
@@ -159,7 +154,6 @@ export const Channel = ({ mobile }: Tree) => {
               <h2 style={{ margin: 0 }}><img src={c.wordmark} alt={c.title} /></h2>
               <p className="tag">{c.sub}</p>
             </div>
-            <div className="h-series">{c.series.map((s) => <span key={s.name}>{s.name} &middot; {s.day}</span>)}</div>
           </div>
           <div className={`h-feed${mobile ? ' h-rail mobile-snap-track' : ''}`}>
             {four[0] && <Episode it={four[0]} lead />}
@@ -183,11 +177,35 @@ export const Channel = ({ mobile }: Tree) => {
 
 export const InPublic = ({ mobile }: Tree) => {
   const [filter, setFilter] = useState<string>('all');
-  const items = appearances.items.filter((a) => a.thumb || a.media);
+  const [open, setOpen] = useState(false);
+  const [cols, setCols] = useState(0);
+  const [wall, setWall] = useState<HTMLUListElement | null>(null);
+  const head = useRef<HTMLDivElement>(null);
+  // Desktop shows two full rows; the column count comes from the grid itself, so the
+  // last visible row is always complete at any width.
+  useEffect(() => {
+    if (mobile || !wall) return;
+    const measure = () => setCols(getComputedStyle(wall).gridTemplateColumns.split(' ').filter(Boolean).length);
+    const ro = new ResizeObserver(measure);
+    ro.observe(wall);
+    measure();
+    return () => ro.disconnect();
+  }, [mobile, wall]);
+  const all = appearances.items.filter((a) => a.thumb || a.media);
+  // Filtering never removes a card: matches move to the front and the rest fade back.
+  // Same count, same size, so nothing under the wall moves.
+  const match = (a: (typeof all)[number]) => filter === 'all' || a.kind === filter;
+  const items = [...all.filter(match), ...all.filter((a) => !match(a))];
+  const limit = mobile || open ? items.length : cols ? cols * 2 : appearances.previewCount;
+  const hidden = items.length - limit;
+  const toggle = () => {
+    if (open) head.current?.scrollIntoView({ block: 'start' });
+    setOpen(!open);
+  };
   return (
     <section id={appearances.id} className="h-sec" style={{ paddingTop: 0 }}>
       <div className="shell">
-        <div className="h-sec-head">
+        <div className="h-sec-head" ref={head} style={{ scrollMarginTop: '5rem' }}>
           <h2 className="h-h2 h-r">{appearances.title}</h2>
           <p className="h-lede h-r" style={d(120)}>{appearances.sub}</p>
         </div>
@@ -196,14 +214,12 @@ export const InPublic = ({ mobile }: Tree) => {
             <button key={f.id} type="button" aria-pressed={filter === f.id} onClick={() => setFilter(f.id)}>{f.label}</button>
           ))}
         </div>
-        {/* Filtering never removes a card: matches move to the front and the rest fade back.
-            Same count, same size, so nothing under the wall moves. */}
-        <ul className={`h-wall${mobile ? ' h-rail narrow mobile-snap-track' : ''}`}>
-          {items.map((a) => {
-            const on = filter === 'all' || a.kind === filter;
+        <ul ref={setWall} className={`h-wall${mobile ? ' h-rail narrow mobile-snap-track' : ''}`}>
+          {items.slice(0, limit).map((a) => {
+            const on = match(a);
             const src = a.thumb ? `/media/thumbs/${a.thumb}.webp` : a.media;
             return (
-              <li key={a.appearanceId ?? a.title} className={on ? '' : 'dim'} style={{ order: on ? 0 : 1 }}>
+              <li key={a.appearanceId ?? a.title} className={on ? '' : 'dim'}>
                 <a className="h-piece" href={a.href} target="_blank" rel="noopener noreferrer" tabIndex={on ? 0 : -1}>
                   <div className="shot"><img src={src} alt="" loading="lazy" /></div>
                   <h3>{a.title}</h3>
@@ -213,6 +229,11 @@ export const InPublic = ({ mobile }: Tree) => {
             );
           })}
         </ul>
+        {!mobile && (open || hidden > 0) && (
+          <div className="h-more">
+            <Btn label={open ? appearances.lessLabel : `${appearances.moreLabel} (${hidden} more)`} tone="outline" onClick={toggle} />
+          </div>
+        )}
         <p className="h-swipe">{home.swipeHint} &rarr;</p>
       </div>
     </section>

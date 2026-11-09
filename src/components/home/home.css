@@ -25,6 +25,7 @@
 }
 .home h1, .home h2, .home h3, .home .h-sub b { text-wrap: balance; }
 .home p { text-wrap: pretty; }
+.h-navbox { max-width: 88rem; margin-inline: auto; padding-inline: 2rem; }
 .home .shell { max-width: 88rem; margin-inline: auto; padding-inline: 1.25rem; }
 .home--d .shell { padding-inline: 2rem; }
 .h-meta { font-size: .75rem; font-weight: 500; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
@@ -156,16 +157,16 @@
 .home--m .h-hero .h-exp { margin-top: 1rem; padding-top: 1rem; }
 .h-opt .line { font-size: .9375rem; line-height: 1.5; opacity: .7; }
 .home--m .h-opt .line { font-size: .875rem; }
-.h-series { display: flex; flex-direction: column; align-items: flex-start; gap: .4rem; }
-.h-series span { display: inline-flex; align-items: center; height: 2rem; padding: 0 .75rem; border-radius: 9999px; font-size: .75rem; font-weight: 500; white-space: nowrap; background: rgba(17,17,17,.06); }
-.h-dark .h-series span, .h-opt.dark .h-series span { background: rgba(255,255,255,.1); }
 .h-opt .h-acts { margin-top: auto; padding-top: 1rem; flex-direction: column; align-items: stretch; }
 .h-opt .h-btn { width: 100%; }
 .home--m .h-opt .h-btn { padding-left: 1.05rem; gap: .5rem; font-size: .8125rem; }
 @media (hover: hover) and (pointer: fine) { .h-opt { transition: transform .4s var(--ease-hover); } .h-opt:hover { transform: translateY(-6px); } }
 
 /* ---------- rails (mobile tree only) ---------- */
-.home--m .h-rail { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: .9rem; margin-inline: -1.25rem; padding: 0 1.25rem .25rem; scrollbar-width: none; }
+/* overflow-y must be hidden: overflow-x:auto alone computes overflow-y to auto, and the reveal's
+   translateY gives the rail a few pixels of vertical overflow, so a vertical swipe that starts on a
+   card scrolled the rail instead of the page. pan-y keeps the page's vertical scroll. */
+.home--m .h-rail { display: flex; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scroll-snap-type: x mandatory; gap: .9rem; margin-inline: -1.25rem; padding: 0 1.25rem .25rem; scrollbar-width: none; }
 .home--m .h-rail::-webkit-scrollbar { display: none; }
 .home--m .h-rail > * { flex: 0 0 84%; scroll-snap-align: start; min-width: 0; }
 .home--m .h-rail.narrow > * { flex-basis: 74%; }
@@ -180,7 +181,6 @@
 .home--d .h-live .mast { flex-direction: row; justify-content: space-between; align-items: flex-end; }
 .h-live .mast img { width: min(30rem, 100%); height: auto; display: block; }
 .h-live .tag { font-size: 1.125rem; font-weight: 500; line-height: 1.4; margin-top: .9rem; }
-.home--d .h-live .h-series { flex-direction: row; flex: none; }
 .h-feed { margin-top: 2rem; display: grid; gap: 1.25rem; }
 .home--d .h-feed { grid-template-columns: 1.35fr 1fr; align-items: stretch; }
 .home--d .h-feed .rest { display: flex; flex-direction: column; gap: 1rem; }
@@ -217,7 +217,12 @@
 .h-piece .shot { aspect-ratio: 16 / 9; border-radius: var(--r-sm); overflow: hidden; background: var(--surface); }
 .h-piece .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-soft); }
 .h-piece h3 { font-size: 1.0625rem; font-weight: 500; line-height: 1.3; }
-.h-piece p { font-size: .8125rem; color: rgba(17,17,17,.55); }
+.h-piece p { font-size: .8125rem; line-height: 1.45; color: rgba(17,17,17,.55); }
+/* Desktop: every card reserves two lines of title and two of source, so a filter that changes which
+   cards sit in a row never changes the row's height. */
+.home--d .h-piece h3, .home--d .h-piece p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.home--d .h-piece h3 { min-height: calc(2em * 1.3); }
+.home--d .h-piece p { min-height: calc(2em * 1.45); }
 @media (hover: hover) and (pointer: fine) { .h-piece:hover .shot img { transform: scale(1.035); } }
 
 /* ---------- sessions ---------- */
@@ -259,3 +264,6 @@
 .h-modal .note a, .h-modal .ok a { text-decoration: underline; }
 .h-modal .ok { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding-block: 2rem; }
 .h-modal .ok p { max-width: 32ch; font-size: .875rem; line-height: 1.5; color: rgba(17,17,17,.6); }
+
+/* ---------- in public: two rows on desktop, the rest behind one button ---------- */
+.h-more { display: flex; justify-content: center; margin-top: 2rem; }
