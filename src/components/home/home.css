@@ -279,7 +279,7 @@
 .blk-in { position: relative; display: inline-block; white-space: nowrap; }
 .blk-t { opacity: 0; animation: blk-show 1ms linear forwards; animation-delay: calc(var(--blk-d, 0ms) + var(--i, 0) * var(--blk-st, 110ms) + var(--blk-dur, 600ms)); }
 .blk-bar {
-  position: absolute; inset: 0; background: var(--accent, currentColor);
+  position: absolute; inset: 0; background: var(--mint, #7ff0c6);
   transform: scaleX(0); transform-origin: left center; pointer-events: none;
   animation: blk-bar calc(var(--blk-dur, 600ms) * 2) forwards; animation-delay: calc(var(--blk-d, 0ms) + var(--i, 0) * var(--blk-st, 110ms));
 }
@@ -297,7 +297,7 @@
 .h-fit .lead { font-size: 1rem; line-height: 1.5; color: rgba(17,17,17,.62); margin: 0; }
 .h-fit ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
 .h-fit li { display: flex; align-items: baseline; gap: .6rem; font-size: 1.0625rem; line-height: 1.35; font-weight: 500; color: var(--fg); }
-.h-fit li::before { content: ''; flex: none; width: .4rem; height: .4rem; border-radius: 50%; background: var(--accent); transform: translateY(-.15rem); opacity: 0; }
+.h-fit li::before { content: ''; flex: none; width: .4rem; height: .4rem; border-radius: 50%; background: var(--mint, #7ff0c6); transform: translateY(-.15rem); opacity: 0; }
 .h-fit li:has(.h-blk.in)::before { animation: blk-show 1ms linear forwards; animation-delay: calc(var(--blk-d, 0ms) + var(--blk-dur, 600ms)); }
 .home--d .h-fit ul { flex-direction: row; flex-wrap: wrap; gap: .5rem; }
 .home--d .h-fit li { padding: .4rem .85rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.7); font-size: .9375rem; }
