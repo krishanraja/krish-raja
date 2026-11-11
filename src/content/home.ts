@@ -28,8 +28,8 @@ export const home: HomeContent = {
 
   practice: {
     id: 'build',
-    title: 'Your AI Chief of Staff',
-    sub: portfolio.primary.description,
+    title: 'Your choice of engagement.',
+    sub: 'I help leaders amplify their expertise with AI to make the next million dollar decision. I can deliver one off immersion sessions, ongoing operator work on tougher problems or a content partnership that keeps your business on its toes.',
     options: [
       {
         id: 'speaking',
@@ -143,7 +143,7 @@ export const home: HomeContent = {
   },
 
   swipeHint: 'Swipe for more',
-  brainCaption: 'Founder of Mindmake',
+  brainCaption: 'How my AI brain works.',
   brainAria: 'The operating system as a brain, one part lit at a time',
   brainPartsAria: 'Parts of the operating system',
   wallFilters: [

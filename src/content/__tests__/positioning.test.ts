@@ -62,8 +62,9 @@ const isProse = (s: { path: string; value: string }) =>
 const prose = contentStrings.filter(isProse);
 
 describe('the spine holds across every surface', () => {
-  it('the hero H1 is the spine sentence', () => {
-    expect(hero.h1).toBe(site.spine);
+  it('the hero H1 is the approved hero line, while the spine itself is unchanged', () => {
+    expect(hero.h1).toBe('Your AI Chief of Staff.');
+    expect(site.spine).toBe('AI-Native Commercial Strategy Leader');
   });
 
   it('the meta description reaches index.html, the JSON-LD and llms.txt intact', () => {
