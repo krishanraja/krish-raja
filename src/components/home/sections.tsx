@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import BlockTitle from './BlockTitle';
 import { ArrowUpRight } from 'lucide-react';
 import { appearances, contact, hero, home, lessons, operate, site, type ChannelItem } from '@/content';
 import { asset } from '@/lib/asset-map';
@@ -34,7 +35,7 @@ export const HomeHero = ({ mobile }: Tree) => {
           {/* On a tall phone the screen has more height than the copy. The slack is split
               above and below the copy (auto margins), not left as one hole over the logos. */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBlock: mobile ? 'auto' : undefined }}>
-            <h1 className="h-h1">{hero.h1}</h1>
+            <BlockTitle as="h1" className="h-h1" text={hero.h1} />
             <div className="h-sub h-r" style={d(450)}>
               <b>{operate.title}</b>
               {/* On a short phone (an SE is 568px) the paragraph would push the logos
@@ -74,7 +75,7 @@ export const WaysIn = ({ mobile }: Tree) => {
     <section id={p.id} className="h-sec">
       <div className="shell">
         <div className="h-sec-head">
-          <h2 className="h-h2 h-h2--two h-r">{p.title}</h2>
+          <BlockTitle className="h-h2 h-h2--two" text={p.title} />
           <p className="h-lede h-r" style={d(120)}>{p.sub}</p>
         </div>
         <div className={`h-opts${mobile ? ' h-rail mobile-snap-track' : ''}`}>
@@ -206,7 +207,7 @@ export const InPublic = ({ mobile }: Tree) => {
     <section id={appearances.id} className="h-sec" style={{ paddingTop: 0 }}>
       <div className="shell">
         <div className="h-sec-head" ref={head} style={{ scrollMarginTop: '5rem' }}>
-          <h2 className="h-h2 h-r">{appearances.title}</h2>
+          <BlockTitle className="h-h2" text={appearances.title} />
           <p className="h-lede h-r" style={d(120)}>{appearances.sub}</p>
         </div>
         <div className="h-choices" role="group" aria-label={appearances.title}>
@@ -249,7 +250,7 @@ export const Sessions = ({ mobile }: Tree) => {
     <section id={lessons.id} className="h-sec h-sessions" style={{ paddingTop: 0 }}>
       <div className="shell">
         <div className="h-sec-head">
-          <h2 className="h-h2 h-r">{lessons.title}</h2>
+          <BlockTitle className="h-h2" text={lessons.title} />
           <p className="h-lede h-r" style={d(120)}>{lessons.sub}</p>
         </div>
         <div className="wrap">

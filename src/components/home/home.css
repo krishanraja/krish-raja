@@ -271,3 +271,23 @@
 
 /* ---------- in public: two rows on desktop, the rest behind one button ---------- */
 .h-more { display: flex; justify-content: center; margin-top: 2rem; }
+
+/* ------------------------------------------------------------------ title reveal (BlockTitle) */
+/* Hidden until the reveal observer reaches it, then each line is wiped in by a bar. */
+.h-blk:not(.in) { visibility: hidden; }
+.blk-line { display: block; }
+.blk-in { position: relative; display: inline-block; white-space: nowrap; }
+.blk-t { opacity: 0; animation: blk-show 1ms linear forwards; animation-delay: calc(var(--i, 0) * 110ms + 600ms); }
+.blk-bar {
+  position: absolute; inset: 0; background: var(--accent, currentColor);
+  transform: scaleX(0); transform-origin: left center; pointer-events: none;
+  animation: blk-bar 1200ms forwards; animation-delay: calc(var(--i, 0) * 110ms);
+}
+@keyframes blk-show { to { opacity: 1; } }
+@keyframes blk-bar {
+  0% { transform: scaleX(0); transform-origin: left center; animation-timing-function: cubic-bezier(.87,0,.13,1); }
+  50% { transform: scaleX(1); transform-origin: left center; }
+  50.01% { transform: scaleX(1); transform-origin: right center; animation-timing-function: cubic-bezier(.87,0,.13,1); }
+  100% { transform: scaleX(0); transform-origin: right center; }
+}
+@media (prefers-reduced-motion: reduce) { .h-blk:not(.in) { visibility: visible; } }

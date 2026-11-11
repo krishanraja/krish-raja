@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
+import BlockTitle from '@/components/home/BlockTitle';
 import { Badge } from '@/components/ui/badge';
 import { Award, MapPin } from 'lucide-react';
 import { MobileCarousel } from '@/components/ui/mobile-carousel';
@@ -67,7 +68,7 @@ const ProofPoints = () => {
     <section id={receipts.id} className="section-padding scroll-mt-16">
       <div className="container-width">
         <div className="text-center mb-8 md:mb-16">
-          <h2 className="headline-lg mb-4 md:mb-6">{receipts.title}</h2>
+          <BlockTitle className="headline-lg mb-4 md:mb-6" text={receipts.title} />
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             {receipts.sub}
           </p>

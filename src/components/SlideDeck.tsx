@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import BlockTitle from '@/components/home/BlockTitle';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowUpRight, X } from 'lucide-react';
 import { deck } from '@/content';
@@ -270,7 +271,7 @@ const SlideDeck = ({ compact = false }: { compact?: boolean }) => {
           size and on the same left edge as every other section. */}
       <div className="shell">
         <div className="h-sec-head">
-          <h2 className="h-h2">{deck.title}</h2>
+          <BlockTitle className="h-h2" text={deck.title} />
           <p className="h-lede">{deck.sub}</p>
         </div>
       </div>

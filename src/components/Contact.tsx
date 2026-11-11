@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import BlockTitle from '@/components/home/BlockTitle';
 import { contact } from '@/content';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
@@ -8,7 +9,7 @@ const Contact = () => {
       <div className="container-width">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-6 md:mb-10">
-            <h2 className="headline-lg mb-3 md:mb-4">{contact.title}</h2>
+            <BlockTitle className="headline-lg mb-3 md:mb-4" text={contact.title} />
             <p className="text-muted-foreground">
               {contact.sub}
             </p>

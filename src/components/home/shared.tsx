@@ -36,7 +36,7 @@ export const useReveals = (enabled: boolean) => {
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
       { rootMargin: '0px 0px -6% 0px' },
     );
-    const watch = () => document.querySelectorAll('.h-r:not(.in)').forEach((el) => io.observe(el));
+    const watch = () => document.querySelectorAll('.h-r:not(.in), .h-blk:not(.in)').forEach((el) => io.observe(el));
     watch();
     // Late content (the live feed, the deck) mounts after the first pass.
     const mo = new MutationObserver(watch);
