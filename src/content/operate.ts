@@ -16,7 +16,7 @@ export const operate: OperateContent = {
   id: 'how-i-operate',
   // One title, both trees. The mobile variant said "The operating stack", which
   // was written to sit under an eyebrow rather than because anyone said it.
-  title: "I've built my own AI brain & operating system.",
+  title: "The pace of change is intense. I'm here to help.",
   sub: 'I work best with curious leaders with a determination to evolve, strong standards and clear north stars and an imaginative nature - and I work to 🚀 businesses who are building the next era of creative and media technologies.',
 
   pillars: [
