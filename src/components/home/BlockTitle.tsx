@@ -17,8 +17,9 @@ import { Fragment, useEffect, useLayoutEffect, useRef, useState, type CSSPropert
  */
 type Props = {
   text: string;
-  as?: 'h1' | 'h2';
+  as?: 'h1' | 'h2' | 'p' | 'span';
   className?: string;
+  /** Timing rides CSS variables here: --blk-d (start delay), --blk-dur (one sweep), --blk-st (per line). */
   style?: CSSProperties;
   id?: string;
 };

@@ -12,12 +12,27 @@ import type { OperateContent } from './types';
  * Anthropic, Gemini, and OpenAI". Dropped "Voyage" because I could not tell
  * what it names and it reads as a typo. Say the word and it goes back.
  */
+/**
+ * The hero paragraph, broken into a lead, four traits and a closing line
+ * (Krish, 2026-11-11), because one five-line grey paragraph read as a block on
+ * a phone. Was: "I work best with curious leaders with a determination to
+ * evolve, strong standards and clear north stars and an imaginative nature -
+ * and I work to 🚀 businesses who are building the next era of creative and
+ * media technologies."
+ */
+const fit = {
+  lead: 'I work best with leaders who are',
+  traits: ['curious', 'determined to evolve', 'strong standards, clear north stars', 'imaginative'],
+  close: 'I work to 🚀 businesses building the next era of creative and media technologies.',
+} as const;
+
 export const operate: OperateContent = {
   id: 'how-i-operate',
   // One title, both trees. The mobile variant said "The operating stack", which
   // was written to sit under an eyebrow rather than because anyone said it.
   title: "The pace of change is intense. I'm here to help.",
-  sub: 'I work best with curious leaders with a determination to evolve, strong standards and clear north stars and an imaginative nature - and I work to 🚀 businesses who are building the next era of creative and media technologies.',
+  sub: `${fit.lead} ${fit.traits.slice(0, -1).join(', ')} and ${fit.traits[fit.traits.length - 1]}. ${fit.close}`,
+  fit,
 
   pillars: [
     {

@@ -10,6 +10,9 @@ import { Btn, useAsk } from './shared';
 
 type Tree = { mobile: boolean };
 const d = (ms: number): CSSProperties => ({ ['--d' as string]: `${ms}ms` });
+/** Timing for a BlockTitle wipe: start delay, one sweep, gap between lines. */
+const wipe = (delay: number, dur: number, stagger = 110): CSSProperties =>
+  ({ ['--blk-d' as string]: `${delay}ms`, ['--blk-dur' as string]: `${dur}ms`, ['--blk-st' as string]: `${stagger}ms` });
 /* ------------------------------------------------------------------ hero */
 
 const TrustStrip = () => (
@@ -27,6 +30,8 @@ export const HomeHero = ({ mobile }: Tree) => {
   const ask = useAsk();
   // Mobile: exactly one screen, trust logos at the foot, the brain on the next screen.
   const screen = useMobileViewportHeight();
+  const fit = operate.fit;
+  const roomy = !(mobile && screen > 0 && screen < 700);
   const fill = mobile && screen > 0 ? { minHeight: `min(calc(${screen}px - var(--mobile-dock-h, 63px)), 940px)` } : undefined;
   return (
     <section id="hero" className="h-hero">
@@ -38,14 +43,26 @@ export const HomeHero = ({ mobile }: Tree) => {
             <BlockTitle as="h1" className="h-h1" text={hero.h1} />
             <div className="h-sub h-r" style={d(450)}>
               <b>{operate.title}</b>
-              {/* On a short phone (an SE is 568px) the paragraph would push the logos
-                  under the dock; the brain screen right below carries the same idea. */}
-              {!(mobile && screen > 0 && screen < 700) && <p>{operate.sub}</p>}
             </div>
-            <div className="h-acts h-r" style={d(600)}>
+            {/* On a short phone (an SE is 568px) the fit copy would push the logos
+                under the dock; the brain screen right below carries the same idea. */}
+            {roomy && (
+              <div className="h-fit">
+                <p className="lead h-r" style={d(550)}>{fit.lead}</p>
+                <ul>
+                  {fit.traits.map((t, i) => (
+                    <li key={t} style={wipe(750 + i * 140, 380)}>
+                      <BlockTitle as="span" text={t} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="h-acts h-r" style={d(700)}>
               <Btn label={hero.primaryCta} onClick={ask} />
               <Btn label={hero.secondaryCta} tone="outline" href={hero.secondaryHref} />
             </div>
+            {roomy && <BlockTitle as="p" className="h-close" text={fit.close} style={wipe(1450, 420, 90)} />}
           </div>
           <TrustStrip />
         </div>

@@ -84,7 +84,16 @@ export interface Pillar {
   readonly body: string;
 }
 
+/** The hero's "who I work with" copy, set as a lead, a short list and a closing line. */
+export interface HeroFit {
+  readonly lead: string;
+  readonly traits: readonly string[];
+  readonly close: string;
+}
+
 export interface OperateContent extends SectionHeader {
+  /** `sub` is this, joined into one sentence, for surfaces that want prose. */
+  readonly fit: HeroFit;
   readonly pillars: readonly Pillar[];
   /** Title and steps only. The explanatory sentence was cut on 12 Aug 2026. */
   readonly flywheel: {
