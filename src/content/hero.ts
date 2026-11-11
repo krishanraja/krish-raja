@@ -7,7 +7,7 @@ export const hero: HeroContent = {
   // "14 agents · 45 workflows" status line went the same way on 20 Aug 2026:
   // only the mobile tree ever rendered it, and the counts read better in the OS
   // section, which shows them running.
-  h1: site.spine,
+  h1: 'Your AI Chief of Staff.',
   // The link that follows is a link, not a sentence. This used to end with
   // "Read my Substack →" in the prose as well, so the words rendered twice, once
   // as dead text and once as the anchor beside it. The anchor keeps the words.
