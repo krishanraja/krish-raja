@@ -1,0 +1,4 @@
+Status: The In public wall runs newest first (2026 Signal & Noise, Cannes and POSSIBLE at the front, the 2011 thesis last), ordered in appearances.ts by year and, within 2026, by each manifest record's datePublished. A test fails if a year runs backwards. "Your choice of engagement." breaks onto two lines on the desktop tree. Tests 152/152, typecheck, build and mobile:check (79 passed) green; checked by eye at 1280, 1440 and 1920.
+Next: Krish gives months for the Dan Pratl, Justin Kramm (authentic voice) and dothinkdo 2026 entries and a year for the Captify hire, so the TODO(krish) placements become dated.
+Changed: Ruling (Krish, 2026-11-11): all content newest first; engagement heading on two lines on desktop.
+North Star check (2026-11-11): holds. The most recent stages (Cannes Lions, POSSIBLE) now lead the section an organiser scans.
