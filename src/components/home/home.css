@@ -41,6 +41,8 @@
 .home--d .h-sec-head { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 3rem; margin-bottom: 2.5rem; }
 /* Title and line share the row evenly, so a long line never squeezes the title into a column. */
 .home--d .h-sec-head > .h-h2, .home--d .h-sec-head > .h-lede { flex: 1 1 0; min-width: 0; }
+/* A title Krish wants on two lines at desktop width. The cap is in em so it follows the clamp. */
+.home--d .h-sec-head > .h-h2--two { max-width: 9.5em; text-wrap: balance; }
 
 /* Reveals: one entrance for everything, played once. */
 .h-r { opacity: 0; transform: translateY(var(--y, 16px)); transition: opacity .8s var(--ease-soft), transform .8s var(--ease-soft); transition-delay: var(--d, 0ms); }

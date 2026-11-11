@@ -74,7 +74,7 @@ export const WaysIn = ({ mobile }: Tree) => {
     <section id={p.id} className="h-sec">
       <div className="shell">
         <div className="h-sec-head">
-          <h2 className="h-h2 h-r">{p.title}</h2>
+          <h2 className="h-h2 h-h2--two h-r">{p.title}</h2>
           <p className="h-lede h-r" style={d(120)}>{p.sub}</p>
         </div>
         <div className={`h-opts${mobile ? ' h-rail mobile-snap-track' : ''}`}>

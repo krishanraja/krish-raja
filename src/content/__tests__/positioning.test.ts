@@ -388,6 +388,13 @@ describe('the content index is the authority on what may be published', () => {
 
   const withRecord = appearances.items.filter((i) => i.appearanceId);
 
+  it('appearances run newest first (Krish, 2026-11-11)', () => {
+    const years = appearances.items.filter((i) => i.year).map((i) => Number(i.year));
+    years.forEach((y, n) => {
+      if (n > 0) expect(y, `${y} sits after ${years[n - 1]}`).toBeLessThanOrEqual(years[n - 1]);
+    });
+  });
+
   it('the manifest parsed', () => {
     expect(records.size).toBeGreaterThan(30);
     expect(withRecord.length).toBeGreaterThan(10);
