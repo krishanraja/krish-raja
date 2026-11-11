@@ -68,7 +68,7 @@ const ProofPoints = () => {
     <section id={receipts.id} className="section-padding scroll-mt-16">
       <div className="container-width">
         <div className="text-center mb-8 md:mb-16">
-          <BlockTitle className="headline-lg mb-4 md:mb-6" text={receipts.title} />
+          <BlockTitle className="h-h2 mb-4 md:mb-6" text={receipts.title} />
           <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             {receipts.sub}
           </p>

@@ -20,7 +20,7 @@ const MobileSection = ({ id, title, intro, children, tone = 'default' }: MobileS
     className={`mobile-section ${tone === 'muted' ? 'bg-muted/30' : ''}`}
   >
     <header className="mb-5">
-      <BlockTitle className="mobile-h2 text-foreground" text={title} />
+      <BlockTitle className="h-h2 text-foreground" text={title} />
       {intro && <p className="mobile-body text-muted-foreground mt-2">{intro}</p>}
     </header>
     {children}

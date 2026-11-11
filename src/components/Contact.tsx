@@ -9,7 +9,7 @@ const Contact = () => {
       <div className="container-width">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-6 md:mb-10">
-            <BlockTitle className="headline-lg mb-3 md:mb-4" text={contact.title} />
+            <BlockTitle className="h-h2 mb-3 md:mb-4" text={contact.title} />
             <p className="text-muted-foreground">
               {contact.sub}
             </p>
