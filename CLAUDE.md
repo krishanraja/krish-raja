@@ -163,7 +163,7 @@ The brand is **Mindmake**. It was Mindmaker until 12 August 2026.
 URLs live in `src/content/site.ts` behind one constant:
 
 ```ts
-const DOMAINS_LIVE = false;   // flip when mindmake.co resolves, then `npm run generate`
+const DOMAINS_LIVE = true;   // flipped 11 Nov 2026; content now points at makeyourmindup.ai
 ```
 
 Everything reads from `hosts`, so the switch is one line and `npm run links:check` proves the

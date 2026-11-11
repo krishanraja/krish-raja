@@ -44,6 +44,12 @@ export function parse(feedXml, ytXml) {
         .sort((a, b) => b.s - a.s)[0];
       const video = best && best.s >= 0.6 ? best.v.id : undefined;
       if (video) used.add(video);
+      // The post's own lead image, resized to 800px. Substack's image proxy takes its
+      // options as the comma list after /fetch/. The feed's URLs carry a $s_ signature
+      // that browsers get a 404 for, so the options are replaced whole, signature and
+      // all; the unsigned form serves. Used when no YouTube still is found.
+      const img = (it.match(/https:\/\/substackcdn\.com\/image\/fetch\/[^"\s<]+/) || [])[0];
+      const image = img ? img.replace(/\/fetch\/[^/]*\//, '/fetch/w_800,c_limit,f_auto,q_auto:good/') : undefined;
       return {
         title,
         link: tag(it, 'link'),
@@ -51,6 +57,7 @@ export function parse(feedXml, ytXml) {
         series: SERIES[date.getUTCDay()],
         format: desc.includes('|') ? desc.split('|')[0].trim() : undefined,
         video,
+        image,
       };
     })
     .filter((p) => p.title && p.link && !/^video:/i.test(p.title))

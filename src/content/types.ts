@@ -553,6 +553,8 @@ export interface ChannelItem {
   readonly sub?: string;
   /** YouTube video id, for the thumbnail. */
   readonly video?: string;
+  /** The post's own lead image, used when there is no video still. */
+  readonly image?: string;
 }
 
 export interface ChannelContent extends SectionHeader {

@@ -7,7 +7,7 @@ Krish Raja is an AI-native commercial strategy leader and the founder of Mindmak
 ## What he does now
 
 - **Mindmake OS**: a 14-agent, 45-workflow autonomous operating system in production, with stack components licensed to three businesses. It runs the business and is the lab the advisory work comes out of. Mindmake branches three ways: Advisory, CTRL as the product, and Content as the editorial channel.
-- **Mindmake** (Founder): a capped advisory practice. A small number of engagements a year, from taking one decision apart to rebuilding how a business decides. Sold at themindmaker.ai.
+- **Mindmake** (Founder): a capped advisory practice. A small number of engagements a year, from taking one decision apart to rebuilding how a business decides. Sold at mindmake.co.
 - **CTRL** (Coming soon): a portable, private memory system that keeps an operator's judgement usable across the tools they work in.
 
 ## Commercial track record
@@ -19,7 +19,7 @@ Krish Raja is an AI-native commercial strategy leader and the founder of Mindmak
 
 ## Writing and audio
 
-- **Content** (https://live.themindmaker.ai): the Mindmake editorial channel. Two formats. The Money of AI follows the money in a shift and names the mechanism. Building with AI gets to why someone built the thing they built.
+- **Content** (https://makeyourmindup.ai): the Mindmake editorial channel. Two formats. The Money of AI follows the money in a shift and names the mechanism. Building with AI gets to why someone built the thing they built.
 - **Signal & Noise** (Executive Host): a podcast with media operators on how AI is reshaping the industry. A secondary endeavour: the work originates in Mindmake and the channel amplifies it, plus guest hosting.
 - **Teaches on Maven**
 
