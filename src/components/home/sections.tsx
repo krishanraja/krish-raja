@@ -124,12 +124,12 @@ const fmtDate = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString
 const Episode = ({ it, lead }: { it: ChannelItem; lead: boolean }) => (
   <a className={`h-ep${lead ? ' lead' : ' row'}`} href={it.link} target="_blank" rel="noopener noreferrer">
     <div className="shot">
-      {it.video && (
+      {it.video ? (
         <img src={`https://i.ytimg.com/vi/${it.video}/maxresdefault.jpg`} alt="" loading="lazy"
           // YouTube answers a missing maxres with a 120px grey placeholder, not an error.
           onLoad={(e) => { const img = e.currentTarget; if (img.naturalWidth <= 120) img.src = `https://i.ytimg.com/vi/${it.video}/hqdefault.jpg`; }}
           onError={(e) => { const img = e.currentTarget; if (!img.src.includes('hqdefault')) img.src = `https://i.ytimg.com/vi/${it.video}/hqdefault.jpg`; }} />
-      )}
+      ) : it.image ? <img src={it.image} alt="" loading="lazy" /> : null}
     </div>
     <div className="meta h-meta"><span>{fmtDate(it.date)}{it.series ? ` · ${it.series}` : ''}</span>{lead && it.format ? <span>{it.format}</span> : null}</div>
     <h3>{it.title}</h3>

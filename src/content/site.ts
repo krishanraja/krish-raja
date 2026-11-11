@@ -13,12 +13,13 @@ import type { SiteContent } from './types';
  * krish@mindmake.co is the published contact address (Krish, 2026-10-03). It
  * replaced krish@themindmaker.ai, which still redirects to it.
  */
-const DOMAINS_LIVE = false;
+// Flipped 11 Nov 2026 (Krish). The channel lives at makeyourmindup.ai, not content.mindmake.co.
+const DOMAINS_LIVE = true;
 
 const hosts = DOMAINS_LIVE
   ? {
       root: 'https://mindmake.co',
-      content: 'https://content.mindmake.co',
+      content: 'https://makeyourmindup.ai',
       ctrl: 'https://ctrl.mindmake.co',
     }
   : {

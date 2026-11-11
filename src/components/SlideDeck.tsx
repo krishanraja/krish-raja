@@ -266,18 +266,12 @@ const SlideDeck = ({ compact = false }: { compact?: boolean }) => {
       id={deck.id}
       className={`overflow-hidden bg-muted/30 scroll-mt-16 ${compact ? 'py-12' : 'py-12 md:py-20'}`}
     >
-      <div className="container-width">
-        <div className={compact ? 'mb-5 px-5' : 'mb-5 px-5 md:mb-10 md:px-0 md:text-center'}>
-          <h2 className={compact ? 'mobile-h2' : 'mobile-h2 md:headline-lg md:mb-4'}>
-            {deck.title}
-          </h2>
-          <p
-            className={`mobile-body mt-2 text-muted-foreground ${
-              compact ? '' : 'md:body-lg md:mx-auto md:mt-0 md:max-w-2xl'
-            }`}
-          >
-            {deck.sub}
-          </p>
+      {/* The homepage's own section head, so this title and its line sit at the same
+          size and on the same left edge as every other section. */}
+      <div className="shell">
+        <div className="h-sec-head">
+          <h2 className="h-h2">{deck.title}</h2>
+          <p className="h-lede">{deck.sub}</p>
         </div>
       </div>
 

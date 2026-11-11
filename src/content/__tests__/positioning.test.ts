@@ -266,13 +266,15 @@ describe('the brand is Mindmake', () => {
     // DOMAINS_LIVE in site.ts picks one set or the other. Shipping a mixture
     // means one of them is a 404, so the two must never both appear.
     const urls = [site.links.mindmake, site.links.content, site.links.ctrl];
-    const onNew = urls.filter((u) => u.includes('mindmake.co')).length;
+    // Since the flip the content link is makeyourmindup.ai rather than a mindmake.co
+    // subdomain, so this counts the old domain: all three or none.
+    const onOld = urls.filter((u) => u.includes('themindmaker.ai')).length;
     expect(
-      onNew === 0 || onNew === urls.length,
+      onOld === 0 || onOld === urls.length,
       `half-flipped: ${urls.join(', ')}`,
     ).toBe(true);
     const artifacts = `${indexHtml}\n${llmsTxt}\n${sitemapXml}`;
-    if (onNew === 0) {
+    if (onOld === urls.length) {
       expect(artifacts, 'an unresolvable mindmake.co URL shipped').not.toContain('mindmake.co/');
     }
   });
