@@ -25,7 +25,6 @@ import { portfolio } from '../portfolio';
 import { receipts } from '../receipts';
 import { appearances } from '../appearances';
 import { deck } from '../deck';
-import { os } from '../os';
 import { lessons } from '../lessons';
 import { contact } from '../contact';
 import { nav } from '../nav';
@@ -38,7 +37,7 @@ const indexHtml = read('index.html');
 const llmsTxt = read('public/llms.txt');
 const sitemapXml = read('public/sitemap.xml');
 
-const modules = { site, hero, operate, os, deck, portfolio, receipts, appearances, lessons, contact, nav };
+const modules = { site, hero, operate, deck, portfolio, receipts, appearances, lessons, contact, nav };
 
 /** Every string value anywhere in the content layer, with its path. */
 const contentStrings: { path: string; value: string }[] = [];
@@ -454,48 +453,6 @@ describe('the content index is the authority on what may be published', () => {
 
 describe('every referenced media file exists', () => {
   const exists = (p: string) => existsSync(resolve(root, 'public', p.replace(/^\//, '')));
-
-  it.each(os.entries.map((e) => e.id))('the %s recording and poster are built', (id) => {
-    expect(exists(`/media/os/${id}.mp4`), `/media/os/${id}.mp4 is missing`).toBe(true);
-    expect(exists(`/media/os/${id}.jpg`), `/media/os/${id}.jpg is missing`).toBe(true);
-  });
-
-  it('no two OS entries ship the same recording', () => {
-    // 12 August 2026: a master arrived named `new os content vid.mp4`, was
-    // renamed to os-content-final.mp4 on the strength of that name, and
-    // transcoded. It was a recording of the Org screen, so the site shipped the
-    // same agent roster labelled both "Content" and "The org". Every check
-    // passed. ffprobe parsed it, the file shrank 20x, the page rendered, the
-    // suite was green, and the only way to notice was to look at a frame.
-    //
-    // Nothing here can know whether a video is about content. It can know that
-    // two entries claiming to be different recordings are the same picture.
-    // Genuinely different captures of this app run 69 to 128 bits apart, so 32
-    // is far below anything real and far above nothing.
-    const fingerprints: Record<string, string> = JSON.parse(
-      read('public/media/os/fingerprints.json'),
-    );
-    const hamming = (a: string, b: string) => {
-      let n = 0;
-      for (let i = 0; i < a.length; i += 1) if (a[i] !== b[i]) n += 1;
-      return n;
-    };
-
-    for (const entry of os.entries) {
-      expect(fingerprints[entry.id], `${entry.id} has no poster fingerprint`).toBeTruthy();
-    }
-
-    const ids = os.entries.map((e) => e.id);
-    for (let i = 0; i < ids.length; i += 1) {
-      for (let j = i + 1; j < ids.length; j += 1) {
-        const distance = hamming(fingerprints[ids[i]], fingerprints[ids[j]]);
-        expect(
-          distance,
-          `${ids[i]} and ${ids[j]} look like the same recording (${distance} bits apart)`,
-        ).toBeGreaterThan(32);
-      }
-    }
-  });
 
   it('every attendee logo is built, and none is a placeholder', () => {
     const missing = lessons.attendees

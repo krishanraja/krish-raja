@@ -1,16 +1,10 @@
 import type { OperateContent } from './types';
 
 /**
- * Four cards, deliberately the same shape as each other.
- *
- * The Operating System card used to carry a "14 agents, 45 workflows" chip and
- * a body three times longer than its neighbours, so one of four read as a
- * different component. The chip is gone (the counts are in the hero status line
- * and the OS section), and the bodies are now within a few words of each other.
- *
- * TODO(krish): the Build Loop used to say "Voyage agents in production across
- * Anthropic, Gemini, and OpenAI". Dropped "Voyage" because I could not tell
- * what it names and it reads as a typo. Say the word and it goes back.
+ * The hero's bold line and fit copy, and the four pillars the brain graphic
+ * (BrainBloom) labels. The pillars are deliberately the same shape as each
+ * other: when one carried a count chip and a body three times longer, one of
+ * four read as a different component.
  */
 /**
  * The hero paragraph, broken into a lead, four traits and a closing line
@@ -60,14 +54,4 @@ export const operate: OperateContent = {
       body: 'Voice clones, video clones, memory webs & learning loops in production across all models. I hold a Friday arvo WIP so they self-reflect on their week.',
     },
   ],
-
-  flywheel: {
-    title: 'One flywheel',
-    points: [
-      'Standards are universal',
-      'Learnings carry forward',
-      'Failure and check ins are important lessons',
-      'Momentum compounds',
-    ],
-  },
 };

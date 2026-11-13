@@ -1,7 +1,7 @@
 # Positioning
 
 Settled 10 and 11 August 2026. Spine and meta revised 29 August 2026. This is the spine. Changing anything here means changing
-LinkedIn and themindmaker.ai in the same pass.
+LinkedIn and mindmake.co in the same pass.
 
 ## The market
 
@@ -47,11 +47,11 @@ content, media and IP businesses
 ```
 
 It appears on krishraja.com, in the LinkedIn headline and About, and wherever
-themindmaker.ai describes Krish.
+mindmake.co describes Krish.
 
 **2. Every number in `FACTS.md`.** A figure that differs across two surfaces is a defect.
 
-**3. What Mindmaker is:** a capped advisory practice. Not a startup, not a lab, not a
+**3. What Mindmake is:** a capped advisory practice. Not a startup, not a lab, not a
 consultancy. The cap is real and it matters, because it is what makes the site honest to
 a buyer and to a hirer at the same time.
 
@@ -61,14 +61,14 @@ Everything else varies by surface:
 |---|---|
 | krishraja.com | The spine as the H1, identical to the LinkedIn headline |
 | LinkedIn | The headline, which is the source of the spine |
-| themindmaker.ai | Barely describes Krish at all. It sells the practice, not the person. |
+| mindmake.co | Barely describes Krish at all. It sells the practice, not the person. |
 
 ## What he sells
 
 Mindmaker, and nothing else. Everything else on krishraja.com is build work, writing or
 receipts.
 
-**No prices on this site.** Pricing lives on themindmaker.ai only, so there is exactly one
+**No prices on this site.** Pricing lives on mindmake.co only, so there is exactly one
 place to keep current.
 
 **No geographic market claim on this site.** Krish's advisory market is the UK, but that
@@ -153,28 +153,29 @@ businesses.
 
 ## The editorial channel
 
-**Mindmaker Live** is the single editorial channel. Techonomic and The Builder Economy
-have folded into it.
+**Make Your Mind Up** (`https://makeyourmindup.ai`) is the single editorial channel, the
+Content branch of Mindmake. It was Mindmaker Live until the 12 August 2026 rename;
+Techonomic and The Builder Economy folded into it. The address moved with `DOMAINS_LIVE`
+on 11 November 2026.
 
-- Link to `https://live.themindmaker.ai`, never the Substack URL, so the redirect can be
-  repointed later without touching this repo.
+- Link to `site.links.content`, never the Substack URL, so the address can move again
+  without touching anything but `site.ts`.
 - **It has paid tiers.** It runs free, plus paid tiers. Never describe it as free. Describe
   it as the channel, link to it, and say nothing about price.
 
 **The two formats:**
 
-- **Built**: why someone built the thing they built, and the why beneath the why.
-  Replaces The Builder Economy.
-- **Paid**: who is actually getting paid in a shift, and by what mechanism.
-  Replaces Techonomic.
+- **The Money of AI**: who is actually getting paid in a shift, and by what mechanism.
+  Replaces Techonomic. Was called "Paid" until 12 August 2026.
+- **Building with AI**: why someone built the thing they built, and the why beneath the
+  why. Replaces The Builder Economy. Was called "Built".
 
-**Signal and Noise** stays as its own show and remains in the portfolio. It did not fold
-into anything.
+**Signal and Noise** stays as its own show. It did not fold into anything.
 
-**The channel is linked, its posts are not listed.** Decided 12 August 2026. The site links
-to Mindmaker Live from the hero and the portfolio, and that is all. There is no feed of
-posts, because the site already carries enough content and Krish is relaunching the
-channel. Do not add one back.
+**The channel's latest posts are on the homepage.** Since the 9 November 2026 rebuild,
+the `#live` section shows four recent episodes, fetched by `api/live.js` with a fallback
+in `home.ts`. This replaced the 12 August decision to link the channel without listing
+its posts.
 
 **techonomic.co and thebuildereconomy.com are being left to lapse.** Decided 12 August
 2026. Neither resolves, neither is linked, and neither gets a redirect.

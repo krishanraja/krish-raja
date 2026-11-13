@@ -59,10 +59,7 @@ export interface HeroContent {
   // headings got there. The counts are still on the page, in the operating
   // system section, and in the meta and llms.txt prose.
   readonly h1: string;
-  readonly sub: string;
-  readonly channel: ExternalLink;
   readonly primaryCta: string;
-  readonly primaryHref: string;
   readonly secondaryCta: string;
   readonly secondaryHref: string;
   readonly trustLabel: string;
@@ -70,11 +67,11 @@ export interface HeroContent {
 }
 
 /**
- * One card in "How I operate".
+ * One pillar of the brain graphic.
  *
- * No badge field. The Operating System card used to carry a count chip that
- * no other card had, which made one of four look like a different component.
- * The counts live in the OS section, which can show them running.
+ * No badge field. The Operating System pillar used to carry a count chip that
+ * no other had, which made one of four look like a different component. The
+ * counts live in llms.txt.
  */
 export interface Pillar {
   readonly icon: string;
@@ -95,56 +92,20 @@ export interface OperateContent extends SectionHeader {
   /** `sub` is this, joined into one sentence, for surfaces that want prose. */
   readonly fit: HeroFit;
   readonly pillars: readonly Pillar[];
-  /** Title and steps only. The explanatory sentence was cut on 12 Aug 2026. */
-  readonly flywheel: {
-    readonly title: string;
-    readonly points: readonly string[];
-  };
-}
-
-/**
- * One recording from the operating system.
- *
- * `source` is the file under public/files/, which scripts/generate-media.mts
- * transcodes. The player reads the derivatives by convention:
- * /media/os/<id>.mp4 and /media/os/<id>.jpg. All four are portrait phone
- * captures, so they render inside a device frame.
- */
-export interface OsEntry {
-  readonly id: string;
-  readonly title: string;
-  readonly note: string;
-  readonly source: string;
-  readonly alt: string;
-  /**
-   * Pixels to cut off the master before scaling, in SOURCE pixels.
-   *
-   * Recordings captured in a browser arrive with the status bar and address bar
-   * baked into the frame. Rather than asking for a re-record, name the offset
-   * here and `npm run media` crops it. Keep the numbers even: H.264 chroma
-   * subsampling needs even offsets and dimensions.
-   */
-  readonly crop?: MediaCrop;
 }
 
 /**
  * Pixels to cut off a master before scaling, in SOURCE pixels.
  *
- * Shared by the OS recordings and the appearance captures, because both arrive
- * with something baked in that nobody wants on the site: a browser status bar
- * on a screen recording, a page of navigation and a recommendation sidebar on a
- * capture of a video page. Naming the offset here means a usable master does
- * not have to be recaptured to ship.
+ * The appearance captures arrive with a page of navigation and a
+ * recommendation sidebar baked in. Naming the offset here means a usable
+ * master does not have to be recaptured to ship.
  */
 export interface MediaCrop {
   readonly top?: number;
   readonly bottom?: number;
   readonly left?: number;
   readonly right?: number;
-}
-
-export interface OsContent extends SectionHeader {
-  readonly entries: readonly OsEntry[];
 }
 
 /** One slide from a talk. Sources live in public/files/slides/. */
@@ -188,8 +149,6 @@ export interface Appearance {
   readonly href?: string;
   /** Path under public/media/. Preferred. */
   readonly media?: string;
-  /** Key into src/lib/asset-map.ts, for items with no content-index record. */
-  readonly asset?: string;
   /**
    * What part of the master to keep, in source pixels.
    *
@@ -215,7 +174,6 @@ export interface Appearance {
 }
 
 export interface AppearancesContent extends SectionHeader {
-  readonly filters: readonly { readonly id: AppearanceKind | 'all'; readonly label: string }[];
   readonly moreLabel: string;
   readonly lessLabel: string;
   /**
@@ -234,46 +192,24 @@ export interface AppearancesContent extends SectionHeader {
 export interface PortfolioItem {
   readonly name: string;
   readonly description: string;
-  readonly asset: string;
-  /** Omitted when there is nothing public to point at yet. Renders unlinked. */
+  /** Omitted when there is nothing public to point at yet. */
   readonly url?: string;
   readonly role: string;
   readonly isBeta?: boolean;
-  readonly invertOnDark?: boolean;
-  /** Needs a light plate behind it in dark mode, for a dark-to-light gradient mark. */
-  readonly plateOnDark?: boolean;
-  /**
-   * The mirror of `plateOnDark`: a dark plate in light mode, for a mark drawn
-   * light on transparency. The CTRL wordmark fades from mint to near-white, so
-   * on the light card its last two letters are not there. Same for Fractionl
-   * and the Full Time green.
-   */
-  readonly plateOnLight?: boolean;
 }
 
 /**
- * One arm of Mindmake. Advisory, the product, the channel.
- *
- * `mark` is a corner-radius variant of the one Mindmake mark, not three
- * separate files: the mark's two bottom squares reach the edges of its own
- * content box, so a CSS radius clips exactly those corners and the transparent
- * top corners are unaffected. Three arms of one brand should look like three
- * arms of one brand, which is why they are not three different glyphs.
+ * One arm of Mindmake. Advisory, the product, the channel. No longer rendered
+ * on the page (the portfolio shelf came off on 9 Nov 2026); kept because
+ * llms.txt and the hero's Mindmake card read from it.
  */
 export interface PortfolioBranch {
   readonly name: string;
   readonly role: string;
   readonly description: string;
-  readonly mark: 'square' | 'soft' | 'round';
   readonly url?: string;
-  /**
-   * Named formats, for the Content branch. Rendered as wordmark chips.
-   *
-   * `name` is not decoration: it is the alt text, and it is what the consistency
-   * suite reads when it walks the content layer for prose. A chip that is only
-   * an image is a chip a screen reader and a grep both miss.
-   */
-  readonly formats?: readonly { readonly name: string; readonly asset: string }[];
+  /** Named formats, for the Content branch. */
+  readonly formats?: readonly { readonly name: string }[];
 }
 
 /**
@@ -287,18 +223,12 @@ export interface PortfolioBranch {
  * stay on the page, one tier down, which is the only place they are shown.
  */
 export interface PortfolioContent extends SectionHeader {
-  readonly betaBadge: string;
   readonly primary: {
     readonly name: string;
     readonly description: string;
-    /** A wordmark, not an icon, so both trees give it a line of its own. */
-    readonly asset: string;
     readonly url: string;
-    readonly plateOnDark?: boolean;
-    readonly plateOnLight?: boolean;
     readonly branches: readonly PortfolioBranch[];
   };
-  readonly secondaryHeading: string;
   readonly secondary: readonly PortfolioItem[];
 }
 
@@ -340,26 +270,9 @@ export interface ReceiptsContent extends SectionHeader {
   readonly roles: readonly Role[];
 }
 
-export interface WorkItem {
-  readonly title: string;
-  readonly type: string;
-  readonly summary: string;
-  readonly description: string;
-  readonly link?: string;
-  readonly actionLabel?: string;
-  readonly asset: string;
-  readonly icon: string;
-}
-
-export interface WorkContent extends SectionHeader {
-  readonly items: readonly WorkItem[];
-  readonly publishRow: readonly { readonly prefix: string; readonly link: ExternalLink }[];
-}
-
 export interface Lesson {
   readonly title: string;
   readonly description: string;
-  readonly asset: string;
   readonly link: string;
 }
 
@@ -430,7 +343,6 @@ export interface NavContent {
   readonly brandAria: string;
   readonly navAria: string;
   readonly ctaLabel: string;
-  readonly ctaHref: string;
   readonly items: readonly NavItem[];
   readonly footerItems: readonly NavItem[];
   readonly footerTagline: string;

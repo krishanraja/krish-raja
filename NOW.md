@@ -1,12 +1,12 @@
 ---
 repo: krishanraja/krish-raja
 product: krishraja.com
-as_of: 2026-10-23
-head: 8ff178a
+as_of: 2026-11-13
+head: 713272d
 lifecycle: live
-production_url: none
+production_url: https://www.krishraja.com
 state_doc: README.md
-history_log: docs/history/LOG.md
+history_log: now-notes/
 truth_files: [docs/NORTH_STAR.md]
 authority_order: [docs/NORTH_STAR.md, README.md]
 steward: https://github.com/krishanraja/ai-harness/blob/main/docs/steward/RUNBOOK.md
@@ -22,20 +22,25 @@ krishraja.com, Krish Raja's personal site: what he has built, what he is buildin
 
 Event organisers and leaders checking who Krish is. It sends the right visitor to Mindmake.
 
-## Where it is right now (as of 2026-10-23)
+## Where it is right now (as of 2026-11-13)
 
-<!-- north-star-state {"week_of": "2026-10-26", "week_target": 1, "current": null, "current_as_of": null, "current_source": null, "urgency": 4, "urgency_reason": "not measured yet"} --> **North Star number: U4, far behind.** Confirmed paid speaking bookings: not measured yet, against 1 this week, on the way to 12 by 22 February 2027. A bold swing every day; work that does not move the number waits.
+<!-- north-star-state {"week_of": "2026-11-09", "week_target": 2, "current": null, "current_as_of": null, "current_source": null, "urgency": 4, "urgency_reason": "not measured yet"} --> **North Star number: U4, far behind.** Confirmed paid speaking bookings: not measured yet, against 2 this week, on the way to 12 by 22 February 2027. Only Krish can give this number; until he does it stays U4.
 
-Lifecycle: live. The detail is in `README.md`.
+Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note is in `now-notes/`.
 
 ## What changed recently
 
-- 2026-10-23 **The North Star now has a number, a weekly ladder and an urgency rating.** Ruling (Krish, 2026-10-23): every repository chases one aggressive number on a weekly ladder, and urgency U1 to U5 sets how hard it pushes. The number is in `docs/NORTH_STAR.md`; contract: ai-harness `contract/north-star-metric.md`.
+- 2026-11-13 **Cleanup.** Deleted the retired sections' code (14 components, 37 unused UI-kit files, the old Supabase contact form), 36 unused npm packages, about 20 unused images, the operating system recordings (90MB of masters) and the content fields nothing read. Docs brought up to date. The 147 slide masters not in the deck stay, by Krish's choice.
+- 2026-11-13 **Discoverability.** New title and description naming him as a speaker, a new share card and favicon from the bitmoji, one linked structured-data graph, a crawler copy of the page for AI bots, a fuller `llms.txt`, en-GB throughout.
+- 2026-11-11 **Hero and sections.** Fit copy as a lead and four traits, section titles wipe in behind a mint bar, In public runs newest first, Contact and receipts headings at section size.
+- 2026-11-09 **Homepage rebuilt** from the mock Krish approved; the OS recordings and portfolio shelf came off.
 
 ## What is next and what is waiting on Krish
 
-- Measure the North Star number and record it on the first line under "Where it is right now".
-- North Star check (2026-10-23): holds.
+- The confirmed paid speaking bookings count, so the North Star line above can be measured.
+- Re-run LinkedIn Post Inspector on the new card, and submit the sitemap in Google Search Console and Bing Webmaster Tools.
+- Months for the Dan Pratl, Justin Kramm and dothinkdo 2026 appearances and a year for the Captify hire, so In public is dated throughout.
+- North Star check (2026-11-13): holds, and the discoverability work moves it.
 
 ## Read next
 

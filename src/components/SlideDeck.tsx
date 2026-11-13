@@ -4,7 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowUpRight, X } from 'lucide-react';
 import { deck } from '@/content';
 import { type DeckSlide } from '@/content/types';
-import { usePrefersReducedMotion } from '@/components/OsGallery';
+import { usePrefersReducedMotion } from '@/hooks/use-reduced-motion';
 
 const card = (id: string) => `/media/deck/${id}-640.webp`;
 const full = (id: string) => `/media/deck/${id}-1600.webp`;

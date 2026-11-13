@@ -2,7 +2,6 @@ export * from './types';
 export { site } from './site';
 export { hero } from './hero';
 export { operate } from './operate';
-export { os } from './os';
 export { deck } from './deck';
 export { portfolio } from './portfolio';
 export { receipts } from './receipts';

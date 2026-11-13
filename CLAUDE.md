@@ -20,13 +20,14 @@ krishraja.com, the personal site of Krish Raja. It is a **portfolio site**. Its 
 what he has built, what he is building, and what he publishes.
 
 It is not a shop. There is exactly one thing he sells (Mindmake) and it is sold somewhere
-else, on themindmaker.ai until mindmake.co resolves.
+else, on mindmake.co.
 
 ## Stack
 
 - Vite 5 + React 18 + TypeScript
 - Tailwind CSS 3 with shadcn/ui primitives in `src/components/ui/`
-- Single page, no routes other than `/` and a 404
+- One page. The other routes are the short section addresses (`/thinking` and the rest,
+  below), which open the same page, and a 404
 - Two component trees: desktop (`src/components/`) and mobile (`src/components/mobile/`),
   swapped whole by `useIsMobileResolved()` in `src/pages/Index.tsx`
 
@@ -70,9 +71,9 @@ query measures, so `md:` still fires at 980 inside a 400px document. Any `sm:`/`
 class reachable from the mobile tree will therefore render its desktop variant in a
 phone-width column.
 
-The mobile tree itself has none. The three components shared with the desktop tree,
-`SlideDeck`, `AttendeeStrip` and `SelectedWork`, take their layout from a **prop** rather
-than a breakpoint, and `MobileIndex` passes it. `npm run mobile:check` fails if a
+The mobile tree itself has none. Everything shared with the desktop tree (the homepage
+sections in `src/components/home/`, `SlideDeck` and `AttendeeStrip`) takes its layout from
+a **prop** rather than a breakpoint, and `MobileIndex` passes it. `npm run mobile:check` fails if a
 breakpoint class appears anywhere under `main#main`, the top bar or the dock.
 
 **`svh`, `dvh` and `vh` fail for the same reason, and they fail silently.** A viewport
@@ -160,8 +161,8 @@ actually reports. Vite does not typecheck either; esbuild strips types without r
 
 The brand is **Mindmake**. It was Mindmaker until 12 August 2026.
 
-`mindmake.co` has no DNS record yet, so the copy renamed and the links did not. Both sets of
-URLs live in `src/content/site.ts` behind one constant:
+The copy renamed on 12 August and the links waited for `mindmake.co` to resolve. Both sets
+of URLs live in `src/content/site.ts` behind one constant, flipped on 11 November 2026:
 
 ```ts
 const DOMAINS_LIVE = true;   // flipped 11 Nov 2026; content now points at makeyourmindup.ai
@@ -176,24 +177,19 @@ side you are on actually resolves. It earns that on real runs: it caught
 one still redirects to it so older links keep working. It moved on its own decision, not via
 `DOMAINS_LIVE` (that governs website URLs, not the mailbox). It is in FACTS.md and a test pins it.
 
-The site is one primary block and a secondary shelf, not five peers. Mindmake branches into
-Advisory, CTRL and Content; Content has two formats, **The Money of AI** and **Building with
-AI**. Signal & Noise, Fractionl Pulse and Full Time sit one tier down under "Also building".
-
-The three branches share **one** mark, `mindmake-mark`, and differ only by `PortfolioBranch.mark`
-(`square` / `soft` / `round`), which is a CSS bottom-corner radius rather than three files.
-The mark's two bottom squares reach the edges of its own content box, so the radius clips
-exactly those and leaves the transparent top corners alone. Round all four and it eats the
-tall peak and the mark stops being the mark, which is the one thing not allowed to happen.
-They were three lucide glyphs until 19 Aug 2026; three arms of one brand now look like it.
+Mindmake branches into Advisory, CTRL and Content; Content has two formats, **The Money of
+AI** and **Building with AI**. Signal & Noise, Fractionl Pulse and Full Time are one tier
+down. The portfolio shelf that showed all of this came off the homepage on 9 November 2026;
+`portfolio.ts` stays because `llms.txt` and the hero's Mindmake card read from it.
 
 ## THE RULE: all copy lives in `src/content/`
 
 Every user-facing string is defined in `src/content/` exactly once, and referenced
 everywhere else. Components contain layout, not words.
 
-This includes `index.html` meta tags, both JSON-LD blocks, `public/llms.txt` and
-`public/sitemap.xml`. Those four are **generated** by `scripts/generate-static.mts`,
+This includes the `index.html` meta tags, the JSON-LD graph, `public/llms.txt`,
+`public/sitemap.xml` and `public/site.webmanifest`. Those are **generated** by
+`scripts/generate-static.mts`,
 which runs automatically before every build. Do not hand-edit them. Edit
 `src/content/site.ts` and run `npm run generate`.
 
@@ -284,7 +280,7 @@ headline: `Sixteen years commercializing content, media and IP businesses. Now I
 AI systems that run them.` and `The AI-native commercial strategy operator.` See
 `project-documentation/POSITIONING.md`.
 
-Three things must never differ across krishraja.com, LinkedIn and themindmaker.ai:
+Three things must never differ across krishraja.com, LinkedIn and mindmake.co:
 
 1. The cluster, word for word: `content, media and IP businesses`
 2. Every number in `project-documentation/FACTS.md`
@@ -354,13 +350,14 @@ DNS record and Vercel domain, and it would land on the same anchor anyway.
 
 ## Media: `public/files/` in, `public/media/` out
 
-`public/files/` holds the masters Krish supplies: OS screen recordings, talk slides, the
-content-index captures and its manifest. They are large (85MB of video, 74MB of slides)
-and are never referenced by the site directly.
+`public/files/` holds the masters Krish supplies: talk slides, attendee logos, the
+content-index captures and its manifest. They are large (about 75MB of slides) and are
+never referenced by the site directly. All 177 slide masters stay as a library, though the
+deck shows 30 (Krish, 2026-11-13).
 
-`npm run media` renders the shippable versions into `public/media/`, which is committed.
-Video goes to 720p H.264 with a poster still, slides to two WebP widths, appearance
-captures to 800px WebP. The whole of `public/media/` is about 5.6MB.
+`npm run media` renders the shippable versions into `public/media/`, which is committed:
+slides to two WebP widths, attendee logos into a common box, appearance captures to 800px
+WebP. The whole of `public/media/` is about 4MB.
 
 It is deliberately **not** part of `npm run build`. Run it by hand after adding a master.
 `npm run media -- --check` fails if a referenced derivative is missing, and the test suite
@@ -368,7 +365,6 @@ calls the same check.
 
 The work list comes from the content layer, so:
 
-- a recording: drop it in `public/files/os screenshots/`, add an entry to `os.ts`
 - a slide: add an entry to `deck.ts` naming a file in `public/files/slides/`
 - an appearance: add an entry to `appearances.ts` with its `appearanceId`, and a `crop`
 - an attendee logo: put `<slug>.png` in `public/files/brand logos/`, add an entry to
@@ -376,59 +372,41 @@ The work list comes from the content layer, so:
 
 then `npm run media`. No component edits, ever.
 
-Three things about uploading a master:
+The designed In public thumbnails (`public/media/thumbs/`, the `thumb` field) are rendered
+separately from `public/files/thumbs/render.html` by `scripts/render-thumbs.cjs`; its header
+says how.
 
-1. **Do not use the GitHub web UI for video.** A 31MB replacement of
-   `os-content-final-lite.mp4` arrived on 12 August 2026 as a two-byte file containing a
-   CRLF. Push it with git, or drag it into the repo locally. `ffprobe` the file after it
-   lands: a master that will not probe cannot be transcoded.
-2. **Name it for the entry, not for the day.** The masters are `os-<id>-final.mp4`, so a
-   file called `new os content vid.mp4` gets renamed before its `source` goes into `os.ts`.
-   Four masters, four entries, one naming rule.
-3. **A recording with browser chrome does not need re-recording.** `MediaCrop` takes
+The operating system recordings (`os.ts`, `public/files/os screenshots/`, the video step
+of the media script and its poster fingerprints) were deleted on 13 November 2026, four
+days after the section came off the homepage. Git history has them.
+
+Four things about masters, each learned the hard way:
+
+1. **Do not upload large binaries through the GitHub web UI.** A 31MB video arrived on
+   12 August 2026 as a two-byte file containing a CRLF. Push with git.
+2. **Name it for the entry, not for the day.** A file called `new os content vid.mp4` was
+   renamed on the strength of its name and turned out to be a different recording. Look
+   at what a master actually shows before its name goes into the content layer.
+3. **A capture with browser chrome does not need recapturing.** `MediaCrop` takes
    `{ top, bottom, left, right }` in source pixels and `npm run media` cuts it before
-   scaling. The org clip is captured through Chrome, so it carries `crop: { top: 150 }`.
-   Keep the numbers even; H.264 chroma subsampling needs even offsets.
+   scaling.
 
-   **The appearance captures take the same field, and every one of them needs it.** They
-   are 1280x720 photographs of a browser, so the subject is a fraction of the frame and
-   the rest is navigation, a scrollbar and YouTube's recommendation rail. Scaled whole
-   into the 96px desktop thumbnail, a face that fills a third of the frame lands about
-   twenty pixels across, which is why every card read as grey chrome. The crop is what
-   changes the picture: `object-position` does nothing here, because the captures are
-   already 16:9 and there is no overflow to move. All six YouTube watch pages share one
-   player rectangle, `(16, 67, 874, 493)`, which is exactly 16:9.
+   **The appearance captures need it, every one.** They are 1280x720 photographs of a
+   browser, so the subject is a fraction of the frame and the rest is navigation, a
+   scrollbar and YouTube's recommendation rail. Scaled whole into a thumbnail, a face that
+   fills a third of the frame lands about twenty pixels across. `object-position` does
+   nothing here, because the captures are already 16:9. All six YouTube watch pages share
+   one player rectangle, `(16, 67, 874, 493)`, which is exactly 16:9.
 
-   Aim each crop at a face, and say in a comment what it is aimed at. Six of the
-   nineteen have no face to aim at; those go to the masthead, the headline or the
-   illustration, and the comment says so.
+   Aim each crop at a face, and say in a comment what it is aimed at. Where there is no
+   face, aim at the masthead, the headline or the illustration, and the comment says so.
 
    **Do not read coordinates off a contact sheet.** Four crops were set that way and all
    four landed on the wrong part of the page, because a tile in a composite is not the
    image. Draw the proposed rectangle on the full master and look at it.
-
-   **A crop is not a file, so mtime cannot see it.** `public/media/recipes.json` records
+4. **A crop is not a file, so mtime cannot see it.** `public/media/recipes.json` records
    what each derivative was built from beyond its source, and `npm run media -- --check`
    fails with `crop edited in the content layer, never applied` when the two disagree.
-   Without it, editing a crop leaves a stale derivative that looks entirely correct.
-4. **Watch a frame before you believe the filename.** Also on 12 August 2026, a master
-   named `new os content vid.mp4` was renamed to `os-content-final.mp4` on the strength of
-   that name and transcoded. It was a recording of the Org screen, so the site shipped the
-   same agent roster labelled both "Content" and "The org". Every check passed: ffprobe
-   parsed it, the file shrank 20x, the page rendered, the suite was green. The only way to
-   catch it was to look.
-
-   ```bash
-   ffmpeg -i "public/files/os screenshots/os-<id>-final.mp4" -ss 3 -frames:v 1 /tmp/f.png
-   ```
-
-   `npm run media` writes **`public/media/os/contact-sheet.jpg`**, one labelled frame per
-   entry side by side. That is the whole answer: looking now costs one glance. It also
-   writes a 16x16 average hash of every poster to `public/media/os/fingerprints.json`, and
-   the test suite fails if two entries are within 32 bits of each other. Genuinely different captures of this app run 69 to 128 bits
-   apart. Nothing in code can know whether a video is *about* content; it can know that
-   two entries claiming to be different recordings are the same picture, which is the half
-   that actually shipped broken.
 
 ## The content index is authoritative
 
@@ -447,7 +425,7 @@ These are not oversights. Each was removed on purpose and must not come back.
 - **A venture count.** No "13 ventures", no "8 live products", no replacement count.
 - **`aggregateRating`, review counts and star ratings** in structured data. A sister repo
   has a fabricated one. Do not replicate that pattern.
-- **Prices.** Pricing lives on themindmaker.ai only, so there is one place to keep
+- **Prices.** Pricing lives on mindmake.co only, so there is one place to keep
   current. No price appears anywhere in this repo.
 - **A "Free" chip on the Lightning Lessons cards.** Free is a price. `LessonsContent` has
   no `badge` field, on both trees, and adding one back reintroduces the only price on the
@@ -494,8 +472,7 @@ These are not oversights. Each was removed on purpose and must not come back.
   headshot with a pinging dot and had no desktop counterpart, which made it the last
   mobile-only string on the site. It came off on 20 August 2026 and `HeroContent.status`
   went with it, because a slot only one tree can fill is how the invented mobile headings
-  arrived in the first place. The counts are not lost: they are in the operating system
-  section, which can show them running, and in the meta and `llms.txt` prose.
+  arrived in the first place. The counts are not lost: they are in the `llms.txt` prose.
 - **A dock taller than one row, or wider than five slots.** It was nine chips scrolling
   sideways above a full-width button: two rows, 110px of permanent screen, five
   destinations off-screen at any moment, all of it restating headings the page already
@@ -506,8 +483,8 @@ These are not oversights. Each was removed on purpose and must not come back.
   The attendee strip under the Lightning Lessons holds twenty-eight and does rotate,
   which is the same rule pointing the other way.
 - **"Mindmaker", "Mindmaker Live", "Mindmaker OS", "Plinth".** Retired 12 Aug 2026 and on
-  the banned list. The `themindmaker.ai` URLs are the one exception and stay until
-  `DOMAINS_LIVE` flips, which is why the test checks prose rather than raw substrings.
+  the banned list. The test checks prose rather than raw substrings, so an old
+  `themindmaker.ai` URL in a comment or a historical note does not trip it.
 - **"Paid" and "Built" as content format names.** They are **The Money of AI** and
   **Building with AI**.
 - **Five equal portfolio cards.** Mindmaker, Fractionl Pulse, CTRL, Mindmaker Live and

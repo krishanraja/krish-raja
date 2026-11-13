@@ -8,7 +8,6 @@ export const nav: NavContent = {
   // Matches hero.primaryCta and the section it lands on, so the same words
   // appear in the nav, the hero and the section heading.
   ctaLabel: 'Get in touch',
-  ctaHref: '#contact',
 
   items: [
     { label: 'Mindmake', href: '#build' },

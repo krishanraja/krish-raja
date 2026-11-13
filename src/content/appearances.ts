@@ -31,12 +31,6 @@ export const appearances: AppearancesContent = {
   title: 'In public.',
   sub: 'Podcasts, stages and bylines, 2017 to now.',
 
-  filters: [
-    { id: 'all', label: 'All' },
-    { id: 'podcast', label: 'Podcasts' },
-    { id: 'talk', label: 'Talks' },
-    { id: 'press', label: 'Press' },
-  ],
   moreLabel: 'See the rest of my content',
   previewCount: 6,
   lessLabel: 'Show fewer',
@@ -300,7 +294,6 @@ export const appearances: AppearancesContent = {
       outlet: "Master's thesis",
       kind: 'research',
       year: '2011',
-      asset: 'masters-thesis',
       note: 'Interviews with UX leaders at IDEO, Microsoft and Google. Most of what it predicted has played out. Published as a book, so there is nothing to link.',
     },
   ],

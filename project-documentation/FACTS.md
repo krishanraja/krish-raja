@@ -127,10 +127,10 @@ measuring ink luminance. The test suite fails if any two derivatives are identic
 
 The brand became **Mindmake** on 12 August 2026. Three things are settled and one is not.
 
-**The domain is not live.** `mindmake.co`, `content.mindmake.co` and `ctrl.mindmake.co` had
-no DNS record when the rename shipped, verified 19 August 2026; `themindmaker.ai` resolves.
-So the copy renamed and the links did not. `DOMAINS_LIVE` in `src/content/site.ts` moves
-every URL at once. Do not ship a mindmake.co link until `npm run links:check` passes on it.
+**The domain is live.** `DOMAINS_LIVE` in `src/content/site.ts` was flipped on
+11 November 2026, so every link now points at `mindmake.co`, and the channel at
+`makeyourmindup.ai`. `themindmaker.ai` redirects to `mindmake.co` (verified 13 November
+2026). `ctrl.mindmake.co` does not resolve yet; CTRL is listed as coming soon.
 
 **The contact address is `krish@mindmake.co`.** Krish moved it there on 2026-10-03,
 replacing `krish@themindmaker.ai`, which still redirects to it so older links keep working.
@@ -172,8 +172,7 @@ Every secondary URL is resolved, verified 200 on 19 August 2026:
   intelligence on fractional supply and demand, Circle is network recall. They share the
   Fractionl mark and nothing else, which is why the shelf puts them side by side.
 
-Nothing on the portfolio is outstanding. The only open item in this file is the agent
-count in the OS recording, below.
+Nothing on the portfolio is outstanding.
 
 ## Rules attached to specific facts
 
@@ -184,20 +183,20 @@ other name, to the $254K POC.
 **No venture count.** Not "13 ventures", not "8 live products", not any replacement count.
 The old figure was unsupported. Do not substitute a new one.
 
-**No price, anywhere in this repo.** Pricing lives on themindmaker.ai only.
+**No price, anywhere in this repo.** Pricing lives on mindmake.co only.
 
 **No geographic market claim.** The journey section (London, Sydney, New York) is
 biography and is the only place a place name belongs.
 
-## UNRESOLVED
+## Conflicts, all resolved
 
-Do not publish either side of these until Krish settles them.
+Nothing is open. Each of these was a conflict between sources, now settled. A new one
+goes here, marked UNRESOLVED, and neither side is published until Krish settles it.
 
-**UNRESOLVED: the agent count shown in the OS recording.** The site says 14 agents
-everywhere. The `org` recording shows "12 agents, 200 runs in last batch" on screen. A
-visitor who watches the clip sees a number that contradicts the headline. Either the
-recording predates two agents, or the Org tab counts a subset. **Resolve this before the
-site is promoted.** See the note in `src/content/os.ts`.
+**RESOLVED 13 Nov 2026 (moot): the agent count in the OS recording.** The `org` recording
+showed "12 agents" against the 14 claimed everywhere else. The recordings came off the
+homepage on 9 November 2026 and were deleted from the repository on 13 November, so
+nothing on the site contradicts the 14 any more.
 
 **RESOLVED 12 Aug 2026: Maven student count is 4,000+.** Confirmed by Krish. The 100+
 reading is retired and the test suite fails if it returns.
@@ -210,7 +209,8 @@ Krish. It sits on the Nine receipt and in the Nine line of llms.txt, and has bee
 from the SingTel card and the Nexxen line.
 
 **RESOLVED 12 Aug 2026: the haptic thesis has no URL.** It was published as a book, not a
-web page. The card renders description-only and permanently. There is nothing to link.
+web page, so there is nothing to link. It stays in `appearances.ts` but has no image, so
+the In public wall does not show it.
 
 **RESOLVED: years of experience is sixteen.** The Lightning Lessons copy that said "20
 years of business building" is gone. The test suite fails on any career-length claim that

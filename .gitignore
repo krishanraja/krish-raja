@@ -25,3 +25,6 @@ dist-ssr
 
 # Environment
 .env
+
+# TypeScript build caches, rewritten by every typecheck
+*.tsbuildinfo

@@ -1,28 +1,20 @@
 import type { HeroContent } from './types';
-import { site } from './site';
 
 export const hero: HeroContent = {
   // The eyebrow is gone on purpose. It did no work, and "operator-advisor" is a
   // retired self-description. See project-documentation/POSITIONING.md. The
   // "14 agents · 45 workflows" status line went the same way on 20 Aug 2026:
-  // only the mobile tree ever rendered it, and the counts read better in the OS
-  // section, which shows them running.
+  // only the mobile tree ever rendered it. The counts live in llms.txt.
+  //
+  // The paragraph under the hero is operate.fit (Krish, 2026-11-11). The old
+  // "From writing automations at Microsoft..." sub and the Substack link beside
+  // it came off with the 9 Nov rebuild and were deleted as stale on 13 Nov.
   h1: 'Your AI Chief of Staff.',
-  // The link that follows is a link, not a sentence. This used to end with
-  // "Read my Substack →" in the prose as well, so the words rendered twice, once
-  // as dead text and once as the anchor beside it. The anchor keeps the words.
-  sub: 'From writing automations at Microsoft 16 years ago, to launching and running entire businesses commercialising data and tech, I have made myself the blueprint for becoming a true AI-era leader, and my mission is to help others chart that path too.',
-  channel: {
-    // Arrows are affordances, not copy. Each surface renders its own.
-    label: 'Read my Substack',
-    href: site.links.content,
-  },
   // One label, one destination, shared with the nav CTA. Both used to say
   // "Work with me" and point at a section of that name; that section folded
   // into Contact on 12 Aug 2026, so both now say what the section they land on
   // says.
   primaryCta: 'Get in touch',
-  primaryHref: '#contact',
   secondaryCta: 'AI Immersion Sessions',
   secondaryHref: '#lightning-lessons',
   trustLabel: 'Experience across',

@@ -4,7 +4,7 @@ The personal site of Krish Raja. A portfolio site: what he has built, what he is
 and what he publishes.
 
 There is exactly one thing sold here, Mindmake, and it is sold on
-[themindmaker.ai](https://themindmaker.ai) rather than on this site. No prices appear in
+[mindmake.co](https://mindmake.co) rather than on this site. No prices appear in
 this repo.
 
 ## Stack
@@ -42,6 +42,7 @@ npm run mobile:check   # drives a real browser at four phone sizes, needs a serv
 npm run links:check    # requests every external URL in the content layer
 npm run generate   # regenerate meta, JSON-LD, llms.txt, sitemap.xml, webmanifest
 npm run media      # rebuild public/media/ from the masters in public/files/ (slow)
+npm run brand      # favicons, app icons and the share card, from the bitmoji
 ```
 
 ## Where copy lives
@@ -50,17 +51,18 @@ npm run media      # rebuild public/media/ from the masters in public/files/ (sl
 
 | Module | What it holds |
 |---|---|
-| `site.ts` | Name, spine sentence, meta, canonical URL, email, socials |
-| `hero.ts` | H1, sub, CTAs, trust logos |
-| `operate.ts` | "How I operate": sub and the four cards |
-| `os.ts` | The four Mindmake OS recordings |
+| `site.ts` | Name, spine, title and description, share image, profiles, structured data inputs |
+| `home.ts` | The homepage sections: the three ways in, the live channel, the loader |
+| `hero.ts` | H1, CTAs, trust logos |
+| `operate.ts` | The bold line and fit copy under the hero, and the brain's four pillars |
 | `deck.ts` | The slide deck: which slides, and which talk each came from |
-| `appearances.ts` | Selected work, tied to the content-index manifest |
-| `portfolio.ts` | The Mindmake block, its three branches, and the secondary shelf |
-| `receipts.ts` | Stat cards, the anonymized advisory entry, credentials, journey |
-| `lessons.ts` | Maven lightning lessons |
-| `contact.ts` | The four ways in, including the Mindmake link the old offer card held |
-| `nav.ts` | Navigation and footer labels |
+| `appearances.ts` | In public, newest first, tied to the content-index manifest |
+| `lessons.ts` | The live sessions and the attendee strip |
+| `receipts.ts` | Stat cards, the anonymised advisory entry, credentials, journey, roles |
+| `portfolio.ts` | Mindmake, its three branches and the other builds. Not rendered; feeds `llms.txt` |
+| `contact.ts` | The four ways in |
+| `links.ts` | The short section addresses (`/thinking` and the rest) |
+| `nav.ts` | Navigation, dock and footer labels |
 
 Every module is annotated with its type from `src/content/types.ts`, so a missing field is
 a compile error rather than a blank card, and a stray field is a compile error rather than
@@ -75,10 +77,15 @@ The modules are pure data. No React, no lucide, no asset imports, because
 
 Edit `src/content/site.ts` and run `npm run generate`.
 
-That one file feeds the hero, the `<title>` and every meta tag, both JSON-LD blocks,
-`public/llms.txt` and `public/sitemap.xml`. Those four artifacts are **generated** by
+That one file feeds the `<title>`, every meta and share tag, the structured data, the
+crawler copy of the page inside `#root`, `public/llms.txt`, `public/sitemap.xml` and
+`public/site.webmanifest`. All of them are **generated** by
 `scripts/generate-static.mts`, which runs automatically before every build. Do not
 hand-edit them; your changes will be overwritten.
+
+The favicon, app icons and the 1200x630 share card (`public/og-image.png`) are rendered
+from the bitmoji by `npm run brand`. After changing the card, bump the `?v=` on
+`site.ogImage` so LinkedIn and WhatsApp fetch the new one.
 
 `npm test` fails the build if a generated file has drifted from the content layer, or if
 the spine sentence or any headline number disagrees between the page, the meta, the
@@ -90,11 +97,6 @@ Masters go in `public/files/`. The site never references them directly: `npm run
 renders shippable versions into `public/media/`, which is committed. That step is not part
 of `npm run build`, because it takes minutes and the inputs change rarely.
 
-**A recording of the OS:** drop the mp4 in `public/files/os screenshots/`, add an entry to
-`src/content/os.ts`, run `npm run media`. It is transcoded to 720p with a poster still,
-framed as a phone (all four sources are portrait captures), lazy loaded, played only when
-on screen, and it respects `prefers-reduced-motion` by showing the poster with controls.
-
 **A slide:** add an entry to `src/content/deck.ts` naming a file in `public/files/slides/`,
 run `npm run media`. Two WebP widths are produced: one for the card, one for the
 full-screen reader.
@@ -103,7 +105,10 @@ full-screen reader.
 from the content index, run `npm run media`. The build fails if that record is not marked
 `approved` in the manifest, or if the link you gave is not one of its own `source_urls`.
 
-**A portfolio item, a receipt, a lesson:** the matching module in `src/content/`.
+**An attendee logo:** put `<slug>.png` in `public/files/brand logos/`, add it to
+`lessons.attendees`, run `npm run media`.
+
+**A receipt, a lesson, a section heading:** the matching module in `src/content/`.
 
 Everything above is content-only. No component edits, ever.
 

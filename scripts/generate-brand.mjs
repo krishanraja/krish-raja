@@ -155,7 +155,6 @@ const card = async (figurePng) => {
 /* ------------------------------------------------------------------ main */
 
 const figure = await cutout();
-writeFileSync(resolve(root, 'public/media/home/bitmoji-cutout.png'), await sharp(figure).resize(600, 600).png().toBuffer());
 
 const sizes = { 16: null, 32: null, 48: null };
 for (const s of Object.keys(sizes)) sizes[s] = await icon(figure, Number(s));

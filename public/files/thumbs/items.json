@@ -166,19 +166,6 @@
   "yc": "#fff"
  },
  {
-  "id": "liveramp",
-  "tpl": "keynote",
-  "kick": "Panel",
-  "venue": "LiveRamp",
-  "quote": "Online identity in a world of cookieless browsers",
-  "yr": "2020",
-  "bg": "#e3e9e4",
-  "fg": "#11211a",
-  "bar": "#11211a",
-  "img": "krish3.png",
-  "yc": "#e3e9e4"
- },
- {
   "id": "mumbrella360",
   "tpl": "keynote",
   "kick": "Panel",

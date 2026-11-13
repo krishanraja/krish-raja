@@ -137,7 +137,7 @@ const OnScreenVideo = ({ src, poster }: { src: string; poster: string }) => {
 
 /* ------------------------------------------------------------------ live channel */
 
-const fmtDate = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+const fmtDate = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 
 const Episode = ({ it, lead }: { it: ChannelItem; lead: boolean }) => (
   <a className={`h-ep${lead ? ' lead' : ' row'}`} href={it.link} target="_blank" rel="noopener noreferrer">
