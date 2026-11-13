@@ -65,7 +65,7 @@ export const site: SiteContent = {
   // Rendered by `npm run brand` from the bitmoji. The ?v= changes whenever the
   // card does, because LinkedIn, Slack and WhatsApp cache a preview image by URL
   // and would otherwise keep showing the old one for weeks.
-  ogImage: 'https://www.krishraja.com/og-image.png?v=20261113',
+  ogImage: 'https://www.krishraja.com/og-image.png?v=20261113b',
   ogImageAlt: 'Krish Raja, AI-native commercial strategy leader and keynote speaker, as his bitmoji',
   // A real photograph for the structured data. Search engines match a person to
   // a face, not to a cartoon, so the bitmoji stays on the cards and the tab.

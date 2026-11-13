@@ -125,26 +125,22 @@ const card = async (figurePng) => {
     body { width: 1200px; height: 630px; font-family: Onest; background: ${INK}; color: #fff; overflow: hidden; position: relative; }
     .dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.11) 1.2px, transparent 1.6px); background-size: 26px 26px; }
     .glow { position: absolute; width: 900px; height: 900px; left: -260px; top: -120px; background: radial-gradient(closest-side, rgba(127,240,198,.22), transparent); }
-    .disc { position: absolute; left: 70px; top: 95px; width: 440px; height: 440px; border-radius: 50%; background: ${MINT}; overflow: hidden; }
-    .disc img { position: absolute; width: 470px; left: -15px; top: 30px; }
-    .copy { position: absolute; left: 570px; right: 64px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
-    .tag { font-size: 19px; font-weight: 600; letter-spacing: .12em; white-space: nowrap; text-transform: uppercase; color: ${MINT}; }
-    h1 { font-size: 104px; font-weight: 700; letter-spacing: -.035em; line-height: .92; }
-    .spine { font-size: 33px; font-weight: 500; line-height: 1.2; color: rgba(255,255,255,.78); letter-spacing: -.01em; }
-    .rooms { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
-    .rooms span { font-size: 19px; font-weight: 600; padding: 9px 16px; border-radius: 999px; border: 1.5px solid rgba(127,240,198,.55); color: #fff; }
-    .url { position: absolute; left: 570px; bottom: 44px; font-size: 22px; font-weight: 600; color: rgba(255,255,255,.6); }
-    .url b { color: ${MINT}; font-weight: 600; }
+    /* Built for the thumbnail, not the full size: LinkedIn shows this about 550px wide and
+       compresses it, so anything under ~40px here turns to mush. Three lines, all big. */
+    .disc { position: absolute; left: 56px; top: 135px; width: 360px; height: 360px; border-radius: 50%; background: ${MINT}; overflow: hidden; }
+    .disc img { position: absolute; width: 386px; left: -13px; top: 22px; }
+    .copy { position: absolute; left: 470px; right: 40px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+    h1 { font-size: 118px; font-weight: 700; letter-spacing: -.04em; line-height: .9; white-space: nowrap; }
+    .spine { font-size: 50px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; color: #fff; }
+    .role { font-size: 42px; font-weight: 600; letter-spacing: -.015em; color: ${MINT}; }
   </style></head><body>
-    <div class="glow"></div><div class="dots"></div>
+    <div class="glow"></div>
     <div class="disc"><img src="${figure}" alt=""></div>
     <div class="copy">
-      <div class="tag">Keynote speaker · Founder, Mindmake</div>
       <h1>Krish Raja</h1>
       <div class="spine">AI-Native Commercial<br>Strategy Leader</div>
-      <div class="rooms"><span>Cannes Lions</span><span>POSSIBLE</span><span>Sydney Opera House</span></div>
+      <div class="role">Keynote speaker</div>
     </div>
-    <div class="url"><b>krishraja.com</b></div>
   </body></html>`;
   // Same browser the phone check drives; set CHROMIUM_PATH to use another.
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? '/opt/pw-browsers/chromium' });
