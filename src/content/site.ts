@@ -70,9 +70,8 @@ export const site: SiteContent = {
   // A real photograph for the structured data. Search engines match a person to
   // a face, not to a cartoon, so the bitmoji stays on the cards and the tab.
   personImage: 'https://www.krishraja.com/media/home/krish-headshot.jpg',
-  // No twitter:creator. "@krishraja" sat here unverified, and if it is someone
-  // else's handle every share credits them.
-  // TODO(krish): give the X handle if you have one and it goes back.
+  // Krish, 2026-11-13. Credits every share on X to him.
+  twitterHandle: '@therealkrisho',
   locale: 'en_GB',
   language: 'en-GB',
   websiteDescription:
@@ -147,6 +146,7 @@ export const site: SiteContent = {
     'https://www.youtube.com/@therealkrisho',
     'https://maven.com/mindmaker',
     'https://www.signalandnoise.ai/executive-voices',
+    'https://x.com/therealkrisho',
   ],
 
   knowsAbout: [

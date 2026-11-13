@@ -80,6 +80,8 @@ const metaBlock = (): string => {
     `    <meta name="twitter:description" content="${description}" />`,
     `    <meta name="twitter:image" content="${image}" />`,
     `    <meta name="twitter:image:alt" content="${alt}" />`,
+    `    <meta name="twitter:site" content="${esc(site.twitterHandle)}" />`,
+    `    <meta name="twitter:creator" content="${esc(site.twitterHandle)}" />`,
     ``,
     `    <!-- Canonical URL -->`,
     `    <link rel="canonical" href="${site.canonical}" />`,

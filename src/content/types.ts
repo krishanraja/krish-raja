@@ -475,6 +475,7 @@ export interface SiteContent {
   readonly ogImageAlt: string;
   /** A photograph, for the structured data. The cards use the bitmoji. */
   readonly personImage: string;
+  readonly twitterHandle: string;
   readonly locale: string;
   readonly language: string;
   readonly websiteDescription: string;
