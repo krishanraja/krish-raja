@@ -45,9 +45,16 @@ export const site: SiteContent = {
   spine: 'AI-Native Commercial Strategy Leader',
   cluster: 'content, media and IP businesses',
 
-  title: 'Krish Raja: AI-Native Commercial Strategy Leader',
+  // The browser tab and every search and share card (Krish, 2026-11-13). The
+  // spine, then "and Speaker", because event organisers are who this site is
+  // for (docs/NORTH_STAR.md). 60 characters, so Google shows it whole.
+  title: 'Krish Raja: AI-Native Commercial Strategy Leader and Speaker',
+  // 156 characters, under the ~160 Google shows before it cuts. Starts with the
+  // name so an answer engine quoting it quotes who it is about. The receipts
+  // ($9M to $61M and the rest) moved to llms.txt and the structured data, where
+  // there is room for them.
   description:
-    'Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel and Captify. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmake OS, a 14-agent AI operating system in production.',
+    'Krish Raja is an AI-native commercial strategy leader, keynote speaker and founder of Mindmake, with sixteen years growing content, media and IP businesses.',
   jobTitle: 'AI-Native Commercial Strategy Leader, founder of Mindmake',
 
   url: 'https://www.krishraja.com',
@@ -55,15 +62,25 @@ export const site: SiteContent = {
   // The single published contact address for the whole site (Krish, 2026-10-03).
   // krish@themindmaker.ai still redirects here, so older links keep working.
   email: 'krish@mindmake.co',
-  ogImage: 'https://www.krishraja.com/og-image.png',
-  ogImageAlt: 'Krish Raja, AI-native commercial strategy leader',
-  twitterHandle: '@krishraja',
-  locale: 'en_US',
-  language: 'en-US',
+  // Rendered by `npm run brand` from the bitmoji. The ?v= changes whenever the
+  // card does, because LinkedIn, Slack and WhatsApp cache a preview image by URL
+  // and would otherwise keep showing the old one for weeks.
+  ogImage: 'https://www.krishraja.com/og-image.png?v=20261113',
+  ogImageAlt: 'Krish Raja, AI-native commercial strategy leader and keynote speaker, as his bitmoji',
+  // A real photograph for the structured data. Search engines match a person to
+  // a face, not to a cartoon, so the bitmoji stays on the cards and the tab.
+  personImage: 'https://www.krishraja.com/media/home/krish-headshot.jpg',
+  // No twitter:creator. "@krishraja" sat here unverified, and if it is someone
+  // else's handle every share credits them.
+  // TODO(krish): give the X handle if you have one and it goes back.
+  locale: 'en_GB',
+  language: 'en-GB',
   websiteDescription:
-    'Personal website of Krish Raja, AI-native commercial strategy leader and founder of Mindmake',
-  updated: '2026-08-29',
-  themeColor: '#0055DD',
+    'Personal website of Krish Raja, AI-native commercial strategy leader, keynote speaker and founder of Mindmake',
+  updated: '2026-11-13',
+  // The hero's own off-white, so a phone's address bar matches the page
+  // instead of turning blue.
+  themeColor: '#fbfaf8',
 
   // Prose below is rendered into public/llms.txt by scripts/generate-static.mts.
   // It lives here, next to the meta it has to agree with, so the two cannot drift.
@@ -118,7 +135,19 @@ export const site: SiteContent = {
   // dead (TLS failure and a 404 respectively) and Krish is letting them lapse,
   // decided 12 August 2026. Do not add a redirect for either.
 
-  sameAs: ['https://www.linkedin.com/in/krish-raja', hosts.root, hosts.content],
+  // Every profile that is verifiably his, from the content index (records 22,
+  // 23, 25 and 19, all approved). sameAs is how a search engine or an answer
+  // engine decides these are one person, so more verified links means one
+  // confident entity instead of several weak ones.
+  sameAs: [
+    'https://www.linkedin.com/in/krish-raja',
+    hosts.root,
+    hosts.content,
+    'https://substack.com/@krishraja1',
+    'https://www.youtube.com/@therealkrisho',
+    'https://maven.com/mindmaker',
+    'https://www.signalandnoise.ai/executive-voices',
+  ],
 
   knowsAbout: [
     'Agentic Systems Architecture',
@@ -131,9 +160,25 @@ export const site: SiteContent = {
     'Media and Entertainment Commercial Strategy',
     'AI Literacy for Executives',
     'Revenue Operations',
+    'Artificial Intelligence Strategy',
+    'AI in Media and Advertising',
+    'Advertising Technology',
+    'Connected TV',
+    'Retail Media',
+    'Data Monetisation',
   ],
 
-  alumniOf: ['Microsoft', 'University for Creative Arts', 'University of Manchester'],
+  // Former employers and universities. The university is "for the Creative
+  // Arts", as the education line says; this list had dropped "the".
+  alumniOf: [
+    'Microsoft',
+    'Nine Entertainment',
+    'Captify',
+    'Nexxen',
+    'University for the Creative Arts',
+    'University of Manchester',
+  ],
+  awards: ['B&T 30 Under 30, Strategy (2017)'],
 
   // Krish, 9 Nov 2026: CTRL is coming soon. Its address does not resolve yet.
   comingSoon: [hosts.ctrl],

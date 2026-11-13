@@ -9,6 +9,7 @@
     "generate:check": "tsx scripts/generate-static.mts --check",
     "media": "tsx scripts/generate-media.mts",
     "media:check": "tsx scripts/generate-media.mts --check",
+    "brand": "node scripts/generate-brand.mjs",
     "prebuild": "npm run generate",
     "build": "vite build",
     "build:dev": "vite build --mode development",

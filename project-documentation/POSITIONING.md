@@ -82,21 +82,28 @@ Applied identically to `<title>`, `meta[name=title]`, `meta[name=description]`,
 `og:title`, `og:description`, `twitter:title`, `twitter:description`. Generated from
 `src/content/site.ts`, never hand-edited.
 
-Updated 29 August 2026 with the spine.
+Updated 13 November 2026 (Krish asked for the site to be found "in every way"). The title
+adds "and Speaker", because event organisers are who the site is for, and stays at 60
+characters so Google shows it whole. The description leads with his name, so an answer
+engine quoting it says who it is about, and fits under Google's ~160. The receipts moved to
+`llms.txt` and the structured data, where there is room. A test pins both lengths.
 
 **Title**
 
 ```
-Krish Raja: AI-Native Commercial Strategy Leader
+Krish Raja: AI-Native Commercial Strategy Leader and Speaker
 ```
 
 **Description**
 
 ```
-Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel
-and Captify. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now
-running Mindmake OS, a 14-agent AI operating system in production.
+Krish Raja is an AI-native commercial strategy leader, keynote speaker and founder of
+Mindmake, with sixteen years growing content, media and IP businesses.
 ```
+
+Retired 13 November 2026: `Krish Raja: AI-Native Commercial Strategy Leader` and the
+"Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment..."
+description, which ran to 250 characters and was cut mid-sentence in every result.
 
 **JSON-LD `jobTitle`**
 

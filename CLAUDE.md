@@ -145,6 +145,7 @@ npm run mobile:check   # drives a real browser at four phone sizes, needs a serv
 npm run links:check    # requests every external URL in the content layer
 npm run generate   # regenerate index.html meta, llms.txt, sitemap.xml, webmanifest
 npm run media      # transcode public/files/ masters into public/media/ (slow, run by hand)
+npm run brand      # favicons, app icons and the 1200x630 share card, from the bitmoji (run by hand)
 ```
 
 ## `npx tsc --noEmit` checks nothing. Use `npm run typecheck`.
@@ -195,6 +196,16 @@ This includes `index.html` meta tags, both JSON-LD blocks, `public/llms.txt` and
 `public/sitemap.xml`. Those four are **generated** by `scripts/generate-static.mts`,
 which runs automatically before every build. Do not hand-edit them. Edit
 `src/content/site.ts` and run `npm run generate`.
+
+`index.html` also carries a **crawler copy** of the page inside `#root`, between
+`content:prerender` markers: who he is, the record, every appearance with its link, how to
+book. Most AI crawlers read HTML without running JavaScript, so without it they saw an
+empty page. React replaces it on mount and it is visually hidden until then. It is
+generated with everything else; never hand-edit it.
+
+The favicon, app icons and `public/og-image.png` come from `npm run brand`, which renders
+them from `src/assets/krish_bitmoji.jpg`. After re-rendering the card, bump the `?v=` on
+`site.ogImage`, or LinkedIn and WhatsApp keep showing the old one.
 
 `npm test` fails if a generated file has drifted from the content layer, or if the
 spine or any headline number disagrees across surfaces.

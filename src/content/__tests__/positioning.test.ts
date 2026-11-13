@@ -74,6 +74,22 @@ describe('the spine holds across every surface', () => {
     expect(indexHtml).toContain(JSON.stringify(site.description).slice(1, -1));
   });
 
+  it('the title and description fit what search results show', () => {
+    // Google cuts a title near 60 characters and a description near 160.
+    expect(site.title.length, site.title).toBeLessThanOrEqual(60);
+    expect(site.description.length, site.description).toBeLessThanOrEqual(160);
+  });
+
+  it('the share image is the size the meta says it is', () => {
+    // The old card was a 1024 square declared as 1200x630 for months, so every
+    // network cropped it. PNG width and height sit at bytes 16 to 24.
+    const png = readFileSync(resolve(__dirname, '../../../public/og-image.png'));
+    expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([1200, 630]);
+    for (const f of ['favicon.ico', 'favicon-32x32.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png']) {
+      expect(existsSync(resolve(__dirname, '../../../public', f)), f).toBe(true);
+    }
+  });
+
   it('the title is identical across title, og and twitter', () => {
     expect(indexHtml).toContain(`<title>${site.title}</title>`);
     expect(indexHtml).toContain(`<meta name="title" content="${site.title}" />`);

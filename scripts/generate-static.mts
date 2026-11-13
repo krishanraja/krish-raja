@@ -20,6 +20,9 @@ import { fileURLToPath } from 'node:url';
 import { site } from '../src/content/site.js';
 import { receipts } from '../src/content/receipts.js';
 import { portfolio } from '../src/content/portfolio.js';
+import { appearances } from '../src/content/appearances.js';
+import { contact } from '../src/content/contact.js';
+import { sectionLinks } from '../src/content/links.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const check = process.argv.includes('--check');
@@ -31,45 +34,63 @@ const MANIFEST = resolve(root, 'public/site.webmanifest');
 
 /* ------------------------------------------------------------------ meta */
 
-const metaBlock = (): string =>
-  [
+// Every value is escaped: "B&T" or a quote in a title would otherwise break the tag.
+const esc = (v: string) =>
+  v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const metaBlock = (): string => {
+  const title = esc(site.title);
+  const description = esc(site.description);
+  const alt = esc(site.ogImageAlt);
+  const image = esc(site.ogImage);
+  return [
     `    <meta name="theme-color" content="${site.themeColor}" />`,
     `    <meta name="msapplication-TileColor" content="${site.themeColor}" />`,
-    `    <title>${site.title}</title>`,
-    `    <meta name="title" content="${site.title}" />`,
-    `    <meta name="description" content="${site.description}" />`,
-    `    <meta name="author" content="${site.name}" />`,
+    `    <title>${title}</title>`,
+    `    <meta name="title" content="${title}" />`,
+    `    <meta name="description" content="${description}" />`,
+    `    <meta name="author" content="${esc(site.name)}" />`,
+    `    <meta name="application-name" content="${esc(site.name)}" />`,
+    `    <meta name="apple-mobile-web-app-title" content="${esc(site.name)}" />`,
     `    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />`,
     `    <meta name="googlebot" content="index, follow" />`,
     `    <meta name="bingbot" content="index, follow" />`,
     ``,
-    `    <!-- Open Graph / Facebook -->`,
+    `    <!-- Open Graph: LinkedIn, Slack, WhatsApp, iMessage, Facebook -->`,
     `    <meta property="og:type" content="profile" />`,
     `    <meta property="og:url" content="${site.canonical}" />`,
-    `    <meta property="og:title" content="${site.title}" />`,
-    `    <meta property="og:description" content="${site.description}" />`,
-    `    <meta property="og:image" content="${site.ogImage}" />`,
+    `    <meta property="og:title" content="${title}" />`,
+    `    <meta property="og:description" content="${description}" />`,
+    `    <meta property="og:image" content="${image}" />`,
+    `    <meta property="og:image:secure_url" content="${image}" />`,
+    `    <meta property="og:image:type" content="image/png" />`,
     `    <meta property="og:image:width" content="1200" />`,
     `    <meta property="og:image:height" content="630" />`,
-    `    <meta property="og:image:alt" content="${site.ogImageAlt}" />`,
-    `    <meta property="og:site_name" content="${site.name}" />`,
+    `    <meta property="og:image:alt" content="${alt}" />`,
+    `    <meta property="og:site_name" content="${esc(site.name)}" />`,
     `    <meta property="og:locale" content="${site.locale}" />`,
-    `    <meta property="profile:first_name" content="${site.firstName}" />`,
-    `    <meta property="profile:last_name" content="${site.lastName}" />`,
-    `    <meta property="profile:username" content="${site.username}" />`,
+    `    <meta property="profile:first_name" content="${esc(site.firstName)}" />`,
+    `    <meta property="profile:last_name" content="${esc(site.lastName)}" />`,
+    `    <meta property="profile:username" content="${esc(site.username)}" />`,
     ``,
-    `    <!-- Twitter -->`,
+    `    <!-- X / Twitter -->`,
     `    <meta name="twitter:card" content="summary_large_image" />`,
     `    <meta name="twitter:url" content="${site.canonical}" />`,
-    `    <meta name="twitter:title" content="${site.title}" />`,
-    `    <meta name="twitter:description" content="${site.description}" />`,
-    `    <meta name="twitter:image" content="${site.ogImage}" />`,
-    `    <meta name="twitter:image:alt" content="${site.ogImageAlt}" />`,
-    `    <meta name="twitter:creator" content="${site.twitterHandle}" />`,
+    `    <meta name="twitter:title" content="${title}" />`,
+    `    <meta name="twitter:description" content="${description}" />`,
+    `    <meta name="twitter:image" content="${image}" />`,
+    `    <meta name="twitter:image:alt" content="${alt}" />`,
     ``,
     `    <!-- Canonical URL -->`,
     `    <link rel="canonical" href="${site.canonical}" />`,
+    ``,
+    `    <!-- Identity: every profile that is verifiably his -->`,
+    ...site.sameAs.map((u) => `    <link rel="me" href="${esc(u)}" />`),
+    ``,
+    `    <!-- A plain-text briefing for answer engines -->`,
+    `    <link rel="alternate" type="text/plain" href="/llms.txt" title="${esc(site.name)}, briefing for AI assistants" />`,
   ].join('\n');
+};
 
 /* --------------------------------------------------------------- json-ld */
 
@@ -77,34 +98,84 @@ const metaBlock = (): string =>
 // properties that must never appear are listed in
 // project-documentation/retired-names.json and the test suite enforces it.
 // See also the "deliberately absent" list in CLAUDE.md.
-const personLd = () => ({
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': `${site.canonical}#person`,
-  name: site.name,
-  givenName: site.firstName,
-  familyName: site.lastName,
-  jobTitle: site.jobTitle,
-  description: site.description,
-  url: site.url,
-  email: site.email,
-  image: site.ogImage,
-  sameAs: [...site.sameAs],
-  knowsAbout: [...site.knowsAbout],
-  hasOccupation: { '@type': 'Occupation', name: site.jobTitle },
-  alumniOf: site.alumniOf.map((name) => ({ '@type': 'Organization', name })),
-  memberOf: [{ '@type': 'Organization', name: 'Mindmake', url: site.links.mindmake }],
-});
+//
+// One @graph, so the page, the person, the site and Mindmake are linked by @id
+// rather than restated: ProfilePage says this page is about a person, Person
+// carries the evidence, Organization says what he founded.
+const PERSON = `${site.canonical}#person`;
+const MINDMAKE = `${site.canonical}#mindmake`;
 
-const websiteLd = () => ({
+const isUni = (name: string) => /university|college|school/i.test(name);
+
+// The appearances with a public link, newest first, as the record a search or
+// answer engine can cite. Same order as the page.
+const evidence = appearances.items.filter((a) => a.href);
+
+const graphLd = () => ({
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': `${site.canonical}#website`,
-  url: site.url,
-  name: site.name,
-  description: site.websiteDescription,
-  publisher: { '@id': `${site.canonical}#person` },
-  inLanguage: site.language,
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': `${site.canonical}#page`,
+      url: site.canonical,
+      name: site.title,
+      description: site.description,
+      inLanguage: site.language,
+      dateModified: site.updated,
+      isPartOf: { '@id': `${site.canonical}#website` },
+      mainEntity: { '@id': PERSON },
+      primaryImageOfPage: { '@type': 'ImageObject', url: site.ogImage, width: 1200, height: 630 },
+    },
+    {
+      '@type': 'Person',
+      '@id': PERSON,
+      name: site.name,
+      givenName: site.firstName,
+      familyName: site.lastName,
+      jobTitle: site.jobTitle,
+      description: site.description,
+      url: site.url,
+      email: `mailto:${site.email}`,
+      image: { '@type': 'ImageObject', url: site.personImage, caption: site.name },
+      sameAs: [...site.sameAs],
+      knowsAbout: [...site.knowsAbout],
+      knowsLanguage: 'en',
+      award: [...site.awards],
+      hasOccupation: [
+        { '@type': 'Occupation', name: site.spine },
+        { '@type': 'Occupation', name: 'Keynote speaker' },
+      ],
+      worksFor: { '@id': MINDMAKE },
+      alumniOf: site.alumniOf.map((name) => ({
+        '@type': isUni(name) ? 'CollegeOrUniversity' : 'Organization',
+        name,
+      })),
+      subjectOf: evidence.map((a) => ({
+        '@type': 'CreativeWork',
+        name: a.title,
+        url: a.href,
+        ...(a.year ? { datePublished: a.year } : {}),
+        publisher: { '@type': 'Organization', name: a.outlet },
+      })),
+    },
+    {
+      '@type': 'Organization',
+      '@id': MINDMAKE,
+      name: 'Mindmake',
+      url: site.links.mindmake,
+      description: 'A capped advisory practice founded by Krish Raja.',
+      founder: { '@id': PERSON },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.canonical}#website`,
+      url: site.url,
+      name: site.name,
+      description: site.websiteDescription,
+      publisher: { '@id': PERSON },
+      inLanguage: site.language,
+    },
+  ],
 });
 
 const indent = (json: unknown, spaces: number) =>
@@ -115,16 +186,48 @@ const indent = (json: unknown, spaces: number) =>
 
 const jsonLdBlock = (): string =>
   [
-    '    <!-- JSON-LD structured data for Person -->',
+    '    <!-- JSON-LD: ProfilePage, Person, Mindmake and WebSite, linked by @id -->',
     '    <script type="application/ld+json">',
-    indent(personLd(), 4),
-    '    </script>',
-    '',
-    '    <!-- JSON-LD for WebSite -->',
-    '    <script type="application/ld+json">',
-    indent(websiteLd(), 4),
+    indent(graphLd(), 4),
     '    </script>',
   ].join('\n');
+
+/* ------------------------------------------------------------- prerender */
+
+// The page is a React app, and most AI crawlers (GPTBot, ClaudeBot,
+// PerplexityBot) read the HTML without running JavaScript, so to them #root
+// was empty. This is the same story in plain HTML: who he is, the record, the
+// rooms, how to book. React replaces it on mount, and until then it is
+// visually hidden with the screen-reader pattern, so nobody sees it flash.
+const prerenderBlock = (): string => {
+  const li = (s: string) => `          <li>${s}</li>`;
+  const a = (href: string, text: string) => `<a href="${esc(href)}">${esc(text)}</a>`;
+  return [
+    '      <div class="prerender">',
+    `        <h1>${esc(site.name)}</h1>`,
+    `        <p>${esc(site.spine)}. ${esc(site.description)}</p>`,
+    `        <h2>${esc(site.nowHeading)}</h2>`,
+    '        <ul>',
+    ...site.now.map((w) => li(`<strong>${esc(w.name)}</strong>: ${esc(w.detail)}`)),
+    '        </ul>',
+    '        <h2>Commercial track record</h2>',
+    '        <ul>',
+    ...receipts.roles.map((r) =>
+      li(`<strong>${esc(r.org)}</strong>${r.title ? `, ${esc(r.title)}` : ''}: ${esc(r.detail)}`),
+    ),
+    '        </ul>',
+    '        <h2>Speaking, podcasts and press</h2>',
+    '        <ul>',
+    ...evidence.map((x) => li(`${a(x.href!, x.title)}, ${esc(x.outlet)}${x.year ? `, ${x.year}` : ''}`)),
+    '        </ul>',
+    `        <h2>${esc(contact.title)}</h2>`,
+    `        <p>${a(`mailto:${site.email}`, site.email)} · ${a(site.links.linkedin, 'LinkedIn')} · ${a(site.links.mindmake, 'Mindmake')}</p>`,
+    '        <nav>',
+    ...sectionLinks.map((l) => `          ${a(`/${l.path}`, l.section.title)}`),
+    '        </nav>',
+    '      </div>',
+  ].join('\n');
+};
 
 /* -------------------------------------------------------------- llms.txt */
 
@@ -146,9 +249,16 @@ const llmsTxt = (): string => {
   return [
     `# ${site.name}`,
     '',
+    `> ${site.description}`,
+    '',
     `## Who is ${site.name}`,
     '',
     site.bio,
+    '',
+    `- Headline: ${site.spine}`,
+    `- Founder of Mindmake (${site.links.mindmake})`,
+    `- Award: ${site.awards.join('; ')}`,
+    `- Profiles: ${site.sameAs.join(', ')}`,
     '',
     `## ${site.nowHeading}`,
     '',
@@ -163,6 +273,14 @@ const llmsTxt = (): string => {
     `## ${site.writingHeading}`,
     '',
     ...site.writing.map(bullet),
+    '',
+    '## Speaking, podcasts and press',
+    '',
+    'Keynote speaker and podcast guest on AI, media and commercial strategy. Newest first:',
+    '',
+    ...evidence.map((x) => `- [${x.title}](${x.href}), ${x.outlet}${x.year ? `, ${x.year}` : ''}`),
+    '',
+    `To book Krish to speak or run an AI immersion session for a team, email ${site.email}.`,
     '',
     '## Build work',
     '',
@@ -194,10 +312,12 @@ const webmanifest = (): string =>
       icons: [
         { src: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
         { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-        { src: '/favicon.png', sizes: '512x512', type: 'image/png' },
+        { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+        { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+        { src: '/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
       ],
       theme_color: site.themeColor,
-      background_color: '#ffffff',
+      background_color: site.themeColor,
       display: 'standalone',
       start_url: '/',
       scope: '/',
@@ -219,9 +339,13 @@ const sitemapXml = (): string =>
     '    <changefreq>weekly</changefreq>',
     '    <priority>1.0</priority>',
     '    <image:image>',
-    `      <image:loc>${site.ogImage}</image:loc>`,
+    `      <image:loc>${esc(site.ogImage)}</image:loc>`,
     `      <image:title>${site.name}</image:title>`,
-    `      <image:caption>${site.ogImageAlt}</image:caption>`,
+    `      <image:caption>${esc(site.ogImageAlt)}</image:caption>`,
+    '    </image:image>',
+    '    <image:image>',
+    `      <image:loc>${site.personImage}</image:loc>`,
+    `      <image:title>${site.name}</image:title>`,
     '    </image:image>',
     '  </url>',
     '</urlset>',
@@ -267,7 +391,11 @@ export const artifacts = (): Artifact[] => {
     {
       path: INDEX,
       label: 'index.html',
-      expected: replaceBetween(replaceBetween(indexHtml, 'meta', metaBlock()), 'jsonld', jsonLdBlock()),
+      expected: replaceBetween(
+        replaceBetween(replaceBetween(indexHtml, 'meta', metaBlock()), 'jsonld', jsonLdBlock()),
+        'prerender',
+        prerenderBlock(),
+      ),
       actual: indexHtml,
     },
     { path: LLMS, label: 'public/llms.txt', expected: llmsTxt(), actual: readOrNull(LLMS) },

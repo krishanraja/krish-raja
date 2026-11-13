@@ -1,8 +1,15 @@
 # Krish Raja
 
+> Krish Raja is an AI-native commercial strategy leader, keynote speaker and founder of Mindmake, with sixteen years growing content, media and IP businesses.
+
 ## Who is Krish Raja
 
 Krish Raja is an AI-native commercial strategy leader and the founder of Mindmake. Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel and Captify. He now builds the AI systems that run commercial engines in content, media and IP businesses.
+
+- Headline: AI-Native Commercial Strategy Leader
+- Founder of Mindmake (https://mindmake.co)
+- Award: B&T 30 Under 30, Strategy (2017)
+- Profiles: https://www.linkedin.com/in/krish-raja, https://mindmake.co, https://makeyourmindup.ai, https://substack.com/@krishraja1, https://www.youtube.com/@therealkrisho, https://maven.com/mindmaker, https://www.signalandnoise.ai/executive-voices
 
 ## What he does now
 
@@ -22,6 +29,34 @@ Krish Raja is an AI-native commercial strategy leader and the founder of Mindmak
 - **Content** (https://makeyourmindup.ai): the Mindmake editorial channel. Two formats. The Money of AI follows the money in a shift and names the mechanism. Building with AI gets to why someone built the thing they built.
 - **Signal & Noise** (Executive Host): a podcast with media operators on how AI is reshaping the industry. A secondary endeavour: the work originates in Mindmake and the channel amplifies it, plus guest hosting.
 - **Teaches on Maven**
+
+## Speaking, podcasts and press
+
+Keynote speaker and podcast guest on AI, media and commercial strategy. Newest first:
+
+- [Awakening America's secret retail media giant in an AI world](https://www.youtube.com/watch?v=o2X4g-bmRWI), Signal & Noise, with Austin Leonard, 2026
+- [Developing a hacker mentality with Alanna Laforet](https://www.signalandnoise.ai/post/alanna-laforet-developing-a-hacker-mentality-to-take-control-of-your-career-journey), Signal & Noise, 2026
+- [Cannes Lions 2026, day four](https://www.youtube.com/watch?v=6ebe_DRwjsc), Signal & Noise, 2026
+- [Cannes Lions 2026, day three](https://www.youtube.com/watch?v=SrqZdwyV2PA), Signal & Noise, 2026
+- [Cannes Live with Justin Kramm](https://www.youtube.com/watch?v=lmXf5iiTOVk), Signal & Noise, 2026
+- [The AI endgame: agentic media and rebuilding the ad stack](https://www.youtube.com/watch?v=Xiwv1L5y-2k), POSSIBLE 2026, day three, 2026
+- [Where AI meets the real operating system of marketing](https://www.youtube.com/watch?v=xPTyQ9XMmiA), POSSIBLE 2026, day two, 2026
+- [AI, adtech and CTV, day one](https://www.youtube.com/watch?v=6yCi20GFUN4), POSSIBLE 2026, 2026
+- [Expertise as an asset](https://www.youtube.com/watch?v=dcD-G00RDcE), Dan Pratl, 2026
+- [Finding your tribe by finding your authentic voice](https://www.youtube.com/watch?v=XXPm0gQOy4k), Justin Kramm, 2026
+- [Is AI strengthening your leadership, or quietly undermining it?](https://dothinkdo.com/webinars/is-ai-strengthening-your-leadership-or-quietly-undermining-it), dothinkdo, 2026
+- [Where AI meets pop culture, episode 1](https://www.youtube.com/watch?v=Jvu7DSN9SnU), The AI Edge Podcast, 2025
+- [Scaling Captify Australia from zero](https://www.youtube.com/watch?v=6_bf9L1OX3s), Give It A Nudge, 2022
+- [Captify hires Krish Raja as Australian GM](https://www.captifytechnologies.com/latest/news/captify-hires-video-and-programmatic-executive-krish-raja-as-au-general-manager-to-make-dynamic-and-live-search-data-available-to-australian-programmatic-buyers/), Captify
+- [Balancing the Grind](https://balancethegrind.co/interviews/krish-raja-general-manager-at-captify-australia/), Balance the Grind, 2021
+- [Connected Television Handbook, contributor](https://iabaustralia.com.au/wp-content/uploads/2017/07/Connected-TV-Handbook-2020-2.pdf), IAB Australia, 2020
+- [Why programmatic will not be a word within a few years](https://www.marketingmag.com.au/tech-data/nine-head-of-data-and-programmatic-why-programmatic-wont-be-a-word-within-a-few-years/), Adobe Symposium, Sydney Opera House, 2017
+- [30 Under 30, Strategy winner](https://www.bandt.com.au/winners-revealed-bts-30-30-awards/), B&T, 2017
+- [Opening the gateways to data transaction](https://www.nineforbrands.com.au/opinion-opening-the-gateways-to-data-transaction/), Nine, 2017
+- [Digital data overload? AI to the rescue](https://blog.adobe.com/en/publish/2017/05/20/digital-data-overload-ai-to-the-rescue), Adobe, 2017
+- [Travel marketing panel](https://mumbrella.com.au/wp-content/uploads/2017/11/Travel_program_PRINT_LR-1.pdf), Mumbrella360, 2017
+
+To book Krish to speak or run an AI immersion session for a team, email krish@mindmake.co.
 
 ## Build work
 

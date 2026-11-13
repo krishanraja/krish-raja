@@ -1,7 +1,7 @@
 {
-  "name": "Krish Raja: AI-Native Commercial Strategy Leader",
+  "name": "Krish Raja: AI-Native Commercial Strategy Leader and Speaker",
   "short_name": "Krish Raja",
-  "description": "Sixteen years scaling commercial businesses across Microsoft, Nine Entertainment, SingTel and Captify. $9M to $61M at Nine, $0 to $12M ARR at Captify, $4M to $38M at SingTel. Now running Mindmake OS, a 14-agent AI operating system in production.",
+  "description": "Krish Raja is an AI-native commercial strategy leader, keynote speaker and founder of Mindmake, with sixteen years growing content, media and IP businesses.",
   "icons": [
     {
       "src": "/favicon-32x32.png",
@@ -14,13 +14,26 @@
       "type": "image/png"
     },
     {
-      "src": "/favicon.png",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "theme_color": "#0055DD",
-  "background_color": "#ffffff",
+  "theme_color": "#fbfaf8",
+  "background_color": "#fbfaf8",
   "display": "standalone",
   "start_url": "/",
   "scope": "/"

@@ -473,7 +473,8 @@ export interface SiteContent {
   readonly email: string;
   readonly ogImage: string;
   readonly ogImageAlt: string;
-  readonly twitterHandle: string;
+  /** A photograph, for the structured data. The cards use the bitmoji. */
+  readonly personImage: string;
   readonly locale: string;
   readonly language: string;
   readonly websiteDescription: string;
@@ -492,6 +493,7 @@ export interface SiteContent {
   readonly sameAs: readonly string[];
   readonly knowsAbout: readonly string[];
   readonly alumniOf: readonly string[];
+  readonly awards: readonly string[];
   /**
    * Addresses that are announced but not live yet. They still ship as links where
    * the product is named, and links:check reports them as pending rather than dead.
