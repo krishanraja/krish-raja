@@ -6,7 +6,7 @@ head: 952bf56
 lifecycle: live
 production_url: https://www.krishraja.com
 state_doc: README.md
-history_log: now-notes/
+history_log: docs/history/now-notes/
 truth_files: [docs/NORTH_STAR.md]
 authority_order: [docs/NORTH_STAR.md, README.md]
 steward: https://github.com/krishanraja/ai-harness/blob/main/docs/steward/RUNBOOK.md
@@ -26,7 +26,7 @@ Event organisers and leaders checking who Krish is. It sends the right visitor t
 
 <!-- north-star-state {"week_of": "2026-11-09", "week_target": 2, "current": null, "current_as_of": null, "current_source": "public.site_enquiries where status = 'booked' (fleet Supabase, from 2026-11-14)", "urgency": 4, "urgency_reason": "measurable from 2026-11-14; no booking marked yet, fresh baseline"} --> **North Star number: U4.** Confirmed paid speaking bookings: measurable from 14 November 2026 as rows Krish marks `booked` in `public.site_enquiries` (see `docs/enquiry-trace.md`); a fresh baseline, none marked yet, against 2 this week on the way to 12 by 22 February 2027.
 
-Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note is in `now-notes/`.
+Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note folds into this file from `now-notes/` on main (`.github/workflows/closeout-fold.yml`); the notes before 14 Nov are kept verbatim in `docs/history/now-notes/`.
 
 ## What changed recently
 
@@ -46,7 +46,7 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 - krishraja.ai serves an old copy of the site (title "AI Revenue Leader", "Brooklyn, NY", retired figures); redirect it to www.krishraja.com (a domain setting, his yes).
 - Re-run LinkedIn Post Inspector on the new card, and submit the sitemap in Google Search Console and Bing Webmaster Tools.
 - Months for the Dan Pratl, Justin Kramm and dothinkdo 2026 appearances and a year for the Captify hire, so In public is dated throughout.
-- North Star check (2026-11-13): holds, and the discoverability work moves it.
+- North Star check (2026-11-13): holds.
 
 ## Read next
 
