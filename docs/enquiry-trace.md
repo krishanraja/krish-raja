@@ -30,13 +30,15 @@ server variable (`scripts/public-script-guard.ts`, run by `vite.config.ts`).
    key lives in this project.
 
    **The route** is `POST /api/site/enquiry` on Control Center (control-center
-   PR 807; not yet live as of 14 November 2026). It accepts this body exactly as
+   PR 807), **live since about 13:00 UTC on 14 November 2026**. It accepts this body exactly as
    sent and answers `202 { ok, id, repeat }`, `400` on shape, `401` on the bearer,
    or `503` while Control Center holds no bearer, and keeps only the bearer's
    sha256. Without a `request_id` (an optional field this site does not send),
    the same content within 10 minutes is one row, so a double click is counted
-   once. Control Center sets both variables below and proves the path with one
-   test enquiry, marked spam. Status then moves by Krish's presses: Clear sets
+   once. Control Center set both variables below and proved the path with one
+   test enquiry (event "TEST Control Center route check"): `204` with
+   `x-enquiry-recorded: yes`, the row landed, and it is marked test and spam,
+   so it never counts. Status then moves by Krish's presses: Clear sets
    `replied`, Purge sets `declined`, and `booked` is his tap.
 
 The endpoint reads its upstream from two server environment variables, set in
@@ -49,7 +51,9 @@ the Vercel project for Production:
 
 Neither has a `VITE_` prefix, so neither can reach the script. **While either is
 unset, the endpoint validates and answers `204` with `x-enquiry-recorded: no`,
-and forwards nothing.** That is the state until the route exists.
+and forwards nothing.** Both are set in Production as of 14 November 2026, so a
+real enquiry answers `x-enquiry-recorded: yes`. A `502` means the forward was
+refused or unreachable; the function logs only the status.
 
 The row it forwards:
 
@@ -96,7 +100,7 @@ where status <> 'spam'
 group by 1 order by 1 desc;
 ```
 
-The count is a fresh baseline from the day the forward is switched on, not a history:
+The count is a fresh baseline from 14 November 2026, when the forward was switched on, not a history:
 no enquiry before then was recorded.
 
 Three rows are self-tests from the day the table was made (one policy test, two
