@@ -99,8 +99,11 @@ export const site: SiteContent = {
         `a capped advisory practice. A small number of engagements a year, from taking one decision apart to rebuilding how a business decides. Sold at ${hosts.root.replace('https://', '')}.`,
     },
     {
+      // "Coming soon" came off on 14 Nov 2026: ctrl.mindmake.co is live (200,
+      // "CTRL: Make better decisions with AI"). TODO(krish): the live site now
+      // describes CTRL as a briefing and decision partner; this line predates it.
       name: 'CTRL',
-      qualifier: 'Coming soon',
+      qualifier: hosts.ctrl,
       detail:
         "a portable, private memory system that keeps an operator's judgement usable across the tools they work in.",
     },
@@ -109,10 +112,14 @@ export const site: SiteContent = {
   writingHeading: 'Writing and audio',
   writing: [
     {
-      name: 'Content',
+      // The channel is Make Your Mind Up (src/content/home.ts), run as three
+      // series. The two-format sentence came off on 14 Nov 2026 as stale; it read:
+      // "Two formats. The Money of AI follows the money in a shift and names the
+      // mechanism. Building with AI gets to why someone built the thing they built."
+      // TODO(krish): confirm whether either format still runs.
+      name: 'Make Your Mind Up',
       qualifier: hosts.content,
-      detail:
-        'the Mindmake editorial channel. Two formats. The Money of AI follows the money in a shift and names the mechanism. Building with AI gets to why someone built the thing they built.',
+      detail: 'the Mindmake editorial channel.',
     },
     {
       name: 'Signal & Noise',
@@ -181,8 +188,9 @@ export const site: SiteContent = {
   ],
   awards: ['B&T 30 Under 30, Strategy (2017)'],
 
-  // Krish, 9 Nov 2026: CTRL is coming soon. Its address does not resolve yet.
-  comingSoon: [hosts.ctrl],
+  // Empty since 14 Nov 2026, when ctrl.mindmake.co was verified live. Krish had
+  // listed CTRL as coming soon on 9 Nov 2026 while the address did not resolve.
+  comingSoon: [],
 
   links: {
     linkedin: 'https://www.linkedin.com/in/krish-raja',
