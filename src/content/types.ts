@@ -435,6 +435,8 @@ export interface SiteContent {
     readonly ctrl: string;
     readonly signalAndNoise: string;
     readonly calendly: string;
+    /** The tagged subscribe address for each of the two subscribe buttons. */
+    readonly subscribe: { readonly build: string; readonly live: string };
   };
 }
 

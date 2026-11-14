@@ -16,6 +16,16 @@ import type { SiteContent } from './types';
 // Flipped 11 Nov 2026 (Krish). The channel lives at makeyourmindup.ai, not content.mindmake.co.
 const DOMAINS_LIVE = true;
 
+/**
+ * Make Your Mind Up's subscribe page, tagged the way the publication engine
+ * tags its own links (growth-makeyourmindup engine/route.py): source, medium,
+ * campaign, and a lower-case utm_content per placement. Without the tags a
+ * reader who subscribes from this site reads as unattributed. krishraja.com is
+ * counted as an organic source (Krish, 2026-11-14, ruling 5.12, SYNTHESIS D9).
+ */
+const subscribeFrom = (placement: string) =>
+  `https://home.makeyourmindup.ai/subscribe?utm_source=krishraja.com&utm_medium=referral&utm_campaign=growth&utm_content=${placement}`;
+
 const hosts = DOMAINS_LIVE
   ? {
       root: 'https://mindmake.co',
@@ -207,5 +217,11 @@ export const site: SiteContent = {
     // account root avoided is real: renaming or retiring this event type WILL
     // 404 the contact section, so re-verify it if the event is ever changed.
     calendly: 'https://calendly.com/krish-raja/krish-raja',
+    // The two subscribe buttons: the "Your choice of engagement" card and the
+    // Make Your Mind Up section. One placement name each.
+    subscribe: {
+      build: subscribeFrom('home-build-card'),
+      live: subscribeFrom('home-live-section'),
+    },
   },
 };
