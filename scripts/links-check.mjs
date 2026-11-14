@@ -39,6 +39,8 @@ for (const url of soon) {
   urls.delete(url);
 }
 
+const norm = (u) => u.replace(/^https?:\/\/(www\.)?/, '').replace(/[?#].*$/, '').replace(/\/$/, '');
+
 console.log(`checking ${urls.size} URLs from the content layer\n`);
 
 const results = await Promise.all(
@@ -56,7 +58,12 @@ const results = await Promise.all(
       // ignore this script, which is how a real 404 gets through. They are
       // still printed, on their own line, so a host that truly dies is visible.
       const blocked = [999, 403, 429, 503].includes(res.status);
-      return { url, where, status: res.status, ok: res.ok || blocked, blocked };
+      // A link that lands somewhere else still passes, but it is reported. The
+      // Maven profile moved from /mindmaker to /mindmake with the rename and
+      // this script said "ok" for three months, because it followed the
+      // redirect silently. Protocol, www and a trailing slash are not a move.
+      const moved = res.ok && res.redirected && norm(res.url) !== norm(url) ? res.url : null;
+      return { url, where, status: res.status, ok: res.ok || blocked, blocked, moved };
     } catch (err) {
       return { url, where, status: err.name === 'TimeoutError' ? 'timeout' : 'unreachable', ok: false };
     }
@@ -64,12 +71,14 @@ const results = await Promise.all(
 );
 
 const bad = results.filter((r) => !r.ok);
-for (const r of results.filter((r) => r.ok && !r.blocked)) console.log(`  ok    ${r.status}  ${r.url}`);
+for (const r of results.filter((r) => r.ok && !r.blocked && !r.moved)) console.log(`  ok    ${r.status}  ${r.url}`);
+for (const r of results.filter((r) => r.moved)) console.log(`  moved ${r.status}  ${r.url}\n          now ${r.moved} (update the content layer)`);
 for (const r of results.filter((r) => r.blocked)) console.log(`  bot   ${r.status}  ${r.url}  (blocked, not confirmed dead)`);
 for (const r of bad) console.error(`  FAIL  ${r.status}  ${r.url}\n          referenced by ${r.where.join(', ')}`);
 
 const blockedCount = results.filter((r) => r.blocked).length;
+const movedCount = results.filter((r) => r.moved).length;
 console.log(
-  `\nlinks: ${results.length - bad.length - blockedCount} ok, ${blockedCount} bot-blocked, ${bad.length} failed`,
+  `\nlinks: ${results.length - bad.length - blockedCount - movedCount} ok, ${movedCount} moved, ${blockedCount} bot-blocked, ${bad.length} failed`,
 );
 process.exit(bad.length ? 1 : 0);

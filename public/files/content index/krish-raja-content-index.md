@@ -457,6 +457,7 @@ screenshot_filename: content-index-maven-instructor-profile.jpg
 screenshot_public_path: /files/content%20index/content-index-maven-instructor-profile.jpg
 capture_source: https://maven.com/mindmaker
 source_urls:
+  - https://maven.com/mindmake
   - https://maven.com/mindmaker
 quality_note: Strong Krish portrait, instructor name, positioning, and course context.
 ```
