@@ -22,22 +22,28 @@ server variable (`scripts/public-script-guard.ts`, run by `vite.config.ts`).
 2. **The endpoint** (`api/enquiry.js`, a Vercel function beside `api/live.js`)
    accepts POST from `https://www.krishraja.com` and `https://krishraja.com`
    only, validates the kind and every field, keeps `email` and `call` rows
-   anonymous, rate-limits each client IP (20 rows an hour, at most 5 enquiries,
-   per warm instance), and writes the row.
-3. **The store** is `public.site_enquiries` in the fleet Supabase project
-   (Mindmaker OS), created by migration `site_enquiries_krishraja_com`.
+   anonymous, and rate-limits each client IP (20 rows an hour, at most 5
+   enquiries, per warm instance).
+3. **It forwards** the validated row, as the same JSON, in a POST with an
+   `Authorization: Bearer` header to a Control Center route. Control Center
+   stores it and puts the enquiry in Krish's Pipeline. **That route is pending in
+   Control Center** (14 November 2026); its exact path and fields will be
+   recorded here when it exists. No database address or key lives in this
+   project.
 
-The endpoint reads where to write from two server environment variables, set in
+The endpoint reads its upstream from two server environment variables, set in
 the Vercel project for Production:
 
 | variable | holds |
 |---|---|
-| `SITE_ENQUIRIES_URL` | the table's REST address |
-| `SITE_ENQUIRIES_KEY` | a server key allowed to insert into it |
+| `ENQUIRY_FORWARD_URL` | the Control Center route that receives the row |
+| `ENQUIRY_FORWARD_BEARER` | a bearer that allows only that one write |
 
 Neither has a `VITE_` prefix, so neither can reach the script. **While either is
 unset, the endpoint validates and answers `204` with `x-enquiry-recorded: no`,
-and records nothing.** That is the state until Krish adds them.
+and forwards nothing.** That is the state until the route exists.
+
+The row it forwards:
 
 | kind | when | personal fields |
 |---|---|---|
@@ -53,7 +59,12 @@ or `copy`), `landing` (the path the visitor arrived on, e.g. `/lessons`) and
 they are a ceiling, not a count of enquiries. An `enquiry` row is the stronger
 signal: the reader wrote the email, though they may still not press send.
 
-## How Krish marks a booking, and how to count
+## Where rows end up, and how to count
+
+The rows land in `public.site_enquiries` in the fleet Supabase (Mindmaker OS),
+written by Control Center. What follows describes that table.
+
+### How Krish marks a booking, and how to count
 
 `status` starts `new`. Krish (or Control Center on his word) moves it through
 `replied`, `booked`, `declined` or `spam`, and sets `booked_at` when a booking is
@@ -77,13 +88,13 @@ where status <> 'spam'
 group by 1 order by 1 desc;
 ```
 
-The count is a fresh baseline from the day the variables are set, not a history:
+The count is a fresh baseline from the day the forward is switched on, not a history:
 no enquiry before then was recorded.
 
 Three rows are self-tests from the day the table was made (one policy test, two
 production clicks), all marked `spam` with a note saying so.
 
-## The table
+### The table
 
 ```sql
 create table public.site_enquiries (

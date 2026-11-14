@@ -16,7 +16,7 @@ describe('nothing on the page knows where enquiries are stored', () => {
     expect(findForbidden('https://abc.supabase.co/rest/v1/x')).not.toEqual([]);
     expect(findForbidden('const k="sb_publishable_x"')).not.toEqual([]);
     expect(findForbidden('eyJhbGciOiJIUzI1NiIsInR5cCI6')).not.toEqual([]);
-    expect(findForbidden('process.env.SITE_ENQUIRIES_KEY')).not.toEqual([]);
+    expect(findForbidden('process.env.ENQUIRY_FORWARD_BEARER')).not.toEqual([]);
   });
 
   it('no page source carries an address, a key prefix, a JWT or a server variable', () => {
@@ -27,10 +27,10 @@ describe('nothing on the page knows where enquiries are stored', () => {
     expect(hits).toEqual([]);
   });
 
-  it('the server endpoint reads the store from the environment, not from source', () => {
+  it('the server endpoint reads its upstream from the environment, not from source', () => {
     const api = readFileSync(join(root, 'api/enquiry.js'), 'utf8');
-    expect(api).toMatch(/env\.SITE_ENQUIRIES_URL/);
-    expect(api).toMatch(/env\.SITE_ENQUIRIES_KEY/);
+    expect(api).toMatch(/env\.ENQUIRY_FORWARD_URL/);
+    expect(api).toMatch(/env\.ENQUIRY_FORWARD_BEARER/);
     expect(api).not.toMatch(/supabase\.co|\bsb_(publishable|secret)|eyJhbGciOi/i);
   });
 

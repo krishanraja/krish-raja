@@ -11,7 +11,7 @@ export const FORBIDDEN_IN_PUBLIC_SCRIPT: readonly { label: string; pattern: RegE
   { label: 'a Supabase reference', pattern: /supabase/i },
   { label: 'a Supabase key prefix (sb_)', pattern: /\bsb_/ },
   { label: 'a JWT', pattern: /eyJhbGciOi[A-Za-z0-9_-]{10,}/ },
-  { label: 'a server-only variable name', pattern: /SITE_ENQUIRIES_(URL|KEY)/ },
+  { label: 'a server-only variable name', pattern: /ENQUIRY_FORWARD_(URL|BEARER)/ },
 ];
 
 /** The labels of every forbidden thing found, empty when the code is clean. */

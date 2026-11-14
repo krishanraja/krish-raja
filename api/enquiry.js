@@ -1,15 +1,18 @@
 /**
  * POST /api/enquiry: records one enquiry or contact intent from krishraja.com.
  *
- * The page posts here, same origin, and never learns where the row goes. The
- * store's address and its key live only in two server environment variables,
- * SITE_ENQUIRIES_URL and SITE_ENQUIRIES_KEY, set in Vercel. Neither has a VITE_
- * prefix, so Vite never writes them into the public script, and the build fails
- * if that script mentions a database (vite.config.ts).
+ * The page posts here, same origin, and never learns where the row goes. This
+ * endpoint holds no database address or key either: it forwards the validated
+ * row to a Control Center route, which stores it and puts the enquiry in Krish's
+ * Pipeline. The route and a bearer that allows only that one write live in two
+ * server environment variables, ENQUIRY_FORWARD_URL and ENQUIRY_FORWARD_BEARER,
+ * set in Vercel. Neither has a VITE_ prefix, so Vite never writes them into the
+ * public script, and the build fails if that script mentions them or a database
+ * (vite.config.ts).
  *
  * While either variable is unset the endpoint still validates the request and
  * answers 204 with `x-enquiry-recorded: no`, so the page behaves the same and
- * nothing is written.
+ * nothing is sent anywhere.
  *
  *   enquiry  the speaking form was completed (name and event required)
  *   email    the published address was opened or copied (no personal fields)
@@ -119,9 +122,9 @@ export function createHandler({ env = process.env, fetchImpl = fetch, now } = {}
 
     if (!allow(clientIp(req), row.kind)) return res.status(429).end();
 
-    const url = env.SITE_ENQUIRIES_URL;
-    const key = env.SITE_ENQUIRIES_KEY;
-    if (!url || !key) {
+    const url = env.ENQUIRY_FORWARD_URL;
+    const bearer = env.ENQUIRY_FORWARD_BEARER;
+    if (!url || !bearer) {
       res.setHeader('x-enquiry-recorded', 'no');
       return res.status(204).end();
     }
@@ -130,22 +133,19 @@ export function createHandler({ env = process.env, fetchImpl = fetch, now } = {}
       const r = await fetchImpl(url, {
         method: 'POST',
         headers: {
-          apikey: key,
-          // A legacy JWT key also goes in Authorization; a newer opaque key must not.
-          ...(key.split('.').length === 3 ? { Authorization: `Bearer ${key}` } : {}),
+          Authorization: `Bearer ${bearer}`,
           'Content-Type': 'application/json',
-          Prefer: 'return=minimal',
         },
         body: JSON.stringify(row),
         signal: AbortSignal.timeout(5000),
       });
       if (!r.ok) {
         // The status only. Never the body, which can echo the request.
-        console.error(`enquiry store refused the row: ${r.status}`);
+        console.error(`enquiry forward refused: ${r.status}`);
         return res.status(502).end();
       }
     } catch {
-      console.error('enquiry store unreachable');
+      console.error('enquiry forward unreachable');
       return res.status(502).end();
     }
     res.setHeader('x-enquiry-recorded', 'yes');
