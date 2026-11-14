@@ -321,6 +321,14 @@ card whose button linked to themindmaker.ai, which is what Contact does in a sin
 so it folded in there. Since 9 Nov 2026 "Get in touch" opens the enquiry form, which
 writes an email to the published address in the reader's own mail app.
 
+## Enquiries are counted: `src/lib/enquiry.ts`
+
+The enquiry form, every email link and every Calendly link add one row to
+`public.site_enquiries` in the fleet Supabase (Mindmaker OS), insert only, from the
+production hosts only. One delegated click listener covers both trees, so a new
+email or booking button is counted without wiring. Krish marks a row `booked`;
+that count is the North Star number. The contract is in `docs/enquiry-trace.md`.
+
 ## Short section addresses: `krishraja.com/thinking`
 
 Every section has a short address, defined once in `src/content/links.ts`:
