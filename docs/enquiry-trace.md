@@ -68,8 +68,8 @@ group by 1 order by 1 desc;
 The first count is a fresh baseline from 14 November 2026, not a history: no
 enquiry before that date was recorded.
 
-One row is a policy self-test from the day the table was made, already marked
-`spam` with a note saying so.
+Three rows are self-tests from the day the table was made (one policy test, two
+production clicks), all marked `spam` with a note saying so.
 
 ## The table
 
