@@ -1,7 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowRight, ArrowUpRight, X } from 'lucide-react';
 import { home, site } from '@/content';
-import { recordEnquiry } from '@/lib/enquiry';
 
 /* ------------------------------------------------------------------ buttons */
 
@@ -135,7 +134,6 @@ export const AskProvider = ({ children, centered }: { children: ReactNode; cente
     const name = String(f.get('name') || '').trim(), ev = String(f.get('event') || '').trim();
     if (!name || !ev) { (e.currentTarget.querySelector(name ? '[name=event]' : '[name=name]') as HTMLInputElement)?.focus(); return; }
     const body = [`${ask.fields.name}: ${name}`, `${ask.fields.event}: ${ev}`, `${ask.fields.when}: ${f.get('when') || ''}`, '', String(f.get('msg') || '')].join('\n');
-    recordEnquiry('enquiry', 'ask-form', { name, event: ev, when: String(f.get('when') || ''), message: String(f.get('msg') || '') });
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(ask.subjectPrefix + ev)}&body=${encodeURIComponent(body)}`;
     setSent(true);
   };
