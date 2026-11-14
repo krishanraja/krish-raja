@@ -24,6 +24,7 @@ import { appearances } from '../src/content/appearances.js';
 import { contact } from '../src/content/contact.js';
 import { sectionLinks } from '../src/content/links.js';
 import { lessons } from '../src/content/lessons.js';
+import { home } from '../src/content/home.js';
 import { isAnnounced, longDate } from '../src/lib/upcoming.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -120,6 +121,13 @@ const evidence = appearances.items.filter((a) => a.href);
 // stay deterministic; clearing it in lessons.ts takes it out of both.
 const upcoming = isAnnounced(lessons.upcoming) ? lessons.upcoming : null;
 const booking = contact.links.find((l) => l.href === site.links.calendly);
+
+// The live channel, in its own words from home.ts: the line under its name and
+// the series it runs, e.g. "follow.the.money (Mon)".
+const channel = home.channel;
+const channelSeries = channel.series.map((x) => `${x.name} (${x.day})`).join(', ');
+const withChannel = (w: { name: string; qualifier?: string; detail: string }) =>
+  w.qualifier === site.links.content ? { ...w, detail: `${w.detail} ${channel.sub} ${channelSeries}.` } : w;
 
 const graphLd = () => ({
   '@context': 'https://schema.org',
@@ -247,6 +255,8 @@ const prerenderBlock = (): string => {
     '        <ul>',
     ...evidence.map((x) => li(`${a(x.href!, x.title)}, ${esc(x.outlet)}${x.year ? `, ${x.year}` : ''}`)),
     '        </ul>',
+    `        <h2>${a(site.links.content, channel.title)}</h2>`,
+    `        <p>${esc(channel.sub)} ${esc(channelSeries)}.</p>`,
     `        <h2>${esc(lessons.title)}</h2>`,
     `        <p>${esc(lessons.sub)}</p>`,
     '        <ul>',
@@ -305,7 +315,7 @@ const llmsTxt = (): string => {
     '',
     `## ${site.writingHeading}`,
     '',
-    ...site.writing.map(bullet),
+    ...site.writing.map(withChannel).map(bullet),
     // The sessions sit under the last bullet, "Teaches on Maven", newest
     // announcement first.
     ...(upcoming ? [`  - [${upcoming.title}](${upcoming.link}), ${longDate(upcoming)}`] : []),

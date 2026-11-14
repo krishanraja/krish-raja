@@ -130,7 +130,8 @@ The brand became **Mindmake** on 12 August 2026. Three things are settled and on
 **The domain is live.** `DOMAINS_LIVE` in `src/content/site.ts` was flipped on
 11 November 2026, so every link now points at `mindmake.co`, and the channel at
 `makeyourmindup.ai`. `themindmaker.ai` redirects to `mindmake.co` (verified 13 November
-2026). `ctrl.mindmake.co` does not resolve yet; CTRL is listed as coming soon.
+2026). `ctrl.mindmake.co` is live (verified 14 November 2026), so CTRL is no longer listed as
+coming soon.
 
 **The contact address is `krish@mindmake.co`.** Krish moved it there on 2026-10-03,
 replacing `krish@themindmaker.ai`, which still redirects to it so older links keep working.

@@ -1,0 +1,33 @@
+# The consistency suite (generated-file drift, banned words, British spelling,
+# the spine and every headline number) only protected main when someone ran it.
+# This runs it on every pull request and every push to main. It does not run
+# mobile:check or links:check: one needs a browser and a server, the other the
+# open network, and both stay by hand (see CLAUDE.md).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run lint

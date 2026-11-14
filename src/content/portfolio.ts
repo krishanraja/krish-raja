@@ -37,6 +37,7 @@ export const portfolio: PortfolioContent = {
       },
       {
         name: 'CTRL',
+        // Not rendered anywhere. TODO(krish): stale since ctrl.mindmake.co went live (14 Nov 2026).
         role: 'Coming soon',
         description: 'A portable, private memory web so your AI keeps hold of your judgement.',
         url: site.links.ctrl,
