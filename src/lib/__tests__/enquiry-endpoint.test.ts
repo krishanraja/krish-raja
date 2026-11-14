@@ -16,7 +16,7 @@ const request = (body: unknown, headers: Record<string, string> = {}, method = '
   headers: { origin: ORIGIN, 'x-forwarded-for': '203.0.113.7', ...headers },
   body,
 });
-const STORE = { SITE_ENQUIRIES_URL: 'https://store.example.test/rows', SITE_ENQUIRIES_KEY: 'test-key' };
+const STORE = { ENQUIRY_FORWARD_URL: 'https://cc.example.test/enquiries', ENQUIRY_FORWARD_BEARER: 'test-bearer' };
 const okFetch = () => vi.fn(async () => ({ ok: true, status: 201 }));
 
 const call = async (handler: (req: unknown, res: unknown) => Promise<unknown>, req: unknown) => {
@@ -34,7 +34,7 @@ describe('POST /api/enquiry', () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
 
-  it('writes one validated row with the server key when configured', async () => {
+  it('forwards one validated row with the bearer when configured', async () => {
     const fetchImpl = okFetch();
     const res = await call(
       createHandler({ env: STORE, fetchImpl }),
@@ -43,9 +43,9 @@ describe('POST /api/enquiry', () => {
     expect(res.statusCode).toBe(204);
     expect(res.headers['x-enquiry-recorded']).toBe('yes');
     const [url, init] = fetchImpl.mock.calls[0] as unknown as [string, { headers: Record<string, string>; body: string }];
-    expect(url).toBe(STORE.SITE_ENQUIRIES_URL);
-    expect(init.headers.apikey).toBe('test-key');
-    expect(init.headers.Authorization, 'an opaque key must not be sent as a bearer token').toBeUndefined();
+    expect(url).toBe(STORE.ENQUIRY_FORWARD_URL);
+    expect(init.headers.Authorization).toBe('Bearer test-bearer');
+    expect(init.headers, 'no database-style key header').not.toHaveProperty('apikey');
     const row = JSON.parse(init.body);
     expect(row).toMatchObject({ kind: 'enquiry', name: 'Sam', event: 'Summit', landing: '/lessons' });
     expect(row, 'the page may not set status or notes').not.toHaveProperty('status');
@@ -84,11 +84,11 @@ describe('POST /api/enquiry', () => {
     expect((await call(h, request(enquiry))).statusCode).toBe(204);
   });
 
-  it('answers 502 and logs only a status when the store refuses', async () => {
+  it('answers 502 and logs only a status when the forward is refused', async () => {
     const err = vi.spyOn(console, 'error').mockImplementation(() => {});
     const h = createHandler({ env: STORE, fetchImpl: vi.fn(async () => ({ ok: false, status: 401 })) });
     expect((await call(h, request({ kind: 'call' }))).statusCode).toBe(502);
-    expect(err).toHaveBeenCalledWith('enquiry store refused the row: 401');
+    expect(err).toHaveBeenCalledWith('enquiry forward refused: 401');
     err.mockRestore();
   });
 });

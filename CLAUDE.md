@@ -324,11 +324,12 @@ writes an email to the published address in the reader's own mail app.
 ## Enquiries are counted server-side: `api/enquiry.js`
 
 The enquiry form, every email link and every Calendly link post one row to
-`/api/enquiry`, which validates it and writes it with a key held only in server
-environment variables (`SITE_ENQUIRIES_URL`, `SITE_ENQUIRIES_KEY`). The page never
-knows where rows go: **the build fails if the public script mentions a database, a
-key prefix, a JWT or those variable names.** Never add a `VITE_` variable holding an
-address or a key. Krish marks a row `booked`; that count is the North Star number.
+`/api/enquiry`, which validates it and forwards it to a Control Center route with a
+one-write bearer held only in server environment variables (`ENQUIRY_FORWARD_URL`,
+`ENQUIRY_FORWARD_BEARER`). No database address or key lives in this project, and the
+page never knows where rows go: **the build fails if the public script mentions a
+database, a key prefix, a JWT or those variable names.** Never add a `VITE_` variable
+holding an address, a key or a bearer. Krish marks a row `booked`; that count is the North Star number.
 The contract is in `docs/enquiry-trace.md`.
 
 ## Short section addresses: `krishraja.com/thinking`
