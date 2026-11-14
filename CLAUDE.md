@@ -203,6 +203,10 @@ The favicon, app icons and `public/og-image.png` come from `npm run brand`, whic
 them from `src/assets/krish_bitmoji.jpg`. After re-rendering the card, bump the `?v=` on
 `site.ogImage`, or LinkedIn and WhatsApp keep showing the old one.
 
+`public/proof.json` is generated the same way: the approved proof as one machine-readable
+feed for Control Center and the engines, published facts only, plus the retired list. Its
+contract is `docs/proof-feed.md`.
+
 `npm test` fails if a generated file has drifted from the content layer, or if the
 spine or any headline number disagrees across surfaces.
 
