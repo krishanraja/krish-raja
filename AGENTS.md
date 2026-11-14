@@ -13,3 +13,9 @@ This repository's North Star is [`docs/NORTH_STAR.md`](docs/NORTH_STAR.md): an a
 - Check the North Star number and its urgency (U1 to U5) on the first line under "Where it is right now" in `NOW.md`, and push at the intensity [the harness contract](https://github.com/krishanraja/ai-harness/blob/main/contract/north-star-metric.md) sets for that level. Update it whenever you can measure it; a number nobody measures is U4.
 - Only Krish changes it.
 <!-- north-star:end -->
+
+<!-- krish-repo-admin:start brain=6010f5eab8de sha=0cc207a2c492 -->
+## Administer this repository
+
+Use `docs/HARNESS_CONTEXT.md` for the owning workflow, source of truth and checks. Preserve the goal and accepted decisions when a revision changes one part; explain material trade-offs. Verify the downstream result. Record corrections and observed outcomes through the existing capture path. Experimental results retain their conditions; inferred requirements remain proposals.
+<!-- krish-repo-admin:end -->
