@@ -35,6 +35,7 @@ const read = (p: string) => readFileSync(resolve(root, p), 'utf8');
 
 const indexHtml = read('index.html');
 const llmsTxt = read('public/llms.txt');
+const proofJson = read('public/proof.json');
 const sitemapXml = read('public/sitemap.xml');
 
 const modules = { site, hero, operate, deck, portfolio, receipts, appearances, lessons, contact, nav };
@@ -321,6 +322,7 @@ describe('the advisory work stays anonymous', () => {
     expect(hits, `confidential detail in the content layer: ${name}`).toEqual([]);
     expect(indexHtml, `confidential detail in index.html: ${name}`).not.toContain(name);
     expect(llmsTxt, `confidential detail in llms.txt: ${name}`).not.toContain(name);
+    expect(proofJson, `confidential detail in proof.json: ${name}`).not.toContain(name);
   });
 });
 

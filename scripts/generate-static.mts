@@ -25,6 +25,7 @@ import { contact } from '../src/content/contact.js';
 import { sectionLinks } from '../src/content/links.js';
 import { lessons } from '../src/content/lessons.js';
 import { home } from '../src/content/home.js';
+import { deck } from '../src/content/deck.js';
 import { isAnnounced, longDate } from '../src/lib/upcoming.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -34,6 +35,8 @@ const INDEX = resolve(root, 'index.html');
 const LLMS = resolve(root, 'public/llms.txt');
 const SITEMAP = resolve(root, 'public/sitemap.xml');
 const MANIFEST = resolve(root, 'public/site.webmanifest');
+const PROOF = resolve(root, 'public/proof.json');
+const RETIRED = resolve(root, 'project-documentation/retired-names.json');
 
 /* ------------------------------------------------------------------ meta */
 
@@ -347,6 +350,90 @@ const llmsTxt = (): string => {
   ].join('\n');
 };
 
+/* ------------------------------------------------------------ proof.json */
+
+// The approved proof, machine-readable, for Control Center, the pitch writers
+// and the voice check: everything here is already published on the site, read
+// from the same modules, so a fact changes in one place and every reader sees
+// it. Nothing in it is written for it. Client names and figures the site
+// deliberately does not publish (FACTS.md "Named engagements") stay out, because
+// listing them in a public file would publish them. The retired list comes from
+// project-documentation/retired-names.json, which the test suite also enforces.
+const proofJson = (): string => {
+  const retired = JSON.parse(readFileSync(RETIRED, 'utf8'));
+  const feed = {
+    schema: 'krishraja.com/proof',
+    version: 1,
+    updated: site.updated,
+    source: `${site.url}/proof.json`,
+    person: {
+      name: site.name,
+      headline: site.spine,
+      cluster: site.cluster,
+      description: site.description,
+      bio: site.bio,
+      jobTitle: site.jobTitle,
+      url: site.url,
+      image: site.personImage,
+      email: site.email,
+      sameAs: [...site.sameAs],
+      awards: [...site.awards],
+      alumniOf: [...site.alumniOf],
+      education: site.education,
+      knowsAbout: [...site.knowsAbout],
+    },
+    mindmake: {
+      name: portfolio.primary.name,
+      description: portfolio.primary.description,
+      url: portfolio.primary.url,
+    },
+    now: site.now.map((w) => ({ name: w.name, ...(w.qualifier ? { qualifier: w.qualifier } : {}), detail: w.detail })),
+    writing: site.writing.map((w) => ({ name: w.name, ...(w.qualifier ? { qualifier: w.qualifier } : {}), detail: w.detail })),
+    channel: {
+      name: home.channel.title,
+      line: home.channel.sub,
+      url: site.links.content,
+      series: channel.series.map((x) => ({ name: x.name, day: x.day })),
+    },
+    figures: receipts.achievements.map((a) => ({
+      category: a.category,
+      metric: a.metric,
+      context: a.context,
+      description: a.description.trim(),
+    })),
+    roles: receipts.roles.map((r) => ({ org: r.org, ...(r.title ? { title: r.title } : {}), detail: r.detail })),
+    credentials: [...receipts.credentials],
+    sessions: {
+      headline: deck.title,
+      attendeesLine: lessons.attendeesLabel,
+      attendeeEmployers: lessons.attendees.map((a) => a.name),
+      lessons: lessons.lessons.map((l) => ({ title: l.title, description: l.description, url: l.link })),
+      next: upcoming
+        ? { title: upcoming.title, description: upcoming.description, url: upcoming.link, startDate: upcoming.startDate }
+        : null,
+    },
+    appearances: evidence.map((x) => ({
+      title: x.title,
+      outlet: x.outlet,
+      kind: x.kind,
+      ...(x.year ? { year: x.year } : {}),
+      url: x.href,
+    })),
+    contact: {
+      email: site.email,
+      booking: site.links.calendly,
+      enquiryForm: `${site.url}/${sectionLinks.find((l) => l.section.id === contact.id)?.path ?? ''}`,
+    },
+    retired: {
+      names: retired.names,
+      urlFragments: retired.urlFragments,
+      spines: retired.retiredSpines,
+      renames: retired.renames,
+    },
+  };
+  return JSON.stringify(feed, null, 2) + '\n';
+};
+
 /* ------------------------------------------------------- site.webmanifest */
 
 // Was hand-kept and had drifted: it named the site "Builder of AI Products"
@@ -449,6 +536,7 @@ export const artifacts = (): Artifact[] => {
     { path: LLMS, label: 'public/llms.txt', expected: llmsTxt(), actual: readOrNull(LLMS) },
     { path: SITEMAP, label: 'public/sitemap.xml', expected: sitemapXml(), actual: readOrNull(SITEMAP) },
     { path: MANIFEST, label: 'public/site.webmanifest', expected: webmanifest(), actual: readOrNull(MANIFEST) },
+    { path: PROOF, label: 'public/proof.json', expected: proofJson(), actual: readOrNull(PROOF) },
   ];
 };
 
