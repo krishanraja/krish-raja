@@ -12,6 +12,8 @@ This repository's North Star is [`docs/NORTH_STAR.md`](docs/NORTH_STAR.md): an a
 - Only Krish changes it.
 <!-- north-star:end -->
 
+Shared repository guidance, the same file Codex reads: @AGENTS.md
+
 Guidance for Claude Code and any other agent working in this repo.
 
 ## What this is
