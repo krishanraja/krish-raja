@@ -28,6 +28,8 @@ Event organisers and leaders checking who Krish is. It sends the right visitor t
 
 Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note folds into this file from `now-notes/` on main (`.github/workflows/closeout-fold.yml`); the notes before 14 Nov are kept verbatim in `docs/history/now-notes/`.
 
+- closeout notes now fold into NOW.md on main (.github/workflows/closeout-fold.yml runs the harness's own fold, checked by hash); the eight notes of 6 to 14 Nov, whose content NOW.md already carries, are kept verbatim in docs/history/now-notes/. (2026-11-14)
+
 ## What changed recently
 
 - 2026-11-14 **Enquiries counted.** The enquiry form, every email link and every Calendly link write one row to `public.site_enquiries` (fleet Supabase, insert only, production hosts only). Verified with a real production click. Contract in `docs/enquiry-trace.md`.
@@ -41,12 +43,13 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 
 ## What is next and what is waiting on Krish
 
+- Next (2026-11-14): write each session's closeout as now-notes/YYYY-MM-DD-<slug>.md with Status:, Next: and the North Star check line, and let the fold place it.
 - Mark confirmed bookings `booked` in `public.site_enquiries` (or tell Control Center to), so the North Star number is real.
 - Paste the 3 Dec Lightning Lesson's Maven link, title and line into `lessons.upcoming` once it exists in Maven.
 - krishraja.ai serves an old copy of the site (title "AI Revenue Leader", "Brooklyn, NY", retired figures); redirect it to www.krishraja.com (a domain setting, his yes).
 - Re-run LinkedIn Post Inspector on the new card, and submit the sitemap in Google Search Console and Bing Webmaster Tools.
 - Months for the Dan Pratl, Justin Kramm and dothinkdo 2026 appearances and a year for the Captify hire, so In public is dated throughout.
-- North Star check (2026-11-13): holds.
+- North Star check (2026-11-14): holds.
 
 ## Read next
 
