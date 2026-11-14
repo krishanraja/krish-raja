@@ -1,5 +1,7 @@
 # The enquiry trace: what krishraja.com writes, and how to count it
 
+> Status, 14 Nov 2026: the browser-side write described below was removed the same day. It put the database address and a publishable key in the public script. It is being rebuilt as a server-side endpoint; until then nothing on the site writes an enquiry row.
+
 Status: Current
 Added: 14 November 2026 (fleet integration audit)
 
@@ -10,7 +12,7 @@ moments adds one row to a table Control Center can read.
 
 ## Where
 
-Supabase project **Mindmaker OS** (`gojpffsrxybbpbdzzrvs`), table
+Supabase project **Mindmaker OS** (`<project-ref>`), table
 `public.site_enquiries`. Created by migration `site_enquiries_krishraja_com`. The
 SQL is reproduced at the end of this file.
 

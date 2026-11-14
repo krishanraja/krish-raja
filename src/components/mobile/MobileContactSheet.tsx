@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/drawer';
 import { contact, site } from '@/content';
 import { icon as resolveIcon } from '@/lib/icon-map';
-import { recordEnquiry } from '@/lib/enquiry';
 
 interface MobileContactSheetProps {
   open: boolean;
@@ -24,7 +23,6 @@ const MobileContactSheet = ({ open, onOpenChange }: MobileContactSheetProps) => 
     e.stopPropagation();
     try {
       await navigator.clipboard.writeText(site.email);
-      recordEnquiry('email', 'copy');
       setCopied(true);
       toast.success(contact.copySuccess);
       setTimeout(() => setCopied(false), 1500);

@@ -6,7 +6,6 @@ import '@fontsource/onest/500.css'
 import '@fontsource/onest/600.css'
 import '@fontsource/onest/700.css'
 import './index.css'
-import { installEnquiryTrace } from './lib/enquiry'
 
 // This site has no wallet/web3 code and never touches `window.ethereum`.
 // Browser wallet extensions (MetaMask, Phantom, Coinbase Wallet, etc.) inject
@@ -41,8 +40,5 @@ window.addEventListener('unhandledrejection', (event) => {
     event.preventDefault();
   }
 });
-
-// Counts email and booking-link opens, wherever on the page they sit.
-installEnquiryTrace();
 
 createRoot(document.getElementById("root")!).render(<App />);
