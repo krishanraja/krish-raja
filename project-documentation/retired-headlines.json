@@ -1,0 +1,14 @@
+{
+  "comment": "Retired headlines and brand renames, mirrored into public/proof.json. Kept apart from retired-names.json, which the voice check pins by sha256 and which stays the one source of retired names. The spines may not return as the primary headline (POSITIONING.md) but remain accurate prose.",
+  "spines": [
+    "Sixteen years commercializing content, media and IP businesses. Now I build the AI systems that run them.",
+    "The AI-native commercial strategy operator."
+  ],
+  "renames": [
+    {
+      "from": "Mindmaker",
+      "to": "Mindmake",
+      "on": "2026-08-12"
+    }
+  ]
+}

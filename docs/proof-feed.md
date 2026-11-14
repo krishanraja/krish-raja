@@ -25,7 +25,7 @@ is written for it, and `npm test` fails if it drifts from the content layer.
 | `sessions` | `deck.ts`, `lessons.ts` | the sessions line, the attendee line and employer names, every Lightning Lesson with its link, and `next` (null until announced) |
 | `appearances` | `appearances.ts` | every linked appearance: title, outlet, kind, year, url |
 | `contact` | `site.ts` | the published address, the booking link, the enquiry page |
-| `retired` | `project-documentation/retired-names.json` | names, URL fragments and spines that must not come back, and brand renames |
+| `retired` | `project-documentation/retired-names.json` and `retired-headlines.json` | names and URL fragments that must not come back (mirrored from `retired-names.json`, the one source the voice check pins by sha256), retired spines and brand renames |
 
 ## What it never holds
 

@@ -16,6 +16,7 @@ import { findForbidden } from '../../../scripts/public-script-guard';
 const root = join(__dirname, '../../..');
 const feed = JSON.parse(readFileSync(join(root, 'public/proof.json'), 'utf8'));
 const retired = JSON.parse(readFileSync(join(root, 'project-documentation/retired-names.json'), 'utf8'));
+const headlines = JSON.parse(readFileSync(join(root, 'project-documentation/retired-headlines.json'), 'utf8'));
 
 describe('the proof feed', () => {
   it('declares its schema and version, so readers can refuse a shape they do not know', () => {
@@ -47,8 +48,15 @@ describe('the proof feed', () => {
   it('copies the retired list whole, for the voice check to enforce', () => {
     expect(feed.retired.names).toEqual(retired.names);
     expect(feed.retired.urlFragments).toEqual(retired.urlFragments);
-    expect(feed.retired.spines.length).toBeGreaterThan(0);
-    expect(feed.retired.renames).toEqual(retired.renames);
+    expect(feed.retired.spines).toEqual(headlines.spines);
+    expect(feed.retired.renames).toEqual(headlines.renames);
+  });
+
+  it('leaves retired-names.json byte-identical to the copy the voice check pins', () => {
+    // The ai-harness kill list pins this file by sha256. Change it only on
+    // purpose, together with that pin; the feed's extras live in retired-headlines.json.
+    const keys = Object.keys(retired).sort();
+    expect(keys).toEqual(['comment', 'names', 'structuredDataBans', 'urlFragments']);
   });
 
   it('holds no address, key or server variable', () => {
