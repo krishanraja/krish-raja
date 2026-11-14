@@ -26,10 +26,18 @@ server variable (`scripts/public-script-guard.ts`, run by `vite.config.ts`).
    enquiries, per warm instance).
 3. **It forwards** the validated row, as the same JSON, in a POST with an
    `Authorization: Bearer` header to a Control Center route. Control Center
-   stores it and puts the enquiry in Krish's Pipeline. **That route is pending in
-   Control Center** (14 November 2026); its exact path and fields will be
-   recorded here when it exists. No database address or key lives in this
-   project.
+   stores it and puts the enquiry in Krish's Pipeline. No database address or
+   key lives in this project.
+
+   **The route** is `POST /api/site/enquiry` on Control Center (control-center
+   PR 807; not yet live as of 14 November 2026). It accepts this body exactly as
+   sent and answers `202 { ok, id, repeat }`, `400` on shape, `401` on the bearer,
+   or `503` while Control Center holds no bearer, and keeps only the bearer's
+   sha256. Without a `request_id` (an optional field this site does not send),
+   the same content within 10 minutes is one row, so a double click is counted
+   once. Control Center sets both variables below and proves the path with one
+   test enquiry, marked spam. Status then moves by Krish's presses: Clear sets
+   `replied`, Purge sets `declined`, and `booked` is his tap.
 
 The endpoint reads its upstream from two server environment variables, set in
 the Vercel project for Production:

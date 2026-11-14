@@ -37,6 +37,7 @@ const SITEMAP = resolve(root, 'public/sitemap.xml');
 const MANIFEST = resolve(root, 'public/site.webmanifest');
 const PROOF = resolve(root, 'public/proof.json');
 const RETIRED = resolve(root, 'project-documentation/retired-names.json');
+const RETIRED_HEADLINES = resolve(root, 'project-documentation/retired-headlines.json');
 
 /* ------------------------------------------------------------------ meta */
 
@@ -361,6 +362,7 @@ const llmsTxt = (): string => {
 // project-documentation/retired-names.json, which the test suite also enforces.
 const proofJson = (): string => {
   const retired = JSON.parse(readFileSync(RETIRED, 'utf8'));
+  const headlines = JSON.parse(readFileSync(RETIRED_HEADLINES, 'utf8'));
   const feed = {
     schema: 'krishraja.com/proof',
     version: 1,
@@ -427,8 +429,8 @@ const proofJson = (): string => {
     retired: {
       names: retired.names,
       urlFragments: retired.urlFragments,
-      spines: retired.retiredSpines,
-      renames: retired.renames,
+      spines: headlines.spines,
+      renames: headlines.renames,
     },
   };
   return JSON.stringify(feed, null, 2) + '\n';
