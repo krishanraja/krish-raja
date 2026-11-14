@@ -35,7 +35,7 @@ export const home: HomeContent = {
         id: 'speaking',
         label: 'Speaking & immersion sessions',
         title: "Educate and inspire your team on what's next.",
-        line: 'POSSIBLE 2026 · Cannes Lions 2026 · Sydney Opera House · Maven',
+        line: 'Sydney Opera House · Maven',
         cta: 'Book an immersion session',
         image: '/media/home/stage.jpg',
         tone: 'light',
