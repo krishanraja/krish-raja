@@ -47,7 +47,7 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 - Next (2026-11-14): growth-makeyourmindup classes krishraja.com as organic in invariants/sources.json (the other half of D9), and growth-mindmake's speaker forms switch FORM_EMAIL to krish@mindmake.co; neither repository was reachable from this session.
 - Mark confirmed bookings `booked` in `public.site_enquiries` (or tell Control Center to), so the North Star number is real.
 - Paste the 3 Dec Lightning Lesson's Maven link, title and line into `lessons.upcoming` once it exists in Maven.
-- krishraja.ai serves an old copy of the site (title "AI Revenue Leader", "Brooklyn, NY", retired figures); redirect it to www.krishraja.com (a domain setting, his yes).
+- krishraja.ai and www.krishraja.ai redirect permanently (308) to www.krishraja.com, keeping the path, on Vercel since 14 Nov 2026 (Krish moved the domain's nameservers to Vercel; read back that night: `/thinking?x=1` lands on www.krishraja.com with 200). The old copy of the site it served is gone. (2026-11-14)
 - Re-run LinkedIn Post Inspector on the new card, and submit the sitemap in Google Search Console and Bing Webmaster Tools.
 - Months for the Dan Pratl, Justin Kramm and dothinkdo 2026 appearances and a year for the Captify hire, so In public is dated throughout.
 - North Star check (2026-11-14): holds.
