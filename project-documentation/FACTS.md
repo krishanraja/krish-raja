@@ -138,6 +138,12 @@ replacing `krish@themindmaker.ai`, which still redirects to it so older links ke
 It is deliberately not derived from the `DOMAINS_LIVE` switch (that governs website URLs,
 not the mailbox), and a test pins it.
 
+**One enquiry address (Krish, 2026-11-14, ruling 5.10).** `krish@mindmake.co` is the only
+enquiry address: the site, and the speaker forms the pitch engine fills, use it. No second
+mailbox (for example a krishraja.com one) goes on any surface.
+`src/content/__tests__/one-enquiry-address.test.ts` fails if another address appears in the
+content layer, a generated file, a component or a server route.
+
 **Signal & Noise moved.** `mediaradar.com/signal-and-noise` returned 404 on 19 August 2026,
 found by `npm run links:check`. The link is now `signalandnoise.ai/executive-voices`, the
 owned channel page, which is also the capture source the content index records. Krish's role
