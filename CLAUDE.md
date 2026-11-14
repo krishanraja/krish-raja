@@ -321,6 +321,16 @@ card whose button linked to themindmaker.ai, which is what Contact does in a sin
 so it folded in there. Since 9 Nov 2026 "Get in touch" opens the enquiry form, which
 writes an email to the published address in the reader's own mail app.
 
+## Enquiries are counted server-side: `api/enquiry.js`
+
+The enquiry form, every email link and every Calendly link post one row to
+`/api/enquiry`, which validates it and writes it with a key held only in server
+environment variables (`SITE_ENQUIRIES_URL`, `SITE_ENQUIRIES_KEY`). The page never
+knows where rows go: **the build fails if the public script mentions a database, a
+key prefix, a JWT or those variable names.** Never add a `VITE_` variable holding an
+address or a key. Krish marks a row `booked`; that count is the North Star number.
+The contract is in `docs/enquiry-trace.md`.
+
 ## Short section addresses: `krishraja.com/thinking`
 
 Every section has a short address, defined once in `src/content/links.ts`:

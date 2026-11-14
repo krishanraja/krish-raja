@@ -1,26 +1,43 @@
-# The enquiry trace: what krishraja.com writes, and how to count it
-
-> Status, 14 Nov 2026: the browser-side write described below was removed the same day. It put the database address and a publishable key in the public script. It is being rebuilt as a server-side endpoint; until then nothing on the site writes an enquiry row.
+# The enquiry trace: what krishraja.com records, and how to count it
 
 Status: Current
-Added: 14 November 2026 (fleet integration audit)
+Added: 14 November 2026 (fleet integration audit). Rebuilt server-side the same day.
 
-The North Star is confirmed paid speaking bookings (`docs/NORTH_STAR.md`). Before
-this, an enquiry left no trace: the form only writes an email in the reader's own
+The North Star is confirmed paid speaking bookings (`docs/NORTH_STAR.md`). An
+enquiry used to leave no trace: the form only writes an email in the reader's own
 mail app, and the email and Calendly links are plain links. Now each of those
-moments adds one row to a table Control Center can read.
+moments becomes one row in a table Control Center can read.
 
-## Where
+The first version wrote to the database from the browser, which put the database
+address and a publishable key in the public script for most of an hour on
+14 November 2026. It was removed (#37). The page now knows only `/api/enquiry`,
+and the build fails if its script mentions a database, a key prefix, a JWT or a
+server variable (`scripts/public-script-guard.ts`, run by `vite.config.ts`).
 
-Supabase project **Mindmaker OS** (`<project-ref>`), table
-`public.site_enquiries`. Created by migration `site_enquiries_krishraja_com`. The
-SQL is reproduced at the end of this file.
+## The path
 
-## What the page writes
+1. **The page** (`src/lib/enquiry.ts`) posts a small JSON row, same origin, to
+   `/api/enquiry`. Fire and forget, production hosts only, so local builds,
+   previews and `npm run mobile:check` post nothing.
+2. **The endpoint** (`api/enquiry.js`, a Vercel function beside `api/live.js`)
+   accepts POST from `https://www.krishraja.com` and `https://krishraja.com`
+   only, validates the kind and every field, keeps `email` and `call` rows
+   anonymous, rate-limits each client IP (20 rows an hour, at most 5 enquiries,
+   per warm instance), and writes the row.
+3. **The store** is `public.site_enquiries` in the fleet Supabase project
+   (Mindmaker OS), created by migration `site_enquiries_krishraja_com`.
 
-`src/lib/enquiry.ts`, fire and forget, production hosts only
-(`www.krishraja.com`, `krishraja.com`). Local builds, Vercel previews and
-`npm run mobile:check` write nothing.
+The endpoint reads where to write from two server environment variables, set in
+the Vercel project for Production:
+
+| variable | holds |
+|---|---|
+| `SITE_ENQUIRIES_URL` | the table's REST address |
+| `SITE_ENQUIRIES_KEY` | a server key allowed to insert into it |
+
+Neither has a `VITE_` prefix, so neither can reach the script. **While either is
+unset, the endpoint validates and answers `204` with `x-enquiry-recorded: no`,
+and records nothing.** That is the state until Krish adds them.
 
 | kind | when | personal fields |
 |---|---|---|
@@ -35,13 +52,6 @@ or `copy`), `landing` (the path the visitor arrived on, e.g. `/lessons`) and
 `email` and `call` are intents. Someone can open the mail app and never send, so
 they are a ceiling, not a count of enquiries. An `enquiry` row is the stronger
 signal: the reader wrote the email, though they may still not press send.
-
-## The boundary
-
-The page uses the publishable key. Row-level security allows **insert only**:
-the page cannot read a row back, cannot set `status`, `booked_at` or `note`, and
-cannot update or delete anything. Check constraints cap every text field and keep
-`email` and `call` rows anonymous.
 
 ## How Krish marks a booking, and how to count
 
@@ -67,8 +77,8 @@ where status <> 'spam'
 group by 1 order by 1 desc;
 ```
 
-The first count is a fresh baseline from 14 November 2026, not a history: no
-enquiry before that date was recorded.
+The count is a fresh baseline from the day the variables are set, not a history:
+no enquiry before then was recorded.
 
 Three rows are self-tests from the day the table was made (one policy test, two
 production clicks), all marked `spam` with a note saying so.
