@@ -7,6 +7,7 @@ import { useMobileViewportHeight } from '@/hooks/use-mobile';
 import AttendeeStrip from '@/components/AttendeeStrip';
 import BrainBloom from './BrainBloom';
 import { Btn, useAsk } from './shared';
+import { isAhead, shortDate } from '@/lib/upcoming';
 
 type Tree = { mobile: boolean };
 const d = (ms: number): CSSProperties => ({ ['--d' as string]: `${ms}ms` });
@@ -263,6 +264,9 @@ export const InPublic = ({ mobile }: Tree) => {
 export const Sessions = ({ mobile }: Tree) => {
   const ask = useAsk();
   const email = contact.links.find((l) => l.href.startsWith('mailto:'));
+  // The next session, once Krish has announced it in src/content/lessons.ts.
+  // Read on mount, so it never shows after it has started.
+  const [next] = useState(() => (isAhead(lessons.upcoming, Date.now()) ? lessons.upcoming : null));
   return (
     <section id={lessons.id} className="h-sec h-sessions" style={{ paddingTop: 0 }}>
       <div className="shell">
@@ -272,9 +276,18 @@ export const Sessions = ({ mobile }: Tree) => {
         </div>
         <div className="wrap">
           <div>
-            <ol className="h-setlist">
+            <ol className={`h-setlist${next ? ' has-next' : ''}`}>
+              {next && (
+                <li className="h-r next">
+                  <a href={next.link} target="_blank" rel="noopener noreferrer">
+                    <time className="n" dateTime={next.startDate}>{shortDate(next)}</time>
+                    <div><h3>{next.title}</h3>{next.description && <p>{next.description}</p>}</div>
+                    <span className="go"><ArrowUpRight aria-hidden /></span>
+                  </a>
+                </li>
+              )}
               {lessons.lessons.map((l, i) => (
-                <li key={l.link} className="h-r" style={d(i * 70)}>
+                <li key={l.link} className="h-r" style={d((i + (next ? 1 : 0)) * 70)}>
                   <a href={l.link} target="_blank" rel="noopener noreferrer">
                     <span className="n">{String(i + 1).padStart(2, '0')}</span>
                     <div><h3>{l.title}</h3><p>{l.description}</p></div>

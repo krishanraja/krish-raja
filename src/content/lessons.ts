@@ -60,6 +60,20 @@ export const lessons: LessonsContent = {
     { slug: 'us-bank', name: 'US Bank', domain: 'usbank.com' },
   ],
 
+  /**
+   * The first hosted Lightning Lesson: Thursday 3 December 2026, 12:00 New York
+   * (from the fleet plan, 14 Nov 2026). Nothing renders until `link` and `title`
+   * are both filled, and it disappears once the start time passes.
+   */
+  upcoming: {
+    startDate: '2026-12-03T12:00:00-05:00',
+    timeZone: 'America/New_York',
+    // TODO(krish): paste the Maven URL, title and one line when the session exists in Maven.
+    link: '',
+    title: '',
+    description: '',
+  },
+
   lessons: [
     {
       title: "Build Your AI's Permanent Identity",

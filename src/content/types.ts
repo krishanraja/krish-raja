@@ -294,7 +294,22 @@ export interface AttendeeBrand {
  * No badge field. Every card carried a "Free" chip, which is a price, and
  * pricing lives on themindmaker.ai only. Removed 12 Aug 2026.
  */
+/**
+ * The next live session, before it happens. It shows at the top of the list
+ * only once Krish has created it in Maven and pasted its link and title, and it
+ * hides itself when its start time passes, so it can never advertise a session
+ * that is over. Its date replaces the running number on the row.
+ */
+export interface UpcomingLesson extends Lesson {
+  /** ISO 8601 with the offset of the city it is announced in, e.g. 2026-12-03T12:00:00-05:00. */
+  readonly startDate: string;
+  /** IANA zone the date is shown in, e.g. America/New_York. */
+  readonly timeZone: string;
+}
+
 export interface LessonsContent extends SectionHeader {
+  /** Empty link or title means not announced yet: nothing renders. */
+  readonly upcoming: UpcomingLesson;
   readonly lessons: readonly Lesson[];
   readonly attendeesLabel: string;
   readonly attendees: readonly AttendeeBrand[];

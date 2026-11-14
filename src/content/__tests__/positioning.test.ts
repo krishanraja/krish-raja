@@ -374,7 +374,11 @@ describe('the copy rules hold', () => {
   });
 
   it('ships no dead anchor', () => {
-    const links = contentStrings.filter((s) => /\.(href|link)$/.test(s.path));
+    // The next-session slot is empty on purpose until Krish announces it, and
+    // src/lib/upcoming.ts renders nothing while it is. That one path only.
+    const links = contentStrings.filter(
+      (s) => /\.(href|link)$/.test(s.path) && !/^lessons\.upcoming\.link$/.test(s.path),
+    );
     for (const link of links) {
       expect(link.value, `${link.path} goes nowhere`).not.toBe('#');
       expect(link.value.length, `${link.path} is empty`).toBeGreaterThan(0);
