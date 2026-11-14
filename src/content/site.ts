@@ -144,7 +144,8 @@ export const site: SiteContent = {
     hosts.content,
     'https://substack.com/@krishraja1',
     'https://www.youtube.com/@therealkrisho',
-    'https://maven.com/mindmaker',
+    // maven.com/mindmaker redirects here since the Mindmake rename (checked 14 Nov 2026).
+    'https://maven.com/mindmake',
     'https://www.signalandnoise.ai/executive-voices',
     'https://x.com/therealkrisho',
   ],
