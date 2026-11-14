@@ -372,6 +372,12 @@ The work list comes from the content layer, so:
 
 then `npm run media`. No component edits, ever.
 
+The next live session has its own slot, `lessons.upcoming` in `src/content/lessons.ts`:
+paste its Maven `link`, `title` and `description` and it heads the session list on both
+trees, with its date in place of the number, and goes into the crawler copy, `llms.txt`
+and the JSON-LD as an `EducationEvent`. Until both a link and a title are filled it renders
+nothing, and the page hides it once its start time passes. Clear it after the session.
+
 The designed In public thumbnails (`public/media/thumbs/`, the `thumb` field) are rendered
 separately from `public/files/thumbs/render.html` by `scripts/render-thumbs.cjs`; its header
 says how.

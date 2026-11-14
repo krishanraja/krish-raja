@@ -29,6 +29,11 @@ Krish Raja is an AI-native commercial strategy leader and the founder of Mindmak
 - **Content** (https://makeyourmindup.ai): the Mindmake editorial channel. Two formats. The Money of AI follows the money in a shift and names the mechanism. Building with AI gets to why someone built the thing they built.
 - **Signal & Noise** (Executive Host): a podcast with media operators on how AI is reshaping the industry. A secondary endeavour: the work originates in Mindmake and the channel amplifies it, plus guest hosting.
 - **Teaches on Maven**
+  - [Build Your AI's Permanent Identity](https://maven.com/p/8fba42/build-your-ai-s-permanent-identity): Give your AI a durable identity so it stays consistent across tools, sessions, and teams.
+  - [Build an Autonomous Business with AI](https://maven.com/p/99a529/build-an-autonomous-business-with-ai): Design and run an autonomous business where AI handles the heavy lifting.
+  - [Vibe Coding: How Your Competitors Are Pulling Ahead](https://maven.com/p/b118d0/vibe-coding-how-your-competitors-are-pulling-ahead): See how AI-native teams are shipping faster, and the unfair advantage you can build with vibe coding.
+  - [Create Your Business Agentic Org Chart](https://maven.com/p/48674a/create-your-business-agentic-org-chart): Map out the agents, roles, and handoffs that run your business alongside your team.
+  - [Build Your AI Chief of Staff](https://maven.com/p/dd0ebd/build-your-ai-chief-of-staff): Stand up an AI chief of staff that drives execution, follow-ups, and decisions for you.
 
 ## Speaking, podcasts and press
 
@@ -69,3 +74,5 @@ MA Design Strategy (Distinction), University for the Creative Arts. BA English L
 ## Contact
 
 krish@mindmake.co · krishraja.com · linkedin.com/in/krish-raja
+
+Book a call with me: https://calendly.com/krish-raja/krish-raja

@@ -23,6 +23,8 @@ import { portfolio } from '../src/content/portfolio.js';
 import { appearances } from '../src/content/appearances.js';
 import { contact } from '../src/content/contact.js';
 import { sectionLinks } from '../src/content/links.js';
+import { lessons } from '../src/content/lessons.js';
+import { isAnnounced, longDate } from '../src/lib/upcoming.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const check = process.argv.includes('--check');
@@ -113,6 +115,12 @@ const isUni = (name: string) => /university|college|school/i.test(name);
 // answer engine can cite. Same order as the page.
 const evidence = appearances.items.filter((a) => a.href);
 
+// The live sessions, with the next one first once Krish has announced it.
+// Unlike the page, the generated files keep it after the date passes, so they
+// stay deterministic; clearing it in lessons.ts takes it out of both.
+const upcoming = isAnnounced(lessons.upcoming) ? lessons.upcoming : null;
+const booking = contact.links.find((l) => l.href === site.links.calendly);
+
 const graphLd = () => ({
   '@context': 'https://schema.org',
   '@graph': [
@@ -168,6 +176,23 @@ const graphLd = () => ({
       description: 'A capped advisory practice founded by Krish Raja.',
       founder: { '@id': PERSON },
     },
+    ...(upcoming
+      ? [
+          {
+            '@type': 'EducationEvent',
+            '@id': `${site.canonical}#next-session`,
+            name: upcoming.title,
+            ...(upcoming.description ? { description: upcoming.description } : {}),
+            startDate: upcoming.startDate,
+            url: upcoming.link,
+            eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+            eventStatus: 'https://schema.org/EventScheduled',
+            location: { '@type': 'VirtualLocation', url: upcoming.link },
+            organizer: { '@id': PERSON },
+            performer: { '@id': PERSON },
+          },
+        ]
+      : []),
     {
       '@type': 'WebSite',
       '@id': `${site.canonical}#website`,
@@ -222,8 +247,14 @@ const prerenderBlock = (): string => {
     '        <ul>',
     ...evidence.map((x) => li(`${a(x.href!, x.title)}, ${esc(x.outlet)}${x.year ? `, ${x.year}` : ''}`)),
     '        </ul>',
+    `        <h2>${esc(lessons.title)}</h2>`,
+    `        <p>${esc(lessons.sub)}</p>`,
+    '        <ul>',
+    ...(upcoming ? [li(`${a(upcoming.link, upcoming.title)}, ${esc(longDate(upcoming))}`)] : []),
+    ...lessons.lessons.map((l) => li(`${a(l.link, l.title)}: ${esc(l.description)}`)),
+    '        </ul>',
     `        <h2>${esc(contact.title)}</h2>`,
-    `        <p>${a(`mailto:${site.email}`, site.email)} · ${a(site.links.linkedin, 'LinkedIn')} · ${a(site.links.mindmake, 'Mindmake')}</p>`,
+    `        <p>${a(`mailto:${site.email}`, site.email)}${booking ? ` · ${a(booking.href, booking.action)}` : ''} · ${a(site.links.linkedin, 'LinkedIn')} · ${a(site.links.mindmake, 'Mindmake')}</p>`,
     '        <nav>',
     ...sectionLinks.map((l) => `          ${a(`/${l.path}`, l.section.title)}`),
     '        </nav>',
@@ -275,6 +306,10 @@ const llmsTxt = (): string => {
     `## ${site.writingHeading}`,
     '',
     ...site.writing.map(bullet),
+    // The sessions sit under the last bullet, "Teaches on Maven", newest
+    // announcement first.
+    ...(upcoming ? [`  - [${upcoming.title}](${upcoming.link}), ${longDate(upcoming)}`] : []),
+    ...lessons.lessons.map((l) => `  - [${l.title}](${l.link}): ${l.description}`),
     '',
     '## Speaking, podcasts and press',
     '',
@@ -297,6 +332,7 @@ const llmsTxt = (): string => {
     '## Contact',
     '',
     `${site.email} · ${site.url.replace('https://www.', '')} · ${site.links.linkedin.replace('https://www.', '')}`,
+    ...(booking ? ['', `${booking.action}: ${booking.href}`] : []),
     '',
   ].join('\n');
 };
