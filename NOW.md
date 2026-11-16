@@ -24,7 +24,7 @@ Event organisers and leaders checking who Krish is. It sends the right visitor t
 
 ## Where it is right now (as of 2026-11-15)
 
-<!-- north-star-state {"week_of":"2026-11-09","week_target":"private","current":"private","current_as_of":"2026-11-15","current_source":"Control Center site_enquiries with status booked (krishraja.com's enquiries, marked by Krish)","urgency":4,"urgency_reason":"at 0% of this week's target"} --> **North Star number: U4, far behind.** Confirmed paid speaking bookings: at 0% of this week's target (figures private). A bold swing every day; work that does not move the number waits.
+<!-- north-star-state {"week_of":"2026-11-16","week_target":"private","current":"private","current_as_of":"2026-11-16","current_source":"Control Center site_enquiries with status booked (krishraja.com's enquiries, marked by Krish)","urgency":5,"urgency_reason":"under 40% of the week's target two weeks running (0% now)"} --> **North Star number: U5, stalled.** Confirmed paid speaking bookings: at 0% of this week's target (figures private). Everything else pauses unless it moves the number.
 
 Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note folds into this file from `now-notes/` on main (`.github/workflows/closeout-fold.yml`); the notes before 14 Nov are kept verbatim in `docs/history/now-notes/`.
 
