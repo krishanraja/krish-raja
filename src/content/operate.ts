@@ -38,7 +38,7 @@ export const operate: OperateContent = {
       icon: 'wrench',
       title: 'The Build Loop',
       short: 'Build Loop',
-      body: 'Voice clones, video clones, memory webs & learning loops in production across all models. I hold a Friday arvo WIP so they self-reflect on their week.',
+      body: 'Voice clones, video clones, memory webs & learning loops in production across all models. I hold a Friday arvo WIP so my AIs self-reflect on their week.',
     },
   ],
 };

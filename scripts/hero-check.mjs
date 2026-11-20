@@ -108,6 +108,9 @@ try {
       } else await checkLead(page, width + 'px desktop', true);
       assert.equal(await page.locator('#hero .mr-index').count(), 6);
       assert.equal(await page.locator('#hero .mr-index[type="button"]').count(), 6);
+      assert.deepEqual(await page.locator('#hero .mr-index').allTextContents(),
+        ['Media','Immersion','Sprint','Ongoing','Audit','Modules']);
+      assert.equal(await page.locator('#hero .mr-route').getAttribute('data-current'), 'media');
       assert.equal(await page.locator('#hero .mr-controls').count(), 0);
       assert.equal(await page.locator('.home > header').count(), 0);
       assert.equal(await page.locator('#hero').getByText('Leaders I work best with').count(), 0);
