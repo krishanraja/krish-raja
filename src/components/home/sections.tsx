@@ -29,10 +29,11 @@ const TrustStrip = () => (
   </div>
 );
 
-const HeroLead = ({ mobile }: Tree) => (
-  <p className="mp-sub">{mobile ? <>
-    <span>{operate.titleParts[0]}</span><span>{operate.titleParts[1]}</span>
-  </> : operate.title}</p>
+const HeroLead = () => (
+  <p className="mp-sub">
+    <span className="mp-context">{operate.titleParts[0]}</span>
+    <span className="mp-promise">{operate.titleParts[1]}</span>
+  </p>
 );
 
 export const HomeHero = ({ mobile }: Tree) => {
@@ -63,8 +64,11 @@ export const HomeHero = ({ mobile }: Tree) => {
       <div className="shell grid mp-layout" style={fill}>
         <div className="copy mp-copy">
           {mobile ? <PortraitStage mobile open={brainOpen} onChange={setBrainOpen}/> : <h1 className="h-h1 mp-h1">{hero.h1}</h1>}
-          <HeroLead mobile={mobile} />
-          <HeroRoutes onOngoing={() => enquire('ongoing')}/>
+          <div className="mp-decision">
+            <HeroLead />
+            <span className="mp-bridge" aria-hidden="true" />
+            <HeroRoutes onOngoing={() => enquire('ongoing')}/>
+          </div>
           <TrustStrip/>
         </div>
         {!mobile && <PortraitStage mobile={false} open={brainOpen} onChange={setBrainOpen}/>}
