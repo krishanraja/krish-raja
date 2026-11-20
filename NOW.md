@@ -1,7 +1,7 @@
 ---
 repo: krishanraja/krish-raja
 product: krishraja.com
-as_of: 2026-11-15
+as_of: 2026-11-20
 head: 952bf56
 lifecycle: live
 production_url: https://www.krishraja.com
@@ -22,12 +22,13 @@ krishraja.com, Krish Raja's personal site: what he has built, what he is buildin
 
 Event organisers and leaders checking who Krish is. It sends the right visitor to Mindmake.
 
-## Where it is right now (as of 2026-11-15)
+## Where it is right now (as of 2026-11-20)
 
 <!-- north-star-state {"week_of":"2026-11-16","week_target":"private","current":"private","current_as_of":"2026-11-16","current_source":"Control Center site_enquiries with status booked (krishraja.com's enquiries, marked by Krish)","urgency":5,"urgency_reason":"under 40% of the week's target two weeks running (0% now)"} --> **North Star number: U5, stalled.** Confirmed paid speaking bookings: at 0% of this week's target (figures private). Everything else pauses unless it moves the number.
 
 Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note folds into this file from `now-notes/` on main (`.github/workflows/closeout-fold.yml`); the notes before 14 Nov are kept verbatim in `docs/history/now-notes/`.
 
+- The approved hero uses the supplied portrait, a one-press brain reveal, four quality badges and six routes on both layouts. The mobile lead keeps its closing sentence together. The immersion route opens the session evidence and its enquiry form, and longer-term enquiries carry their own subject. The form opens an addressed email draft when direct delivery is unavailable. (2026-11-20)
 - the branch sweep takes an approved list (branch@sha) on a hand run and deletes each named branch only at that exact commit, skipping and logging anything else; the weekly run is unchanged. Copied from ai-harness's canonical script and workflow. (2026-11-15)
 - A weekly branch sweep (`.github/workflows/branch-sweep.yml`, Sunday 03:17 UTC, and by hand) deletes every remote branch whose work is already on main and lists each branch it keeps with why: unmerged work, an open pull request, protected (Ruling, Krish, 2026-11-15). The script is `.github/scripts/branch_sweep.py`, copied unchanged from ai-harness, which holds the canonical copy. (2026-11-15)
 - Four rulings of 14 Nov shipped as one pull request each. 5.8 #44 the two subscribe buttons read "Subscribe", not "Subscribe free" (merged). 5.9 #45 the speaking card reads "Sydney Opera House · Maven"; the POSSIBLE and Cannes recordings stay in In public under Podcasts (merged). 5.12 #46 both subscribe links carry utm_source=krishraja.com, utm_medium=referral, utm_campaign=growth and a utm_content per placement, from one constant in site.ts. 5.10 one enquiry address, krish@mindmake.co, guarded by a test across the content layer, generated files, components and api, and recorded in FACTS.md. Each with its own test; tests, typecheck, lint green; mobile:check 79 passed 0 failed on the combined change. 5.11 untouched until the 3 Dec session exists. (2026-11-14)
@@ -46,13 +47,13 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 
 ## What is next and what is waiting on Krish
 
-- Next (2026-11-15): run the sweep by hand with dry_run false and this repository's approved list, and read its log.
+- Next (2026-11-20): Check the first genuine immersion or speaking enquiry in Control Center and mark a confirmed booking when it happens.
 - Mark confirmed bookings `booked` in `public.site_enquiries` (or tell Control Center to), so the North Star number is real.
 - Paste the 3 Dec Lightning Lesson's Maven link, title and line into `lessons.upcoming` once it exists in Maven.
 - krishraja.ai and www.krishraja.ai redirect permanently (308) to www.krishraja.com, keeping the path, on Vercel since 14 Nov 2026 (Krish moved the domain's nameservers to Vercel; read back that night: `/thinking?x=1` lands on www.krishraja.com with 200). The old copy of the site it served is gone. (2026-11-14)
 - Re-run LinkedIn Post Inspector on the new card, and submit the sitemap in Google Search Console and Bing Webmaster Tools.
 - Months for the Dan Pratl, Justin Kramm and dothinkdo 2026 appearances and a year for the Captify hire, so In public is dated throughout.
-- North Star check (2026-11-15): holds.
+- North Star check (2026-11-20): holds.
 
 ## Read next
 
