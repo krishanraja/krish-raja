@@ -25,6 +25,7 @@ import { contact } from '../src/content/contact.js';
 import { sectionLinks } from '../src/content/links.js';
 import { lessons } from '../src/content/lessons.js';
 import { home } from '../src/content/home.js';
+import { heroRoutes, routeCopy } from '../src/content/hero-routes.js';
 import { deck } from '../src/content/deck.js';
 import { isAnnounced, longDate } from '../src/lib/upcoming.js';
 
@@ -238,6 +239,13 @@ const jsonLdBlock = (): string =>
 // was empty. This is the same story in plain HTML: who he is, the record, the
 // rooms, how to book. React replaces it on mount, and until then it is
 // visually hidden with the screen-reader pattern, so nobody sees it flash.
+// Visitors without JavaScript can still follow every hero option.
+const heroDestinations = heroRoutes.map(route => ({
+  ...route,
+  url: route.href?.startsWith('#') ? `${site.url}/lessons` :
+    route.href ?? `mailto:${site.email}?subject=${encodeURIComponent(routeCopy.ongoing)}`,
+}));
+
 const prerenderBlock = (): string => {
   const li = (s: string) => `          <li>${s}</li>`;
   const a = (href: string, text: string) => `<a href="${esc(href)}">${esc(text)}</a>`;
@@ -245,6 +253,10 @@ const prerenderBlock = (): string => {
     '      <div class="prerender">',
     `        <h1>${esc(site.name)}</h1>`,
     `        <p>${esc(site.spine)}. ${esc(site.description)}</p>`,
+    `        <h2>${esc(routeCopy.region)}</h2>`,
+    '        <ul>',
+    ...heroDestinations.map(route => li(a(route.url, route.title))),
+    '        </ul>',
     `        <h2>${esc(site.nowHeading)}</h2>`,
     '        <ul>',
     ...site.now.map((w) => li(`<strong>${esc(w.name)}</strong>: ${esc(w.detail)}`)),
@@ -344,6 +356,8 @@ const llmsTxt = (): string => {
     site.education,
     '',
     '## Contact',
+    '',
+    ...heroDestinations.map(route => `- [${route.title}](${route.url})`),
     '',
     `${site.email} · ${site.url.replace('https://www.', '')} · ${site.links.linkedin.replace('https://www.', '')}`,
     ...(booking ? ['', `${booking.action}: ${booking.href}`] : []),

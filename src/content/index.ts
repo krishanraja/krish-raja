@@ -1,6 +1,7 @@
 export * from './types';
 export { site } from './site';
 export { hero } from './hero';
+export { heroRoutes, routeCopy } from './hero-routes';
 export { operate } from './operate';
 export { deck } from './deck';
 export { portfolio } from './portfolio';

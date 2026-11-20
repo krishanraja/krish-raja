@@ -10,13 +10,6 @@ export const hero: HeroContent = {
   // "From writing automations at Microsoft..." sub and the Substack link beside
   // it came off with the 9 Nov rebuild and were deleted as stale on 13 Nov.
   h1: 'Your AI Chief of Staff.',
-  // One label, one destination, shared with the nav CTA. Both used to say
-  // "Work with me" and point at a section of that name; that section folded
-  // into Contact on 12 Aug 2026, so both now say what the section they land on
-  // says.
-  primaryCta: 'Get in touch',
-  secondaryCta: 'AI Immersion Sessions',
-  secondaryHref: '#lightning-lessons',
   trustLabel: 'Experience across',
   // McCann is off: seven months in 2007, and the content index found no
   // verified employment record for it.

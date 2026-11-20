@@ -1,0 +1,93 @@
+/* A portrait at reading distance. The same speaking and engagement paths stay in view. */
+.mr-window {display:flex;align-items:center;min-width:0;min-height:100%;overflow:clip;}
+.mr-window .mr-slide {width:100%;}
+.home--d .mp-hero .mp-layout {
+  display:grid; grid-template-columns:minmax(0,1.04fr) minmax(0,1fr); align-items:center;
+  gap:clamp(2.25rem,5.3vw,5.3rem); max-width:83rem; min-height:100svh;
+  padding:5.4rem 2.2rem 2.35rem;
+}
+.home--d .mp-layout .mp-copy {grid-column:auto; gap:1.6rem;}
+.mp-copy > * {min-width:0;}
+.home--d .mp-h1 {max-width:9.1em;font-size:clamp(3.15rem,5.35vw,5rem);line-height:.97;letter-spacing:-.054em;}
+.mp-sub {margin:0;font-weight:600;letter-spacing:-.028em;line-height:1.32;font-size:1.31rem;max-width:27rem;}
+.home--d .mp-sub {font-size:clamp(1.16rem,1.55vw,1.42rem);max-width:34rem;text-wrap:balance;}
+.home--d .mp-copy .mr-route {max-width:33.75rem;}
+.mp-about {display:flex;flex-direction:column;gap:.85rem;}
+.mp-qualities {display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;max-width:34rem;}
+.mp-qualities > span {font-size:.8rem;letter-spacing:-.012em;font-weight:500;color:#5b5650;margin-right:.12rem;}
+.mp-qualities ul {display:flex;flex-wrap:wrap;gap:.3rem;list-style:none;margin:0;padding:0;}
+.mp-qualities li {
+  display:inline-flex;align-items:center;white-space:nowrap;line-height:1.14;
+  color:#3e463e;font-size:.78rem;font-weight:500;letter-spacing:-.012em;
+  padding:.28rem .57rem .3rem;border-radius:999px;background:#eef0e9;border:1px solid #dbe0d5;
+}
+.mp-sector {line-height:1.48;letter-spacing:-.012em;font-size:1.01rem;font-weight:500;max-width:32rem;color:#292621;}
+.home--d .mp-copy .h-exp {max-width:33.75rem;padding-top:1.05rem;gap:.65rem;}
+.mp-stage {position:relative;height:min(39.5rem,calc(100svh - 9rem));min-height:25rem;isolation:isolate;overflow:hidden;background:#242424;border-radius:1.85rem;box-shadow:0 26px 55px -35px #1d1b19a8;}
+.mp-portrait {display:block;width:100%;height:100%;object-fit:cover;object-position:50% 34%;}
+.home--d .mp-stage .h-brain {height:100%;min-height:0;border-radius:inherit;box-shadow:none;}
+@media (max-width:1099px) {
+  .home--d .mp-hero .mp-layout {gap:1.65rem;padding-inline:1.5rem;}
+  .home--d .mp-layout .mp-copy {gap:1.05rem;}
+  .home--d .mp-stage {min-height:25rem;height:min(34rem,calc(100svh - 9rem));}
+  .home--d .mp-stage .h-lobe {font-size:.55rem;padding-inline:.4rem;}
+}
+@media (max-height:770px) {
+  .home--d .mp-hero .mp-layout {padding-top:4.8rem;padding-bottom:1.4rem;}
+  .home--d .mp-layout .mp-copy {gap:1.1rem;}
+  .home--d .mp-h1 {font-size:clamp(3.05rem,4.9vw,4.4rem);}
+}
+.home--m .mp-hero .mp-layout {padding-top:3.4rem;padding-bottom:1rem;}
+.home--m .mp-hero .mp-copy {flex:1;justify-content:space-between;gap:.72rem;}
+.mp-cover {position:relative;isolation:isolate;overflow:hidden;background:#252526;border-radius:1.25rem;height:var(--cover-height,13rem);flex:none;display:flex;align-items:center;}
+.mp-cover img {position:absolute;inset:0 0 0 auto;width:64%;height:100%;object-fit:cover;object-position:50% 34%;mask-image:linear-gradient(90deg,transparent 0%,#000 25%);z-index:-1;}
+.mp-cover::after {position:absolute;content:'';inset:0;background:linear-gradient(90deg,#222224 0%,#2222247a 32%,transparent 60%);z-index:-1;pointer-events:none;}
+.mp-cover h1 {width:54%;margin:0 0 0 1.08rem;color:#faf8f3;font-size:2.32rem;line-height:.99;font-weight:600;letter-spacing:-.056em;text-wrap:balance;}
+.home--m .mp-hero .mp-sub {font-size:1.19rem;line-height:1.28;max-width:27rem;}
+.home--m .mp-hero .mp-about {gap:.58rem !important;}
+.home--m .mp-hero .mp-qualities {display:grid;grid-template-columns:minmax(4.7rem,.34fr) minmax(0,1fr);align-items:center;gap:.55rem;}
+.home--m .mp-hero .mp-qualities ul {gap:.24rem;max-width:15rem;}
+.home--m .mp-hero .mp-qualities >span {line-height:1.35;max-width:11.5ch;text-wrap:balance;}
+.home--m .mp-hero .mp-qualities >span {font-size:.75rem;}
+.home--m .mp-hero .mp-qualities li {font-size:.73rem;padding:.22rem .43rem;}
+.home--m .mp-hero .mp-sector {font-size:.9rem;line-height:1.35;}
+.home--m .mp-hero .mp-copy > .h-exp {margin:0;padding-top:.65rem;gap:.42rem!important;}
+.home--m .mp-hero .h-exp .h-label {font-size:.67rem;}
+.home--m .mp-hero .mp-copy .mr-route {display:grid;grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"feature controls" "links links";container-type:normal;}
+.home--m .mp-hero .mr-feature {grid-area:feature;}
+.home--m .mp-hero .mr-lower {display:contents;}
+.home--m .mp-hero .mr-controls {grid-area:controls;flex-direction:column;align-items:stretch;justify-content:center;background:#fffaf3;border-left:1px solid #e6ddd1;margin:0;padding:0;}
+.home--m .mp-hero .mr-controls::before {content:none;}
+.home--m .mp-hero .mr-controls button {width:43px;height:40px;}
+.home--m .mp-hero .mr-links {grid-area:links;display:flex;align-items:stretch;justify-content:space-evenly;gap:0;padding:0 .16rem;border-top:1px solid #e8dfd3;}
+.home--m .mp-hero .mr-index {font-size:.72rem;min-width:40px;min-height:42px;padding:0 .09rem;}
+.home--m .mp-hero .mr-mainlink {height:5.05rem;padding:.5rem .5rem .5rem .55rem;gap:.38rem;}
+.home--m .mp-hero .mr-slide {gap:.55rem;}
+.home--m .mp-hero .mr-title {font-size:1.09rem;letter-spacing:-.036em;}
+.home--m .mp-hero .mr-detail {font-size:.58rem;letter-spacing:.065em;}
+.home--m .mp-hero .mr-go {width:1.86rem;height:1.86rem;}
+.home--m .mp-hero .mr-go svg {width:.98rem;height:.98rem;}
+.home--m .mp-hero .mr-art {width:2.65rem;height:2.65rem;flex-basis:2.65rem;border-radius:.55rem;}
+.home--m .mp-hero[data-compact] .mp-layout {padding-top:3.12rem;padding-bottom:.6rem;}
+.home--m .mp-hero[data-compact] .mp-copy {gap:.5rem;}
+.home--m .mp-hero[data-short] .mp-layout {padding:3rem .8rem .45rem;}
+.home--m .mp-hero[data-short] .mp-copy {gap:.36rem;}
+.home--m .mp-hero[data-short] .mp-cover {border-radius:1rem;}
+.home--m .mp-hero[data-short] .mp-cover img {width:59%;object-position:50% 7%;}
+.home--m .mp-hero[data-short] .mp-cover h1 {font-size:1.81rem;margin-left:.78rem;}
+.home--m .mp-hero[data-short] .mp-sub {font-size:1.02rem;line-height:1.23;}
+.home--m .mp-hero[data-short] .mp-about {gap:.32rem !important;}
+.home--m .mp-hero[data-short] .mp-qualities li {font-size:.69rem;padding:.14rem .35rem;}
+.home--m .mp-hero[data-short] .mp-qualities >span {font-size:.69rem;}
+.home--m .mp-hero[data-short] .mp-sector {font-size:.81rem;line-height:1.3;}
+.home--m .mp-hero[data-short] .mp-copy > .h-exp {display:flex;flex-direction:row;align-items:center;padding-top:.4rem;gap:.55rem!important;}
+.home--m .mp-hero[data-short] .h-exp .h-label {font-size:.6rem;line-height:1.1;max-width:6.6em;}
+.home--m .mp-hero[data-short] .h-exp ul {flex:1;gap:.7rem;}
+.home--m .mp-hero[data-short] .h-exp img {max-height:1rem;}
+.home--m .mp-hero[data-short] .mr-title {font-size:1rem;}
+.home--m .mp-hero[data-short] .mr-art {width:2.2rem;height:2.2rem;flex-basis:2.2rem;}
+.home--m .mp-hero[data-short] .mr-detail {font-size:.56rem;}
+
+/* Keep the closing thought together whenever it fits, even before the web font loads.
+   An enlarged sentence can still wrap inside its own box. */
+.home--m .mp-sub > span { display:inline-block; max-inline-size:100%; text-wrap:balance; }

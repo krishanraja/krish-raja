@@ -1,7 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowRight, ArrowUpRight, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { home, site } from '@/content';
-import { recordEnquiry } from '@/lib/enquiry';
 
 /* ------------------------------------------------------------------ buttons */
 
@@ -97,78 +96,5 @@ export const PageLoader = ({ onDone }: { onDone: () => void }) => {
         <div className="row"><span>{home.loader.label}</span><span>{String(p).padStart(3, '0')}</span></div>
       </div>
     </div>
-  );
-};
-
-/* ------------------------------------------------------------------ enquiry form */
-
-const AskCtx = createContext<() => void>(() => {});
-export const useAsk = () => useContext(AskCtx);
-
-/**
- * "Get in touch" and "Book an immersion session" open this. It writes an email
- * to the published address and opens the reader's mail app. It never pretends
- * to have sent anything: there is no server here to send it.
- */
-export const AskProvider = ({ children, centered }: { children: ReactNode; centered: boolean }) => {
-  const [open, setOpen] = useState(false);
-  const [sent, setSent] = useState(false);
-  const last = useRef<HTMLElement | null>(null);
-  const first = useRef<HTMLInputElement>(null);
-  const ask = home.ask;
-
-  const show = useCallback(() => { last.current = document.activeElement as HTMLElement; setSent(false); setOpen(true); }, []);
-  const close = useCallback(() => { setOpen(false); last.current?.focus?.(); }, []);
-
-  useEffect(() => {
-    if (!open) return;
-    document.documentElement.style.overflow = 'hidden';
-    first.current?.focus();
-    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') close(); };
-    addEventListener('keydown', key);
-    return () => { removeEventListener('keydown', key); document.documentElement.style.removeProperty('overflow'); };
-  }, [open, close]);
-
-  const submit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const name = String(f.get('name') || '').trim(), ev = String(f.get('event') || '').trim();
-    if (!name || !ev) { (e.currentTarget.querySelector(name ? '[name=event]' : '[name=name]') as HTMLInputElement)?.focus(); return; }
-    const body = [`${ask.fields.name}: ${name}`, `${ask.fields.event}: ${ev}`, `${ask.fields.when}: ${f.get('when') || ''}`, '', String(f.get('msg') || '')].join('\n');
-    recordEnquiry('enquiry', 'ask-form', { name, event: ev, when: String(f.get('when') || ''), message: String(f.get('msg') || '') });
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(ask.subjectPrefix + ev)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
-  };
-
-  return (
-    <AskCtx.Provider value={show}>
-      {children}
-      {open && (
-        <div className={`h-modal${centered ? ' center' : ''}`} role="dialog" aria-modal="true" aria-labelledby="h-ask-t" onClick={(e) => { if (e.target === e.currentTarget) close(); }}>
-          <div className="pnl">
-            <button type="button" className="x" aria-label={ask.close} onClick={close}><X className="w-4 h-4" /></button>
-            {!sent ? (
-              <>
-                <h2 id="h-ask-t">{ask.title}</h2>
-                <form onSubmit={submit} noValidate>
-                  <label><span>{ask.fields.name}</span><input ref={first} name="name" autoComplete="name" required placeholder={ask.fields.namePlaceholder} /></label>
-                  <label><span>{ask.fields.event}</span><input name="event" required placeholder={ask.fields.eventPlaceholder} /></label>
-                  <label><span>{ask.fields.when}</span><input name="when" placeholder={ask.fields.whenPlaceholder} /></label>
-                  <label><span>{ask.fields.message}</span><textarea name="msg" rows={4} placeholder={ask.fields.messagePlaceholder} /></label>
-                  <p className="note">{ask.note} <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
-                  <div className="h-acts"><button type="submit" className="h-btn h-btn--dark">{ask.submit}<span className="h-badge"><ArrowUpRight className="h-ur-arrow" aria-hidden /></span></button></div>
-                </form>
-              </>
-            ) : (
-              <div className="ok">
-                <h2 id="h-ask-t" style={{ paddingRight: 0, marginBottom: 0 }}>{ask.sentTitle}</h2>
-                <p>{ask.sentBody} <a href={`mailto:${site.email}`}>{site.email}</a> {ask.sentOr} <a href={site.links.calendly} target="_blank" rel="noopener noreferrer">{ask.sentCall}</a>.</p>
-                <button type="button" className="h-btn h-btn--dark" style={{ padding: '0 1.375rem', justifyContent: 'center' }} onClick={close}>{ask.close}</button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </AskCtx.Provider>
   );
 };

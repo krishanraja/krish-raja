@@ -6,26 +6,19 @@ import type { OperateContent } from './types';
  * other: when one carried a count chip and a body three times longer, one of
  * four read as a different component.
  */
-/**
- * The hero paragraph, broken into a lead, four traits and a closing line
- * (Krish, 2026-11-11), because one five-line grey paragraph read as a block on
- * a phone. Was: "I work best with curious leaders with a determination to
- * evolve, strong standards and clear north stars and an imaginative nature -
- * and I work to 🚀 businesses who are building the next era of creative and
- * media technologies."
- */
 const fit = {
-  lead: 'I work best with leaders who are',
-  traits: ['curious', 'determined to evolve', 'strong standards, clear north stars', 'imaginative'],
-  close: 'I work to 🚀 businesses building the next era of creative and media technologies.',
+  lead: 'Leaders I work best with',
+  traits: ['curious', 'determined to evolve', 'strong standards', 'imaginative'],
+  close: 'I work to 🚀 businesses building the next era of creative, media & entertainment technologies.',
 } as const;
+
+const titleParts = ['The pace of change is intense.', "I'm here to help."] as const;
 
 export const operate: OperateContent = {
   id: 'how-i-operate',
-  // One title, both trees. The mobile variant said "The operating stack", which
-  // was written to sit under an eyebrow rather than because anyone said it.
-  title: "The pace of change is intense. I'm here to help.",
-  sub: `${fit.lead} ${fit.traits.slice(0, -1).join(', ')} and ${fit.traits[fit.traits.length - 1]}. ${fit.close}`,
+  titleParts,
+  title: titleParts.join(' '),
+  sub: `I work best with leaders who are ${fit.traits.slice(0, -1).join(', ')} and ${fit.traits[fit.traits.length - 1]}. ${fit.close}`,
   fit,
 
   pillars: [

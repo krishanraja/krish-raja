@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { home, operate, site } from '@/content';
-import { asset } from '@/lib/asset-map';
+import { home, operate } from '@/content';
+import { routeCopy } from '@/content/hero-routes';
+import { usePrefersReducedMotion } from '@/hooks/use-reduced-motion';
 
 /**
  * The brain: a viscous particle mass held in the shape of a brain, which sends
@@ -32,12 +33,13 @@ const inBrain = (x: number, y: number) =>
 
 interface P { x: number; y: number; vx: number; vy: number; hx: number; hy: number; ex: number; ey: number; r: number; ph: number; until: number }
 
-const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
+const BrainBloom = ({ narrow, id, enabled = true }: { narrow: boolean; id?: string; enabled?: boolean }) => {
   const box = useRef<HTMLDivElement>(null);
   const gooRef = useRef<HTMLCanvasElement>(null);
   const netRef = useRef<HTMLCanvasElement>(null);
   const [active, setActive] = useState(0);
-  const pinned = useRef(false);
+  const reduce = usePrefersReducedMotion();
+  const redraw = useRef<() => void>(() => {});
   const activeRef = useRef(0);
   activeRef.current = active;
   const labels = useRef<(HTMLButtonElement | null)[]>([]);
@@ -45,9 +47,9 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
   const pillars = operate.pillars;
 
   useEffect(() => {
+    if (!enabled) return;
     const root = box.current!, goo = gooRef.current!, net = netRef.current!;
     const g = goo.getContext('2d')!, n = net.getContext('2d')!;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let W = 0, H = 0, s = 1, ox = 0, oy = 0;
 
@@ -59,16 +61,17 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
       const gap = tries < 40000 ? 576 : 0;
       if (targets.every((t) => (t[0] - x) ** 2 + (t[1] - y) ** 2 > gap)) targets.push([x, y]);
     }
-    targets.forEach(([x, y]) => ps.push({ x: x + (Math.random() - .5) * 600, y: y + (Math.random() - .5) * 600, vx: 0, vy: 0, hx: x, hy: y, ex: 0, ey: 0, r: 16 + Math.random() * 12, ph: Math.random() * 6.28, until: 0 }));
+    targets.forEach(([x, y]) => ps.push({ x, y, vx: 0, vy: 0, hx: x, hy: y, ex: 0, ey: 0, r: 16 + Math.random() * 12, ph: Math.random() * 6.28, until: 0 }));
     for (let i = 0; i < 6; i++) floats.push({ x: Math.random() * 1000, y: Math.random() * 800, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .25, r: 10 + Math.random() * 16 });
 
     const size = () => {
       W = root.clientWidth; H = root.clientHeight;
       for (const c of [goo, net]) { c.width = W * dpr; c.height = H * dpr; c.style.width = `${W}px`; c.style.height = `${H}px`; }
-      const reserve = narrow ? 215 : 0, top = narrow ? 56 : 0;
-      s = Math.min(W / (narrow ? 900 : 1000), (H - reserve - top) / 820) * (narrow ? 1 : 0.86);
-      ox = (W - 1000 * s) / 2; oy = top + (H - reserve - top - 820 * s) / 2 - (narrow ? 30 : 50) * s;
+      const top = narrow ? 24 : 34;
+      s = Math.max(.01, Math.min(W / (narrow ? 900 : 940), (H - top - 10) / 688));
+      ox = W / 2 - 500 * s; oy = (H + top - 10) / 2 - 458 * s;
       labels.current.forEach((l, i) => { if (!l) return; l.style.left = `${ox + ANCHORS[i][0] * s}px`; l.style.top = `${oy + ANCHORS[i][1] * s}px`; });
+      if (reduce) redraw.current();
     };
     const ro = new ResizeObserver(size); ro.observe(root); size();
 
@@ -85,7 +88,7 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
     const TOUCH_MS = 1300;
     let touch: { x: number; y: number; t0: number } | null = null;
     const down = (e: PointerEvent) => {
-      if (e.pointerType === 'mouse' || (e.target as HTMLElement).closest('button, .bottom, .who')) return;
+      if (e.pointerType === 'mouse' || (e.target as HTMLElement).closest('button')) return;
       const [x, y] = toBrain(e), t = performance.now();
       touch = { x, y, t0: t };
       for (const p of ps) {
@@ -102,7 +105,7 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
     const leave = (e: PointerEvent) => { if (e.pointerType === 'mouse') mouse = null; };
     root.addEventListener('pointerdown', down); root.addEventListener('pointermove', move); root.addEventListener('pointerleave', leave);
 
-    let lastSwitch = 0, lastSearch = 0;
+    let lastSearch = performance.now();
     const search = (t: number) => {
       const ang = Math.random() * 6.28, k = 6 + ((Math.random() * 10) | 0), reach = 70 + Math.random() * 120;
       ps.map((p) => ({ p, d: Math.cos(Math.atan2(p.hy - 430, p.hx - 500) - ang) * Math.hypot(p.hx - 500, p.hy - 430) }))
@@ -110,7 +113,6 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
         .forEach(({ p }, j) => { p.ex = Math.cos(ang) * reach * (1 - j / k * .5); p.ey = Math.sin(ang) * reach * (1 - j / k * .5); p.until = t + 1800 + Math.random() * 900; });
     };
     const step = (t: number) => {
-      if (!pinned.current && t - lastSwitch > 3200) { lastSwitch = t; setActive((a) => (a + 1) % pillars.length); }
       if (t - lastSearch > 2600) { lastSearch = t; search(t); }
       // The pull starts after the burst (180ms) and fades out over the rest of the splash.
       const age = touch ? t - touch.t0 : Infinity;
@@ -157,46 +159,56 @@ const BrainBloom = ({ narrow, id }: { narrow: boolean; id?: string }) => {
       for (const p of ps) { n.beginPath(); n.arc(p.x, p.y, 1.6, 0, 6.283); n.fill(); }
     };
 
-    let raf = 0, running = true;
-    const loop = (t: number) => { if (!running) return; step(t); draw(t); raf = requestAnimationFrame(loop); };
-    if (reduce) { ps.forEach((p) => { p.x = p.hx; p.y = p.hy; }); draw(0); }
-    const io = new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting && !reduce; if (running && !was) raf = requestAnimationFrame(loop); });
+    redraw.current = () => draw(reduce ? 0 : performance.now());
+    redraw.current();
+    let raf = 0, running = false, lastDraw = 0;
+    const loop = (t: number) => {
+      if (!running) return;
+      if (t - lastDraw >= 30) { step(t); draw(t); lastDraw = t; }
+      raf = requestAnimationFrame(loop);
+    };
+    const io = new IntersectionObserver(([e]) => {
+      const next = e.isIntersecting && !reduce;
+      if (running === next) return;
+      running = next;
+      if (next) raf = requestAnimationFrame(loop); else cancelAnimationFrame(raf);
+    });
     io.observe(root);
-    if (!reduce) raf = requestAnimationFrame(loop);
-    return () => { cancelAnimationFrame(raf); running = false; io.disconnect(); ro.disconnect(); root.removeEventListener('pointerdown', down); root.removeEventListener('pointermove', move); root.removeEventListener('pointerleave', leave); };
-  }, [narrow, pillars.length]);
+    return () => { cancelAnimationFrame(raf); running = false; redraw.current = () => {}; io.disconnect(); ro.disconnect(); root.removeEventListener('pointerdown', down); root.removeEventListener('pointermove', move); root.removeEventListener('pointerleave', leave); };
+  }, [narrow, enabled, reduce]);
 
-  const pick = (i: number) => { pinned.current = true; setActive(i); };
-  pickRef.current = pick;
+  pickRef.current = setActive;
+  useEffect(() => { if (enabled) redraw.current(); }, [active, enabled]);
 
   return (
-    <div className="h-brain" ref={box} id={id} aria-label={home.brainAria}>
+    <div className="h-brain pv-brain" id={id} aria-label={home.brainAria}>
+      <div className="pv-map" ref={box}>
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden>
         <filter id="h-goo"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b" /><feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" /></filter>
       </svg>
       <canvas className="goo" ref={gooRef} aria-hidden />
       <canvas className="net" ref={netRef} aria-hidden />
-      <div className="who"><img src={asset('krish-headshot')} alt="" /><b>{site.name}</b><span>{home.brainCaption}</span></div>
-      {pillars.map((p, i) => (
-        <button key={p.title} type="button" className={`h-lobe${active === i ? ' on' : ''}`} ref={(el) => { labels.current[i] = el; }} onClick={() => pick(i)}>
-          <i />{p.title}
+      {!narrow && pillars.map((p, i) => (
+        <button key={p.title} type="button" className={`h-lobe${active === i ? ' on' : ''}`} aria-label={p.title} aria-pressed={active === i} ref={(el) => { labels.current[i] = el; }} onClick={() => setActive(i)}>
+          <i />{p.short}
         </button>
       ))}
-      <div className="bottom">
-        <div className="h-parts" role="group" aria-label={home.brainPartsAria}>
+      </div>
+      <div className="pv-reading-wrap"><div className="pv-reading-clip"><div className="pv-reading">
+        {narrow && <div className="pv-parts" role="group" aria-label={home.brainPartsAria}>
           {pillars.map((p, i) => (
-            <button key={p.short} type="button" aria-pressed={active === i} onClick={() => pick(i)}>{p.short}</button>
+            <button key={p.short} type="button" aria-label={p.title} aria-pressed={active === i} onClick={() => setActive(i)}>{routeCopy.mapTabs[i]}</button>
           ))}
-        </div>
-        <div className="h-readout" aria-live="polite">
+        </div>}
+        <div className="pv-text" aria-live="polite" aria-atomic="true">
           {pillars.map((p, i) => (
             <div key={p.title} className={`item${active === i ? ' on' : ''}`} aria-hidden={active !== i}>
-              <b>{p.title}</b>
+              <h2>{p.title}</h2>
               <p>{p.body}</p>
             </div>
           ))}
         </div>
-      </div>
+      </div></div></div>
     </div>
   );
 };

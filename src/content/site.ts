@@ -1,4 +1,5 @@
 import type { SiteContent } from './types';
+import enquiryAddress from './enquiry-address.json';
 
 /**
  * The one line to change when mindmake.co resolves.
@@ -71,7 +72,7 @@ export const site: SiteContent = {
   canonical: 'https://www.krishraja.com/',
   // The single published contact address for the whole site (Krish, 2026-10-03).
   // krish@themindmaker.ai still redirects here, so older links keep working.
-  email: 'krish@mindmake.co',
+  email: enquiryAddress.recipient,
   // Rendered by `npm run brand` from the bitmoji. The ?v= changes whenever the
   // card does, because LinkedIn, Slack and WhatsApp cache a preview image by URL
   // and would otherwise keep showing the old one for weeks.

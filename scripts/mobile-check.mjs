@@ -276,7 +276,7 @@ for (const [name, profile] of phones) {
   await contactButton.click();
   await page.waitForTimeout(600);
   const sheetOpen = await page.evaluate(
-    () => document.querySelector('[role="dialog"]') !== null,
+    () => document.querySelector('dialog[open], [role="dialog"]') !== null,
   );
   check(sheetOpen, `${name}: the contact sheet opens from the dock`);
   await page.keyboard.press('Escape');

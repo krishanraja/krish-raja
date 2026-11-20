@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import MobileTopBar from './MobileTopBar';
+import MobileContactOptions from './MobileContactOptions';
 import MobileActionDock from './MobileActionDock';
-import MobileContactSheet from './MobileContactSheet';
 import SlideDeck from '@/components/SlideDeck';
 import MobileReceipts from './MobileReceipts';
 import MobileContact from './MobileContact';
-import { HomeHero, BrainSection, WaysIn, Channel, InPublic, Sessions } from '@/components/home/sections';
-import { AskProvider, PageLoader, useReveals } from '@/components/home/shared';
+import { HomeHero, WaysIn, Channel, InPublic, Sessions } from '@/components/home/sections';
+import { AskProvider } from '@/components/home/EnquiryDialog';
+import { PageLoader, useReveals } from '@/components/home/shared';
 import '@/components/home/home.css';
 import MobileFooter from './MobileFooter';
 import { nav } from '@/content';
 import { useForcedDesktopZoom } from '@/hooks/use-mobile';
 
 const MobileIndex = () => {
-  const [contactOpen, setContactOpen] = useState(false);
   const [ready, setReady] = useState(false);
   const zoom = useForcedDesktopZoom();
   useReveals(ready);
@@ -72,14 +72,13 @@ const MobileIndex = () => {
   return (
     // No width clamp. The zoom above makes the document 400px wide whatever the
     // viewport claims, so the shell just fills it, the same on every device.
-    <AskProvider centered={false}>
+    <AskProvider otherWays={<MobileContactOptions />}>
       <div className="home home--m min-h-screen">
         <PageLoader onDone={() => setReady(true)} />
         <a href="#main" className="skip-link">{nav.skipLink}</a>
         <MobileTopBar />
         <main id="main" className="pb-32">
           <HomeHero mobile />
-          <BrainSection />
           <WaysIn mobile />
           <SlideDeck compact />
           <Channel mobile />
@@ -89,8 +88,7 @@ const MobileIndex = () => {
           <MobileContact />
         </main>
         <MobileFooter />
-        <MobileActionDock onOpenContact={() => setContactOpen(true)} />
-        <MobileContactSheet open={contactOpen} onOpenChange={setContactOpen} />
+        <MobileActionDock />
       </div>
     </AskProvider>
   );

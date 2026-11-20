@@ -112,26 +112,11 @@
 .home--d .h-brain { height: min(40rem, calc(100vh - 10rem)); min-height: 32rem; }
 .h-brain canvas { position: absolute; inset: 0; }
 .h-brain canvas.goo { filter: url(#h-goo); }
-.h-brain .who { position: absolute; left: 1rem; top: 1rem; z-index: 3; display: flex; align-items: center; gap: .6rem; background: rgba(10,10,10,.88); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); border-radius: 9999px; padding: .3rem .9rem .3rem .3rem; font-size: .8125rem; }
-.h-brain .who img { width: 2rem; height: 2rem; border-radius: 9999px; object-fit: cover; object-position: 50% 25%; }
-.h-brain .who span { color: rgba(255,255,255,.6); }
 .h-lobe { position: absolute; z-index: 3; transform: translate(-50%, -50%); font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; padding: 0 .8rem; height: 2.75rem; border-radius: 9999px; background: rgba(10,10,10,.72); color: rgba(255,255,255,.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); display: inline-flex; align-items: center; gap: .4rem; transition: background .4s, color .4s, box-shadow .4s; border: 0; cursor: pointer; }
 .h-lobe i { width: .4rem; height: .4rem; border-radius: 9999px; background: rgba(255,255,255,.35); }
 .h-lobe.on { background: #fff; color: var(--ink); box-shadow: 0 0 0 6px rgba(207,128,71,.25); }
 .h-lobe.on i { background: var(--accent); }
 .home--m .h-lobe { display: none; }
-.h-brain .bottom { position: absolute; left: .75rem; right: .75rem; bottom: .75rem; z-index: 3; display: flex; flex-direction: column; gap: .6rem; }
-.home--d .h-brain .bottom { left: auto; width: 22rem; right: 1.25rem; bottom: 1.25rem; }
-.h-parts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
-.home--d .h-parts { display: none; }
-.h-parts button { height: 2.75rem; min-height: 44px; padding: 0 .35rem; border-radius: 9999px; font-size: .6875rem; font-weight: 600; color: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); background: rgba(10,10,10,.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border: 0; cursor: pointer; }
-.h-parts button[aria-pressed="true"] { background: #fff; color: var(--ink); }
-.h-readout { display: grid; background: rgba(10,10,10,.82); border-radius: var(--r-sm); padding: .9rem 1rem; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
-.h-readout .item { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .25s ease; }
-.h-readout .item.on { opacity: 1; visibility: visible; }
-.h-readout b { display: block; font-size: .9375rem; font-weight: 600; }
-.h-readout p { margin-top: .3rem; font-size: .8125rem; line-height: 1.5; color: rgba(255,255,255,.65); }
-.h-brain-sec .h-sub { margin-bottom: 1.25rem; }
 
 /* ---------- three ways in ---------- */
 .h-opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; align-items: stretch; }
@@ -256,26 +241,6 @@
 .h-setlist .go { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; border-radius: 9999px; background: var(--ink); color: #fff; transition: transform .35s var(--ease-hover); }
 .h-setlist .go svg { width: 1rem; height: 1rem; }
 @media (hover: hover) and (pointer: fine) { .h-setlist a:hover::before { opacity: 1; } .h-setlist a:hover .go { transform: translateX(4px); } }
-.h-ask { background: var(--ink); color: #fff; border-radius: var(--r-card); padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: 6rem; }
-.home--m .h-ask { display: none; }
-.h-ask h3 { font-size: 1.875rem; font-weight: 600; letter-spacing: -.02em; }
-.h-ask p { font-size: .9375rem; line-height: 1.55; color: rgba(255,255,255,.62); }
-
-/* ---------- enquiry form ---------- */
-.h-modal { position: fixed; inset: 0; z-index: 110; display: flex; align-items: flex-end; justify-content: center; padding: 1rem; background: rgba(17,17,17,.3); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); font-family: 'Onest', system-ui, sans-serif; }
-.home--d ~ .h-modal, .h-modal.center { align-items: center; }
-.h-modal .pnl { position: relative; width: 100%; max-width: 32rem; max-height: calc(100% - 1rem); overflow: auto; border-radius: 2rem; background: #fff; color: #111; padding: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.25), 0 0 0 1px #e6e5e2; }
-.h-modal .x { position: absolute; right: 1rem; top: 1rem; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 9999px; background: #f1f0ee; color: rgba(17,17,17,.6); border: 0; cursor: pointer; }
-.h-modal h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -.01em; padding-right: 3rem; margin-bottom: 1.25rem; }
-.h-modal form { display: flex; flex-direction: column; gap: 1rem; }
-.h-modal label span { display: block; margin-bottom: .4rem; font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .025em; color: rgba(17,17,17,.55); }
-.h-modal input, .h-modal textarea { width: 100%; border: 1px solid #e6e5e2; background: rgba(241,240,238,.5); border-radius: .875rem; padding: .75rem 1rem; font: inherit; font-size: 1rem; outline: none; color: #111; }
-.h-modal input:focus, .h-modal textarea:focus { border-color: rgba(17,17,17,.3); background: #fff; }
-.h-modal textarea { resize: none; }
-.h-modal .note { font-size: .75rem; line-height: 1.5; color: rgba(17,17,17,.5); }
-.h-modal .note a, .h-modal .ok a { text-decoration: underline; }
-.h-modal .ok { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding-block: 2rem; }
-.h-modal .ok p { max-width: 32ch; font-size: .875rem; line-height: 1.5; color: rgba(17,17,17,.6); }
 
 /* ---------- in public: two rows on desktop, the rest behind one button ---------- */
 .h-more { display: flex; justify-content: center; margin-top: 2rem; }
@@ -299,19 +264,3 @@
   100% { transform: scaleX(0); transform-origin: right center; }
 }
 @media (prefers-reduced-motion: reduce) { .h-blk:not(.in) { visibility: visible; } .h-fit li::before { opacity: 1; animation: none; } }
-
-/* The hero's "who I work with": a lead, four traits that wipe in quickly one after another, a closing line. */
-.h-fit { display: flex; flex-direction: column; gap: .55rem; }
-.h-fit .lead { font-size: 1rem; line-height: 1.5; color: rgba(17,17,17,.62); margin: 0; }
-.h-fit ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
-.h-fit li { display: flex; align-items: baseline; gap: .6rem; font-size: 1.0625rem; line-height: 1.35; font-weight: 500; color: var(--fg); }
-.h-fit li::before { content: ''; flex: none; width: .4rem; height: .4rem; border-radius: 50%; background: #17a673; transform: translateY(-.15rem); opacity: 0; }
-.h-fit li:has(.h-blk.in)::before { animation: blk-show 1ms linear forwards; animation-delay: calc(var(--blk-d, 0ms) + var(--blk-dur, 600ms)); }
-.home--d .h-fit ul { flex-direction: row; flex-wrap: wrap; gap: .5rem; }
-.home--d .h-fit li { padding: .4rem .85rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.7); font-size: .9375rem; }
-.home--d .h-fit li::before { display: none; }
-.home--m .h-fit { gap: .45rem; }
-.home--m .h-fit ul { gap: .15rem; }
-.home--m .h-fit li { font-size: 1rem; }
-.h-close { margin: 0; font-size: 1.0625rem; line-height: 1.45; font-weight: 500; color: var(--fg); max-width: 30rem; }
-.home--m .h-close { font-size: 1rem; }

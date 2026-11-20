@@ -304,7 +304,7 @@ Rebuilt 9 Nov 2026 from the mock Krish approved round by round. The new sections
 `src/components/home/` (`sections.tsx`, `shared.tsx`, `BrainBloom.tsx`, `home.css`) and
 are shared by both trees through a `mobile` prop; their copy is in `src/content/home.ts`.
 
-1. Hero, with the brain (`BrainBloom`) beside it on desktop and on its own screen below it on mobile (`#how-i-operate`)
+1. Hero, with six routes and a portrait that reveals `BrainBloom` in place on both trees. `/operate` and `#how-i-operate` open the brain directly.
 2. Your AI Chief of Staff: the three ways in (`#build`)
 3. The thinking (`SlideDeck.tsx`, shared by both trees)
 4. Make Your Mind Up, the live channel (`#live`, fed by `api/live.js`)
@@ -324,8 +324,8 @@ media query.
 
 "Work with me" was section 9 until 12 August 2026. It was a whole section explaining one
 card whose button linked to themindmaker.ai, which is what Contact does in a single row,
-so it folded in there. Since 9 Nov 2026 "Get in touch" opens the enquiry form, which
-writes an email to the published address in the reader's own mail app.
+so it folded in there. "Get in touch" opens the enquiry form. The delivery and email-app
+paths are documented in `docs/enquiry-trace.md`.
 
 ## Enquiries are counted server-side: `api/enquiry.js`
 

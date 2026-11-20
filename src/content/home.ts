@@ -143,7 +143,6 @@ export const home: HomeContent = {
   },
 
   swipeHint: 'Swipe for more',
-  brainCaption: 'How my AI brain works.',
   brainAria: 'The operating system as a brain, one part lit at a time',
   brainPartsAria: 'Parts of the operating system',
   wallFilters: [

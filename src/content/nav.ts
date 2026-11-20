@@ -5,8 +5,6 @@ export const nav: NavContent = {
   brand: 'Krish Raja',
   brandAria: 'Krish Raja - Home',
   navAria: 'Main navigation',
-  // Matches hero.primaryCta and the section it lands on, so the same words
-  // appear in the nav, the hero and the section heading.
   ctaLabel: 'Get in touch',
 
   items: [

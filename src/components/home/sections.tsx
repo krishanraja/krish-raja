@@ -1,23 +1,24 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import BlockTitle from './BlockTitle';
 import { ArrowUpRight } from 'lucide-react';
-import { appearances, contact, hero, home, lessons, operate, site, type ChannelItem } from '@/content';
+import { appearances, hero, home, lessons, operate, type ChannelItem } from '@/content';
 import { asset } from '@/lib/asset-map';
 import { useMobileViewportHeight } from '@/hooks/use-mobile';
+import { sectionIdForPath } from '@/hooks/use-land-on-section';
 import AttendeeStrip from '@/components/AttendeeStrip';
-import BrainBloom from './BrainBloom';
-import { Btn, useAsk } from './shared';
+import { Btn } from './shared';
+import { useAsk } from './EnquiryDialog';
 import { isAhead, shortDate } from '@/lib/upcoming';
+import { HeroRoutes } from './HeroRoutes';
+import { routeCopy } from '@/content/hero-routes';
+import { PortraitStage } from './PortraitStage';
 
 type Tree = { mobile: boolean };
 const d = (ms: number): CSSProperties => ({ ['--d' as string]: `${ms}ms` });
-/** Timing for a BlockTitle wipe: start delay, one sweep, gap between lines. */
-const wipe = (delay: number, dur: number, stagger = 110): CSSProperties =>
-  ({ ['--blk-d' as string]: `${delay}ms`, ['--blk-dur' as string]: `${dur}ms`, ['--blk-st' as string]: `${stagger}ms` });
 /* ------------------------------------------------------------------ hero */
 
 const TrustStrip = () => (
-  <div className="h-exp h-r" style={d(850)} data-trust-strip>
+  <div className="h-exp" data-trust-strip>
     <span className="h-label">{hero.trustLabel}</span>
     <ul>
       {hero.trustLogos.map((l) => (
@@ -27,62 +28,57 @@ const TrustStrip = () => (
   </div>
 );
 
+const HeroLead = ({ mobile }: Tree) => (
+  <p className="mp-sub">{mobile ? <>
+    <span>{operate.titleParts[0]}</span>{' '}<span>{operate.titleParts[1]}</span>
+  </> : operate.title}</p>
+);
+
 export const HomeHero = ({ mobile }: Tree) => {
-  const ask = useAsk();
-  // Mobile: exactly one screen, trust logos at the foot, the brain on the next screen.
+  const enquire = useAsk();
+  const brainHash = '#' + operate.id;
+  const [brainOpen, setBrainOpen] = useState(() =>
+    window.location.hash === brainHash || (!window.location.hash && sectionIdForPath(window.location.pathname) === operate.id));
+  useEffect(() => {
+    const followHash = () => { if (window.location.hash === brainHash) setBrainOpen(true); };
+    const followLink = (event: MouseEvent) => {
+      if (!event.defaultPrevented && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey &&
+          (event.target as Element | null)?.closest?.('a')?.getAttribute('href') === brainHash) setBrainOpen(true);
+    };
+    window.addEventListener('hashchange', followHash);
+    document.addEventListener('click', followLink);
+    return () => {
+      window.removeEventListener('hashchange', followHash);
+      document.removeEventListener('click', followLink);
+    };
+  }, [brainHash]);
   const screen = useMobileViewportHeight();
-  const fit = operate.fit;
-  const roomy = !(mobile && screen > 0 && screen < 700);
-  const fill = mobile && screen > 0 ? { minHeight: `min(calc(${screen}px - var(--mobile-dock-h, 63px)), 940px)` } : undefined;
+  const fill = mobile && screen > 0 ? {
+    minHeight: `min(calc(${screen}px - var(--mobile-dock-h, 63px)), 940px)`,
+    '--cover-height': Math.round(Math.min(255, Math.max(109, 115 + (screen - 568) * .46))) + 'px',
+  } as CSSProperties : undefined;
   return (
-    <section id="hero" className="h-hero">
-      <div className="shell grid" style={fill}>
-        <div className="copy" style={mobile ? { flex: 1 } : undefined}>
-          {/* On a tall phone the screen has more height than the copy. The slack is split
-              above and below the copy (auto margins), not left as one hole over the logos. */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBlock: mobile ? 'auto' : undefined }}>
-            <BlockTitle as="h1" className="h-h1" text={hero.h1} />
-            <div className="h-sub h-r" style={d(450)}>
-              <b>{operate.title}</b>
+    <section id="hero" className="h-hero mp-hero" data-brain-open={brainOpen || undefined} data-short={mobile && screen < 690 || undefined} data-compact={mobile && screen < 780 || undefined}>
+      <div className="shell grid mp-layout" style={fill}>
+        <div className="copy mp-copy">
+          {mobile ? <PortraitStage mobile open={brainOpen} onChange={setBrainOpen}/> : <h1 className="h-h1 mp-h1">{hero.h1}</h1>}
+          {(!mobile || !brainOpen) && <HeroLead mobile={mobile} />}
+          <HeroRoutes onOngoing={() => enquire('ongoing')}/>
+          <div className="mp-about">
+            {mobile && brainOpen && <HeroLead mobile={mobile} />}
+            <div className="mp-qualities" role="group" aria-labelledby="mp-fit-label">
+              <span id="mp-fit-label">{operate.fit.lead}</span>
+              <ul>{operate.fit.traits.map(item=><li key={item}>{item}</li>)}</ul>
             </div>
-            {/* On a short phone (an SE is 568px) the fit copy would push the logos
-                under the dock; the brain screen right below carries the same idea. */}
-            {roomy && (
-              <div className="h-fit">
-                <p className="lead h-r" style={d(550)}>{fit.lead}</p>
-                <ul>
-                  {fit.traits.map((t, i) => (
-                    <li key={t} style={wipe(750 + i * 140, 380)}>
-                      <BlockTitle as="span" text={t} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <div className="h-acts h-r" style={d(700)}>
-              <Btn label={hero.primaryCta} onClick={ask} />
-              <Btn label={hero.secondaryCta} tone="outline" href={hero.secondaryHref} />
-            </div>
-            {roomy && <BlockTitle as="p" className="h-close" text={fit.close} style={wipe(1450, 420, 90)} />}
+            <p className="mp-sector">{operate.fit.close}</p>
           </div>
-          <TrustStrip />
+          <TrustStrip/>
         </div>
-        {!mobile && (
-          <section id="how-i-operate" className="brain-col h-r" style={{ ...d(300), ['--y' as string]: '24px' }} aria-label={operate.title}>
-            <BrainBloom narrow={false} />
-          </section>
-        )}
+        {!mobile && <PortraitStage mobile={false} open={brainOpen} onChange={setBrainOpen}/>}
       </div>
     </section>
   );
 };
-
-/** Mobile only: the brain gets its own screen under the hero. */
-export const BrainSection = () => (
-  <section id="how-i-operate" className="h-sec h-brain-sec" aria-label={operate.title} style={{ paddingTop: '1.5rem' }}>
-    <div className="shell h-r"><BrainBloom narrow /></div>
-  </section>
-);
 
 /* ------------------------------------------------------------------ three ways in */
 
@@ -110,7 +106,7 @@ export const WaysIn = ({ mobile }: Tree) => {
                 <div className="h-acts">
                   {o.href
                     ? <Btn label={o.cta} href={o.href} external tone={o.id === 'channel' ? 'mint' : 'dark'} />
-                    : <Btn label={o.cta} onClick={ask} />}
+                    : <Btn label={o.cta} onClick={() => ask('speaking')} />}
                 </div>
               </div>
             </article>
@@ -262,20 +258,20 @@ export const InPublic = ({ mobile }: Tree) => {
 /* ------------------------------------------------------------------ sessions */
 
 export const Sessions = ({ mobile }: Tree) => {
-  const ask = useAsk();
-  const email = contact.links.find((l) => l.href.startsWith('mailto:'));
+  const enquire = useAsk();
   // The next session, once Krish has announced it in src/content/lessons.ts.
   // Read on mount, so it never shows after it has started.
   const [next] = useState(() => (isAhead(lessons.upcoming, Date.now()) ? lessons.upcoming : null));
   return (
-    <section id={lessons.id} className="h-sec h-sessions" style={{ paddingTop: 0 }}>
+    <section id={lessons.id} className="h-sec h-sessions mr-sessions">
       <div className="shell">
         <div className="h-sec-head">
-          <BlockTitle className="h-h2" text={lessons.title} />
+          <h2 className="h-h2" tabIndex={-1}>{lessons.title}</h2>
           <p className="h-lede h-r" style={d(120)}>{lessons.sub}</p>
         </div>
         <div className="wrap">
           <div>
+            {mobile && <div className="mr-session-cta"><Btn label={routeCopy.contact} onClick={() => enquire('immersion')} /></div>}
             <ol className={`h-setlist${next ? ' has-next' : ''}`}>
               {next && (
                 <li className="h-r next">
@@ -299,11 +295,11 @@ export const Sessions = ({ mobile }: Tree) => {
             <AttendeeStrip compact={mobile} />
           </div>
           {!mobile && (
-            <aside className="h-ask h-r" style={d(200)} aria-label={contact.title}>
-              <h3>{contact.title}</h3>
-              <p>{contact.sub}</p>
-              <div className="h-acts"><Btn label={email?.action ?? contact.title} tone="accent" onClick={ask} /></div>
-              <div className="h-acts"><Btn label={contact.links[contact.links.length - 1].action} tone="outline" href={site.links.calendly} external /></div>
+            <aside className="mr-session-card" aria-label={routeCopy.immersion}>
+              <img src="/media/home/stage.jpg" loading="lazy" alt="" />
+              <div><h3>{routeCopy.sessionInvite}</h3><p>{routeCopy.sessionLine}</p>
+                <Btn label={routeCopy.contact} tone="white" onClick={() => enquire('immersion')} />
+              </div>
             </aside>
           )}
         </div>

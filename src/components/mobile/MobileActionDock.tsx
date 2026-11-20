@@ -1,12 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { nav } from '@/content';
+import { useAsk } from '@/components/home/EnquiryDialog';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const sections = nav.dockItems;
-
-interface MobileActionDockProps {
-  onOpenContact: () => void;
-}
 
 /**
  * One row, five slots, nothing scrolls.
@@ -17,7 +14,8 @@ interface MobileActionDockProps {
  * restating headings the page shows anyway. Contact is the fifth slot and the
  * accent one, because the site has exactly one ask.
  */
-const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
+const MobileActionDock = () => {
+  const ask = useAsk();
   const [activeId, setActiveId] = useState<string>(sections[0].id);
   const barRef = useRef<HTMLDivElement>(null);
 
@@ -96,7 +94,7 @@ const MobileActionDock = ({ onOpenContact }: MobileActionDockProps) => {
 
         <button
           type="button"
-          onClick={onOpenContact}
+          onClick={() => ask()}
           aria-label={nav.contactAria}
           className="mobile-tap-spring flex flex-col items-center gap-0.5 rounded-xl py-1.5 text-[10px] font-semibold text-primary"
         >

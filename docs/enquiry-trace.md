@@ -14,6 +14,14 @@ address and a publishable key in the public script for most of an hour on
 and the build fails if its script mentions a database, a key prefix, a JWT or a
 server variable (`scripts/public-script-guard.ts`, run by `vite.config.ts`).
 
+## Contact form delivery
+
+The desktop header, mobile dock, immersion session and longer-term engagement open the same form. The speaking card also asks for the event and date. A submission is addressed to the published mailbox in `src/content/enquiry-address.json`.
+
+`GET /api/contact` reports whether this deployment can send. With a production sending-only `RESEND_API_KEY` for the verified domain, a visitor's explicit submission posts to `/api/contact`. The server sets the recipient and uses the visitor's address for replies. It acknowledges the submission after the provider returns a message ID. Retries of the same draft use the same idempotency key. A provider receipt confirms acceptance for delivery.
+
+Without a configured sender, the button reads **Open in email**. It opens the visitor's addressed draft and tells them to press Send in their mail app. A provider error leaves the form and draft available. The separate enquiry trace below records intent and booking outcomes.
+
 ## The path
 
 1. **The page** (`src/lib/enquiry.ts`) posts a small JSON row, same origin, to

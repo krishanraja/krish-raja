@@ -25,6 +25,7 @@
  */
 
 const ALLOWED_ORIGINS = new Set(['https://www.krishraja.com', 'https://krishraja.com']);
+export const isSiteOrigin = origin => ALLOWED_ORIGINS.has(String(origin ?? ''));
 const KINDS = new Set(['enquiry', 'email', 'call']);
 const MAX_BODY = 8000;
 const WINDOW_MS = 60 * 60 * 1000;
@@ -82,7 +83,7 @@ export function createLimiter(now = () => Date.now()) {
   };
 }
 
-const clientIp = (req) =>
+export const clientIp = (req) =>
   String(req.headers['x-forwarded-for'] ?? '').split(',')[0].trim() || String(req.headers['x-real-ip'] ?? '') || 'unknown';
 
 const parseBody = (req) => {
@@ -109,7 +110,7 @@ export function createHandler({ env = process.env, fetchImpl = fetch, now } = {}
       res.setHeader('Allow', 'POST');
       return res.status(405).end();
     }
-    if (!ALLOWED_ORIGINS.has(String(req.headers.origin ?? ''))) return res.status(403).end();
+    if (!isSiteOrigin(req.headers.origin)) return res.status(403).end();
 
     let row;
     try {

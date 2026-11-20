@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { home, nav } from '@/content';
-import { useAsk } from '@/components/home/shared';
+import { useAsk } from '@/components/home/EnquiryDialog';
 
 const Navigation = () => {
   const ask = useAsk();
@@ -45,14 +45,14 @@ const Navigation = () => {
                   {item.label}
                 </a>
               ))}
-              <button type="button" onClick={ask} className="ml-4 inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03]">
+              <button type="button" onClick={() => ask()} className="ml-4 inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03]">
                 {nav.ctaLabel}
               </button>
             </div>
 
             {/* Below lg: the primary CTA only. Section nav lives in the action dock. */}
             <div className="lg:hidden flex items-center">
-              <button type="button" onClick={ask} className="inline-flex h-10 items-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground">
+              <button type="button" onClick={() => ask()} className="inline-flex h-10 items-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground">
                 {nav.ctaLabel}
               </button>
             </div>

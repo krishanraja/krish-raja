@@ -18,6 +18,7 @@
     "test:watch": "vitest",
     "preview": "vite preview",
     "mobile:check": "node scripts/mobile-check.mjs",
+    "hero:check": "node scripts/hero-check.mjs",
     "typecheck": "tsc -b --noEmit",
     "links:check": "tsx scripts/links-check.mjs"
   },

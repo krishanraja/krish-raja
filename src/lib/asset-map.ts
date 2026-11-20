@@ -10,15 +10,12 @@ import nine from '@/assets/nine_logo.png';
 import singtel from '@/assets/singtel_logo.png';
 import bbc from '@/assets/bbc_logo.png';
 import microsoft from '@/assets/microsoft_logo.png';
-import krishHeadshot from '@/assets/krish-headshot.jpg';
 
 const assets: Record<string, string> = {
   nine,
   singtel,
   bbc,
   microsoft,
-
-  'krish-headshot': krishHeadshot,
 };
 
 /** Look up a content asset key. Returns undefined for an unknown key. */

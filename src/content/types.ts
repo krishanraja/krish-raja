@@ -59,9 +59,6 @@ export interface HeroContent {
   // headings got there. The counts are still on the page, in the operating
   // system section, and in the meta and llms.txt prose.
   readonly h1: string;
-  readonly primaryCta: string;
-  readonly secondaryCta: string;
-  readonly secondaryHref: string;
   readonly trustLabel: string;
   readonly trustLogos: readonly TrustLogo[];
 }
@@ -89,6 +86,7 @@ export interface HeroFit {
 }
 
 export interface OperateContent extends SectionHeader {
+  readonly titleParts: readonly [string, string];
   /** `sub` is this, joined into one sentence, for surfaces that want prose. */
   readonly fit: HeroFit;
   readonly pillars: readonly Pillar[];
@@ -540,7 +538,6 @@ export interface HomeContent {
   readonly swipeHint: string;
   readonly brainAria: string;
   /** Under the name on the brain card. */
-  readonly brainCaption: string;
   readonly brainPartsAria: string;
   /** Which appearances get the wall's filters, in order. */
   readonly wallFilters: readonly { readonly id: AppearanceKind | 'all'; readonly label: string }[];
