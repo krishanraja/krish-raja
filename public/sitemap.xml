@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.krishraja.com/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -16,4 +16,6 @@
       <image:title>Krish Raja</image:title>
     </image:image>
   </url>
+  <url><loc>https://www.krishraja.com/executive-profile</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://www.krishraja.com/ai-keynote-speaker</loc><lastmod>2026-11-20</lastmod></url>
 </urlset>

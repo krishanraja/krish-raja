@@ -1,4 +1,5 @@
 import type { NavContent } from './types';
+import { discoveryProfiles } from './discovery';
 
 export const nav: NavContent = {
   skipLink: 'Skip to main content',
@@ -17,6 +18,7 @@ export const nav: NavContent = {
   ],
 
   footerItems: [
+    ...discoveryProfiles.map(profile => ({ label: profile.label, href: profile.path })),
     { label: 'How I operate', href: '#how-i-operate' },
     { label: 'Mindmake', href: '#build' },
     { label: 'The thinking', href: '#the-thinking' },

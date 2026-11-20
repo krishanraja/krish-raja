@@ -13,9 +13,11 @@
  * The content layer is pure data with no React or asset imports, which is why
  * this script can import it directly under tsx.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 
 import { site } from '../src/content/site.js';
 import { receipts } from '../src/content/receipts.js';
@@ -27,6 +29,8 @@ import { lessons } from '../src/content/lessons.js';
 import { home } from '../src/content/home.js';
 import { heroRoutes, routeCopy } from '../src/content/hero-routes.js';
 import { deck } from '../src/content/deck.js';
+import { discoveryProfiles, type DiscoveryProfile } from '../src/content/discovery.js';
+import DiscoveryDocument from '../src/components/DiscoveryDocument.js';
 import { isAnnounced, longDate } from '../src/lib/upcoming.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -46,11 +50,13 @@ const RETIRED_HEADLINES = resolve(root, 'project-documentation/retired-headlines
 const esc = (v: string) =>
   v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-const metaBlock = (): string => {
-  const title = esc(site.title);
-  const description = esc(site.description);
-  const alt = esc(site.ogImageAlt);
-  const image = esc(site.ogImage);
+const metaBlock = (profile?: DiscoveryProfile): string => {
+  const title = esc(profile?.title ?? site.title);
+  const description = esc(profile?.description ?? site.description);
+  const url = profile ? site.url + profile.path : site.canonical;
+  const alt = esc(profile?.image.alt ?? site.ogImageAlt);
+  const image = esc(profile ? site.url + profile.image.path : site.ogImage);
+  const personPage = profile?.intent !== 'speaking';
   return [
     `    <meta name="theme-color" content="${site.themeColor}" />`,
     `    <meta name="msapplication-TileColor" content="${site.themeColor}" />`,
@@ -65,25 +71,27 @@ const metaBlock = (): string => {
     `    <meta name="bingbot" content="index, follow" />`,
     ``,
     `    <!-- Open Graph: LinkedIn, Slack, WhatsApp, iMessage, Facebook -->`,
-    `    <meta property="og:type" content="profile" />`,
-    `    <meta property="og:url" content="${site.canonical}" />`,
+    `    <meta property="og:type" content="${personPage ? 'profile' : 'website'}" />`,
+    `    <meta property="og:url" content="${url}" />`,
     `    <meta property="og:title" content="${title}" />`,
     `    <meta property="og:description" content="${description}" />`,
     `    <meta property="og:image" content="${image}" />`,
     `    <meta property="og:image:secure_url" content="${image}" />`,
-    `    <meta property="og:image:type" content="image/png" />`,
-    `    <meta property="og:image:width" content="1200" />`,
-    `    <meta property="og:image:height" content="630" />`,
+    `    <meta property="og:image:type" content="${profile ? 'image/jpeg' : 'image/png'}" />`,
+    `    <meta property="og:image:width" content="${profile?.image.width ?? 1200}" />`,
+    `    <meta property="og:image:height" content="${profile?.image.height ?? 630}" />`,
     `    <meta property="og:image:alt" content="${alt}" />`,
     `    <meta property="og:site_name" content="${esc(site.name)}" />`,
     `    <meta property="og:locale" content="${site.locale}" />`,
-    `    <meta property="profile:first_name" content="${esc(site.firstName)}" />`,
-    `    <meta property="profile:last_name" content="${esc(site.lastName)}" />`,
-    `    <meta property="profile:username" content="${esc(site.username)}" />`,
+    ...(personPage ? [
+      `    <meta property="profile:first_name" content="${esc(site.firstName)}" />`,
+      `    <meta property="profile:last_name" content="${esc(site.lastName)}" />`,
+      `    <meta property="profile:username" content="${esc(site.username)}" />`,
+    ] : []),
     ``,
     `    <!-- X / Twitter -->`,
     `    <meta name="twitter:card" content="summary_large_image" />`,
-    `    <meta name="twitter:url" content="${site.canonical}" />`,
+    `    <meta name="twitter:url" content="${url}" />`,
     `    <meta name="twitter:title" content="${title}" />`,
     `    <meta name="twitter:description" content="${description}" />`,
     `    <meta name="twitter:image" content="${image}" />`,
@@ -92,7 +100,7 @@ const metaBlock = (): string => {
     `    <meta name="twitter:creator" content="${esc(site.twitterHandle)}" />`,
     ``,
     `    <!-- Canonical URL -->`,
-    `    <link rel="canonical" href="${site.canonical}" />`,
+    `    <link rel="canonical" href="${url}" />`,
     ``,
     `    <!-- Identity: every profile that is verifiably his -->`,
     ...site.sameAs.map((u) => `    <link rel="me" href="${esc(u)}" />`),
@@ -134,21 +142,33 @@ const channelSeries = channel.series.map((x) => `${x.name} (${x.day})`).join(', 
 const withChannel = (w: { name: string; qualifier?: string; detail: string }) =>
   w.qualifier === site.links.content ? { ...w, detail: `${w.detail} ${channel.sub} ${channelSeries}.` } : w;
 
-const graphLd = () => ({
+const graphLd = (profile?: DiscoveryProfile) => {
+  const url = profile ? site.url + profile.path : site.canonical;
+  const speaking = profile?.intent === 'speaking';
+  const citations = profile ? [profile.sample.href, ...profile.entries.map(entry => entry.link?.href), profile.aside.link.href]
+    .filter((href): href is string => !!href && href.startsWith('https://')) : [];
+  return {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'ProfilePage',
-      '@id': `${site.canonical}#page`,
-      url: site.canonical,
-      name: site.title,
-      description: site.description,
+      '@type': speaking ? 'WebPage' : 'ProfilePage',
+      '@id': `${url}#page`,
+      url,
+      name: profile?.title ?? site.title,
+      description: profile?.description ?? site.description,
       inLanguage: site.language,
-      dateModified: site.updated,
+      dateModified: profile?.updated ?? site.updated,
       isPartOf: { '@id': `${site.canonical}#website` },
-      mainEntity: { '@id': PERSON },
-      primaryImageOfPage: { '@type': 'ImageObject', url: site.ogImage, width: 1200, height: 630 },
+      mainEntity: { '@id': speaking ? url + '#keynotes' : PERSON },
+      ...(profile ? { about: { '@id': PERSON }, citation: citations } : {}),
+      primaryImageOfPage: profile
+        ? { '@type': 'ImageObject', url: site.url + profile.image.path, width: profile.image.width, height: profile.image.height }
+        : { '@type': 'ImageObject', url: site.ogImage, width: 1200, height: 630 },
     },
+    ...(speaking ? [{
+      '@type': 'Service', '@id': url + '#keynotes', url, name: 'AI keynotes by Krish Raja',
+      serviceType: 'Keynote speaking', provider: { '@id': PERSON },
+    }] : []),
     {
       '@type': 'Person',
       '@id': PERSON,
@@ -173,7 +193,7 @@ const graphLd = () => ({
         '@type': isUni(name) ? 'CollegeOrUniversity' : 'Organization',
         name,
       })),
-      subjectOf: evidence.map((a) => ({
+      subjectOf: (profile ? evidence.filter(a => citations.includes(a.href!)) : evidence).map((a) => ({
         '@type': 'CreativeWork',
         name: a.title,
         url: a.href,
@@ -189,7 +209,7 @@ const graphLd = () => ({
       description: 'A capped advisory practice founded by Krish Raja.',
       founder: { '@id': PERSON },
     },
-    ...(upcoming
+    ...(upcoming && !profile
       ? [
           {
             '@type': 'EducationEvent',
@@ -212,11 +232,13 @@ const graphLd = () => ({
       url: site.url,
       name: site.name,
       description: site.websiteDescription,
+      hasPart: discoveryProfiles.map(p => ({ '@id': site.url + p.path + '#page' })),
       publisher: { '@id': PERSON },
       inLanguage: site.language,
     },
   ],
-});
+  };
+};
 
 const indent = (json: unknown, spaces: number) =>
   JSON.stringify(json, null, 2)
@@ -224,11 +246,11 @@ const indent = (json: unknown, spaces: number) =>
     .map((line) => ' '.repeat(spaces) + line)
     .join('\n');
 
-const jsonLdBlock = (): string =>
+const jsonLdBlock = (profile?: DiscoveryProfile): string =>
   [
     '    <!-- JSON-LD: ProfilePage, Person, Mindmake and WebSite, linked by @id -->',
     '    <script type="application/ld+json">',
-    indent(graphLd(), 4),
+    indent(graphLd(profile), 4),
     '    </script>',
   ].join('\n');
 
@@ -253,6 +275,9 @@ const prerenderBlock = (): string => {
     '      <div class="prerender">',
     `        <h1>${esc(site.name)}</h1>`,
     `        <p>${esc(site.spine)}. ${esc(site.description)}</p>`,
+    '        <nav aria-label="Professional profiles">',
+    ...discoveryProfiles.map(p => `          ${a(p.path, p.label)}`),
+    '        </nav>',
     `        <h2>${esc(routeCopy.region)}</h2>`,
     '        <ul>',
     ...heroDestinations.map(route => li(a(route.url, route.title))),
@@ -313,6 +338,8 @@ const llmsTxt = (): string => {
     `## Who is ${site.name}`,
     '',
     site.bio,
+    '',
+    ...discoveryProfiles.map(p => `- [${p.label}](${site.url}${p.path}). ${p.description}`),
     '',
     `- Headline: ${site.spine}`,
     `- Founder of Mindmake (${site.links.mindmake})`,
@@ -382,6 +409,7 @@ const proofJson = (): string => {
     version: 1,
     updated: site.updated,
     source: `${site.url}/proof.json`,
+    profiles: discoveryProfiles.map(p => ({ name: p.label, url: site.url + p.path })),
     person: {
       name: site.name,
       headline: site.spine,
@@ -499,6 +527,7 @@ const sitemapXml = (): string =>
     `      <image:title>${site.name}</image:title>`,
     '    </image:image>',
     '  </url>',
+    ...discoveryProfiles.map(p => `  <url><loc>${site.url}${p.path}</loc><lastmod>${p.updated}</lastmod></url>`),
     '</urlset>',
     '',
   ].join('\n');
@@ -528,27 +557,33 @@ export interface Artifact {
  * Exported so the consistency suite can check for drift without shelling out.
  */
 export const artifacts = (): Artifact[] => {
+  const readText = (path: string) => readFileSync(path, 'utf8').replace(/\r\n/g, '\n');
   const readOrNull = (p: string) => {
     try {
-      return readFileSync(p, 'utf8');
+      return readText(p);
     } catch {
       return null;
     }
   };
 
-  const indexHtml = readFileSync(INDEX, 'utf8');
+  const indexHtml = readText(INDEX);
+  function documentHtml(body: string, profile?: DiscoveryProfile) {
+    const head = replaceBetween(replaceBetween(indexHtml, 'meta', metaBlock(profile)), 'jsonld', jsonLdBlock(profile));
+    return replaceBetween(head, 'prerender', body);
+  }
 
   return [
     {
       path: INDEX,
       label: 'index.html',
-      expected: replaceBetween(
-        replaceBetween(replaceBetween(indexHtml, 'meta', metaBlock()), 'jsonld', jsonLdBlock()),
-        'prerender',
-        prerenderBlock(),
-      ),
+      expected: documentHtml(prerenderBlock()),
       actual: indexHtml,
     },
+    ...discoveryProfiles.map(profile => {
+      const label = profile.path.slice(1) + '/index.html';
+      const path = resolve(root, label);
+      return { path, label, expected: documentHtml(renderToStaticMarkup(createElement(DiscoveryDocument, { profile })), profile), actual: readOrNull(path) };
+    }),
     { path: LLMS, label: 'public/llms.txt', expected: llmsTxt(), actual: readOrNull(LLMS) },
     { path: SITEMAP, label: 'public/sitemap.xml', expected: sitemapXml(), actual: readOrNull(SITEMAP) },
     { path: MANIFEST, label: 'public/site.webmanifest', expected: webmanifest(), actual: readOrNull(MANIFEST) },
@@ -575,6 +610,7 @@ if (isEntry) {
     console.log('all generated files are in sync with src/content/');
   } else {
     for (const a of stale) {
+      mkdirSync(dirname(a.path), { recursive: true });
       writeFileSync(a.path, a.expected, 'utf8');
       console.log(`wrote ${a.label}`);
     }

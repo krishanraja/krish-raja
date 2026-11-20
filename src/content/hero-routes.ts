@@ -37,6 +37,7 @@ export const routeCopy = {
   general: 'Get in touch',
   immersion: 'AI Immersion Session',
   ongoing: 'Longer-term engagement',
+  leadership: 'Leadership or advisory enquiry',
   mailAction: 'Open in email',
   mailHint: 'Press Send in your email app to finish.',
   sending: 'Sending…',

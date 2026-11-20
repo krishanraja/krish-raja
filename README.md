@@ -83,6 +83,10 @@ crawler copy of the page inside `#root`, `public/llms.txt`, `public/sitemap.xml`
 `scripts/generate-static.mts`, which runs automatically before every build. Do not
 hand-edit them; your changes will be overwritten.
 
+The same generator renders the executive profile at `/executive-profile` and the speaking page at
+`/ai-keynote-speaker`. Edit `src/content/discovery.ts` for their copy, evidence links and modification
+dates. Both pages have their own canonical address in the sitemap and share the site's person identity.
+
 The favicon, app icons and the 1200x630 share card (`public/og-image.png`) are rendered
 from the bitmoji by `npm run brand`. After changing the card, bump the `?v=` on
 `site.ogImage` so LinkedIn and WhatsApp fetch the new one.

@@ -28,8 +28,8 @@ else, on mindmake.co.
 
 - Vite 5 + React 18 + TypeScript
 - Tailwind CSS 3 with shadcn/ui primitives in `src/components/ui/`
-- One page. The other routes are the short section addresses (`/thinking` and the rest,
-  below), which open the same page, and a 404
+- The homepage has short section addresses (`/thinking` and the rest, below). The
+  executive profile and AI keynote speaker page have their own indexable HTML and enquiry flows.
 - Two component trees: desktop (`src/components/`) and mobile (`src/components/mobile/`),
   swapped whole by `useIsMobileResolved()` in `src/pages/Index.tsx`
 

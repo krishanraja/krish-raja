@@ -4,7 +4,7 @@ import { home, site } from '@/content';
 import { routeCopy as copy } from '@/content/hero-routes';
 import { recordEnquiry } from '@/lib/enquiry';
 
-type Intent = 'general' | 'speaking' | 'immersion' | 'ongoing';
+type Intent = 'general' | 'speaking' | 'immersion' | 'ongoing' | 'leadership';
 type Draft = { name: string; email: string; event: string; when: string; message: string; requestId: string };
 const empty: Draft = { name: '', email: '', event: '', when: '', message: '', requestId: '' };
 const AskContext = createContext<(intent?: Intent) => void>(() => {});
@@ -125,7 +125,7 @@ function EnquiryDialog({ intent, initial, remember, clear, close, otherWays }: {
         {status === 'mail' && <p className="mr-emailto">{copy.mailHint} <a href={mailto}>{copy.retryMail}</a>.</p>}
         <button type="button" className="h-btn h-btn--dark" onClick={() => dialog.current?.close()}>{copy.close}<span className="h-badge"><ArrowRight aria-hidden /></span></button>
       </> : <>
-        {(intent === 'immersion' || intent === 'ongoing') && <p className="mr-context">{copy[intent]}</p>}
+        {intent !== 'general' && !speaking && <p className="mr-context">{copy[intent]}</p>}
         <h2 id="enquiry-heading">{speaking ? ask.title : copy.contact}</h2>
         <p className="mr-emailto">{copy.addressLabel} <strong>{site.email}</strong></p>
         <form onSubmit={submit}>

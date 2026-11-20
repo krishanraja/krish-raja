@@ -124,6 +124,21 @@ export function useForcedDesktopZoom() {
   return zoom
 }
 
+/** Restore phone-scale text when a handset requests the desktop site. */
+export function usePhoneDocumentScale(mobile: boolean) {
+  const zoom = useForcedDesktopZoom()
+  React.useEffect(() => {
+    if (!mobile || zoom <= 1.01) return
+    const root = document.documentElement
+    root.style.zoom = String(zoom)
+    root.dataset.forcedDesktop = 'true'
+    return () => {
+      root.style.removeProperty('zoom')
+      delete root.dataset.forcedDesktop
+    }
+  }, [mobile, zoom])
+}
+
 /**
  * The height of the visible screen, in the layout pixels the mobile tree is
  * laid out in. Zero until a window exists.

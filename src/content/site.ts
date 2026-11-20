@@ -87,7 +87,7 @@ export const site: SiteContent = {
   language: 'en-GB',
   websiteDescription:
     'Personal website of Krish Raja, AI-native commercial strategy leader, keynote speaker and founder of Mindmake',
-  updated: '2026-11-13',
+  updated: '2026-11-20',
   // The hero's own off-white, so a phone's address bar matches the page
   // instead of turning blue.
   themeColor: '#fbfaf8',

@@ -3,6 +3,7 @@ import { Award, MapPin } from 'lucide-react';
 import MobileSection from './MobileSection';
 import { Badge } from '@/components/ui/badge';
 import { receipts } from '@/content';
+import { executiveProfile } from '@/content/discovery';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 type Tab = 'receipts' | 'journey' | 'credentials';
@@ -60,7 +61,7 @@ const MobileReceipts = () => {
               rather than need a tab of its own. */}
           {receipts.engagements.map((e) => (
             <article key={e.name} className="mt-4 rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
-              <h3 className="text-sm font-semibold text-foreground">{e.name}</h3>
+              <h3 className="text-sm font-semibold text-foreground"><a className="inline-flex min-h-11 items-center underline underline-offset-4" href={executiveProfile.path}>{e.name}</a></h3>
               <p className="text-[11px] font-medium text-primary/80 mb-1.5">{e.role}</p>
               <p className="text-[12.5px] leading-snug text-muted-foreground">{e.description}</p>
             </article>

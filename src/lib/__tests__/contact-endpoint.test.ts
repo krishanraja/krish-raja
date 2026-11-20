@@ -21,6 +21,15 @@ function setup(environment = env, result = { ok: true, json: async () => ({ id: 
 }
 
 describe('the enquiry mail handoff', () => {
+  it.each([
+    ['leadership', 'Leadership or advisory enquiry'],
+    ['speaking', 'Speaking enquiry: Leadership conference'],
+  ])('preserves the %s enquiry subject and reply address', async (intent, subject) => {
+    const { call, fetchImpl } = setup();
+    expect((await call({ ...body, intent, event: 'Leadership conference' })).statusCode).toBe(202);
+    const message = JSON.parse(String(fetchImpl.mock.calls[0][1].body));
+    expect(message).toMatchObject({ subject, reply_to: body.email, to: [site.email] });
+  });
   it('sends only to the published recipient and passes the visitor as reply-to', async () => {
     const { call, fetchImpl } = setup();
     expect(await call({ ...body, to: ['elsewhere@example.test'], subject: 'untrusted' })).toMatchObject({ statusCode:202, data:{accepted:true} });

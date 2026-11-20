@@ -12,6 +12,7 @@ import { isAhead, shortDate } from '@/lib/upcoming';
 import { HeroRoutes } from './HeroRoutes';
 import { routeCopy } from '@/content/hero-routes';
 import { PortraitStage } from './PortraitStage';
+import { speakerProfile } from '@/content/discovery';
 
 type Tree = { mobile: boolean };
 const d = (ms: number): CSSProperties => ({ ['--d' as string]: `${ms}ms` });
@@ -102,7 +103,9 @@ export const WaysIn = ({ mobile }: Tree) => {
               <div className="body">
                 <span className="h-label">{o.label}</span>
                 <h3>{o.title}</h3>
-                {o.line && <p className="line">{o.line}</p>}
+                {o.line && <p className="line">{o.id === 'speaking'
+                  ? <a className="inline-flex min-h-11 items-center underline underline-offset-4" href={speakerProfile.path}>AI keynote talks and speaking footage</a>
+                  : o.line}</p>}
                 <div className="h-acts">
                   {o.href
                     ? <Btn label={o.cta} href={o.href} external tone={o.id === 'channel' ? 'mint' : 'dark'} />

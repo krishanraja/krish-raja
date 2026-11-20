@@ -1,10 +1,21 @@
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig, type Connect, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { sectionPages } from "./scripts/section-pages";
+import { discoveryProfiles } from "./src/content/discovery";
 import { findForbidden } from "./scripts/public-script-guard";
 import { componentTagger } from "lovable-tagger";
+
+// In dev and preview, Vite's SPA fallback otherwise serves the homepage head
+// at an extensionless address even though its directory has its own HTML.
+const serveProfileHtml: Connect.NextHandleFunction = (req, _res, next) => {
+  const pathname = req.url?.split('?', 1)[0];
+  if (pathname && discoveryProfiles.some(p => p.path === pathname)) {
+    req.url = pathname + '/index.html' + req.url!.slice(pathname.length);
+  }
+  next();
+};
 
 /**
  * Keeps the masters in `public/files/` out of the deployed build.
@@ -70,6 +81,11 @@ const publicScriptGuard = (): Plugin => ({
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  build: {
+    rollupOptions: {
+      input: ['index.html', ...discoveryProfiles.map(p => p.path.slice(1) + '/index.html')],
+    },
+  },
   server: {
     allowedHosts: [".vercel.run"],
     host: "::",
@@ -77,6 +93,11 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    {
+      name: 'profile-html-addresses',
+      configureServer(server) { server.middlewares.use(serveProfileHtml); },
+      configurePreviewServer(server) { server.middlewares.use(serveProfileHtml); },
+    } satisfies Plugin,
     mode === 'development' &&
     componentTagger(),
     keepMastersOutOfTheBuild(),

@@ -7,6 +7,8 @@ import { sectionIdForPath } from "@/hooks/use-land-on-section";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Discovery from "./pages/Discovery";
+import { discoveryProfiles } from "./content/discovery";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            {discoveryProfiles.map(profile => <Route key={profile.path} path={profile.path} element={<Discovery profile={profile} />} />)}
             <Route path="/:section" element={<SectionAddress />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

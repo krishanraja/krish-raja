@@ -6,6 +6,7 @@ import { MobileCarousel } from '@/components/ui/mobile-carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { receipts } from '@/content';
+import { executiveProfile } from '@/content/discovery';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
 const ProofPoints = () => {
@@ -144,7 +145,7 @@ const ProofPoints = () => {
 
             {engagements.length > 0 && (
               <div className="mb-12">
-                <h3 className="headline-md mb-8">{receipts.engagementsHeading}</h3>
+                <h3 className="headline-md mb-8"><a className="underline decoration-1 underline-offset-4" href={executiveProfile.path}>{receipts.engagementsHeading}</a></h3>
                 {/* Full width at one entry. Two named engagements became one
                     anonymized one on 12 Aug 2026, and a half-width card with
                     nothing beside it reads as a missing card. */}

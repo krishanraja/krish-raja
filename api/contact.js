@@ -4,6 +4,7 @@ import { clientIp, createLimiter, isSiteOrigin } from './enquiry.js';
 const topics = {
   general: 'Get in touch', immersion: 'AI Immersion Session',
   ongoing: 'Longer-term engagement', speaking: 'Speaking enquiry',
+  leadership: 'Leadership or advisory enquiry',
 };
 const uuid = /^[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12}$/i;
 const email = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;

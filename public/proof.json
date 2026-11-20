@@ -1,8 +1,18 @@
 {
   "schema": "krishraja.com/proof",
   "version": 1,
-  "updated": "2026-11-13",
+  "updated": "2026-11-20",
   "source": "https://www.krishraja.com/proof.json",
+  "profiles": [
+    {
+      "name": "Executive profile",
+      "url": "https://www.krishraja.com/executive-profile"
+    },
+    {
+      "name": "AI keynote speaker",
+      "url": "https://www.krishraja.com/ai-keynote-speaker"
+    }
+  ],
   "person": {
     "name": "Krish Raja",
     "headline": "AI-Native Commercial Strategy Leader",
