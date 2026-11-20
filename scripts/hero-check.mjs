@@ -31,6 +31,22 @@ async function checkLead(page, label) {
   assert(lines.at(-1).endsWith("I'm here to help."), label + ' split the final phrase: ' + lines.join(' | '));
 }
 
+async function checkChannelArtwork(page, label) {
+  const photo = page.locator('#build [data-id="channel"] .head .bg');
+  await photo.scrollIntoViewIfNeeded();
+  const faceInFrame = await photo.evaluate(async image => {
+    await image.decode();
+    const { width, height } = image.getBoundingClientRect();
+    const style = getComputedStyle(image);
+    const scale = style.objectFit === 'contain' ? Math.min : Math.max;
+    const paintedWidth = image.naturalWidth * scale(width / image.naturalWidth, height / image.naturalHeight);
+    const left = (width - paintedWidth) * parseFloat(style.objectPosition) / 100;
+    // The entire head spans 74.7% to 87.1% of the original panoramic photograph.
+    return left + paintedWidth * .747 >= 0 && left + paintedWidth * .871 <= width;
+  });
+  assert(faceInFrame, label + ' cropped the robot’s head out of the Make Your Mind Up card');
+}
+
 // Sample the actual animated mask halfway through each turn. Checking the end states
 // alone would also pass a return button that jumped straight back to the portrait.
 const sampleFold = stage => stage.evaluate(async element => {
@@ -129,6 +145,7 @@ try {
       await page.waitForFunction(() => document.querySelector('dialog button[type=submit]')?.disabled === false);
       assert.equal(await submit.innerText(), direct ? 'Send enquiry' : 'Open in email');
       await page.keyboard.press('Escape');
+      await checkChannelArtwork(page, width + 'px');
       console.log(width + '×' + height + ' hero passed');
     } finally {
       await context.close();

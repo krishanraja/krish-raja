@@ -151,7 +151,8 @@
 .h-opt .head .mk img { max-width: 100%; max-height: 100%; width: auto; height: auto; }
 .h-opt[data-id="speaking"] .bg { object-position: 60% 35%; }
 .h-opt[data-id="mindmake"] .bg { object-position: 50% 70%; }
-.h-opt[data-id="channel"] .bg { object-position: 50% 100%; }
+/* The robot's head is near the right edge of the panoramic channel photo. */
+.h-opt[data-id="channel"] .bg { object-position: 88% 100%; }
 .h-opt .body { display: flex; flex-direction: column; gap: .75rem; padding: .25rem 1.5rem 1.5rem; flex: 1; }
 .home--m .h-opt .body { padding: .25rem 1rem 1.1rem; }
 .h-opt h3 { font-size: 1.625rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
