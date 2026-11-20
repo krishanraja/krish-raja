@@ -28,6 +28,7 @@ Event organisers and leaders checking who Krish is. It sends the right visitor t
 
 Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note folds into this file from `now-notes/` on main (`.github/workflows/closeout-fold.yml`); the notes before 14 Nov are kept verbatim in `docs/history/now-notes/`.
 
+- The hero selector now leads with Media, Immersion, Sprint and Ongoing, with Audit and Modules at the end; the AI learning-loop copy now says "my AIs". (2026-11-20)
 - Built an editorial reassurance bridge that groups the pace-of-change message with the rotating engagement routes across mobile and desktop. (2026-11-20)
 - The mobile hero lead is larger and split into two deliberate lines. The engagement selector now uses clickable preview tabs, automatic progress wipes and no separate transport controls. The card says AI Judgement Audit, and the five leader qualities stay on two rows at 320px without overflow. Typecheck, 204 tests, the production build, eleven hero widths and the 79-check mobile suite pass. (2026-11-20)
 - The executive profile and AI keynote speaker page are live on krishraja.com. Both return their own HTML, canonical address and search metadata, and appear in the public sitemap. Production browser checks covered both enquiry forms on phone and desktop with the final send intercepted. (2026-11-20)
@@ -53,7 +54,7 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 
 ## What is next and what is waiting on Krish
 
-- Next (2026-11-20): Read back the published hero at mobile and desktop widths after the main deployment completes.
+- Next (2026-11-20): Read back the published route order and automatic rotation after the main deployment completes.
 - Mark confirmed bookings `booked` in `public.site_enquiries` (or tell Control Center to), so the North Star number is real.
 - Paste the 3 Dec Lightning Lesson's Maven link, title and line into `lessons.upcoming` once it exists in Maven.
 - krishraja.ai and www.krishraja.ai redirect permanently (308) to www.krishraja.com, keeping the path, on Vercel since 14 Nov 2026 (Krish moved the domain's nameservers to Vercel; read back that night: `/thinking?x=1` lands on www.krishraja.com with 200). The old copy of the site it served is gone. (2026-11-14)
