@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type FocusEvent, type ReactNode } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, ChevronRight, Pause, Play } from 'lucide-react';
+import { useEffect, useRef, useState, type CSSProperties, type FocusEvent, type ReactNode } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { heroRoutes, routeCopy, type HeroRoute } from '@/content/hero-routes';
 import mediaRobot from '@/assets/hero-media-robot.webp';
 import brainMark from '@/assets/hero-ai-brain.webp';
@@ -33,13 +33,11 @@ function RouteArt({ id }: { id: HeroRoute['id'] }) {
   return <span className={'mr-art mr-photo mr-' + id} aria-hidden="true"><img src={pictures[id]} alt="" /></span>;
 }
 
-function RouteTarget({ route, children, className, onOngoing, onPreview, featured = false }: {
-  route: HeroRoute; children: ReactNode; className: string; onOngoing: () => void; onPreview?: () => void; featured?: boolean;
+function RouteTarget({ route, children, className, onOngoing, featured = false }: {
+  route: HeroRoute; children: ReactNode; className: string; onOngoing: () => void; featured?: boolean;
 }) {
   const props = {
     className, 'aria-label': route.title + ', ' + route.detail, 'data-route': route.id,
-    onFocus: onPreview,
-    onPointerEnter: (event: React.PointerEvent) => { if (event.pointerType === 'mouse') onPreview?.(); },
   };
   if (!route.href) return <button {...props} type="button" aria-haspopup="dialog" onClick={onOngoing}>{children}</button>;
   const external = route.href.startsWith('https:');
@@ -51,8 +49,8 @@ function RouteTarget({ route, children, className, onOngoing, onPreview, feature
 
 export function HeroRoutes({ onOngoing }: { onOngoing: () => void }) {
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [keyboardFocused, setKeyboardFocused] = useState(false);
   const [visible, setVisible] = useState(true);
   const [foreground, setForeground] = useState(!document.hidden);
   const [reduce, setReduce] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -74,32 +72,33 @@ export function HeroRoutes({ onOngoing }: { onOngoing: () => void }) {
   }, []);
 
   useEffect(() => {
-    if (paused || hovered || reduce || !visible || !foreground) return;
+    if (hovered || keyboardFocused || reduce || !visible || !foreground) return;
     const timer = window.setTimeout(() => setCurrent(i => wrap(i + 1)), interval);
     return () => clearTimeout(timer);
-  }, [current, paused, hovered, reduce, visible, foreground]);
+  }, [current, hovered, keyboardFocused, reduce, visible, foreground]);
 
-  function step(delta: number) {
-    const index = wrap(current + delta);
+  function select(index: number) {
     setCurrent(index);
-    setPaused(true);
     setAnnouncement(heroRoutes[index].title + ', ' + heroRoutes[index].detail);
   }
+  function step(delta: number) { select(wrap(current + delta)); }
   function focus(event: FocusEvent<HTMLElement>) {
-    // The transport button handles its own click, including keyboard activation.
-    if ((event.target as HTMLElement).matches(':focus-visible') && !(event.target as HTMLElement).closest('[data-transport="play"]')) setPaused(true);
+    if ((event.target as HTMLElement).matches(':focus-visible')) setKeyboardFocused(true);
   }
   function openOngoing() {
-    setPaused(true);
     onOngoing();
   }
   const Arrow = route.id === 'immersion' ? ArrowDown : route.id === 'ongoing' ? ArrowRight : ArrowUpRight;
-  const stop = reduce || paused;
+  const rotating = !reduce && !hovered && !keyboardFocused && visible && foreground;
   return (
     <section ref={root} className="mr-route" aria-label={routeCopy.region} data-current={route.id}
+      data-rotating={rotating || undefined}
+      style={{ '--mr-interval': interval + 'ms' } as CSSProperties}
       onPointerEnter={e => { if (e.pointerType === 'mouse') setHovered(true); }}
       onPointerLeave={e => { if (e.pointerType === 'mouse') setHovered(false); }}
+      onPointerDownCapture={() => setKeyboardFocused(false)}
       onFocusCapture={focus}
+      onBlurCapture={e => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setKeyboardFocused(false); }}
       onKeyDown={e => {
         if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
         e.preventDefault();
@@ -132,16 +131,12 @@ export function HeroRoutes({ onOngoing }: { onOngoing: () => void }) {
       <div className="mr-lower">
         <nav className="mr-links" aria-label={routeCopy.links}>
           {heroRoutes.map((item, index) =>
-            <RouteTarget key={item.id} route={item} className={'mr-index' + (index === current?' mr-current':'')}
-              onOngoing={openOngoing} onPreview={() => setCurrent(index)}>
+            <button key={item.id} type="button" data-route={item.id} aria-pressed={index === current}
+              className={'mr-index' + (index === current?' mr-current':'')}
+              onClick={() => select(index)} onFocus={() => select(index)}>
               <span>{item.short}</span>
-            </RouteTarget>)}
+            </button>)}
         </nav>
-        <div className="mr-controls">
-          {!reduce && <button type="button" data-transport="play" title={stop?routeCopy.play:routeCopy.pause} aria-label={stop?routeCopy.play:routeCopy.pause}
-            onClick={() => setPaused(p => !p)}>{stop ? <Play aria-hidden="true"/> : <Pause aria-hidden="true"/>}</button>}
-          <button type="button" title={routeCopy.next} aria-label={routeCopy.next} onClick={() => step(1)}><ChevronRight aria-hidden="true"/></button>
-        </div>
       </div>
       <span className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</span>
     </section>

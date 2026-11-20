@@ -36,7 +36,7 @@
 .mr-title { font-weight: 600; font-size: 1.31rem; line-height: 1.16; letter-spacing: -.043em; text-wrap: pretty; }
 .mr-go { flex: none; display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 50%; background: #12120f; color: white; transition: transform .25s ease, background .2s ease; }
 .mr-go svg { width: 1.18rem; height: 1.18rem; stroke-width: 1.75; }
-.mr-lower { display: flex; align-items: stretch; border-top: 1px solid #e8dfd3; padding-inline: .42rem .24rem; background: #fffdf9; }
+.mr-lower { display: flex; align-items: stretch; border-top: 1px solid #e8dfd3; padding-inline: .42rem; background: #fffdf9; }
 .mr-links { display: flex; flex: 1 1 auto; min-width: 0; align-items: stretch; justify-content: space-evenly; }
 .mr-index {
   display: flex; flex: 1 1 auto; align-items: center; justify-content: center; min-height: 44px;
@@ -45,20 +45,14 @@
 }
 .mr-index span { position: relative; padding-block: 5px; }
 .mr-index.mr-current { color: #854119; font-weight: 700; }
-.mr-index.mr-current span::after { content: ''; position:absolute; left:0; right:0; bottom:0; height:2px; border-radius:2px; background:#a45428; }
-.mr-controls { flex: none; position:relative; display:flex; align-items: center; padding-left: .25rem; margin-left: .25rem; }
-.mr-controls::before { content: ''; position: absolute; left: 0; top: 25%; bottom: 25%; width: 1px; background: #e6ddd1; }
-.mr-controls button {
-  display: grid; place-items: center; width: 2.75rem; height: 2.75rem; color: #51473d;
-  background: transparent; border: 0; border-radius: .55rem; cursor: pointer;
-}
-.mr-controls svg { width: .95rem; height: .95rem; stroke-width: 2; }
-.mr-controls button:first-child svg.lucide-pause { fill: currentColor; width: .8rem; }
+.mr-index.mr-current span::after { content: ''; position:absolute; left:0; right:0; bottom:0; height:2px; border-radius:2px; background:#a45428; transform:scaleX(0); transform-origin:left; }
+.mr-route[data-rotating] .mr-index.mr-current span::after { animation:mr-progress var(--mr-interval) linear forwards; }
+@keyframes mr-progress { to { transform:scaleX(1); } }
 .mr-route :focus-visible { outline: 2px solid #884419; outline-offset: -3px; }
 .mr-route .mr-mainlink:focus-visible { outline-offset: -4px; border-radius: 1rem 1rem 0 0; }
 @media (hover:hover) and (pointer:fine) {
   .mr-mainlink:hover .mr-go { background: #753d20; transform: translate(1px,-1px); }
-  .mr-index:hover, .mr-controls button:hover { background: #f5efe5; color: #783b1e; }
+  .mr-index:hover { background: #f5efe5; color: #783b1e; }
 }
 @container (max-width: 28.5rem) {
   .mr-mainlink { height: 5.25rem; gap: .55rem; padding: .6rem .75rem .6rem .6rem; }
@@ -66,12 +60,9 @@
   .mr-art { width: 3.22rem; height: 3.22rem; flex-basis: 3.22rem; }
   .mr-slide { gap: .65rem; }
   .mr-go { width: 2.2rem; height: 2.2rem; }
-  .mr-lower { padding-inline: .55rem .25rem; }
+  .mr-lower { padding-inline: .55rem; }
   .mr-links { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding-block: .1rem; }
   .mr-index { min-height: 40px; font-size: .78rem; }
-  .mr-controls { flex-direction: column; justify-content: center; margin-left: .45rem; padding-left: .2rem; }
-  .mr-controls::before { top: 13%; bottom: 13%; }
-  .mr-controls button { width: 44px; height: 40px; }
 }
 @container (max-width: 19rem) {
   .mr-mainlink { height: 5.6rem; }
@@ -128,4 +119,5 @@ html:has(.home--m) .mr-panel { padding:1.4rem 1.25rem max(1.4rem,env(safe-area-i
 @media (prefers-reduced-motion:reduce) {
   .mr-slide { animation:none; }
   .mr-go { transition:none; }
+  .mr-index.mr-current span::after { transform:scaleX(1); animation:none; }
 }
