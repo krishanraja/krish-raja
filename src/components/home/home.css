@@ -25,7 +25,7 @@
 }
 .home h1, .home h2, .home h3, .home .h-sub b { text-wrap: balance; }
 .home p { text-wrap: pretty; }
-.h-navbox { max-width: 88rem; margin-inline: auto; padding-inline: 2rem; }
+.home main > section[id] { scroll-margin-block-start: env(safe-area-inset-top, 0px); }
 .home .shell { max-width: 88rem; margin-inline: auto; padding-inline: 1.25rem; }
 .home--d .shell { padding-inline: 2rem; }
 .h-meta { font-size: .75rem; font-weight: 500; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
@@ -43,6 +43,22 @@
 .home--d .h-sec-head > .h-h2, .home--d .h-sec-head > .h-lede { flex: 1 1 0; min-width: 0; }
 /* A title Krish wants on two lines at desktop width. The cap is in em so it follows the clamp. */
 .home--d .h-sec-head > .h-h2--two { max-width: 9.5em; text-wrap: balance; }
+.engagement-fit { display: grid; gap: .95rem; min-width: 0; max-width: 38rem; }
+.home--d .engagement-fit { flex: 1 1 0; }
+.engagement-qualities { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .8rem; }
+.engagement-qualities > span { color: #55594f; font-weight: 500; font-size: .87rem; line-height: 1.35; text-wrap: balance; }
+.engagement-qualities ul { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; padding: 0; list-style: none; }
+.engagement-qualities li {
+  width: fit-content; max-width: 100%; padding: .27rem .57rem; border: 1px solid #dbe0d5;
+  border-radius: 1rem; background: #eef0e9; color: #3e463e; font-size: .83rem; font-weight: 500; line-height: 1.2;
+}
+.engagement-fit p { margin: 0; max-width: 47ch; color: #292621; font-size: 1.04rem; font-weight: 500; line-height: 1.48; }
+.home--m .engagement-fit { container-type: inline-size; width: 100%; gap: .9rem; }
+.home--m .engagement-qualities { display: grid; gap: .42rem; }
+.home--m .engagement-fit p { font-size: 1rem; }
+@container (min-width: 21.25rem) {
+  .home--m .engagement-qualities { grid-template-columns: 6.45rem minmax(0,1fr); gap: .65rem; }
+}
 
 /* Reveals: one entrance for everything, played once. */
 .h-r { opacity: 0; transform: translateY(var(--y, 16px)); transition: opacity .8s var(--ease-soft), transform .8s var(--ease-soft); transition-delay: var(--d, 0ms); }
@@ -142,7 +158,6 @@
 .home--m .h-opt h3 { font-size: 1.375rem; }
 .home--m .h-hero .grid { padding-top: 4rem; padding-bottom: 1.25rem; gap: 0; }
 .home--m .h-hero .h-h1 { font-size: 2.25rem; }
-.home--m .h-hero .copy > div { gap: 1.1rem !important; }
 .home--m .h-hero .h-exp { margin-top: 1rem; padding-top: 1rem; }
 .h-opt .line { font-size: .9375rem; line-height: 1.5; opacity: .7; }
 .home--m .h-opt .line { font-size: .875rem; }

@@ -76,7 +76,7 @@ phone-width column.
 The mobile tree itself has none. Everything shared with the desktop tree (the homepage
 sections in `src/components/home/`, `SlideDeck` and `AttendeeStrip`) takes its layout from
 a **prop** rather than a breakpoint, and `MobileIndex` passes it. `npm run mobile:check` fails if a
-breakpoint class appears anywhere under `main#main`, the top bar or the dock.
+breakpoint class appears anywhere under `main#main` or the dock.
 
 **`svh`, `dvh` and `vh` fail for the same reason, and they fail silently.** A viewport
 unit resolves against the viewport, which zoom does not divide, so it comes back in

@@ -54,7 +54,7 @@ npm run brand      # favicons, app icons and the share card, from the bitmoji
 | `site.ts` | Name, spine, title and description, share image, profiles, structured data inputs |
 | `home.ts` | The homepage sections: the three ways in, the live channel, the loader |
 | `hero.ts`, `hero-routes.ts` | H1, trust logos and the six hero routes |
-| `operate.ts` | The bold line and fit copy under the hero, and the brain's four pillars |
+| `operate.ts` | The hero lead and the brain’s four pillars. The engagement badges and industry line live in `home.practice`. |
 | `deck.ts` | The slide deck: which slides, and which talk each came from |
 | `appearances.ts` | In public, newest first, tied to the content-index manifest |
 | `lessons.ts` | The live sessions and the attendee strip |

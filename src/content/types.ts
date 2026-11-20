@@ -78,8 +78,7 @@ export interface Pillar {
   readonly body: string;
 }
 
-/** The hero's "who I work with" copy, set as a lead, a short list and a closing line. */
-export interface HeroFit {
+interface EngagementFit {
   readonly lead: string;
   readonly traits: readonly string[];
   readonly close: string;
@@ -87,8 +86,6 @@ export interface HeroFit {
 
 export interface OperateContent extends SectionHeader {
   readonly titleParts: readonly [string, string];
-  /** `sub` is this, joined into one sentence, for surfaces that want prose. */
-  readonly fit: HeroFit;
   readonly pillars: readonly Pillar[];
 }
 
@@ -532,7 +529,7 @@ export interface AskContent {
 export interface HomeContent {
   readonly loader: { readonly tagline: string; readonly label: string };
   readonly bitmoji: string;
-  readonly practice: SectionHeader & { readonly options: readonly HomeOption[] };
+  readonly practice: SectionHeader & { readonly fit: EngagementFit; readonly options: readonly HomeOption[] };
   readonly channel: ChannelContent;
   readonly ask: AskContent;
   readonly swipeHint: string;

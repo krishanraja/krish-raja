@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, type FocusEvent, type ReactNode } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronRight, Pause, Play } from 'lucide-react';
 import { heroRoutes, routeCopy, type HeroRoute } from '@/content/hero-routes';
+import mediaRobot from '@/assets/hero-media-robot.webp';
+import brainMark from '@/assets/hero-ai-brain.webp';
 
 const interval = 6500;
 const last = heroRoutes.length;
@@ -19,14 +21,6 @@ function RouteArt({ id }: { id: HeroRoute['id'] }) {
       </svg>
     </span>
   );
-  if (id === 'modules') return (
-    <span className="mr-art mr-modules" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none">
-      <rect className="mr-rings" x="15" y="54" width="52" height="25" rx="5"/>
-      <rect className="mr-rings" x="24" y="38" width="52" height="25" rx="5"/>
-      <rect className="mr-signal" x="33" y="22" width="52" height="25" rx="5"/>
-      <path d="M42 30h22m-22 7h12" stroke="currentColor" strokeWidth="2"/>
-    </svg></span>
-  );
   if (id === 'ongoing') return (
     <span className="mr-art mr-ongoing" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none">
       <circle className="mr-rings" strokeWidth="3" cx="39" cy="50" r="23"/><circle className="mr-signal" cx="61" cy="50" r="23"/>
@@ -34,8 +28,7 @@ function RouteArt({ id }: { id: HeroRoute['id'] }) {
     </svg></span>
   );
   const pictures = {
-    media: '/media/home/mymu-robot.webp', immersion: '/media/home/stage.jpg',
-    sprint: '/media/home/mindmake-engine.webp'
+    media: mediaRobot, modules: brainMark, sprint: brainMark, immersion: '/media/home/stage.jpg',
   };
   return <span className={'mr-art mr-photo mr-' + id} aria-hidden="true"><img src={pictures[id]} alt="" /></span>;
 }

@@ -268,7 +268,7 @@ All colors MUST be HSL.
     scroll-snap-align: start;
   }
 
-  /* Frosted glass shared by top bar + dock so they tune together */
+  /* Frosted glass on the dock and sticky controls */
   .mobile-dock-blur {
     background-color: hsl(var(--background) / 0.85);
     backdrop-filter: blur(14px) saturate(160%);

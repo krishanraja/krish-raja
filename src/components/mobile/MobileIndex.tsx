@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import MobileTopBar from './MobileTopBar';
 import MobileContactOptions from './MobileContactOptions';
 import MobileActionDock from './MobileActionDock';
 import SlideDeck from '@/components/SlideDeck';
@@ -76,8 +75,7 @@ const MobileIndex = () => {
       <div className="home home--m min-h-screen">
         <PageLoader onDone={() => setReady(true)} />
         <a href="#main" className="skip-link">{nav.skipLink}</a>
-        <MobileTopBar />
-        <main id="main" className="pb-32">
+        <main id="main" className="pb-32" tabIndex={-1}>
           <HomeHero mobile />
           <WaysIn mobile />
           <SlideDeck compact />

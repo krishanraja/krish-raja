@@ -25,12 +25,12 @@
 .mr-art svg { height: 88%; width: 88%; overflow: visible; }
 .mr-rings { stroke: #9c754f; stroke-width: 1.5; }
 .mr-signal { fill: #be704057; stroke: currentColor; stroke-width: 2.8; stroke-linejoin: round; }
-.mr-modules .mr-signal { fill: #d9955e; }
 .mr-photo { background: #e1d9cf; }
 .mr-photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .mr-immersion img { object-position: 58% 40%; }
 .mr-ongoing img { object-position: 50% 27%; }
-.mr-sprint img { object-position: 51% 52%; }
+.mr-modules, .mr-sprint { background: #12271f; }
+.mr-modules img, .mr-sprint img { object-fit: contain; padding: 12%; }
 .mr-copy { display: flex; min-width: 0; flex-direction: column; gap: .2rem; }
 .mr-detail { font-size: .65625rem; line-height: 1.32; letter-spacing: .085em; text-transform: uppercase; font-weight: 700; color: var(--copper); }
 .mr-title { font-weight: 600; font-size: 1.31rem; line-height: 1.16; letter-spacing: -.043em; text-wrap: pretty; }

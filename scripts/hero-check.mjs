@@ -31,6 +31,23 @@ async function checkLead(page, label) {
   assert(lines.at(-1).endsWith("I'm here to help."), label + ' split the final phrase: ' + lines.join(' | '));
 }
 
+// Sample the actual animated mask halfway through each turn. Checking the end states
+// alone would also pass a return button that jumped straight back to the portrait.
+const sampleFold = stage => stage.evaluate(async element => {
+  const cut = () => parseFloat(getComputedStyle(element).getPropertyValue('--peel-cut'));
+  const start = cut();
+  element.querySelector('.pv-trigger').click();
+  await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  const wipe = element.getAnimations().find(animation => animation.transitionProperty === '--peel-cut');
+  if (!wipe) throw new Error('The corner did not animate the photograph mask');
+  const duration = wipe.effect.getTiming().duration;
+  wipe.pause();
+  wipe.currentTime = duration / 2;
+  const middle = cut();
+  wipe.finish();
+  return { start, middle, end:cut(), duration };
+});
+
 try {
   browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
   for (const [width, height, mobile] of [[320,568,true],[360,640,true],[375,667,true],[390,844,true],
@@ -60,13 +77,43 @@ try {
         await enlarged.evaluate(el => el.remove());
       }
       assert.equal(await page.locator('#hero .mr-index').count(), 6);
-      assert.equal(await page.locator('#hero .mp-qualities li').count(), 4);
+      assert.equal(await page.locator('.home > header').count(), 0);
+      assert.equal(await page.locator('#hero').getByText('Leaders I work best with').count(), 0);
+      const fit = page.locator('#build .engagement-fit');
+      assert.deepEqual(await fit.getByRole('list', { name:'Leaders I work best with' }).getByRole('listitem').allTextContents(),
+        ['curious','determined to evolve','strong standards','imaginative']);
+      assert.match(await fit.locator('p').innerText(), /creative, media & entertainment technologies\./);
+      if (mobile) assert.notEqual((await renderedLines(fit.locator('#engagement-fit-label'))).at(-1), 'with');
+      assert.equal(await page.locator('#hero').getByText(/creative, media & entertainment technologies/).count(), 0);
+      await open.click();
+      const back = stage.getByRole('button',{name:'Back to portrait'});
+      assert.equal(await back.getAttribute('aria-expanded'), 'true');
+      assert.equal(await stage.locator('.pv-portrait-peek').evaluate(el => getComputedStyle(el).opacity), '1');
+      await back.click();
+      assert.equal(await open.getAttribute('aria-expanded'), 'false');
       await open.click();
       await stage.getByRole('button',{name:'The Taste & Judgement Engine'}).click();
       assert.equal(await stage.locator('.item.on h2').textContent(),'The Taste & Judgement Engine');
       if (mobile) await checkLead(page, width + 'px revealed');
       await page.keyboard.press('Escape');
       assert(await open.evaluate(el => el === document.activeElement));
+      if (width === 390 || width === 1440) {
+        await page.mouse.move(0, 0);
+        await page.emulateMedia({ reducedMotion:'no-preference' });
+        const forward = await sampleFold(stage);
+        const reverse = await sampleFold(stage);
+        assert(forward.start < forward.middle && forward.middle < forward.end, 'Open must peel towards the portrait corner');
+        assert(reverse.start > reverse.middle && reverse.middle > reverse.end, 'Return must follow the same diagonal back');
+        assert.equal(forward.duration, reverse.duration);
+        await page.emulateMedia({ reducedMotion:'reduce' });
+        const artwork = {};
+        for (const id of ['modules','media','sprint']) {
+          await page.locator(`#hero .mr-index[data-route="${id}"]`).focus();
+          artwork[id] = await page.locator(`#hero .mr-${id} img`).evaluate(async img => { await img.decode(); return img.currentSrc; });
+        }
+        assert.equal(artwork.modules, artwork.sprint);
+        assert.notEqual(artwork.media, artwork.sprint);
+      }
       await page.locator('#hero [data-route="immersion"].mr-index').click();
       await page.locator('#lightning-lessons').getByRole('button',{name:'Get in touch'}).click();
       const dialog = page.getByRole('dialog');

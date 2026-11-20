@@ -16,7 +16,7 @@ const MobileReceipts = () => {
       title={receipts.title}
       intro={receipts.sub}
     >
-      <div className="sticky top-11 z-20 -mx-1 mb-4 py-1 mobile-dock-blur rounded-full">
+      <div className="sticky top-[env(safe-area-inset-top,0px)] z-20 -mx-1 mb-4 py-1 mobile-dock-blur rounded-full">
         <div className="grid grid-cols-3 gap-1.5 p-1 rounded-full bg-muted/40">
           {(['receipts', 'journey', 'credentials'] as Tab[]).map((t) => (
             <button

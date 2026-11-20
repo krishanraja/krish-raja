@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Navigation from '@/components/Navigation';
+import { nav } from '@/content';
 import SlideDeck from '@/components/SlideDeck';
 import ProofPoints from '@/components/ProofPoints';
 import Contact from '@/components/Contact';
@@ -36,9 +36,9 @@ const DesktopIndex = () => {
     <AskProvider>
       <div className="home home--d min-h-screen">
         <PageLoader onDone={() => setReady(true)} />
-        <Navigation />
+        <a href="#main" className="skip-link">{nav.skipLink}</a>
 
-        <main id="main">
+        <main id="main" tabIndex={-1}>
           <HomeHero mobile={false} />
           <WaysIn mobile={false} />
           <SlideDeck />

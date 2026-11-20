@@ -6,9 +6,7 @@ export const hero: HeroContent = {
   // "14 agents · 45 workflows" status line went the same way on 20 Aug 2026:
   // only the mobile tree ever rendered it. The counts live in llms.txt.
   //
-  // The paragraph under the hero is operate.fit (Krish, 2026-11-11). The old
-  // "From writing automations at Microsoft..." sub and the Substack link beside
-  // it came off with the 9 Nov rebuild and were deleted as stale on 13 Nov.
+  // The hero lead lives in operate.titleParts. The audience badges belong to the engagement section.
   h1: 'Your AI Chief of Staff.',
   trustLabel: 'Experience across',
   // McCann is off: seven months in 2007, and the content index found no

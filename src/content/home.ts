@@ -19,6 +19,12 @@ import { portfolio } from './portfolio';
 
 const MYMU = 'https://home.makeyourmindup.ai';
 
+const engagementFit = {
+  lead: 'Leaders I work best with',
+  traits: ['curious', 'determined to evolve', 'strong standards', 'imaginative'],
+  close: 'I work to 🚀 businesses building the next era of creative, media & entertainment technologies.',
+} as const;
+
 export const home: HomeContent = {
   loader: {
     tagline: 'Your AI Chief of Staff.',
@@ -29,7 +35,8 @@ export const home: HomeContent = {
   practice: {
     id: 'build',
     title: 'Your choice of engagement.',
-    sub: 'I help leaders amplify their expertise with AI to make the next million dollar decision. I can deliver one off immersion sessions, ongoing operator work on tougher problems or a content partnership that keeps your business on its toes.',
+    fit: engagementFit,
+    sub: `I work best with leaders who are ${engagementFit.traits.slice(0, -1).join(', ')} and ${engagementFit.traits.at(-1)}. ${engagementFit.close}`,
     options: [
       {
         id: 'speaking',

@@ -55,23 +55,15 @@ export const HomeHero = ({ mobile }: Tree) => {
   const screen = useMobileViewportHeight();
   const fill = mobile && screen > 0 ? {
     minHeight: `min(calc(${screen}px - var(--mobile-dock-h, 63px)), 940px)`,
-    '--cover-height': Math.round(Math.min(255, Math.max(109, 115 + (screen - 568) * .46))) + 'px',
+    '--cover-height': Math.round(Math.min(406, Math.max(158, 198 + (screen - 568) * .59))) + 'px',
   } as CSSProperties : undefined;
   return (
     <section id="hero" className="h-hero mp-hero" data-brain-open={brainOpen || undefined} data-short={mobile && screen < 690 || undefined} data-compact={mobile && screen < 780 || undefined}>
       <div className="shell grid mp-layout" style={fill}>
         <div className="copy mp-copy">
           {mobile ? <PortraitStage mobile open={brainOpen} onChange={setBrainOpen}/> : <h1 className="h-h1 mp-h1">{hero.h1}</h1>}
-          {(!mobile || !brainOpen) && <HeroLead mobile={mobile} />}
+          <HeroLead mobile={mobile} />
           <HeroRoutes onOngoing={() => enquire('ongoing')}/>
-          <div className="mp-about">
-            {mobile && brainOpen && <HeroLead mobile={mobile} />}
-            <div className="mp-qualities" role="group" aria-labelledby="mp-fit-label">
-              <span id="mp-fit-label">{operate.fit.lead}</span>
-              <ul>{operate.fit.traits.map(item=><li key={item}>{item}</li>)}</ul>
-            </div>
-            <p className="mp-sector">{operate.fit.close}</p>
-          </div>
           <TrustStrip/>
         </div>
         {!mobile && <PortraitStage mobile={false} open={brainOpen} onChange={setBrainOpen}/>}
@@ -90,7 +82,15 @@ export const WaysIn = ({ mobile }: Tree) => {
       <div className="shell">
         <div className="h-sec-head">
           <BlockTitle className="h-h2 h-h2--two" text={p.title} />
-          <p className="h-lede h-r" style={d(120)}>{p.sub}</p>
+          <div className="engagement-fit h-r" style={d(120)}>
+            <div className="engagement-qualities">
+              <span id="engagement-fit-label">{p.fit.lead}</span>
+              <ul aria-labelledby="engagement-fit-label">
+                {p.fit.traits.map(trait => <li key={trait}>{trait}</li>)}
+              </ul>
+            </div>
+            <p>{p.fit.close}</p>
+          </div>
         </div>
         <div className={`h-opts${mobile ? ' h-rail mobile-snap-track' : ''}`}>
           {p.options.map((o, i) => (
