@@ -37,9 +37,12 @@ try {
     [412,915,true],[430,932,true],[540,800,true],[767,1024,true],[980,1750,true],[1024,768,false],[1440,880,false]]) {
     const context = await browser.newContext({ viewport:{width,height}, hasTouch:mobile, isMobile:mobile, reducedMotion:'reduce' });
     await context.addInitScript(() => sessionStorage.setItem('kr-loaded', '1'));
+    let holdContactRequest;
+    const contactRequested = new Promise(resolve => { holdContactRequest = resolve; });
     await context.route('**/*', route => {
       const url = new URL(route.request().url());
       if (url.origin !== origin) return route.fulfill({ status:204 });
+      if (url.pathname === '/api/contact') return holdContactRequest(route);
       if (url.pathname.startsWith('/api/')) return route.fulfill({ json:{ available:false } });
       return route.continue();
     });
@@ -69,6 +72,15 @@ try {
       const dialog = page.getByRole('dialog');
       assert.equal(await dialog.locator('.mr-context').textContent(),'AI Immersion Session');
       assert.equal(await dialog.locator('.mr-emailto strong').innerText(),'krish@mindmake.co');
+      const contactRoute = await contactRequested;
+      const submit = dialog.locator('button[type=submit]');
+      assert.equal(await submit.innerText(), 'Send enquiry');
+      assert(await submit.isDisabled(), 'An unresolved delivery check must not open an email app');
+      const direct = width === 390 || !mobile;
+      if (width === 320) await contactRoute.abort();
+      else await contactRoute.fulfill({ json:{ available:direct } });
+      await page.waitForFunction(() => document.querySelector('dialog button[type=submit]')?.disabled === false);
+      assert.equal(await submit.innerText(), direct ? 'Send enquiry' : 'Open in email');
       await page.keyboard.press('Escape');
       console.log(width + '×' + height + ' hero passed');
     } finally {

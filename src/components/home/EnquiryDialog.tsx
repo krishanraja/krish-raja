@@ -37,7 +37,7 @@ function EnquiryDialog({ intent, initial, remember, clear, close, otherWays }: {
   const dialog = useRef<HTMLDialogElement>(null);
   const result = useRef<HTMLHeadingElement>(null);
   const [draft, setDraft] = useState(initial);
-  const [direct, setDirect] = useState(false);
+  const [direct, setDirect] = useState<boolean | null>(null);
   const [status, setStatus] = useState<'editing' | 'sending' | 'accepted' | 'mail' | 'error'>('editing');
   const inFlight = useRef(false);
   const speaking = intent === 'speaking';
@@ -55,11 +55,19 @@ function EnquiryDialog({ intent, initial, remember, clear, close, otherWays }: {
     const element = dialog.current!;
     element.showModal();
     const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      controller.abort();
+      setDirect(false);
+    }, 5000);
     fetch('/api/contact', { signal: controller.signal, headers: { Accept: 'application/json' } })
       .then(async response => response.ok && (await response.json()).available === true)
+      .catch(() => false)
       .then(available => { if (!controller.signal.aborted) setDirect(available); })
-      .catch(() => {});
-    return () => controller.abort();
+      .finally(() => window.clearTimeout(timeout));
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
   }, []);
   useEffect(() => {
     if (status === 'accepted' || status === 'mail') result.current?.focus();
@@ -79,7 +87,7 @@ function EnquiryDialog({ intent, initial, remember, clear, close, otherWays }: {
   }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (inFlight.current) return;
+    if (inFlight.current || direct === null) return;
     if (!direct) {
       trace();
       window.location.href = mailto;
@@ -130,8 +138,8 @@ function EnquiryDialog({ intent, initial, remember, clear, close, otherWays }: {
             </>}
             <label>{copy.message}<textarea name="message" rows={3} required={!speaking} maxLength={4000} value={draft.message} onChange={e => edit('message', e.target.value)} /></label>
             <div className="mr-formfoot">
-              <button type="submit" className="h-btn h-btn--dark">{status === 'sending' ? copy.sending : direct ? copy.send : copy.mailAction}<span className="h-badge"><ArrowRight aria-hidden /></span></button>
-              {!direct && <span className="mr-note">{copy.mailHint}</span>}
+              <button type="submit" className="h-btn h-btn--dark" disabled={direct === null} aria-busy={direct === null || status === 'sending'}>{status === 'sending' ? copy.sending : direct === false ? copy.mailAction : copy.send}<span className="h-badge"><ArrowRight aria-hidden /></span></button>
+              {direct === false && <span className="mr-note">{copy.mailHint}</span>}
             </div>
           </fieldset>
           {status === 'error' && <p role="alert" className="mr-emailto">{copy.failed} <a href={mailto}>{copy.mailAction}</a>.</p>}
