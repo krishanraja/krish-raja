@@ -28,6 +28,8 @@ Event organisers and leaders checking who Krish is. It sends the right visitor t
 
 Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note folds into this file from `now-notes/` on main (`.github/workflows/closeout-fold.yml`); the notes before 14 Nov are kept verbatim in `docs/history/now-notes/`.
 
+- The executive profile and AI keynote speaker page are live on krishraja.com. Both return their own HTML, canonical address and search metadata, and appear in the public sitemap. Production browser checks covered both enquiry forms on phone and desktop with the final send intercepted. (2026-11-20)
+- The Make Your Mind Up card on the public homepage shows the robot's full head below the wordmark. Browser measurements confirmed the framing at 11 screen sizes from 320px to 1440px. (2026-11-20)
 - The hero opens directly on the portrait. The leadership badges and industry line introduce Your choice of engagement, and the same corner fold takes visitors into the brain and back to the portrait. The media route shows the supplied robot and both AI Brain routes use the supplied Mindmake mark. (2026-11-20)
 - The production contact form sends enquiries directly to Krish. One authorised mobile test through See me in action reached the Gmail Primary inbox with the immersion subject, visitor reply address and message spacing intact. The form waits for its delivery check before enabling submission. The test was excluded from the enquiry count. (2026-11-20)
 - The approved hero uses the supplied portrait, a one-press brain reveal, four quality badges and six routes on both layouts. The mobile lead keeps its closing sentence together. The immersion route opens the session evidence and its enquiry form, and longer-term enquiries carry their own subject. The form opens an addressed email draft when direct delivery is unavailable. (2026-11-20)
@@ -49,7 +51,7 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 
 ## What is next and what is waiting on Krish
 
-- Next (2026-11-20): Check the first genuine immersion or speaking enquiry in Control Center and mark a confirmed booking when it happens.
+- Next (2026-11-20): Check indexing and search impressions for both addresses in the verified Google Search Console property.
 - Mark confirmed bookings `booked` in `public.site_enquiries` (or tell Control Center to), so the North Star number is real.
 - Paste the 3 Dec Lightning Lesson's Maven link, title and line into `lessons.upcoming` once it exists in Maven.
 - krishraja.ai and www.krishraja.ai redirect permanently (308) to www.krishraja.com, keeping the path, on Vercel since 14 Nov 2026 (Krish moved the domain's nameservers to Vercel; read back that night: `/thinking?x=1` lands on www.krishraja.com with 200). The old copy of the site it served is gone. (2026-11-14)
