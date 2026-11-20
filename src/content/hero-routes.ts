@@ -4,7 +4,7 @@ import { lessons } from './lessons';
 const toolkit = site.links.mindmake + '/2-minute-ai-upgrade-toolkit';
 
 export const heroRoutes = [
-  { id: 'audit', short: 'Audit', title: 'Take the Judgement Audit', detail: 'Free · 6 questions', href: toolkit },
+  { id: 'audit', short: 'Audit', title: 'Take the AI Judgement Audit', detail: 'Free · 6 questions', href: toolkit },
   { id: 'modules', short: 'Modules', title: 'Choose an AI Brain module', detail: 'One-off purchase', href: toolkit },
   { id: 'media', short: 'Media', title: 'Subscribe to Make Your Mind Up', detail: 'My media channel', href: site.links.content },
   { id: 'immersion', short: 'Immersion', title: 'See an AI Immersion Session', detail: 'One-off drop-in · For your team', href: '#' + lessons.id },
@@ -21,9 +21,6 @@ export const routeCopy = {
   backPortrait: 'Back to portrait',
   region: 'Ways to get started',
   links: 'Go straight to an option',
-  pause: 'Pause automatic rotation',
-  play: 'Play automatic rotation',
-  next: 'Preview next option',
   contact: 'Get in touch',
   sessionInvite: 'Bring an AI Immersion Session to your team.',
   sessionLine: 'Tell me who’s in the room and what you want to explore.',

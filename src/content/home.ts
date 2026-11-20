@@ -21,7 +21,7 @@ const MYMU = 'https://home.makeyourmindup.ai';
 
 const engagementFit = {
   lead: 'Leaders I work best with',
-  traits: ['curious', 'determined to evolve', 'strong standards', 'imaginative'],
+  traits: ['curious', 'determined to evolve', 'strong standards', 'imaginative', 'could 10x if they had the fuel to'],
   close: 'I work to 🚀 businesses building the next era of creative, media & entertainment technologies.',
 } as const;
 

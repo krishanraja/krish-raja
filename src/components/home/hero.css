@@ -33,15 +33,12 @@
 .mp-cover img {position:absolute;inset:0 0 0 auto;width:64%;height:100%;object-fit:cover;object-position:50% 34%;mask-image:linear-gradient(90deg,transparent 0%,#000 25%);z-index:-1;}
 .mp-cover::after {position:absolute;content:'';inset:0;background:linear-gradient(90deg,#222224 0%,#2222247a 32%,transparent 60%);z-index:-1;pointer-events:none;}
 .mp-cover h1 {width:54%;margin:0 0 0 1.08rem;color:#faf8f3;font-size:2.32rem;line-height:.99;font-weight:600;letter-spacing:-.056em;text-wrap:balance;}
-.home--m .mp-hero .mp-sub {font-size:1.19rem;line-height:1.28;max-width:27rem;}
+.home--m .mp-hero .mp-sub {font-size:1.38rem;line-height:1.18;max-width:27rem;}
 .home--m .mp-hero .mp-copy > .h-exp {margin:0;padding-top:.85rem;gap:.55rem;}
 .home--m .mp-hero .h-exp .h-label {font-size:.67rem;}
-.home--m .mp-hero .mp-copy .mr-route {display:grid;grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"feature controls" "links links";container-type:normal;}
+.home--m .mp-hero .mp-copy .mr-route {display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"feature" "links";container-type:normal;}
 .home--m .mp-hero .mr-feature {grid-area:feature;}
 .home--m .mp-hero .mr-lower {display:contents;}
-.home--m .mp-hero .mr-controls {grid-area:controls;flex-direction:column;align-items:stretch;justify-content:center;background:#fffaf3;border-left:1px solid #e6ddd1;margin:0;padding:0;}
-.home--m .mp-hero .mr-controls::before {content:none;}
-.home--m .mp-hero .mr-controls button {width:43px;height:40px;}
 .home--m .mp-hero .mr-links {grid-area:links;display:flex;align-items:stretch;justify-content:space-evenly;gap:0;padding:0 .16rem;border-top:1px solid #e8dfd3;}
 .home--m .mp-hero .mr-index {font-size:.72rem;min-width:40px;min-height:42px;padding:0 .09rem;}
 .home--m .mp-hero .mr-mainlink {height:5.05rem;padding:.5rem .5rem .5rem .55rem;gap:.38rem;}
@@ -58,7 +55,7 @@
 .home--m .mp-hero[data-short] .mp-cover {border-radius:1rem;}
 .home--m .mp-hero[data-short] .mp-cover img {width:59%;object-position:50% 7%;}
 .home--m .mp-hero[data-short] .mp-cover h1 {width:47%;font-size:1.81rem;margin-left:.78rem;}
-.home--m .mp-hero[data-short] .mp-sub {font-size:1.02rem;line-height:1.23;}
+.home--m .mp-hero[data-short] .mp-sub {font-size:1.22rem;line-height:1.18;}
 .home--m .mp-hero[data-short] .mp-copy > .h-exp {display:flex;flex-direction:row;align-items:center;padding-top:.55rem;gap:.65rem;}
 .home--m .mp-hero[data-short] .h-exp .h-label {font-size:.6rem;line-height:1.1;max-width:6.6em;}
 .home--m .mp-hero[data-short] .h-exp ul {flex:1;gap:.7rem;}
@@ -67,6 +64,6 @@
 .home--m .mp-hero[data-short] .mr-art {width:2.2rem;height:2.2rem;flex-basis:2.2rem;}
 .home--m .mp-hero[data-short] .mr-detail {font-size:.56rem;}
 
-/* Keep the closing thought together whenever it fits, even before the web font loads.
-   An enlarged sentence can still wrap inside its own box. */
-.home--m .mp-sub > span { display:inline-block; max-inline-size:100%; text-wrap:balance; }
+/* The two thoughts are deliberately separate lines. Each line may still wrap on the
+   narrowest supported phone rather than overflowing before the web font loads. */
+.home--m .mp-sub > span { display:block; max-inline-size:100%; text-wrap:balance; }

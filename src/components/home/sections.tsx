@@ -31,7 +31,7 @@ const TrustStrip = () => (
 
 const HeroLead = ({ mobile }: Tree) => (
   <p className="mp-sub">{mobile ? <>
-    <span>{operate.titleParts[0]}</span>{' '}<span>{operate.titleParts[1]}</span>
+    <span>{operate.titleParts[0]}</span><span>{operate.titleParts[1]}</span>
   </> : operate.title}</p>
 );
 

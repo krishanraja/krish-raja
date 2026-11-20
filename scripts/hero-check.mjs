@@ -25,10 +25,11 @@ const renderedLines = paragraph => paragraph.evaluate(element => {
   return lines.map(line => line.words.join(' '));
 });
 
-async function checkLead(page, label) {
+async function checkLead(page, label, exactLines = false) {
   const lines = await renderedLines(page.locator('#hero .mp-sub'));
   assert.equal(lines.join(' '), "The pace of change is intense. I'm here to help.", label);
   assert(lines.at(-1).endsWith("I'm here to help."), label + ' split the final phrase: ' + lines.join(' | '));
+  if (exactLines) assert.deepEqual(lines, ['The pace of change is intense.', "I'm here to help."], label + ' did not keep the two thoughts on separate lines');
 }
 
 async function checkChannelArtwork(page, label) {
@@ -87,19 +88,25 @@ try {
       await open.waitFor();
       await page.evaluate(() => document.fonts.ready);
       if (mobile) {
-        await checkLead(page, width + 'px portrait');
+        await checkLead(page, width + 'px portrait', true);
         const enlarged = await page.addStyleTag({ content:'html { font-size:125% } #hero .mp-sub {font-family:Arial,sans-serif}' });
         await checkLead(page, width + 'px enlarged fallback font');
         await enlarged.evaluate(el => el.remove());
       }
       assert.equal(await page.locator('#hero .mr-index').count(), 6);
+      assert.equal(await page.locator('#hero .mr-index[type="button"]').count(), 6);
+      assert.equal(await page.locator('#hero .mr-controls').count(), 0);
       assert.equal(await page.locator('.home > header').count(), 0);
       assert.equal(await page.locator('#hero').getByText('Leaders I work best with').count(), 0);
       const fit = page.locator('#build .engagement-fit');
       assert.deepEqual(await fit.getByRole('list', { name:'Leaders I work best with' }).getByRole('listitem').allTextContents(),
-        ['curious','determined to evolve','strong standards','imaginative']);
+        ['curious','determined to evolve','strong standards','imaginative','could 10x if they had the fuel to']);
       assert.match(await fit.locator('p').innerText(), /creative, media & entertainment technologies\./);
-      if (mobile) assert.notEqual((await renderedLines(fit.locator('#engagement-fit-label'))).at(-1), 'with');
+      if (mobile) {
+        assert.notEqual((await renderedLines(fit.locator('#engagement-fit-label'))).at(-1), 'with');
+        const chipRows = await fit.locator('li').evaluateAll(items => new Set(items.map(item => Math.round(item.getBoundingClientRect().top))).size);
+        assert.equal(chipRows, 2, width + 'px rendered the qualities across ' + chipRows + ' rows');
+      }
       assert.equal(await page.locator('#hero').getByText(/creative, media & entertainment technologies/).count(), 0);
       await open.click();
       const back = stage.getByRole('button',{name:'Back to portrait'});
@@ -130,8 +137,25 @@ try {
         assert.equal(artwork.modules, artwork.sprint);
         assert.notEqual(artwork.media, artwork.sprint);
       }
+      if (width === 390) {
+        await page.emulateMedia({ reducedMotion:'no-preference' });
+        await page.locator('#hero .mr-route').scrollIntoViewIfNeeded();
+        await page.locator('#hero [data-route="modules"].mr-index').click();
+        await page.mouse.move(0, 0);
+        await page.locator('#hero .mr-route').evaluate(el => el.setAttribute('data-rotating', ''));
+        assert.equal(await page.locator('#hero .mr-current span').evaluate(el => getComputedStyle(el, '::after').animationName), 'mr-progress');
+        await page.locator('#hero .mr-route').evaluate(el => el.removeAttribute('data-rotating'));
+        await page.emulateMedia({ reducedMotion:'reduce' });
+      }
+      const routeUrl = page.url();
       await page.locator('#hero [data-route="immersion"].mr-index').click();
-      await page.locator('#lightning-lessons').getByRole('button',{name:'Get in touch'}).click();
+      assert.equal(page.url(), routeUrl);
+      assert.equal(await page.locator('#hero .mr-mainlink').getAttribute('data-route'), 'immersion');
+      await page.locator('#hero .mr-mainlink').click();
+      const sessionContact = page.locator('#lightning-lessons').getByRole('button',{name:'Get in touch'});
+      await sessionContact.evaluate(el => el.scrollIntoView({ block:'center' }));
+      await page.waitForTimeout(900);
+      await sessionContact.click({ force:true });
       const dialog = page.getByRole('dialog');
       assert.equal(await dialog.locator('.mr-context').textContent(),'AI Immersion Session');
       assert.equal(await dialog.locator('.mr-emailto strong').innerText(),'krish@mindmake.co');
