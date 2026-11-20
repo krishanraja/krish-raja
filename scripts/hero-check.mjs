@@ -30,6 +30,19 @@ async function checkLead(page, label, exactLines = false) {
   assert.equal(lines.join(' '), "The pace of change is intense. I'm here to help.", label);
   assert(lines.at(-1).endsWith("I'm here to help."), label + ' split the final phrase: ' + lines.join(' | '));
   if (exactLines) assert.deepEqual(lines, ['The pace of change is intense.', "I'm here to help."], label + ' did not keep the two thoughts on separate lines');
+  const hierarchy = await page.locator('#hero .mp-sub').evaluate(element => {
+    const context = element.querySelector('.mp-context');
+    const promise = element.querySelector('.mp-promise');
+    return {
+      context: parseFloat(getComputedStyle(context).fontSize),
+      promise: parseFloat(getComputedStyle(promise).fontSize),
+      routeIsGrouped: element.closest('.mp-decision')?.querySelector('.mr-route') !== null,
+      bridgeWidth: element.closest('.mp-decision')?.querySelector('.mp-bridge')?.getBoundingClientRect().width ?? 0,
+    };
+  });
+  assert(hierarchy.promise >= hierarchy.context * 1.45, label + ' lost the editorial type hierarchy');
+  assert(hierarchy.routeIsGrouped, label + ' separated the reassurance from the route selector');
+  assert(hierarchy.bridgeWidth >= 40, label + ' lost the copper bridge into the selector');
 }
 
 async function checkChannelArtwork(page, label) {
@@ -92,7 +105,7 @@ try {
         const enlarged = await page.addStyleTag({ content:'html { font-size:125% } #hero .mp-sub {font-family:Arial,sans-serif}' });
         await checkLead(page, width + 'px enlarged fallback font');
         await enlarged.evaluate(el => el.remove());
-      }
+      } else await checkLead(page, width + 'px desktop', true);
       assert.equal(await page.locator('#hero .mr-index').count(), 6);
       assert.equal(await page.locator('#hero .mr-index[type="button"]').count(), 6);
       assert.equal(await page.locator('#hero .mr-controls').count(), 0);

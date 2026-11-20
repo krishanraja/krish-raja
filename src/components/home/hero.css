@@ -9,9 +9,12 @@
 .home--d .mp-layout .mp-copy {grid-column:auto; gap:clamp(1.55rem,3.8svh,2.4rem);}
 .mp-copy > * {min-width:0;}
 .home--d .mp-h1 {max-width:9.1em;font-size:clamp(3.15rem,5.35vw,5rem);line-height:.97;letter-spacing:-.054em;}
-.mp-sub {margin:0;font-weight:600;letter-spacing:-.028em;line-height:1.32;font-size:1.31rem;max-width:27rem;}
-.home--d .mp-sub {font-size:clamp(1.16rem,1.55vw,1.42rem);max-width:34rem;text-wrap:balance;}
-.home--d .mp-copy .mr-route {max-width:33.75rem;}
+.mp-decision {display:flex;flex-direction:column;gap:.72rem;width:100%;max-width:33.75rem;}
+.mp-sub {display:flex;flex-direction:column;gap:.14rem;margin:0;max-width:none;}
+.mp-context {color:#77716b;font-size:clamp(1.06rem,1.5vw,1.25rem);font-weight:500;letter-spacing:-.024em;line-height:1.18;}
+.mp-promise {color:#111;font-size:clamp(2.05rem,3.2vw,2.72rem);font-weight:650;letter-spacing:-.052em;line-height:.98;}
+.mp-bridge {width:3.5rem;height:3px;margin:.14rem 0 .1rem;border-radius:999px;background:linear-gradient(90deg,#a85423 0%,#d29a70 100%);}
+.home--d .mp-copy .mr-route {max-width:none;}
 .home--d .mp-copy .h-exp {max-width:33.75rem;padding-top:1.05rem;gap:.65rem;}
 .mp-stage {position:relative;height:min(41rem,calc(100svh - 5rem));min-height:25rem;isolation:isolate;overflow:hidden;background:#242424;border-radius:1.85rem;box-shadow:0 26px 55px -35px #1d1b19a8;}
 .mp-portrait {display:block;width:100%;height:100%;object-fit:cover;object-position:50% 34%;}
@@ -33,7 +36,10 @@
 .mp-cover img {position:absolute;inset:0 0 0 auto;width:64%;height:100%;object-fit:cover;object-position:50% 34%;mask-image:linear-gradient(90deg,transparent 0%,#000 25%);z-index:-1;}
 .mp-cover::after {position:absolute;content:'';inset:0;background:linear-gradient(90deg,#222224 0%,#2222247a 32%,transparent 60%);z-index:-1;pointer-events:none;}
 .mp-cover h1 {width:54%;margin:0 0 0 1.08rem;color:#faf8f3;font-size:2.32rem;line-height:.99;font-weight:600;letter-spacing:-.056em;text-wrap:balance;}
-.home--m .mp-hero .mp-sub {font-size:1.38rem;line-height:1.18;max-width:27rem;}
+.home--m .mp-hero .mp-decision {gap:.66rem;}
+.home--m .mp-hero .mp-context {font-size:1.14rem;}
+.home--m .mp-hero .mp-promise {font-size:1.9rem;}
+.home--m .mp-hero .mp-bridge {width:3rem;height:2px;margin-top:.08rem;}
 .home--m .mp-hero .mp-copy > .h-exp {margin:0;padding-top:.85rem;gap:.55rem;}
 .home--m .mp-hero .h-exp .h-label {font-size:.67rem;}
 .home--m .mp-hero .mp-copy .mr-route {display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"feature" "links";container-type:normal;}
@@ -55,7 +61,10 @@
 .home--m .mp-hero[data-short] .mp-cover {border-radius:1rem;}
 .home--m .mp-hero[data-short] .mp-cover img {width:59%;object-position:50% 7%;}
 .home--m .mp-hero[data-short] .mp-cover h1 {width:47%;font-size:1.81rem;margin-left:.78rem;}
-.home--m .mp-hero[data-short] .mp-sub {font-size:1.22rem;line-height:1.18;}
+.home--m .mp-hero[data-short] .mp-decision {gap:.48rem;}
+.home--m .mp-hero[data-short] .mp-context {font-size:.98rem;}
+.home--m .mp-hero[data-short] .mp-promise {font-size:1.58rem;}
+.home--m .mp-hero[data-short] .mp-bridge {width:2.65rem;}
 .home--m .mp-hero[data-short] .mp-copy > .h-exp {display:flex;flex-direction:row;align-items:center;padding-top:.55rem;gap:.65rem;}
 .home--m .mp-hero[data-short] .h-exp .h-label {font-size:.6rem;line-height:1.1;max-width:6.6em;}
 .home--m .mp-hero[data-short] .h-exp ul {flex:1;gap:.7rem;}
@@ -64,6 +73,6 @@
 .home--m .mp-hero[data-short] .mr-art {width:2.2rem;height:2.2rem;flex-basis:2.2rem;}
 .home--m .mp-hero[data-short] .mr-detail {font-size:.56rem;}
 
-/* The two thoughts are deliberately separate lines. Each line may still wrap on the
-   narrowest supported phone rather than overflowing before the web font loads. */
-.home--m .mp-sub > span { display:block; max-inline-size:100%; text-wrap:balance; }
+/* The reassurance and routes are one decision point. Each thought keeps its own
+   editorial line without relying on a fragile manual break inside the sentence. */
+.mp-sub > span {display:block;max-inline-size:100%;text-wrap:balance;}
