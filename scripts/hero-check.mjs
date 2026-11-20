@@ -155,7 +155,7 @@ try {
       const sessionContact = page.locator('#lightning-lessons').getByRole('button',{name:'Get in touch'});
       await sessionContact.evaluate(el => el.scrollIntoView({ block:'center' }));
       await page.waitForTimeout(900);
-      await sessionContact.click({ force:true });
+      await sessionContact.evaluate(el => el.click());
       const dialog = page.getByRole('dialog');
       assert.equal(await dialog.locator('.mr-context').textContent(),'AI Immersion Session');
       assert.equal(await dialog.locator('.mr-emailto strong').innerText(),'krish@mindmake.co');
