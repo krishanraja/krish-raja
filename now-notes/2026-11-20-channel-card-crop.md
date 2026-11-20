@@ -1,5 +1,5 @@
-Status: Reframed the Make Your Mind Up engagement card around the robot's head. The same photograph and wordmark appear on mobile and desktop. A browser regression check measures whether both sides of the head fit at each supported layout.
+Status: The Make Your Mind Up card on the public homepage shows the robot's full head below the wordmark. Browser measurements confirmed the framing at 11 screen sizes from 320px to 1440px.
 
-Next: Verify the crop on the public homepage when the pending website release is approved.
+Next: Use the subject-framing check when this card's artwork changes.
 
-North Star check (2026-11-20): holds. The channel card gives visitors a recognisable route to Krish's published work.
+North Star check (2026-11-20): holds.

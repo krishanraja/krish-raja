@@ -1,5 +1,5 @@
-Status: Built an executive profile for senior leadership and advisory searches in creative, media and entertainment technology and a dedicated AI keynote speaker page. Each has visible static HTML, its own search and share metadata, source links, and a contextual enquiry to Krish. The local browser checks covered the complete enquiry paths with intercepted delivery, mobile and desktop layouts, and reading without JavaScript.
+Status: The executive profile and AI keynote speaker page are live on krishraja.com. Both return their own HTML, canonical address and search metadata, and appear in the public sitemap. Production browser checks covered both enquiry forms on phone and desktop with the final send intercepted.
 
-Next: Publish the two pages on krishraja.com once approved and verify their public search and booking paths.
+Next: Check indexing and search impressions for both addresses in the verified Google Search Console property.
 
-North Star check (2026-11-20): holds. An organiser can assess three AI talks, watch a demonstration and enquire about an event. Search impressions and confirmed paid bookings have not been measured for these pages.
+North Star check (2026-11-20): holds.
