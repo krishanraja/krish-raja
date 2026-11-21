@@ -1,53 +1,52 @@
 import { ArrowUpRight } from 'lucide-react';
 import BlockTitle from '@/components/home/BlockTitle';
 import { contact } from '@/content';
+import type { ContactLink } from '@/content/types';
 import { icon as resolveIcon } from '@/lib/icon-map';
 
-const Contact = () => {
-  return (
-    <section id={contact.id} className="section-padding bg-muted/30 scroll-mt-16">
-      <div className="container-width">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-6 md:mb-10">
-            <BlockTitle className="h-h2 mb-3 md:mb-4" text={contact.title} />
-            <p className="text-muted-foreground">
-              {contact.sub}
-            </p>
-          </div>
+function ContactAction({ link, primary = false }: { link: ContactLink; primary?: boolean }) {
+  const Icon = resolveIcon(link.icon);
 
-          <div className="bg-card rounded-2xl border border-border/60 divide-y divide-border/60 overflow-hidden">
-            {contact.links.map((link) => {
-              const Icon = resolveIcon(link.icon);
-              return (
-                <a
-                  key={link.action}
-                  href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-4 p-5 hover:bg-muted/50 transition-colors group"
-                >
-                  <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                    <Icon className="w-4 h-4 text-primary" />
-                  </div>
-                  {/* Action first, destination underneath. This section
-                      absorbed "Work with me" on 12 Aug 2026, so these four
-                      rows are the whole ask and the visitor should read what
-                      they are about to do before where it goes. */}
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                      {link.action}
-                    </p>
-                    <p className="text-xs text-muted-foreground truncate">{link.detail}</p>
-                  </div>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                </a>
-              );
-            })}
-          </div>
-        </div>
+  return (
+    <a
+      className={primary ? 'contact-link contact-primary' : 'contact-link contact-secondary-link'}
+      href={link.href}
+      target={link.external ? '_blank' : undefined}
+      rel={link.external ? 'noopener noreferrer' : undefined}
+    >
+      <span className="contact-icon"><Icon aria-hidden="true" /></span>
+      <span className="contact-destination">
+        <strong>{link.action}</strong>
+        <small>{link.detail}</small>
+      </span>
+      <ArrowUpRight aria-hidden="true" />
+    </a>
+  );
+}
+
+export function ContactPanel() {
+  const [email, ...otherWays] = contact.links;
+
+  return (
+    <div className="contact-shell">
+      <div className="contact-intro">
+        <BlockTitle className="h-h2" text={contact.title} />
+        <p>{contact.sub}</p>
+        <ContactAction link={email} primary />
       </div>
+      <ul className="contact-secondary">
+        {otherWays.map(link => (
+          <li key={link.href}><ContactAction link={link} /></li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default function Contact() {
+  return (
+    <section id={contact.id} className="contact-section section-padding scroll-mt-16">
+      <div className="container-width"><ContactPanel /></div>
     </section>
   );
-};
-
-export default Contact;
+}

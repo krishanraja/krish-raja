@@ -100,12 +100,7 @@ try {
       const open = stage.getByRole('button', { name:'Open my brain' });
       await open.waitFor();
       await page.evaluate(() => document.fonts.ready);
-      if (mobile) {
-        await checkLead(page, width + 'px portrait', true);
-        const enlarged = await page.addStyleTag({ content:'html { font-size:125% } #hero .mp-sub {font-family:Arial,sans-serif}' });
-        await checkLead(page, width + 'px enlarged fallback font');
-        await enlarged.evaluate(el => el.remove());
-      } else await checkLead(page, width + 'px desktop', true);
+      await checkLead(page, width + (mobile ? 'px portrait' : 'px desktop'), true);
       assert.equal(await page.locator('#hero .mr-index').count(), 6);
       assert.equal(await page.locator('#hero .mr-index[type="button"]').count(), 6);
       assert.deepEqual(await page.locator('#hero .mr-index').allTextContents(),
@@ -120,8 +115,19 @@ try {
       assert.match(await fit.locator('p').innerText(), /creative, media & entertainment technologies\./);
       if (mobile) {
         assert.notEqual((await renderedLines(fit.locator('#engagement-fit-label'))).at(-1), 'with');
-        const chipRows = await fit.locator('li').evaluateAll(items => new Set(items.map(item => Math.round(item.getBoundingClientRect().top))).size);
-        assert.equal(chipRows, 2, width + 'px rendered the qualities across ' + chipRows + ' rows');
+        const chips = await fit.locator('li').evaluateAll(items => items.map(item => {
+          const box = item.getBoundingClientRect();
+          const range = document.createRange();
+          range.selectNodeContents(item);
+          const text = range.getBoundingClientRect();
+          return {
+            label: item.textContent,
+            row: Math.round(box.top),
+            fits: range.getClientRects().length === 1 && text.left > box.left && text.right < box.right,
+          };
+        }));
+        assert.equal(new Set(chips.map(chip => chip.row)).size, 2, width + 'px must fit the five badges in two rows');
+        for (const chip of chips) assert(chip.fits, width + 'px clips or wraps ' + chip.label);
       }
       assert.equal(await page.locator('#hero').getByText(/creative, media & entertainment technologies/).count(), 0);
       await open.click();
@@ -186,6 +192,14 @@ try {
       assert.equal(await submit.innerText(), direct ? 'Send enquiry' : 'Open in email');
       await page.keyboard.press('Escape');
       await checkChannelArtwork(page, width + 'px');
+      if (mobile) {
+        // Root zoom and container queries can reflow a frame apart. Measure the
+        // enlarged layout last so its font override cannot affect the other checks.
+        await page.locator('#hero .mp-sub').scrollIntoViewIfNeeded();
+        await page.addStyleTag({ content:'html { font-size:125% } #hero .mp-sub {font-family:Arial,sans-serif}' });
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        await checkLead(page, width + 'px enlarged fallback font');
+      }
       console.log(width + '×' + height + ' hero passed');
     } finally {
       await context.close();
