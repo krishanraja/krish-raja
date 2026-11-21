@@ -1,7 +1,7 @@
 ---
 repo: krishanraja/krish-raja
 product: krishraja.com
-as_of: 2026-11-20
+as_of: 2026-11-21
 head: 952bf56
 lifecycle: live
 production_url: https://www.krishraja.com
@@ -22,12 +22,13 @@ krishraja.com, Krish Raja's personal site: what he has built, what he is buildin
 
 Event organisers and leaders checking who Krish is. It sends the right visitor to Mindmake.
 
-## Where it is right now (as of 2026-11-20)
+## Where it is right now (as of 2026-11-21)
 
 <!-- north-star-state {"week_of":"2026-11-16","week_target":"private","current":"private","current_as_of":"2026-11-16","current_source":"Control Center site_enquiries with status booked (krishraja.com's enquiries, marked by Krish)","urgency":5,"urgency_reason":"under 40% of the week's target two weeks running (0% now)"} --> **North Star number: U5, stalled.** Confirmed paid speaking bookings: at 0% of this week's target (figures private). Everything else pauses unless it moves the number.
 
 Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. The detail is in `README.md`; each session's closeout note folds into this file from `now-notes/` on main (`.github/workflows/closeout-fold.yml`); the notes before 14 Nov are kept verbatim in `docs/history/now-notes/`.
 
+- Built the approved contact and leadership designs. Both layouts give email the primary position and offer advisory, publishing and call booking as secondary links. All five leadership badges fit on two rows on phones down to 320px. The unit suite, production build, 11 responsive hero checks and 79 mobile checks passed locally. (2026-11-21)
 - The hero selector now leads with Media, Immersion, Sprint and Ongoing, with Audit and Modules at the end; the AI learning-loop copy now says "my AIs". (2026-11-20)
 - Built an editorial reassurance bridge that groups the pace-of-change message with the rotating engagement routes across mobile and desktop. (2026-11-20)
 - The mobile hero lead is larger and split into two deliberate lines. The engagement selector now uses clickable preview tabs, automatic progress wipes and no separate transport controls. The card says AI Judgement Audit, and the five leader qualities stay on two rows at 320px without overflow. Typecheck, 204 tests, the production build, eleven hero widths and the 79-check mobile suite pass. (2026-11-20)
@@ -43,6 +44,7 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 
 ## What changed recently
 
+- 2026-11-21 The browser test measures the default badge layout before changing the root font size for the separate accessibility check. This keeps a transient reflow in Android desktop-site mode out of the two-row measurement.
 - 2026-11-14 **Enquiries counted.** The enquiry form, every email link and every Calendly link write one row to `public.site_enquiries` (fleet Supabase, insert only, production hosts only). Verified with a real production click. Contract in `docs/enquiry-trace.md`.
 - 2026-11-14 **Next-session slot.** `lessons.upcoming` holds the 3 Dec session with its link and title empty; once filled it heads the session list, enters llms.txt, the crawler copy and the JSON-LD, and hides when it starts. The crawler files now list the lessons and the booking link.
 - 2026-11-14 **Stale facts and CI.** CTRL is live, so it is no longer "coming soon"; the channel is named Make Your Mind Up in llms.txt and the crawler copy; tests, typecheck and lint now run on every pull request.
@@ -54,13 +56,13 @@ Lifecycle: live at https://www.krishraja.com, deployed by Vercel from `main`. Th
 
 ## What is next and what is waiting on Krish
 
-- Next (2026-11-20): Read back the published route order and automatic rotation after the main deployment completes.
+- Next (2026-11-21): Check the contact links and leadership badges on the production homepage after publication.
 - Mark confirmed bookings `booked` in `public.site_enquiries` (or tell Control Center to), so the North Star number is real.
 - Paste the 3 Dec Lightning Lesson's Maven link, title and line into `lessons.upcoming` once it exists in Maven.
 - krishraja.ai and www.krishraja.ai redirect permanently (308) to www.krishraja.com, keeping the path, on Vercel since 14 Nov 2026 (Krish moved the domain's nameservers to Vercel; read back that night: `/thinking?x=1` lands on www.krishraja.com with 200). The old copy of the site it served is gone. (2026-11-14)
 - Re-run LinkedIn Post Inspector on the new card, and submit the sitemap in Google Search Console and Bing Webmaster Tools.
 - Months for the Dan Pratl, Justin Kramm and dothinkdo 2026 appearances and a year for the Captify hire, so In public is dated throughout.
-- North Star check (2026-11-20): holds.
+- North Star check (2026-11-21): holds.
 
 ## Read next
 
