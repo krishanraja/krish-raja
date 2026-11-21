@@ -120,8 +120,19 @@ try {
       assert.match(await fit.locator('p').innerText(), /creative, media & entertainment technologies\./);
       if (mobile) {
         assert.notEqual((await renderedLines(fit.locator('#engagement-fit-label'))).at(-1), 'with');
-        const chipRows = await fit.locator('li').evaluateAll(items => new Set(items.map(item => Math.round(item.getBoundingClientRect().top))).size);
-        assert.equal(chipRows, 2, width + 'px rendered the qualities across ' + chipRows + ' rows');
+        const chips = await fit.locator('li').evaluateAll(items => items.map(item => {
+          const box = item.getBoundingClientRect();
+          const range = document.createRange();
+          range.selectNodeContents(item);
+          const text = range.getBoundingClientRect();
+          return {
+            label: item.textContent,
+            row: Math.round(box.top),
+            fits: range.getClientRects().length === 1 && text.left > box.left && text.right < box.right,
+          };
+        }));
+        assert.equal(new Set(chips.map(chip => chip.row)).size, 2, width + 'px must fit the five badges in two rows');
+        for (const chip of chips) assert(chip.fits, width + 'px clips or wraps ' + chip.label);
       }
       assert.equal(await page.locator('#hero').getByText(/creative, media & entertainment technologies/).count(), 0);
       await open.click();

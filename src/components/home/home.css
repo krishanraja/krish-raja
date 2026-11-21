@@ -43,26 +43,124 @@
 .home--d .h-sec-head > .h-h2, .home--d .h-sec-head > .h-lede { flex: 1 1 0; min-width: 0; }
 /* A title Krish wants on two lines at desktop width. The cap is in em so it follows the clamp. */
 .home--d .h-sec-head > .h-h2--two { max-width: 9.5em; text-wrap: balance; }
-.engagement-fit { display: grid; gap: .95rem; min-width: 0; max-width: 38rem; }
+.engagement-fit {
+  display: grid;
+  gap: .9rem;
+  min-width: 0;
+  max-width: 40rem;
+  padding: 1.05rem;
+  border: 1px solid #dfddd4;
+  border-radius: 1.35rem;
+  background: #f4f2ec;
+}
 .home--d .engagement-fit { flex: 1 1 0; }
-.engagement-qualities { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .8rem; }
-.engagement-qualities > span { color: #55594f; font-weight: 500; font-size: .87rem; line-height: 1.35; text-wrap: balance; }
+.engagement-qualities { display: grid; gap: .62rem; }
+.engagement-qualities > span {
+  color: #6b665d;
+  font-size: .68rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
 .engagement-qualities ul { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; padding: 0; list-style: none; }
 .engagement-qualities li {
-  width: fit-content; max-width: 100%; padding: .27rem .57rem; border: 1px solid #dbe0d5;
-  border-radius: 1rem; background: #eef0e9; color: #3e463e; font-size: .83rem; font-weight: 500; line-height: 1.2;
+  max-width: 100%;
+  padding: .35rem .65rem;
+  border: 1px solid #d6d9d0;
+  border-radius: 999px;
+  background: #fff;
+  color: #30342f;
+  font-size: .8rem;
+  font-weight: 550;
+  line-height: 1.15;
 }
-.engagement-fit p { margin: 0; max-width: 47ch; color: #292621; font-size: 1.04rem; font-weight: 500; line-height: 1.48; }
-.home--m .engagement-fit { container-type: inline-size; width: 100%; gap: .9rem; }
-.home--m .engagement-qualities { display: grid; gap: .42rem; }
-.home--m .engagement-qualities ul { display:grid; grid-template-columns:repeat(100,minmax(0,1fr)); gap:.35rem 0; }
-.home--m .engagement-qualities li { width:fit-content; max-width:100%; padding:.2rem; font-size:.68rem; white-space:nowrap; }
-.home--m .engagement-qualities li:nth-child(1) { grid-column:1 / 22; grid-row:1; }
-.home--m .engagement-qualities li:nth-child(2) { grid-column:22 / 73; grid-row:1; }
-.home--m .engagement-qualities li:nth-child(3) { grid-column:1 / 38; grid-row:2; }
-.home--m .engagement-qualities li:nth-child(4) { grid-column:73 / 101; grid-row:1; }
-.home--m .engagement-qualities li:nth-child(5) { grid-column:38 / 101; grid-row:2; }
-.home--m .engagement-fit p { font-size: 1rem; }
+.engagement-qualities li:nth-child(3) { background: #252622; border-color: #252622; color: #fff; }
+.engagement-qualities li:last-child { background: #efe1d5; border-color: #d6b69d; color: #6e371e; }
+.engagement-fit p {
+  margin: 0;
+  max-width: 48ch;
+  padding: .85rem 0 .05rem .85rem;
+  border-top: 1px solid #ddd8cd;
+  border-left: 3px solid #b4602e;
+  color: #292621;
+  font-size: 1.02rem;
+  font-weight: 560;
+  line-height: 1.42;
+}
+.home--m .engagement-fit {
+  container-type: inline-size;
+  /* Give the two long badges room on an SE while keeping the panel inset. */
+  margin-inline: clamp(-.65rem, calc((100% - 20rem) / 2), 0px);
+  padding-inline: clamp(.65rem, calc(14% - 2rem), 1.05rem);
+}
+.home--m .engagement-qualities { gap: .42rem; }
+.home--m .engagement-qualities ul {
+  max-width: 29em;
+  font-size: clamp(.66rem, 3.6cqi, .8rem);
+}
+.home--m .engagement-qualities li {
+  flex: none;
+  padding: .29rem clamp(.25rem, calc(7cqi - .95rem), .5rem);
+  font-size: inherit;
+}
+.home--m .engagement-qualities li:nth-child(3),
+.home--m .engagement-qualities li:last-child { order: 1; }
+.home--m .engagement-fit p { padding: .75rem 0 0 .72rem; font-size: .91rem; }
+
+.contact-section { background: #f4f2ed; }
+.contact-shell { background: #191a18; color: #fbfaf6; }
+.contact-intro { display: grid; align-content: center; gap: 1.35rem; }
+.contact-intro p { margin: 0; max-width: 38rem; color: #bbbdb6; line-height: 1.55; }
+.contact-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .85rem;
+  text-decoration: none;
+}
+.contact-link:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+.contact-link:is(:hover, :focus-visible) strong { text-decoration: underline; text-underline-offset: .15em; }
+.contact-link > svg, .contact-icon svg { width: 1rem; height: 1rem; }
+.contact-icon { display: grid; place-items: center; width: 2.45rem; height: 2.45rem; border-radius: .72rem; }
+.contact-destination { min-width: 0; }
+.contact-destination strong, .contact-destination small { display: block; }
+.contact-destination small { margin-top: .15rem; font-size: .75rem; overflow-wrap: anywhere; }
+.contact-primary {
+  min-height: 5rem;
+  padding: .75rem .85rem;
+  border-radius: 1.15rem;
+  background: #f3e8d8;
+  color: #181916;
+}
+.contact-primary .contact-icon { width: 2.75rem; height: 2.75rem; background: #fff8ed; color: #9a4c24; }
+.contact-primary .contact-icon svg { width: 1.15rem; height: 1.15rem; }
+.contact-primary strong { font-size: 1rem; font-weight: 650; }
+.contact-primary small { color: #655d56; }
+.contact-secondary { margin: 0; padding: 0; list-style: none; }
+.contact-secondary li + li { border-top: 1px solid rgba(255, 255, 255, .13); }
+.contact-secondary-link { min-height: 5.25rem; padding-block: .75rem; color: #f5f4ef; }
+.contact-secondary-link .contact-icon { background: rgba(255, 255, 255, .08); color: #d6b08e; }
+.contact-secondary-link strong { font-size: .9rem; font-weight: 580; }
+.contact-secondary-link small { color: #a4a79f; }
+.contact-secondary-link > svg { color: #a4a79f; }
+.home--d .contact-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(20rem, .95fr);
+  max-width: 70rem;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 2rem;
+  box-shadow: 0 28px 70px -48px #141512;
+}
+.home--d .contact-intro { padding: clamp(2rem, 5vw, 4.5rem); }
+.home--d .contact-secondary { display: grid; align-content: center; padding: 1.35rem clamp(2rem, 4vw, 3.5rem); background: #22231f; }
+.home--d .contact-primary { max-width: 28rem; }
+.mobile-contact { display: grid; align-content: center; background: #191a18; }
+.mobile-contact .contact-shell { display: grid; gap: .85rem; }
+.mobile-contact .contact-intro { gap: .8rem; }
+.mobile-contact .contact-primary { margin-top: .6rem; }
+.mobile-contact .contact-secondary { padding-inline: .1rem; }
 
 /* Reveals: one entrance for everything, played once. */
 .h-r { opacity: 0; transform: translateY(var(--y, 16px)); transition: opacity .8s var(--ease-soft), transform .8s var(--ease-soft); transition-delay: var(--d, 0ms); }
