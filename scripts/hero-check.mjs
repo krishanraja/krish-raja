@@ -100,12 +100,7 @@ try {
       const open = stage.getByRole('button', { name:'Open my brain' });
       await open.waitFor();
       await page.evaluate(() => document.fonts.ready);
-      if (mobile) {
-        await checkLead(page, width + 'px portrait', true);
-        const enlarged = await page.addStyleTag({ content:'html { font-size:125% } #hero .mp-sub {font-family:Arial,sans-serif}' });
-        await checkLead(page, width + 'px enlarged fallback font');
-        await enlarged.evaluate(el => el.remove());
-      } else await checkLead(page, width + 'px desktop', true);
+      await checkLead(page, width + (mobile ? 'px portrait' : 'px desktop'), true);
       assert.equal(await page.locator('#hero .mr-index').count(), 6);
       assert.equal(await page.locator('#hero .mr-index[type="button"]').count(), 6);
       assert.deepEqual(await page.locator('#hero .mr-index').allTextContents(),
@@ -197,6 +192,14 @@ try {
       assert.equal(await submit.innerText(), direct ? 'Send enquiry' : 'Open in email');
       await page.keyboard.press('Escape');
       await checkChannelArtwork(page, width + 'px');
+      if (mobile) {
+        // Root zoom and container queries can reflow a frame apart. Measure the
+        // enlarged layout last so its font override cannot affect the other checks.
+        await page.locator('#hero .mp-sub').scrollIntoViewIfNeeded();
+        await page.addStyleTag({ content:'html { font-size:125% } #hero .mp-sub {font-family:Arial,sans-serif}' });
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        await checkLead(page, width + 'px enlarged fallback font');
+      }
       console.log(width + '×' + height + ' hero passed');
     } finally {
       await context.close();
